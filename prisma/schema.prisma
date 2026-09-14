@@ -1,0 +1,145 @@
+// Prisma Schema for SIH 2026 Dual-Architecture Backend
+// Supporting WeatherGPT (SIH26068) & KrishiSmriti (SIH26193)
+// Configured for PostgreSQL with PostGIS & pgvector native extensions
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  url        = env("DATABASE_URL")
+  extensions = [postgis(version: "3.4"), vector]
+}
+
+// =============================================================================
+// WEATHERGPT DOMAIN (PS ID: SIH26068 - MoES / IMD)
+// =============================================================================
+
+/// Common Alerting Protocol (CAP v1.2) disaster alerts received via WMO WIS 2.0 / NDMA
+/// Uses PostGIS geometry(Polygon, 4326) to define geospatial disaster impact perimeters.
+model CAP_Alerts {
+  id               String   @id @default(uuid()) @db.Uuid
+  identifier       String   @unique @db.VarChar(255) // e.g., "URN:IN-MD:DISASTER:2026:VAR-089"
+  sender           String   @db.VarChar(255)         // e.g., "dwr.varanasi@imd.gov.in"
+  sentAt           DateTime @db.Timestamptz(6)
+  status           String   @default("Actual") @db.VarChar(32) // Actual, Exercise, Test
+  msgType          String   @default("Alert") @db.VarChar(32)  // Alert, Update, Cancel
+  scope            String   @default("Public") @db.VarChar(32) // Public, Restricted
+  
+  // CAP Info Block
+  event            String   @db.VarChar(128)         // e.g., "Severe Squall / Cloudburst"
+  urgency          String   @db.VarChar(32)          // Immediate, Expected, Future
+  severity         String   @db.VarChar(32)          // Extreme, Severe, Moderate, Minor
+  certainty        String   @db.VarChar(32)          // Observed, Likely, Possible
+  headline         String   @db.VarChar(512)
+  description      String   @db.Text
+  instruction      String?  @db.Text
+  areaDesc         String   @db.VarChar(512)         // e.g., "Varanasi - Chandauli - Ghazipur Agro-Climatic Belt"
+  
+  // PostGIS Geospatial Polygon (WGS 84 SRID 4326)
+  // Raw SQL queries use ST_Contains(geom, ST_SetSRID(ST_Point(lng, lat), 4326))
+  geom             Unsupported("geometry(Polygon, 4326)")
+  
+  minAltitudeM     Float?   @default(0)
+  maxAltitudeM     Float?   @default(12000)
+  effectiveAt      DateTime @default(now()) @db.Timestamptz(6)
+  expiresAt        DateTime @db.Timestamptz(6)
+  
+  // Audit fields
+  createdAt        DateTime @default(now()) @db.Timestamptz(6)
+  updatedAt        DateTime @updatedAt @db.Timestamptz(6)
+
+  @@index([event], name: "idx_cap_alerts_event")
+  @@index([severity], name: "idx_cap_alerts_severity")
+  @@index([expiresAt], name: "idx_cap_alerts_expires_at")
+  @@map("CAP_Alerts")
+}
+
+// =============================================================================
+// KRISHISMRITI DOMAIN (PS ID: SIH26193 - Ministry of Agriculture)
+// =============================================================================
+
+/// Geospatial registry of smallholder farmer holdings and geo-fenced parcel boundaries.
+model Farm_Plots {
+  id           String        @id @default(uuid()) @db.Uuid
+  farmerId     String        @db.VarChar(64)          // Unique Farmer ID (e.g. Agristack / PM-KISAN ID)
+  farmerName   String        @db.VarChar(255)
+  phoneNumber  String?       @db.VarChar(20)
+  language     String        @default("bho") @db.VarChar(16) // ISO code: bho, hi, mr, te, ta, bn
+  village      String        @db.VarChar(128)
+  district     String        @db.VarChar(128)
+  state        String        @db.VarChar(128)
+  cropType     String        @db.VarChar(128)         // e.g., "Wheat (PBW-502)", "Paddy (PR-126)"
+  sowingDate   DateTime?     @db.Date
+  soilType     String?       @db.VarChar(64)          // e.g., "Alluvial Loam", "Black Soil"
+  areaAcres    Float         @default(1.0)
+  
+  // PostGIS parcel boundary polygon
+  geom         Unsupported("geometry(Polygon, 4326)")
+  
+  createdAt    DateTime      @default(now()) @db.Timestamptz(6)
+  updatedAt    DateTime      @updatedAt @db.Timestamptz(6)
+
+  // Relations
+  memories     Plot_Memory[]
+
+  @@index([farmerId], name: "idx_farm_plots_farmer_id")
+  @@index([village, district], name: "idx_farm_plots_location")
+  @@map("Farm_Plots")
+}
+
+/// Farmer's Long-Term Episodic Memory Bank utilizing pgvector embeddings.
+/// Retains farmer actions (fertilizer, sowing, pesticide spray, irrigation, harvest).
+model Plot_Memory {
+  id           String      @id @default(uuid()) @db.Uuid
+  plotId       String      @db.Uuid
+  farmerId     String      @db.VarChar(64)
+  
+  logText      String      @db.Text                 // Original transcribed text: "Sprayed 45kg Urea on plot A"
+  logEnglish   String?     @db.Text                 // Canonical English translation
+  category     String      @db.VarChar(64)          // FERTILIZER, IRRIGATION, PESTICIDE, SOWING, HARVEST, DISEASE
+  
+  // pgvector 1536-dimensional vector embedding (OpenAI text-embedding-3-small or Gemini text-embedding-004)
+  embedding    Unsupported("vector(1536)")
+  
+  metadata     Json?       @db.JsonB                // Structured data: { dose: "45kg", chemical: "Urea", stage: "Tillering" }
+  timestamp    DateTime    @default(now()) @db.Timestamptz(6) // Actual timestamp when activity was executed
+  createdAt    DateTime    @default(now()) @db.Timestamptz(6)
+
+  // Relations
+  plot         Farm_Plots  @relation(fields: [plotId], references: [id], onDelete: Cascade)
+
+  @@index([plotId], name: "idx_plot_memory_plot_id")
+  @@index([farmerId], name: "idx_plot_memory_farmer_id")
+  @@index([category], name: "idx_plot_memory_category")
+  @@index([timestamp(sort: Desc)], name: "idx_plot_memory_timestamp")
+  @@map("Plot_Memory")
+}
+
+/// Micro-climate and hyper-local telemetry streamed from Gram Panchayat ground IoT sensors.
+model Panchayat_IoT {
+  id                     String   @id @default(uuid()) @db.Uuid
+  sensorId               String   @db.VarChar(64)          // e.g., "IOT-GP-UP-BRB-04"
+  village                String   @db.VarChar(128)
+  district               String   @db.VarChar(128)
+  state                  String   @db.VarChar(128)
+  
+  // Real-time agronomic telemetry metrics
+  soilMoisturePercent    Float    // e.g. 38.4%
+  soilTemperatureCelsius Float    // e.g. 21.2°C
+  ambientTempCelsius     Float    // e.g. 29.5°C
+  ambientHumidityPercent Float    // e.g. 74.0%
+  rainfallLast24hMm      Float    @default(0.0) // e.g. 14.5 mm
+  leafWetnessIndex       Float?   @default(0.0) // 0 - 15 index
+  batteryLevel           Float    @default(98.0) // percentage
+  
+  recordedAt             DateTime @default(now()) @db.Timestamptz(6)
+  rawPayload             Json?    @db.JsonB
+
+  @@index([village, district], name: "idx_panchayat_iot_location")
+  @@index([sensorId], name: "idx_panchayat_iot_sensor")
+  @@index([recordedAt(sort: Desc)], name: "idx_panchayat_iot_recorded_at")
+  @@map("Panchayat_IoT")
+}
