@@ -33,3 +33,7 @@ next-env.d.ts
 # deployment
 .vercel/
 .netlify/
+
+# slide render inspection artifacts
+scripts/diagrams/*slide*.png
+scripts/diagrams/*preview*.png
