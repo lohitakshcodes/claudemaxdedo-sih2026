@@ -2,13 +2,20 @@
 
 Official dual-portal evaluator portfolio for **Team ClaudeMaxDedo** at **Smart India Hackathon 2026**.
 
+## 🌐 Live Production Deployment
+
+- **Production URL**: **[https://sih-2026-portfolio-two.vercel.app](https://sih-2026-portfolio-two.vercel.app)**
+- **WeatherGPT Evaluator Portal (MoES / IMD - SIH26068)**: **[https://sih-2026-portfolio-two.vercel.app/weathergpt](https://sih-2026-portfolio-two.vercel.app/weathergpt)**
+- **KrishiSmriti Evaluator Portal (Ministry of Agriculture - SIH26193)**: **[https://sih-2026-portfolio-two.vercel.app/krishismriti](https://sih-2026-portfolio-two.vercel.app/krishismriti)**
+- **Continuous Deployment**: Connected directly to [`github.com/lohitakshcodes/claudemaxdedo-sih2026`](https://github.com/lohitakshcodes/claudemaxdedo-sih2026)
+
 ## 📌 Problem Statements & Isolated Routes
 
 | Route | Problem Statement ID | Ministry / Theme | Status |
 |---|---|---|---|
-| [`/weathergpt`](http://localhost:3000/weathergpt) | **SIH26068** | Ministry of Earth Sciences (MoES) / IMD &bull; Disaster Management & Climate Tech | **Live Working Prototype** |
-| [`/krishismriti`](http://localhost:3000/krishismriti) | **SIH26193** | Ministry of Agriculture & Farmers Welfare &bull; Agriculture, FoodTech & Rural Dev | **Live Working Prototype** |
-| [`/`](http://localhost:3000/) | Gateway Directory | Team ClaudeMaxDedo Institutional Directory | Active |
+| [`/weathergpt`](https://sih-2026-portfolio-two.vercel.app/weathergpt) | **SIH26068** | Ministry of Earth Sciences (MoES) / IMD &bull; Disaster Management & Climate Tech | **Live Working Prototype** |
+| [`/krishismriti`](https://sih-2026-portfolio-two.vercel.app/krishismriti) | **SIH26193** | Ministry of Agriculture & Farmers Welfare &bull; Agriculture, FoodTech & Rural Dev | **Live Working Prototype** |
+| [`/`](https://sih-2026-portfolio-two.vercel.app/) | Gateway Directory | Team ClaudeMaxDedo Institutional Directory | Active |
 
 > [!IMPORTANT]
 > **Strict Route Isolation Guarantee**:
