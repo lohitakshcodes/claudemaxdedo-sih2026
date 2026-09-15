@@ -11,6 +11,11 @@ import { AgriArchitectureVisualizer } from "@/components/agri-architecture-visua
 import { ConflictResolutionSandbox } from "@/components/conflict-resolution-sandbox";
 import { PersonalizationLayersVisualizer } from "@/components/personalization-layers-visualizer";
 import { ApiEcosystemVisualizer } from "@/components/api-ecosystem-visualizer";
+import { BrokenChainFlowchart } from "@/components/broken-chain-flowchart";
+import { PersonaSynthesisFlowchart } from "@/components/persona-synthesis-flowchart";
+import { HallucinationGuardrailFlowchart } from "@/components/hallucination-guardrail-flowchart";
+import { MacroLossFlowchart } from "@/components/macro-loss-flowchart";
+import { B2gDeploymentFlowchart } from "@/components/b2g-deployment-flowchart";
 import {
   ExternalLink,
   ShieldCheck,
@@ -346,6 +351,9 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
               </p>
             </div>
 
+            {/* Visual Research Diagnostic: Broken Transmission Chain vs. Autonomous System */}
+            <BrokenChainFlowchart projectId={config.id} />
+
             {/* High-Density Metric Cards with Verified Citations */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {config.problem.metrics.map((m, idx) => (
@@ -384,6 +392,9 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
                 </div>
               ))}
             </div>
+
+            {/* Visual Sectoral Macro-Economic Loss Analysis Flowchart */}
+            <MacroLossFlowchart projectId={config.id} />
 
             {/* Detailed Economic Loss Breakdown with Official Research Citations */}
             {config.problem.economicLossDetails && (
@@ -544,6 +555,11 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
               <AgriArchitectureVisualizer parallelApis={config.architecture.parallelApis || []} />
             )}
 
+            {/* WeatherGPT 5-Step Persona Adaptation Flowchart */}
+            {isWeather && (
+              <PersonaSynthesisFlowchart />
+            )}
+
             {/* 3-Column Structured Layout */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
               {config.architecture.columns.map((col, idx) => (
@@ -692,6 +708,14 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
                 {config.feasibility.summary}
               </p>
             </div>
+
+            {/* Visual Hallucination Control & Decoupled Truth Assertion Flowchart */}
+            <HallucinationGuardrailFlowchart />
+
+            {/* Visual B2G DPI Government Deployment Architecture Flowchart (KrishiSmriti) */}
+            {!isWeather && (
+              <B2gDeploymentFlowchart />
+            )}
 
             {/* 2-Column Risk vs Safeguard Structured Table */}
             <div className="web2-panel rounded-lg border border-zinc-300 overflow-hidden shadow-sm">
