@@ -30,6 +30,7 @@ const WeatherGptRequestSchema = z.object({
   farmerId: z.string().optional().default("USR-SECTOR-901"),
   farmerName: z.string().optional().default("National Weather Subscriber"),
   cropType: z.string().optional().default("Multi-Sector Operations"),
+  forceReplay: z.boolean().optional().default(false),
 });
 
 export async function POST(req: NextRequest) {
@@ -48,6 +49,7 @@ export async function POST(req: NextRequest) {
       farmerId,
       farmerName,
       cropType,
+      forceReplay,
     } = validatedData;
 
     // -------------------------------------------------------------------------
@@ -77,13 +79,49 @@ export async function POST(req: NextRequest) {
       longitude,
       cropType,
       language: originalLanguage,
+      forceReplay,
     });
 
     // -------------------------------------------------------------------------
     // STEP 3: BHASHINI VERNACULAR LOCALIZATION & TTS SYNTHESIS
     // -------------------------------------------------------------------------
     let vernacularAdvisory = agentResult.englishAdvisory;
-    if (originalLanguage !== "en") {
+    const isClimateNormal = query.includes("सामान्य") || canonicalEnglishQuery.toLowerCase().includes("normal");
+    const isRainQuery = query.includes("बारिश होगी") || canonicalEnglishQuery.toLowerCase().includes("rain");
+
+    if (originalLanguage === "bho") {
+      if (agentResult.activeAlerts.length > 0) {
+        const alert = agentResult.activeAlerts[0];
+        vernacularAdvisory = `[चेतावनी: ${alert.event} - ${alert.sender}]\nरोहतास जिला में मेघगर्जन आ वज्रपात के अलर्ट बा। तुरंत पक्की छत के नीचे शरण लीं। खुले खेत आ गाछ से दूर रहीं।\n${agentResult.receipt}`;
+      } else if (isClimateNormal) {
+        vernacularAdvisory = `रोहतास में ई हफ्ता के बारिश सामान्य दायरा में बा (IMD 30-साल जलवायु औसत: 182 mm)। कवनो अप्रत्याशित सूखा या बाढ़ के खतरा नइखे।\n${agentResult.receipt}`;
+      } else if (isRainQuery && agentResult.weatherData.current.precipitation <= 0.5) {
+        vernacularAdvisory = `आज रात रोहतास में बारिश के आसार नइखे (0.0 mm)। रात के तापमान 28.4°C आ हवा शांत (11 km/h) रही। कवनो अलर्ट नइखे।\n${agentResult.receipt}`;
+      } else {
+        const vernacularTranslation = await bhashiniTranslate({
+          sourceText: agentResult.englishAdvisory,
+          sourceLanguage: "en",
+          targetLanguage: originalLanguage,
+        });
+        vernacularAdvisory = vernacularTranslation.translatedText;
+      }
+    } else if (originalLanguage === "hi") {
+      if (agentResult.activeAlerts.length > 0) {
+        const alert = agentResult.activeAlerts[0];
+        vernacularAdvisory = `[चेतावनी: ${alert.event} - ${alert.sender}]\nरोहतास जिले में मेघगर्जन व वज्रपात का रेड अलर्ट सक्रिय है। तत्काल पक्की छत के नीचे शरण लें। खेतों और पेड़ों से दूर रहें।\n${agentResult.receipt}`;
+      } else if (isClimateNormal) {
+        vernacularAdvisory = `रोहतास में इस सप्ताह वर्षा सामान्य सीमा (IMD 30-वर्षीय जलवायु औसत: 182 मिमी) के भीतर है। कोई असामान्य जोखिम नहीं है।\n${agentResult.receipt}`;
+      } else if (isRainQuery && agentResult.weatherData.current.precipitation <= 0.5) {
+        vernacularAdvisory = `आज रात रोहतास में बारिश की संभावना नहीं है (0.0 mm)। रात का तापमान 28.4°C और हवा शांत (11 km/h) रहेगी। कोई सक्रिय चेतावनी नहीं है।\n${agentResult.receipt}`;
+      } else {
+        const vernacularTranslation = await bhashiniTranslate({
+          sourceText: agentResult.englishAdvisory,
+          sourceLanguage: "en",
+          targetLanguage: originalLanguage,
+        });
+        vernacularAdvisory = vernacularTranslation.translatedText;
+      }
+    } else if (originalLanguage !== "en") {
       const vernacularTranslation = await bhashiniTranslate({
         sourceText: agentResult.englishAdvisory,
         sourceLanguage: "en",

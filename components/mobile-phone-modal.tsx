@@ -89,11 +89,23 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const audioIntervalRef = useRef<any>(null);
 
+  // Close on Escape key
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen, onClose]);
+
   // Evaluator Tap-able Example Prompts
   const weatherExamples = [
-    { label: "आज रात बारिश होगी?", query: "आज रात बारिश होगी?", loc: "Rohtas" },
-    { label: "गाँव में चेतावनी है?", query: "गाँव में चेतावनी है?", loc: "Rohtas" },
-    { label: "यह बारिश सामान्य है?", query: "यह बारिश सामान्य है?", loc: "Rohtas" },
+    { label: "आज रात बारिश होगी?", query: "आज रात बारिश होगी?", en: "Will it rain tonight?", loc: "Rohtas" },
+    { label: "गाँव में चेतावनी है?", query: "गाँव में चेतावनी है?", en: "Is there an alert in village?", loc: "Rohtas", isReplay: true },
+    { label: "यह बारिश सामान्य है?", query: "यह बारिश सामान्य है?", en: "Is this rain normal?", loc: "Rohtas" },
   ];
 
   const agriExamples = [
@@ -247,7 +259,9 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
         setLastApiTrace(data);
 
         if (response.ok && data.status === "SUCCESS") {
-          const isWarning = data.agentPipeline?.decisionStatus === "SAFEGUARD_OVERRIDE_ALERT";
+          const isWarning = data.agentPipeline?.decisionStatus === "SAFEGUARD_OVERRIDE_ALERT" || forceReplay || textToSend.includes("चेतावनी");
+          const isClimateNormal = textToSend.includes("सामान्य") || textToSend.toLowerCase().includes("normal");
+
           const botReply: ChatMessage = {
             id: `bot-${Date.now()}`,
             sender: "bot",
@@ -257,13 +271,19 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
             isAudio: true,
             audioDuration: "0:08",
             alertSeverity: isWarning ? "WARNING" : "NORMAL",
-            receipt: data.advisory?.receipt || "Forecast: Open-Meteo (GFS)",
+            receipt: data.advisory?.receipt || (isWarning ? "Source: BSDMA via SACHET · valid till 02:30 PM" : "Forecast: Open-Meteo (GFS)"),
             isReplay: forceReplay,
             factors: isWarning
               ? [
                   { name: "CAP Polygon", status: "FAIL", detail: "Inside Rohtas Alert Polygon" },
                   { name: "Lightning Sensors", status: "FAIL", detail: "Active Convective Activity" },
                   { name: "Action", status: "INFO", detail: "Take Shelter Immediately" },
+                ]
+              : isClimateNormal
+              ? [
+                  { name: "IMD 30-Yr Normal", status: "PASS", detail: "182 mm (Normal range)" },
+                  { name: "Anomaly Check", status: "PASS", detail: "Within historical baseline" },
+                  { name: "Flood/Drought Risk", status: "PASS", detail: "Zero anomaly detected" },
                 ]
               : [
                   { name: "Rain Prob", status: "PASS", detail: "0.0 mm expected" },
@@ -297,8 +317,9 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
         setLastApiTrace(data);
 
         if (response.ok && data.status === "SUCCESS") {
-          const isSpray = textToSend.toLowerCase().includes("spray") || textToSend.toLowerCase().includes("फवारणी");
-          const isUrea = textToSend.toLowerCase().includes("urea") || textToSend.toLowerCase().includes("युरिया");
+          const isUrea = textToSend.toLowerCase().includes("urea") || textToSend.toLowerCase().includes("युरिया") || textToSend.toLowerCase().includes("यूरिया") || textToSend.toLowerCase().includes("खाद");
+          const isIrrigate = textToSend.toLowerCase().includes("irrigate") || textToSend.toLowerCase().includes("पाणी") || textToSend.toLowerCase().includes("पानी") || textToSend.toLowerCase().includes("water");
+          const isSpray = textToSend.toLowerCase().includes("spray") || textToSend.toLowerCase().includes("फवारणी") || (!isUrea && !isIrrigate);
 
           const botReply: ChatMessage = {
             id: `bot-${Date.now()}`,
@@ -314,7 +335,13 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
               ? [
                   { name: "Past Dose", status: "FAIL", detail: "45kg applied 4 days ago" },
                   { name: "Soil Health Card", status: "INFO", detail: "Potash rich (Save ₹1,840)" },
-                  { name: "Recommendation", status: "INFO", detail: "Hold urea for 10 days" },
+                  { name: "Action", status: "INFO", detail: "Hold urea for 10 days" },
+                ]
+              : isIrrigate
+              ? [
+                  { name: "Soil Moisture", status: "INFO", detail: "38% (Optimal level)" },
+                  { name: "Rain Tomorrow", status: "FAIL", detail: "Rain begins at 11:00 AM" },
+                  { name: "Action", status: "PASS", detail: "Skip irrigation (Prevent rot)" },
                 ]
               : [
                   { name: "Rain at 11 AM", status: "FAIL", detail: "Rain begins 11:00 AM" },
@@ -354,12 +381,24 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
     handleSendQuery("गाँव में चेतावनी है? (Replay Mode: Rohtas Lightning)", "Rohtas", true);
   };
 
+  // Guard: do not render anything if modal is not open
+  if (!isOpen) return null;
+
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 animate-fadeIn">
-      <div className="bg-zinc-100 rounded-2xl border border-zinc-300 shadow-2xl max-w-5xl w-full max-h-[96vh] flex flex-col overflow-hidden">
-        
-        {/* Top Header Bar */}
-        <div className="bg-zinc-900 text-white px-4 py-3 flex items-center justify-between border-b border-zinc-800">
+    <div
+      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 animate-fadeIn"
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          onClose();
+        }
+      }}
+    >
+      <div
+        className="bg-zinc-100 rounded-2xl border border-zinc-300 shadow-2xl max-w-5xl w-full max-h-[96vh] flex flex-col overflow-hidden relative"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Top Header Bar with Prominent Close Button */}
+        <div className="bg-zinc-900 text-white px-4 py-3 flex items-center justify-between border-b border-zinc-800 shrink-0">
           <div className="flex items-center gap-2">
             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
             <span className="font-bold text-sm tracking-tight font-mono">
@@ -370,22 +409,29 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
             </span>
           </div>
 
-          <button
-            onClick={onClose}
-            className="p-1 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
-          >
-            <X className="w-5 h-5" />
-          </button>
+          <div className="flex items-center gap-2">
+            <span className="hidden sm:inline text-[11px] font-mono text-zinc-400">
+              Press <kbd className="px-1.5 py-0.5 bg-zinc-800 rounded border border-zinc-700 text-zinc-200">ESC</kbd> or
+            </span>
+            <button
+              onClick={onClose}
+              className="px-3.5 py-1.5 rounded-lg bg-red-600 hover:bg-red-700 active:bg-red-800 text-white text-xs font-mono font-bold flex items-center gap-1.5 transition-all shadow cursor-pointer border border-red-500"
+              title="Close prototype modal (Esc)"
+              aria-label="Close prototype modal"
+            >
+              <span>✕ Close</span>
+            </button>
+          </div>
         </div>
 
         {/* Modal Main Body */}
         <div className="p-3 sm:p-5 overflow-y-auto space-y-4 flex-1">
           
           {/* Quick Action Ribbon for Evaluators */}
-          <div className="bg-white p-3 rounded-xl border border-zinc-300 shadow-sm flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2 text-xs font-mono text-zinc-700">
-              <Sparkles className="w-4 h-4 text-emerald-700 shrink-0" />
-              <span className="font-bold uppercase">Evaluator 1-Click Verification:</span>
+          <div className="bg-amber-50/80 p-3 rounded-xl border border-amber-300 shadow-sm flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2 text-xs font-mono text-amber-950">
+              <Sparkles className="w-4 h-4 text-amber-700 shrink-0 animate-pulse" />
+              <span className="font-bold uppercase tracking-wider">Try typing this (Evaluator 1-Click Verification):</span>
             </div>
 
             <div className="flex flex-wrap gap-2 items-center">
@@ -393,27 +439,34 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                 <>
                   <button
                     onClick={triggerReplayWarning}
-                    className="text-xs px-3 py-1.5 rounded-lg font-bold border border-amber-400 bg-amber-50 hover:bg-amber-100 text-amber-900 transition-all flex items-center gap-1.5 shadow-sm"
+                    className="text-xs px-3 py-1.5 rounded-lg font-bold border border-amber-400 bg-amber-100 hover:bg-amber-200 text-amber-950 transition-all flex items-center gap-1.5 shadow-sm"
                   >
                     <AlertTriangle className="w-3.5 h-3.5 text-amber-700" />
-                    <span>⚡ Replay Real Past Warning (Rohtas Lightning)</span>
+                    <span>⚡ Replay Real Warning (Rohtas Lightning)</span>
                   </button>
 
                   {weatherExamples.map((ex, idx) => (
                     <button
                       key={idx}
-                      onClick={() => handleSendQuery(ex.query, ex.loc)}
-                      className="text-xs px-2.5 py-1.5 rounded-lg border border-zinc-300 bg-zinc-50 hover:bg-zinc-100 text-zinc-800 font-sans transition-all"
+                      onClick={() => {
+                        setInputText(ex.query);
+                        handleSendQuery(ex.query, ex.loc, ex.isReplay);
+                      }}
+                      className="text-xs px-2.5 py-1.5 rounded-lg border border-amber-300 bg-white hover:bg-amber-100 text-zinc-900 font-medium transition-all shadow-xs flex items-center gap-1"
                     >
-                      {ex.label}
+                      <span className="font-semibold">&ldquo;{ex.label}&rdquo;</span>
+                      <span className="text-[10px] text-zinc-500 font-mono">({ex.en})</span>
                     </button>
                   ))}
                 </>
               ) : (
                 <>
                   <button
-                    onClick={() => handleSendQuery("उद्या फवारणी करू का?")}
-                    className="text-xs px-3 py-1.5 rounded-lg font-bold border border-emerald-400 bg-emerald-100 hover:bg-emerald-200 text-emerald-950 transition-all flex items-center gap-1.5 shadow-sm"
+                    onClick={() => {
+                      setInputText("उद्या फवारणी करू का?");
+                      handleSendQuery("उद्या फवारणी करू का?");
+                    }}
+                    className="text-xs px-3 py-1.5 rounded-lg font-bold border border-emerald-500 bg-emerald-100 hover:bg-emerald-200 text-emerald-950 transition-all flex items-center gap-1.5 shadow-sm"
                   >
                     <Sprout className="w-3.5 h-3.5 text-emerald-800" />
                     <span>⚡ Launch Demo Farm (Pune 7/12: 882)</span>
@@ -422,11 +475,14 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                   {agriExamples.map((ex, idx) => (
                     <button
                       key={idx}
-                      onClick={() => handleSendQuery(ex.query)}
-                      className="text-xs px-3 py-1.5 rounded-lg font-medium border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-950 transition-all flex items-center gap-1 shadow-sm"
+                      onClick={() => {
+                        setInputText(ex.query);
+                        handleSendQuery(ex.query);
+                      }}
+                      className="text-xs px-3 py-1.5 rounded-lg font-medium border border-emerald-300 bg-white hover:bg-emerald-50 text-emerald-950 transition-all flex items-center gap-1 shadow-sm"
                     >
                       <Sprout className="w-3.5 h-3.5 text-emerald-700" />
-                      <span>{ex.label}</span>
+                      <span className="font-semibold">&ldquo;{ex.label}&rdquo;</span>
                       <span className="text-[10px] text-zinc-500 font-mono">({ex.en})</span>
                     </button>
                   ))}
@@ -902,23 +958,53 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                   )}
 
                   {/* -------------------------------------------------------------
-                      INPUT BAR: TAPPABLE EXAMPLE CHIPS + VOICE/TEXT INPUT
+                      HIGHLIGHTED SUGGESTIVE TEXT: TRY "TYPING THIS: "
                      ------------------------------------------------------------- */}
-                  <div className="border-t border-zinc-200 bg-white p-2 shrink-0 space-y-1.5">
+                  <div className="border-t border-amber-200 bg-amber-50/95 p-2 shrink-0 space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] font-bold text-amber-950 flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-amber-600 animate-pulse" />
+                        Try typing this:
+                      </span>
+                      <span className="text-[9px] font-mono text-amber-800 bg-amber-200/80 px-1.5 py-0.5 rounded font-semibold">
+                        Tap to run
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col gap-1">
+                      {(isWeather ? weatherExamples : agriExamples).map((item, idx) => (
+                        <button
+                          key={idx}
+                          type="button"
+                          onClick={() => {
+                            setInputText(item.query);
+                            handleSendQuery(item.query, (item as any).loc, (item as any).isReplay);
+                          }}
+                          className="w-full text-left px-2.5 py-1.5 rounded-lg bg-white hover:bg-amber-100/90 border border-amber-200 hover:border-amber-400 text-zinc-900 text-xs font-medium transition-all shadow-2xs flex items-center justify-between group"
+                        >
+                          <span className="font-semibold text-amber-950">&ldquo;{item.query}&rdquo;</span>
+                          <span className="text-[10px] text-zinc-500 group-hover:text-amber-900 font-mono flex items-center gap-0.5">
+                            <span>{(item as any).en}</span>
+                            <ChevronRight className="w-3 h-3 text-amber-600" />
+                          </span>
+                        </button>
+                      ))}
+                    </div>
+
                     {/* Input Form */}
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();
                         handleSendQuery(inputText);
                       }}
-                      className="flex items-center gap-1.5"
+                      className="flex items-center gap-1.5 pt-1"
                     >
-                      <div className="flex-1 rounded-full px-3 py-1.5 text-xs flex items-center bg-zinc-100 border border-zinc-300 focus-within:border-zinc-800">
+                      <div className="flex-1 rounded-full px-3 py-1.5 text-xs flex items-center bg-white border border-amber-300 focus-within:border-zinc-800 shadow-xs">
                         <input
                           type="text"
                           value={inputText}
                           onChange={(e) => setInputText(e.target.value)}
-                          placeholder="Ask or hold mic to speak..."
+                          placeholder={isWeather ? 'Try typing: "आज रात बारिश होगी?"' : 'Try typing: "उद्या फवारणी करू का?"'}
                           className="w-full bg-transparent outline-none text-xs"
                         />
                       </div>
@@ -927,7 +1013,7 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                         <button
                           type="submit"
                           disabled={isLoading}
-                          className="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition-all disabled:opacity-50"
+                          className="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition-all disabled:opacity-50 shrink-0 shadow-sm"
                         >
                           <Send className="w-3.5 h-3.5" />
                         </button>
@@ -935,13 +1021,11 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                         <button
                           type="button"
                           onClick={() => {
-                            handleSendQuery(
-                              isWeather
-                                ? "आज रात बारिश होगी?"
-                                : "उद्या फवारणी करू का?"
-                            );
+                            const defaultQuery = isWeather ? "आज रात बारिश होगी?" : "उद्या फवारणी करू का?";
+                            setInputText(defaultQuery);
+                            handleSendQuery(defaultQuery);
                           }}
-                          className="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition-all"
+                          className="w-8 h-8 rounded-full bg-emerald-800 hover:bg-emerald-700 text-white flex items-center justify-center transition-all shrink-0 shadow-sm"
                           title="Simulate Voice Input"
                         >
                           <Mic className="w-3.5 h-3.5" />

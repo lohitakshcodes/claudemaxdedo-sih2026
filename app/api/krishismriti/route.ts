@@ -104,10 +104,38 @@ export async function POST(req: NextRequest) {
     // -------------------------------------------------------------------------
     // STEP 5: CROSS-FACTOR DECISION ENGINE (Rain, Wind, Labour, Moisture)
     // -------------------------------------------------------------------------
+    const qRaw = query.toLowerCase();
     const qLower = canonicalEnglishQuery.toLowerCase();
-    const isFertilizerQuery = qLower.includes("urea") || qLower.includes("fertilizer") || qLower.includes("khat") || qLower.includes("dose");
-    const isIrrigationQuery = qLower.includes("irrigate") || qLower.includes("water") || qLower.includes("pani") || qLower.includes("moisture");
-    const isSprayQuery = qLower.includes("spray") || qLower.includes("pesticide") || qLower.includes("fawarani") || qLower.includes("rain");
+    const isFertilizerQuery =
+      qRaw.includes("युरिया") ||
+      qRaw.includes("यूरिया") ||
+      qRaw.includes("खाद") ||
+      qRaw.includes("urea") ||
+      qRaw.includes("fertilizer") ||
+      qLower.includes("urea") ||
+      qLower.includes("fertilizer") ||
+      qLower.includes("khat") ||
+      qLower.includes("dose");
+
+    const isIrrigationQuery =
+      qRaw.includes("पाणी") ||
+      qRaw.includes("पानी") ||
+      qRaw.includes("सिंचन") ||
+      qRaw.includes("irrigate") ||
+      qRaw.includes("water") ||
+      qLower.includes("irrigate") ||
+      qLower.includes("water") ||
+      qLower.includes("pani") ||
+      qLower.includes("moisture");
+
+    const isSprayQuery =
+      qRaw.includes("फवारणी") ||
+      qRaw.includes("spray") ||
+      qRaw.includes("pesticide") ||
+      qLower.includes("spray") ||
+      qLower.includes("pesticide") ||
+      qLower.includes("fawarani") ||
+      (!isFertilizerQuery && !isIrrigationQuery);
 
     let englishAdvisory = "";
     let recommendationType: "HOLD_INPUT" | "PROCEED_ACTION" | "SCHEDULE_IRRIGATION" = "HOLD_INPUT";
