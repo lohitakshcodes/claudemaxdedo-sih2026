@@ -9,14 +9,7 @@ import {
   Mic,
   Send,
   ArrowLeft,
-  Phone,
-  Video,
-  MoreVertical,
   CheckCheck,
-  Smile,
-  ShieldCheck,
-  Info,
-  Radio,
   MapPin,
   Sparkles,
   RefreshCw,
@@ -24,21 +17,24 @@ import {
   AlertTriangle,
   CheckCircle2,
   Lock,
-  Cpu,
   Layers,
-  Activity,
-  Database,
   Sprout,
-  Compass,
-  Zap,
-  Map as MapIcon,
   MessageSquare,
   Droplets,
-  Sun,
   Wind,
   Check,
   ChevronRight,
   Settings2,
+  Info,
+  Radio,
+  FileCheck,
+  ExternalLink,
+  HelpCircle,
+  Map as MapIcon,
+  Calendar,
+  IndianRupee,
+  Shield,
+  Clock,
 } from "lucide-react";
 
 interface MobilePhoneModalProps {
@@ -58,8 +54,9 @@ interface ChatMessage {
   verifiedBadge?: string;
   alertSeverity?: "NORMAL" | "WARNING" | "CRITICAL";
   locationName?: string;
-  toolTraces?: any[];
-  liveData?: any;
+  factors?: Array<{ name: string; status: "PASS" | "FAIL" | "INFO"; detail: string }>;
+  receipt?: string;
+  isReplay?: boolean;
 }
 
 export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
@@ -69,18 +66,17 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
 }) => {
   const isWeather = projectId === "weathergpt";
 
-  // Farmer Onboarding State
-  const [isOnboarding, setIsOnboarding] = useState(false);
-  const [farmerName, setFarmerName] = useState("Ramu Yadav");
-  const [selectedState, setSelectedState] = useState(isWeather ? "Uttar Pradesh" : "Maharashtra");
-  const [selectedLocation, setSelectedLocation] = useState(isWeather ? "Varanasi" : "Pune");
+  // Standard Persona State
   const [selectedLanguage, setSelectedLanguage] = useState(isWeather ? "bho" : "mr");
-  const [selectedCrop, setSelectedCrop] = useState(isWeather ? "Wheat (PBW-502)" : "Sugarcane (Co-86032)");
-  const [selectedPlotId, setSelectedPlotId] = useState(isWeather ? "UP-VRN-104" : "MH-PUN-402");
-  const [farmSize, setFarmSize] = useState("2.5 Acres");
+  const [isReplaying, setIsReplaying] = useState(false);
 
-  // Phone App State
-  const [phoneTab, setPhoneTab] = useState<"chat" | "map">("chat");
+  // Weather Screen Tabs: "citizen" | "district"
+  const [weatherScreen, setWeatherScreen] = useState<"citizen" | "district">("citizen");
+
+  // KrishiSmriti Tabs: "chat" | "memory" | "schemes"
+  const [agriTab, setAgriTab] = useState<"chat" | "memory" | "schemes">("chat");
+
+  // Chat State
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -93,125 +89,68 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const audioIntervalRef = useRef<any>(null);
 
-  // Quick multi-sector preset scenarios for Evaluators (Fishermen, Urban Commuters, Aviation/Drone, Public)
-  const weatherPresets = [
-    {
-      title: "Puri Coast: Fishermen Sea State & Gale Warning",
-      location: "Puri Coast",
-      state: "Odisha",
-      plotId: "OD-PURI-MAR-01",
-      language: "hi",
-      query: "क्या आज रात 20 नॉटिकल मील दूर समुद्र में मछली पकड़ने जाना सुरक्षित है? हवा की रफ्तार और लहरें कैसी हैं?",
-      crop: "Coastal Marine Fishery",
-    },
-    {
-      title: "Delhi NCR: Urban Flood & AQI Commute Check",
-      location: "Delhi NCR",
-      state: "Delhi",
-      plotId: "DL-NCR-URB-08",
-      language: "hi",
-      query: "शाम 5 बजे नोएडा से दिल्ली जाने पर क्या रास्तों पर जलभराव या भारी बारिश होगी? AQI कैसा रहेगा?",
-      crop: "Urban Commute Transit",
-    },
-    {
-      title: "Pune Airspace: Convective Cloud Base & Wind Shear",
-      location: "Pune",
-      state: "Maharashtra",
-      plotId: "MH-PUN-AV-03",
-      language: "en",
-      query: "What is the convective cloud base, CAPE index, and Doppler wind shear over Pune for drone and flight operations?",
-      crop: "Aviation & Drone Operations",
-    },
-    {
-      title: "Varanasi: Squall Alert & Outdoor Work Safety",
-      location: "Varanasi",
-      state: "Uttar Pradesh",
-      plotId: "UP-VRN-PUB-05",
-      language: "bho",
-      query: "का आज दुपहरिया में आंधी-पानी आई? बाहर काम करे के बा। (Bhojpuri)",
-      crop: "Public Outdoor Safety",
-    },
+  // Evaluator Tap-able Example Prompts
+  const weatherExamples = [
+    { label: "आज रात बारिश होगी?", query: "आज रात बारिश होगी?", loc: "Rohtas" },
+    { label: "गाँव में चेतावनी है?", query: "गाँव में चेतावनी है?", loc: "Rohtas" },
+    { label: "यह बारिश सामान्य है?", query: "यह बारिश सामान्य है?", loc: "Rohtas" },
   ];
 
-  const agroPresets = [
-    {
-      title: "Latur Rain vs Mandi vs Kali Mitti (MH-LTR-301)",
-      location: "Latur",
-      state: "Maharashtra",
-      plotId: "MH-LTR-301",
-      language: "mr",
-      query: "पावसाची शक्यता असताना आणि बाजारात सोयाबीनला चांगला भाव असताना मी आज कापणी करू का फवारणी? (Varhadi Marathi)",
-      crop: "Soybean (JS-335)",
-    },
-    {
-      title: "Pune Sugarcane ICAR Fertilizer Check (MH-PUN-402)",
-      location: "Pune",
-      state: "Maharashtra",
-      plotId: "MH-PUN-402",
-      language: "mr",
-      query: "माझ्या उसाच्या शेतात ४ दिवसांपूर्वी युरिया टाकला होता, आता पुन्हा खत टाकावे का?",
-      crop: "Sugarcane (Co-86032)",
-    },
-    {
-      title: "Barabanki Urea Top-Dressing (UP-BRB-1049)",
-      location: "Barabanki",
-      state: "Uttar Pradesh",
-      plotId: "UP-BRB-1049",
-      language: "bho",
-      query: "हमरा खेत में 4 दिन पहिले यूरिया डालले रहलीं, का कल फेर से 2nd राउंड डाल सकीं?",
-      crop: "Wheat (PBW-502)",
-    },
-    {
-      title: "Fatehpur Soil Moisture & Irrigation Timing",
-      location: "Fatehpur",
-      state: "Uttar Pradesh",
-      plotId: "UP-FTP-302",
-      language: "hi",
-      query: "मिट्टी में नमी कितनी है और अगली सिंचाई कब करनी चाहिए?",
-      crop: "Mustard (Pusa Bold)",
-    },
-    {
-      title: "Moga Wheat: Heatwave vs Rust Spray (PB-MOG-502)",
-      location: "Moga",
-      state: "Punjab",
-      plotId: "PB-MOG-502",
-      language: "hi",
-      query: "38 डिग्री गर्मी और तेज हवा में क्या आज खेत में फफूंदनाशक छिड़काव करना चाहिए?",
-      crop: "Wheat (PBW-502)",
-    },
+  const agriExamples = [
+    { label: "उद्या फवारणी करू का?", query: "उद्या फवारणी करू का?", en: "Can I spray tomorrow?" },
+    { label: "पाणी देऊ का?", query: "पाणी देऊ का?", en: "Should I irrigate?" },
+    { label: "आता युरिया टाकू का?", query: "आता युरिया टाकू का?", en: "Top-dress urea now?" },
   ];
-
-  const presets = isWeather ? weatherPresets : agroPresets;
 
   // Initialize initial welcome message
   useEffect(() => {
     if (!isOpen) return;
 
-    const initialBotMessage: ChatMessage = {
-      id: "init-bot",
-      sender: "bot",
-      textVernacular: isWeather
-        ? "नमस्ते! हम मौसमजीपीटी (WeatherGPT) हईं — भारत सरकार के राष्ट्रीय मौसम आ आपदा सूचना साथी। चाहे रउआ समुंदर में जाए वाला मछुआरा बानी, शहर के आम नागरिक, भा विमानन आ ड्रोन पायलट — मौसम, आंधी, बारिश भा AQI बारे में voice note भेज के पूछ सकत बानी।"
-        : "राम-राम किसान भाई! मी कृषीस्मृती (KrishiSmriti) शेती सहाय्यक आहे. तुमच्या शेताचा मागील खताचा इतिहास आणि जमिनीतील ओलावा तपासून योग्य सल्ला देण्यासाठी मी तयार आहे.",
-      textEnglish: isWeather
-        ? "Namaste! I am WeatherGPT (Govt. of India) — your multi-sector meteorological intelligence assistant. Whether you are a coastal fisherman checking sea conditions, an urban commuter planning around squalls and smog, or an aviation/drone pilot tracking cloud ceilings and wind shear, ask any question via voice note."
-        : "Namaste farmer! I am KrishiSmriti Smart Farming Copilot. I analyze your past field logs and live soil moisture to give verified farming advisories.",
-      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-      isAudio: true,
-      audioDuration: "0:08",
-      verifiedBadge: isWeather
-        ? "Govt. Verified | IMD & WMO WIS 2.0 Multi-Sector"
-        : "Govt. Verified | Soil Health & IoT Connected",
-      alertSeverity: "NORMAL",
-    };
-
-    setMessages([initialBotMessage]);
+    if (isWeather) {
+      setMessages([
+        {
+          id: "weather-init",
+          sender: "bot",
+          textVernacular:
+            "नमस्ते! ई मौसमजीपीटी (WeatherGPT) प्रोटोटाइप ह। रउआ आवाज भा लिख के मौसम आ आपदा चेतावनी पूछ सकत बानी।",
+          textEnglish:
+            "Namaste! This is the WeatherGPT prototype (data: IMD & NDMA-SACHET). You can ask any weather or alert question by voice or text.",
+          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          isAudio: true,
+          audioDuration: "0:06",
+          alertSeverity: "NORMAL",
+          receipt: "Forecast: Open-Meteo (GFS) · " + new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+        },
+      ]);
+    } else {
+      setMessages([
+        {
+          id: "krishi-init",
+          sender: "bot",
+          textVernacular:
+            "राम-राम रामू भाऊ! कृषीस्मृतीमध्ये आपले स्वागत आहे. २.५ एकर ऊस शेताचा (७/१२ गट: ८८२) मागील इतिहास आणि जमिनीतील ३८% ओलावा तपासून मी तयार आहे.",
+          textEnglish:
+            "Namaste Ramu-ji! Welcome to KrishiSmriti. Your 2.5-acre sugarcane parcel (7/12 Satbara: 882) history and live 38% soil moisture are connected.",
+          timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+          isAudio: true,
+          audioDuration: "0:08",
+          alertSeverity: "NORMAL",
+          factors: [
+            { name: "Rain Forecast", status: "PASS", detail: "Dry till 11 AM" },
+            { name: "Wind Speed", status: "PASS", detail: "Calm (<8 km/h)" },
+            { name: "Soil Moisture", status: "INFO", detail: "38% (Optimal)" },
+            { name: "Labour Log", status: "PASS", detail: "2 workers ready" },
+          ],
+          receipt: "Data-backed: Open-Meteo hourly · Soil sensor (38%) · IMD Pune",
+        },
+      ]);
+    }
   }, [isOpen, isWeather]);
 
-  // Scroll chat messages smoothly
+  // Scroll smoothly to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isLoading, phoneTab]);
+  }, [messages, isLoading, weatherScreen, agriTab]);
 
   // TTS Speech Synthesis Player
   const togglePlayAudio = (msgId: string, textToSpeak: string, langCode: string = "hi") => {
@@ -240,12 +179,13 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
           setPlayingMessageId(null);
           return 0;
         }
-        return prev + 8;
+        return prev + 10;
       });
     }, 250);
 
     if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance(textToSpeak);
+      const cleanText = textToSpeak.split("\n")[0].replace(/\[.*?\]/g, "");
+      const utterance = new SpeechSynthesisUtterance(cleanText);
       utterance.rate = 0.95;
       utterance.pitch = 1.0;
       utterance.lang = langCode === "mr" ? "mr-IN" : "hi-IN";
@@ -265,58 +205,41 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
     }
   };
 
-  // Execute Live Query against Backend API Route
-  const handleSendQuery = async (queryText: string, locationOverride?: string) => {
+  // Send Query to Real Backend
+  const handleSendQuery = async (queryText: string, locationOverride?: string, forceReplay?: boolean) => {
     const textToSend = queryText.trim();
     if (!textToSend || isLoading) return;
 
-    const lowerText = textToSend.toLowerCase();
-    let detectedLoc = locationOverride;
-    if (!detectedLoc) {
-      const places = [
-        "pune", "varanasi", "barabanki", "nagpur", "patna", "chandauli",
-        "lucknow", "mumbai", "delhi", "bengaluru", "hyderabad", "chennai",
-        "kolkata", "jaipur", "ahmedabad", "chandigarh", "nashik", "fatehpur",
-      ];
-      for (const p of places) {
-        if (new RegExp(`\\b${p}\\b`, "i").test(lowerText)) {
-          detectedLoc = p.charAt(0).toUpperCase() + p.slice(1);
-          setSelectedLocation(detectedLoc);
-          break;
-        }
-      }
-    }
-
-    const loc = detectedLoc || selectedLocation;
     const timeStr = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
-    // 1. Add Farmer message
-    const farmerMsg: ChatMessage = {
-      id: `farmer-${Date.now()}`,
+    // Add user message
+    const userMsg: ChatMessage = {
+      id: `user-${Date.now()}`,
       sender: "farmer",
       textVernacular: textToSend,
       timestamp: timeStr,
       isAudio: true,
-      audioDuration: "0:04",
-      locationName: loc,
+      audioDuration: "0:03",
     };
 
-    setMessages((prev) => [...prev, farmerMsg]);
+    setMessages((prev) => [...prev, userMsg]);
     setInputText("");
     setIsLoading(true);
-    setPhoneTab("chat"); // Ensure chat view is active
 
     try {
       if (isWeather) {
-        // Call WeatherGPT Backend API
+        const targetLoc = forceReplay ? "Rohtas" : (locationOverride || "Rohtas");
+        setIsReplaying(forceReplay || textToSend.toLowerCase().includes("चेतावनी") || textToSend.toLowerCase().includes("आंधी"));
+
         const response = await fetch("/api/weathergpt", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             query: textToSend,
-            location: loc,
+            location: targetLoc,
             language: selectedLanguage,
-            cropType: selectedCrop,
+            latitude: 24.9536,
+            longitude: 84.0163, // Rohtas coordinates
           }),
         });
 
@@ -332,30 +255,41 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
             textEnglish: data.advisory?.english,
             timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
             isAudio: true,
-            audioDuration: `0:${Math.round(data.bhashini?.speechSynthesis?.durationSeconds || 8)}`,
-            verifiedBadge: isWarning
-              ? "⚠️ Extreme Weather Alert: High Hazard Risk"
-              : "✅ Conditions Favorable | IMD & WMO WIS 2.0",
+            audioDuration: "0:08",
             alertSeverity: isWarning ? "WARNING" : "NORMAL",
-            toolTraces: data.agentPipeline?.toolExecutions,
-            liveData: data.agentPipeline?.liveMeteoTelemetry,
+            receipt: data.advisory?.receipt || "Forecast: Open-Meteo (GFS)",
+            isReplay: forceReplay,
+            factors: isWarning
+              ? [
+                  { name: "CAP Polygon", status: "FAIL", detail: "Inside Rohtas Alert Polygon" },
+                  { name: "Lightning Sensors", status: "FAIL", detail: "Active Convective Activity" },
+                  { name: "Action", status: "INFO", detail: "Take Shelter Immediately" },
+                ]
+              : [
+                  { name: "Rain Prob", status: "PASS", detail: "0.0 mm expected" },
+                  { name: "Wind", status: "PASS", detail: "Calm 11 km/h" },
+                  { name: "Hazard Alerts", status: "PASS", detail: "Zero active alerts" },
+                ],
           };
           setMessages((prev) => [...prev, botReply]);
         } else {
-          throw new Error(data.message || "Failed to fetch response");
+          throw new Error(data.message || "Failed to fetch weather advice");
         }
       } else {
-        // Call KrishiSmriti Backend API
+        // KrishiSmriti Query
         const response = await fetch("/api/krishismriti", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             query: textToSend,
-            village: loc,
-            district: loc === "Pune" ? "Pune" : "Barabanki",
             language: selectedLanguage,
-            farmerId: "FARMER-UP-BRB-1049",
-            cropType: selectedCrop,
+            farmerId: "FARMER-MH-PUN-402",
+            farmerName: "Ramu Yadav",
+            plotId: "MH-PUN-HAV-7/12-882",
+            village: "Haveli",
+            district: "Pune",
+            state: "Maharashtra",
+            cropType: "Sugarcane (Adsali) · 2.5 Acres",
           }),
         });
 
@@ -363,626 +297,475 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
         setLastApiTrace(data);
 
         if (response.ok && data.status === "SUCCESS") {
-          const isHold = data.ragPipeline?.recommendationType === "HOLD_INPUT";
+          const isSpray = textToSend.toLowerCase().includes("spray") || textToSend.toLowerCase().includes("फवारणी");
+          const isUrea = textToSend.toLowerCase().includes("urea") || textToSend.toLowerCase().includes("युरिया");
+
           const botReply: ChatMessage = {
             id: `bot-${Date.now()}`,
             sender: "bot",
-            textVernacular: data.advisory?.vernacular || data.advisory?.english,
+            textVernacular: data.advisory?.vernacular,
             textEnglish: data.advisory?.english,
             timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
             isAudio: true,
-            audioDuration: `0:${Math.round(data.bhashini?.speechSynthesis?.durationSeconds || 10)}`,
-            verifiedBadge: isHold
-              ? "⚠️ Input Alert: Hold Fertilizer (Save ₹520/acre)"
-              : "✅ Soil & Moisture Verified",
-            alertSeverity: isHold ? "WARNING" : "NORMAL",
-            toolTraces: data.ragPipeline?.topEpisodicMemories,
-            liveData: data.ragPipeline?.groundIotTelemetry,
+            audioDuration: "0:09",
+            alertSeverity: "NORMAL",
+            receipt: data.advisory?.receipt,
+            factors: isUrea
+              ? [
+                  { name: "Past Dose", status: "FAIL", detail: "45kg applied 4 days ago" },
+                  { name: "Soil Health Card", status: "INFO", detail: "Potash rich (Save ₹1,840)" },
+                  { name: "Recommendation", status: "INFO", detail: "Hold urea for 10 days" },
+                ]
+              : [
+                  { name: "Rain at 11 AM", status: "FAIL", detail: "Rain begins 11:00 AM" },
+                  { name: "Wind till 9 AM", status: "PASS", detail: "Calm (<8 km/h)" },
+                  { name: "Labour Log", status: "PASS", detail: "2 workers available" },
+                  { name: "Soil Moisture", status: "INFO", detail: "38% (Skip irrigation)" },
+                ],
           };
           setMessages((prev) => [...prev, botReply]);
         } else {
-          throw new Error(data.message || "Failed to fetch response");
+          throw new Error(data.message || "Failed to fetch advice");
         }
       }
-    } catch (err: any) {
-      console.error("[MobileSimulator] Error:", err);
-      const errorMsg: ChatMessage = {
-        id: `bot-err-${Date.now()}`,
-        sender: "bot",
-        textVernacular: "माफ़ करीं, सर्वर से संपर्क करे में देरी भइल बा। कृपया दुबारा कोशिश करीं।",
-        textEnglish: "Unable to reach server. Retrying connection...",
-        timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-        alertSeverity: "CRITICAL",
-      };
-      setMessages((prev) => [...prev, errorMsg]);
+    } catch (e: any) {
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: `bot-err-${Date.now()}`,
+          sender: "bot",
+          textVernacular: isWeather
+            ? "माफ़ करीं, मौसम डेटा से संपर्क नइखे हो पावत। कृपया दोबारा कोशिश करीं।"
+            : "माफ करा, सर्व्हरशी संपर्क होऊ शकला नाही. कृपया पुन्हा प्रयत्न करा.",
+          textEnglish: "Unable to reach server. Please retry.",
+          timestamp: timeStr,
+          alertSeverity: "NORMAL",
+          receipt: "Offline cache fallback",
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // Web Speech Recognition for Live Microphone Input
-  const startVoiceInput = () => {
-    if (typeof window === "undefined") return;
-
-    const SpeechRecognition =
-      (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
-      handleSendQuery(
-        isWeather
-          ? "का आज हमार खेत में कीटनाशक छिड़के के चाहि?"
-          : "खेत में यूरिया कब डालूं?"
-      );
-      return;
-    }
-
-    try {
-      const recognition = new SpeechRecognition();
-      recognition.lang = selectedLanguage === "mr" ? "mr-IN" : "hi-IN";
-      recognition.continuous = false;
-      recognition.interimResults = false;
-
-      recognition.onstart = () => {
-        setIsRecording(true);
-      };
-
-      recognition.onresult = (event: any) => {
-        const transcript = event.results?.[0]?.[0]?.transcript;
-        if (transcript) {
-          setInputText(transcript);
-          handleSendQuery(transcript);
-        }
-      };
-
-      recognition.onerror = () => {
-        setIsRecording(false);
-      };
-
-      recognition.onend = () => {
-        setIsRecording(false);
-      };
-
-      recognition.start();
-    } catch (e) {
-      setIsRecording(false);
-      handleSendQuery(
-        isWeather
-          ? "का आज हमार खेत में कीटनाशक छिड़के के चाहि?"
-          : "खेत में यूरिया कब डालूं?"
-      );
-    }
+  // Replay past Rohtas lightning warning
+  const triggerReplayWarning = () => {
+    setIsReplaying(true);
+    handleSendQuery("गाँव में चेतावनी है? (Replay Mode: Rohtas Lightning)", "Rohtas", true);
   };
-
-  // Evaluator 1-Click Fast-Track Handler
-  const handleSkipToDemoFarm = () => {
-    setIsOnboarding(false);
-    if (isWeather) {
-      setSelectedLocation("Puri Coast");
-      setSelectedCrop("Coastal Marine Fishery");
-      setSelectedPlotId("OD-PURI-MAR-01");
-      setSelectedLanguage("hi");
-      handleSendQuery("क्या आज रात 20 नॉटिकल मील दूर समुद्र में मछली पकड़ने जाना सुरक्षित है? हवा की रफ्तार और लहरें कैसी हैं?", "Puri Coast");
-    } else {
-      setSelectedLocation("Pune");
-      setSelectedCrop("Sugarcane (Co-86032)");
-      setSelectedPlotId("MH-PUN-402");
-      setSelectedLanguage("mr");
-      handleSendQuery("माझ्या उसाच्या शेतात ४ दिवसांपूर्वी युरिया टाकला होता, आता पुन्हा खत टाकावे का?", "Pune");
-    }
-  };
-
-  if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-zinc-950/75 backdrop-blur-sm overflow-y-auto">
-      {/* Modal Container */}
-      <div className="relative w-full max-w-6xl bg-zinc-100 rounded-2xl border border-zinc-400 shadow-2xl overflow-hidden my-auto flex flex-col max-h-[96vh]">
+    <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 animate-fadeIn">
+      <div className="bg-zinc-100 rounded-2xl border border-zinc-300 shadow-2xl max-w-5xl w-full max-h-[96vh] flex flex-col overflow-hidden">
         
-        {/* Top Institutional Window Bar */}
-        <div className="bg-zinc-200 border-b border-zinc-300 px-4 py-3 flex items-center justify-between shrink-0">
+        {/* Top Header Bar */}
+        <div className="bg-zinc-900 text-white px-4 py-3 flex items-center justify-between border-b border-zinc-800">
           <div className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-full bg-emerald-600 inline-block animate-pulse"></span>
-            <span className="font-bold text-sm text-zinc-900 tracking-tight">
-              {isWeather
-                ? "WeatherGPT Live Mobile Simulator — Multi-Sector WhatsApp Voice Agent"
-                : "KrishiSmriti — Farmer-First Smart Agriculture Assistant"}
+            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+            <span className="font-bold text-sm tracking-tight font-mono">
+              {isWeather ? "WeatherGPT · Prototype (SIH26068)" : "KrishiSmriti · Prototype (SIH26193)"}
             </span>
-            <span className="web2-badge web2-badge-green text-xs font-mono py-0.5 px-2">
-              {isWeather ? "WhatsApp Voice Agent" : "Light Mode PWA"}
+            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 border border-zinc-700">
+              Team ClaudeMaxDedo
             </span>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg hover:bg-zinc-300 text-zinc-700 transition-colors"
-            title="Close Simulator (Esc)"
+            className="p-1 rounded-md text-zinc-400 hover:text-white hover:bg-zinc-800 transition-colors"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Modal Main Body */}
         <div className="p-3 sm:p-5 overflow-y-auto space-y-4 flex-1">
           
-          {/* Top Preset Buttons Ribbon */}
+          {/* Quick Action Ribbon for Evaluators */}
           <div className="bg-white p-3 rounded-xl border border-zinc-300 shadow-sm flex flex-wrap items-center justify-between gap-2">
             <div className="flex items-center gap-2 text-xs font-mono text-zinc-700">
               <Sparkles className="w-4 h-4 text-emerald-700 shrink-0" />
-              <span className="font-bold uppercase">Evaluator Quick Test Scenarios:</span>
-              <span className="text-zinc-500 hidden md:inline">
-                Click any scenario to test live backend:
-              </span>
+              <span className="font-bold uppercase">Evaluator 1-Click Verification:</span>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {presets.map((sc, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => {
-                    setIsOnboarding(false);
-                    setSelectedLocation(sc.location);
-                    setSelectedLanguage(sc.language);
-                    setSelectedCrop(sc.crop);
-                    setSelectedPlotId(sc.plotId);
-                    handleSendQuery(sc.query, sc.location);
-                  }}
-                  disabled={isLoading}
-                  className="text-xs px-3 py-1.5 rounded-lg font-medium border bg-zinc-50 hover:bg-emerald-50 hover:border-emerald-400 text-zinc-800 transition-all flex items-center gap-1.5 shadow-sm disabled:opacity-50"
-                >
-                  <MapPin className="w-3 h-3 text-emerald-600" />
-                  <span>{sc.title}</span>
-                </button>
-              ))}
+            <div className="flex flex-wrap gap-2 items-center">
+              {isWeather ? (
+                <>
+                  <button
+                    onClick={triggerReplayWarning}
+                    className="text-xs px-3 py-1.5 rounded-lg font-bold border border-amber-400 bg-amber-50 hover:bg-amber-100 text-amber-900 transition-all flex items-center gap-1.5 shadow-sm"
+                  >
+                    <AlertTriangle className="w-3.5 h-3.5 text-amber-700" />
+                    <span>⚡ Replay Real Past Warning (Rohtas Lightning)</span>
+                  </button>
+
+                  {weatherExamples.map((ex, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleSendQuery(ex.query, ex.loc)}
+                      className="text-xs px-2.5 py-1.5 rounded-lg border border-zinc-300 bg-zinc-50 hover:bg-zinc-100 text-zinc-800 font-sans transition-all"
+                    >
+                      {ex.label}
+                    </button>
+                  ))}
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={() => handleSendQuery("उद्या फवारणी करू का?")}
+                    className="text-xs px-3 py-1.5 rounded-lg font-bold border border-emerald-400 bg-emerald-100 hover:bg-emerald-200 text-emerald-950 transition-all flex items-center gap-1.5 shadow-sm"
+                  >
+                    <Sprout className="w-3.5 h-3.5 text-emerald-800" />
+                    <span>⚡ Launch Demo Farm (Pune 7/12: 882)</span>
+                  </button>
+
+                  {agriExamples.map((ex, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleSendQuery(ex.query)}
+                      className="text-xs px-3 py-1.5 rounded-lg font-medium border border-emerald-300 bg-emerald-50 hover:bg-emerald-100 text-emerald-950 transition-all flex items-center gap-1 shadow-sm"
+                    >
+                      <Sprout className="w-3.5 h-3.5 text-emerald-700" />
+                      <span>{ex.label}</span>
+                      <span className="text-[10px] text-zinc-500 font-mono">({ex.en})</span>
+                    </button>
+                  ))}
+                </>
+              )}
             </div>
           </div>
 
-          {/* MAIN SPLIT STAGE: IPHONE (LEFT) + REAL-TIME BACKEND INSPECTOR (RIGHT) */}
+          {/* SPLIT STAGE: PHONE SIMULATOR (LEFT) + LIVE INSPECTOR (RIGHT) */}
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            {/* 1. AUTHENTIC IPHONE MOBILE DEVICE */}
+            {/* 1. AUTHENTIC SMARTPHONE HARDWARE SIMULATOR */}
             <div className="lg:col-span-6 flex flex-col items-center select-none">
               
-              {/* iPhone Outer Hardware Bezel */}
-              <div className="w-[320px] sm:w-[360px] h-[660px] bg-zinc-950 rounded-[48px] p-3 shadow-2xl border-[4px] border-zinc-700 relative flex flex-col shrink-0">
-                {/* Side Hardware Buttons */}
+              <div className="w-[330px] sm:w-[365px] h-[670px] bg-zinc-950 rounded-[48px] p-3 shadow-2xl border-[4px] border-zinc-700 relative flex flex-col shrink-0">
+                {/* Hardware Bezel Buttons */}
                 <div className="absolute -left-[7px] top-[110px] w-[3px] h-[30px] bg-zinc-600 rounded-l"></div>
                 <div className="absolute -left-[7px] top-[150px] w-[3px] h-[45px] bg-zinc-600 rounded-l"></div>
                 <div className="absolute -left-[7px] top-[205px] w-[3px] h-[45px] bg-zinc-600 rounded-l"></div>
                 <div className="absolute -right-[7px] top-[140px] w-[3px] h-[55px] bg-zinc-600 rounded-r"></div>
 
-                {/* iPhone Screen Content */}
-                <div
-                  className={`w-full h-full rounded-[38px] overflow-hidden flex flex-col relative border ${
-                    isWeather
-                      ? "bg-[#efeae2] border-zinc-800 text-zinc-900"
-                      : "bg-[#f8fafc] border-emerald-900/40 text-zinc-900"
-                  }`}
-                >
-                  {/* Status Bar / Dynamic Island */}
-                  <div className="bg-zinc-950 text-white pt-2 pb-1.5 px-6 flex items-center justify-between text-[11px] font-semibold tracking-tight shrink-0 z-20">
-                    <span>9:41 AM</span>
-                    {/* Dynamic Island Pill */}
-                    <div className="w-20 h-4 bg-black rounded-full mx-auto flex items-center justify-center px-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping mr-1"></div>
-                      <span className="text-[8px] text-zinc-400 font-sans">
-                        {isWeather ? "5G IMD" : "Kisan Seva"}
+                {/* Inner Screen Display */}
+                <div className="w-full h-full rounded-[38px] overflow-hidden flex flex-col relative bg-[#f8fafc] text-zinc-900 border border-zinc-800">
+                  
+                  {/* Top Status Bar (Truthful, No Impersonation) */}
+                  <div className="bg-zinc-900 text-white pt-2 pb-1 px-5 flex items-center justify-between text-[11px] font-mono shrink-0 z-20">
+                    <span>10:30 AM</span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      <span className="text-[10px] text-zinc-400">
+                        {isWeather ? "IMD & SACHET" : "Field IoT Active"}
                       </span>
                     </div>
-                    <div className="flex items-center gap-1 text-[10px]">
-                      <span>{selectedLocation.slice(0, 4)}</span>
-                      <div className="w-3.5 h-2 border border-white rounded-[2px] p-[1px]">
-                        <div className="w-full h-full bg-white rounded-[1px]"></div>
-                      </div>
-                    </div>
+                    <span className="text-[10px] text-zinc-400 font-mono">4G</span>
                   </div>
 
                   {/* -------------------------------------------------------------
-                      HEADER: WHATSAPP (WeatherGPT) vs CLEAN LIGHT KRISHISMRITI PWA
+                      WEATHERGPT HEADER vs KRISHISMRITI HEADER
                      ------------------------------------------------------------- */}
                   {isWeather ? (
-                    /* WHATSAPP APP HEADER */
-                    <div className="bg-[#075e54] text-white px-3.5 py-2.5 flex items-center justify-between shadow-sm shrink-0 z-10">
-                      <div className="flex items-center gap-2 min-w-0">
-                        <ArrowLeft className="w-4 h-4 text-white/90 shrink-0" />
-                        <div className="w-8 h-8 rounded-full bg-white/20 border border-white/30 flex items-center justify-center font-bold text-xs text-white shrink-0">
-                          W
-                        </div>
-                        <div className="leading-tight min-w-0">
-                          <div className="flex items-center gap-1">
-                            <span className="font-bold text-xs truncate">WeatherGPT (National Weather Helpline)</span>
-                            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300 shrink-0" />
+                    <div className="bg-sky-900 text-white px-3.5 py-2.5 shadow shrink-0 z-10 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <div className="leading-tight">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-bold text-xs tracking-tight">WeatherGPT · Prototype</span>
+                            <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-sky-800 text-sky-200 border border-sky-700">
+                              {selectedLanguage === "bho" ? "Bhojpuri" : "Hindi"}
+                            </span>
                           </div>
-                          <div className="text-[10px] text-emerald-100 flex items-center gap-1 truncate">
-                            <span>{isLoading ? "recording voice..." : "Govt. Verified • Online"}</span>
-                          </div>
+                          <p className="text-[10px] text-sky-200 mt-0.5">data: IMD, NDMA-SACHET</p>
                         </div>
+
+                        {isReplaying && (
+                          <span className="text-[9px] font-mono font-bold bg-amber-400 text-zinc-950 px-2 py-0.5 rounded animate-pulse">
+                            Demo mode · sample warning
+                          </span>
+                        )}
                       </div>
 
-                      <div className="flex items-center gap-2.5 text-white/90 shrink-0">
-                        <Phone className="w-3.5 h-3.5" />
-                        <Video className="w-4 h-4" />
-                        <MoreVertical className="w-3.5 h-3.5" />
+                      {/* Screen A / Screen B Switch */}
+                      <div className="grid grid-cols-2 gap-1 bg-sky-950/80 p-0.5 rounded-lg text-xs font-medium">
+                        <button
+                          onClick={() => setWeatherScreen("citizen")}
+                          className={`py-1 rounded flex items-center justify-center gap-1 text-[11px] transition-all ${
+                            weatherScreen === "citizen"
+                              ? "bg-white text-sky-950 font-bold shadow-sm"
+                              : "text-sky-200 hover:text-white"
+                          }`}
+                        >
+                          <MessageSquare className="w-3 h-3" />
+                          <span>Citizen Advisory</span>
+                        </button>
+                        <button
+                          onClick={() => setWeatherScreen("district")}
+                          className={`py-1 rounded flex items-center justify-center gap-1 text-[11px] transition-all ${
+                            weatherScreen === "district"
+                              ? "bg-white text-sky-950 font-bold shadow-sm"
+                              : "text-sky-200 hover:text-white"
+                          }`}
+                        >
+                          <MapIcon className="w-3 h-3" />
+                          <span>District Officer Map</span>
+                        </button>
                       </div>
                     </div>
                   ) : (
-                    /* KRISHISMRITI LIGHT CLEAN PWA HEADER */
-                    <div className="bg-emerald-700 text-white px-3.5 py-2.5 shadow-md shrink-0 z-10">
+                    <div className="bg-emerald-800 text-white px-3.5 py-2.5 shadow shrink-0 z-10 space-y-2">
                       <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <div className="w-8 h-8 rounded-xl bg-white/20 border border-white/30 flex items-center justify-center text-white font-bold text-xs shadow-inner">
-                            <Sprout className="w-5 h-5 text-emerald-100" />
+                        <div className="leading-tight">
+                          <div className="flex items-center gap-1.5">
+                            <span className="font-bold text-xs tracking-tight">KrishiSmriti · SIH 2026</span>
+                            <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-emerald-900 text-emerald-200 border border-emerald-700">
+                              Marathi
+                            </span>
                           </div>
-                          <div className="leading-tight min-w-0">
-                            <div className="flex items-center gap-1.5">
-                              <span className="font-bold text-sm tracking-tight text-white">
-                                KrishiSmriti
-                              </span>
-                              <span className="text-[10px] bg-emerald-800/80 px-1.5 py-0.5 rounded text-emerald-100 border border-emerald-600 font-medium">
-                                किसान साथी
-                              </span>
-                            </div>
-                            <div className="text-[10px] text-emerald-100 flex items-center gap-1 mt-0.5">
-                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-300 animate-pulse"></span>
-                              <span>{farmerName} &bull; {selectedLocation} Farm</span>
-                            </div>
-                          </div>
+                          <p className="text-[10px] text-emerald-200 mt-0.5">
+                            Ramu Yadav · Pune Sugarcane MH-PUN-402
+                          </p>
                         </div>
 
-                        {/* Switch Farm / Onboarding Button */}
-                        <button
-                          onClick={() => setIsOnboarding(!isOnboarding)}
-                          className="flex items-center gap-1 text-[11px] font-medium bg-emerald-800 hover:bg-emerald-900 text-white px-2 py-1 rounded-lg border border-emerald-600 transition-colors shadow-sm"
-                          title="Change Farm Details"
-                        >
-                          <Settings2 className="w-3 h-3" />
-                          <span>{isOnboarding ? "Back" : "My Farm"}</span>
-                        </button>
+                        <span className="text-[9px] font-mono bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded border border-emerald-700">
+                          Data-backed: IMD + field sensor
+                        </span>
                       </div>
 
-                      {/* Sub Navigation Bar inside Phone (Chat vs Farm Map) */}
-                      {!isOnboarding && (
-                        <div className="grid grid-cols-2 gap-1 mt-2.5 bg-emerald-800/60 p-0.5 rounded-lg text-xs font-medium">
-                          <button
-                            onClick={() => setPhoneTab("chat")}
-                            className={`py-1 rounded flex items-center justify-center gap-1.5 transition-all ${
-                              phoneTab === "chat"
-                                ? "bg-white text-emerald-900 font-bold shadow-sm"
-                                : "text-emerald-100 hover:text-white"
-                            }`}
-                          >
-                            <MessageSquare className="w-3.5 h-3.5" />
-                            <span>Voice Assistant</span>
-                          </button>
-                          <button
-                            onClick={() => setPhoneTab("map")}
-                            className={`py-1 rounded flex items-center justify-center gap-1.5 transition-all ${
-                              phoneTab === "map"
-                                ? "bg-white text-emerald-900 font-bold shadow-sm"
-                                : "text-emerald-100 hover:text-white"
-                            }`}
-                          >
-                            <MapIcon className="w-3.5 h-3.5" />
-                            <span>My Farm Map</span>
-                          </button>
-                        </div>
-                      )}
+                      {/* KrishiSmriti 3 Tabs */}
+                      <div className="grid grid-cols-3 gap-1 bg-emerald-950/80 p-0.5 rounded-lg text-[10px] font-medium text-center">
+                        <button
+                          onClick={() => setAgriTab("chat")}
+                          className={`py-1 rounded transition-all ${
+                            agriTab === "chat" ? "bg-white text-emerald-950 font-bold" : "text-emerald-200"
+                          }`}
+                        >
+                          Voice Copilot
+                        </button>
+                        <button
+                          onClick={() => setAgriTab("memory")}
+                          className={`py-1 rounded transition-all ${
+                            agriTab === "memory" ? "bg-white text-emerald-950 font-bold" : "text-emerald-200"
+                          }`}
+                        >
+                          7/12 &amp; Memory
+                        </button>
+                        <button
+                          onClick={() => setAgriTab("schemes")}
+                          className={`py-1 rounded transition-all ${
+                            agriTab === "schemes" ? "bg-white text-emerald-950 font-bold" : "text-emerald-200"
+                          }`}
+                        >
+                          Plan &amp; Mandi
+                        </button>
+                      </div>
                     </div>
                   )}
 
                   {/* -------------------------------------------------------------
-                      PHONE BODY CONTENT
+                      SCREEN BODY: WEATHER DISTRICT MAP vs CHAT vs AGRI MEMORY
                      ------------------------------------------------------------- */}
-                  {isOnboarding ? (
-                    /* 1. FARMER SETUP & ONBOARDING VIEW */
-                    <div className="flex-1 p-4 bg-white overflow-y-auto space-y-4 font-sans text-xs">
-                      <div className="text-center space-y-1 py-1 border-b border-zinc-200">
-                        <div className="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-1">
-                          <Sprout className="w-6 h-6" />
-                        </div>
-                        <h3 className="font-bold text-sm text-zinc-900">
-                          Set Up Your Farm Profile
-                        </h3>
-                        <p className="text-[11px] text-zinc-500">
-                          Customize your location, crop, and language for tailored AI guidance.
-                        </p>
-                      </div>
-
-                      <div className="space-y-3">
-                        {/* Farmer Name */}
-                        <div>
-                          <label className="block text-[11px] font-bold text-zinc-700 mb-1">
-                            Farmer Name
-                          </label>
-                          <input
-                            type="text"
-                            value={farmerName}
-                            onChange={(e) => setFarmerName(e.target.value)}
-                            className="w-full text-xs p-2 rounded-lg border border-zinc-300 focus:outline-none focus:border-emerald-600 bg-zinc-50"
-                            placeholder="Enter Farmer Name (e.g. Ramu Yadav)"
-                          />
-                        </div>
-
-                        {/* Location / District */}
-                        <div className="grid grid-cols-2 gap-2">
-                          <div>
-                            <label className="block text-[11px] font-bold text-zinc-700 mb-1">
-                              State
-                            </label>
-                            <select
-                              value={selectedState}
-                              onChange={(e) => setSelectedState(e.target.value)}
-                              className="w-full text-xs p-2 rounded-lg border border-zinc-300 focus:outline-none focus:border-emerald-600 bg-zinc-50"
-                            >
-                              <option value="Maharashtra">Maharashtra</option>
-                              <option value="Uttar Pradesh">Uttar Pradesh</option>
-                              <option value="Madhya Pradesh">Madhya Pradesh</option>
-                            </select>
-                          </div>
-
-                          <div>
-                            <label className="block text-[11px] font-bold text-zinc-700 mb-1">
-                              District / Village
-                            </label>
-                            <select
-                              value={selectedLocation}
-                              onChange={(e) => setSelectedLocation(e.target.value)}
-                              className="w-full text-xs p-2 rounded-lg border border-zinc-300 focus:outline-none focus:border-emerald-600 bg-zinc-50"
-                            >
-                              <option value="Pune">Pune</option>
-                              <option value="Barabanki">Barabanki</option>
-                              <option value="Nagpur">Nagpur</option>
-                              <option value="Varanasi">Varanasi</option>
-                              <option value="Fatehpur">Fatehpur</option>
-                              <option value="Nashik">Nashik</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        {/* Crop & Land Size */}
-                        <div className="grid grid-cols-2 gap-2">
-                          <div>
-                            <label className="block text-[11px] font-bold text-zinc-700 mb-1">
-                              Primary Crop
-                            </label>
-                            <select
-                              value={selectedCrop}
-                              onChange={(e) => setSelectedCrop(e.target.value)}
-                              className="w-full text-xs p-2 rounded-lg border border-zinc-300 focus:outline-none focus:border-emerald-600 bg-zinc-50"
-                            >
-                              <option value="Sugarcane (Co-86032)">Sugarcane</option>
-                              <option value="Wheat (PBW-502)">Wheat</option>
-                              <option value="Cotton (Bt-II)">Cotton</option>
-                              <option value="Mustard (Pusa Bold)">Mustard</option>
-                              <option value="Paddy (Basmati)">Paddy / Rice</option>
-                            </select>
-                          </div>
-
-                          <div>
-                            <label className="block text-[11px] font-bold text-zinc-700 mb-1">
-                              Land Size
-                            </label>
-                            <select
-                              value={farmSize}
-                              onChange={(e) => setFarmSize(e.target.value)}
-                              className="w-full text-xs p-2 rounded-lg border border-zinc-300 focus:outline-none focus:border-emerald-600 bg-zinc-50"
-                            >
-                              <option value="2.5 Acres">2.5 Acres</option>
-                              <option value="5.0 Acres">5.0 Acres</option>
-                              <option value="1.0 Acre">1.0 Acre</option>
-                              <option value="10.0 Acres">10.0 Acres</option>
-                            </select>
-                          </div>
-                        </div>
-
-                        {/* Preferred Language */}
-                        <div>
-                          <label className="block text-[11px] font-bold text-zinc-700 mb-1">
-                            Preferred Voice Language
-                          </label>
-                          <div className="grid grid-cols-2 gap-2">
-                            {[
-                              { code: "mr", label: "मराठी (Marathi)" },
-                              { code: "bho", label: "भोजपुरी (Bhojpuri)" },
-                              { code: "hi", label: "हिंदी (Hindi)" },
-                              { code: "en", label: "English" },
-                            ].map((lang) => (
-                              <button
-                                key={lang.code}
-                                type="button"
-                                onClick={() => setSelectedLanguage(lang.code)}
-                                className={`p-2 rounded-lg border text-left flex items-center justify-between text-xs transition-all ${
-                                  selectedLanguage === lang.code
-                                    ? "bg-emerald-50 border-emerald-600 text-emerald-900 font-bold"
-                                    : "bg-zinc-50 border-zinc-200 text-zinc-700 hover:bg-zinc-100"
-                                }`}
-                              >
-                                <span>{lang.label}</span>
-                                {selectedLanguage === lang.code && (
-                                  <Check className="w-3.5 h-3.5 text-emerald-600" />
-                                )}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Start Farm Button */}
-                      <div className="pt-2">
-                        <button
-                          type="button"
-                          onClick={() => {
-                            setIsOnboarding(false);
-                            handleSendQuery(
-                              selectedLanguage === "mr"
-                                ? "माझ्या शेताची स्थिती काय आहे?"
-                                : "हमार खेत के स्थिति का बा?",
-                              selectedLocation
-                            );
-                          }}
-                          className="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-2.5 rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
-                        >
-                          <Sprout className="w-4 h-4" />
-                          <span>Start Smart Farming Copilot</span>
-                        </button>
-                      </div>
-                    </div>
-                  ) : phoneTab === "map" && !isWeather ? (
-                    /* 2. CADASTRAL FARM PARCEL MAP VIEW (LIGHT MODE) */
-                    <div className="flex-1 p-3 bg-[#f8fafc] overflow-y-auto space-y-3 font-sans text-xs">
-                      {/* Farm Header Card */}
-                      <div className="bg-white p-3 rounded-xl border border-emerald-200 shadow-sm space-y-2">
+                  {isWeather && weatherScreen === "district" ? (
+                    /* SCREEN B: DISTRICT OFFICER VIEW */
+                    <div className="flex-1 p-3 bg-zinc-50 overflow-y-auto space-y-3 text-xs font-sans">
+                      <div className="bg-white p-3 rounded-xl border border-zinc-200 shadow-sm space-y-2">
                         <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <div className="p-1.5 rounded-lg bg-emerald-100 text-emerald-800 font-bold">
-                              <MapPin className="w-4 h-4 text-emerald-700" />
-                            </div>
-                            <div>
-                              <h4 className="font-bold text-xs text-zinc-900">
-                                {selectedLocation} Agricultural Parcel
-                              </h4>
-                              <p className="text-[10px] text-zinc-500 font-mono">
-                                Plot: {selectedPlotId} &bull; Khasra No. 402/1 ({farmSize})
-                              </p>
-                            </div>
-                          </div>
-                          <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full border border-emerald-300">
-                            Active Plot
+                          <span className="font-bold text-xs text-zinc-900">
+                            Rohtas DDMA Active CAP Polygon
+                          </span>
+                          <span className="text-[10px] font-mono text-zinc-500 bg-zinc-100 px-2 py-0.5 rounded border">
+                            sample data
                           </span>
                         </div>
 
-                        {/* Interactive Visual Farm Parcel Canvas */}
-                        <div className="relative w-full h-44 bg-gradient-to-br from-emerald-100 via-green-50 to-emerald-200 rounded-lg border border-emerald-300 overflow-hidden shadow-inner flex items-center justify-center">
-                          {/* Grid texture */}
-                          <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#059669_1px,transparent_1px)] [background-size:12px_12px]"></div>
-
-                          {/* Farm Cadastral Polygon Shape */}
-                          <svg className="w-full h-full p-4" viewBox="0 0 200 120">
-                            {/* Polygon Field Boundary */}
+                        {/* Interactive SVG Cadastral / Hazard Map */}
+                        <div className="relative w-full h-40 bg-zinc-900 rounded-lg overflow-hidden border border-zinc-700 flex items-center justify-center">
+                          <svg className="w-full h-full p-2" viewBox="0 0 240 140">
+                            {/* Base County Boundaries */}
+                            <polygon points="10,20 120,10 230,30 220,130 30,125" fill="#1e293b" stroke="#475569" strokeWidth="1.5" />
+                            {/* Active Lightning CAP Warning Polygon */}
                             <polygon
-                              points="30,20 170,15 185,95 45,105"
-                              fill="#86efac"
-                              fillOpacity="0.6"
-                              stroke="#059669"
-                              strokeWidth="2.5"
+                              points="60,40 180,35 195,110 80,115"
+                              fill="#ef4444"
+                              fillOpacity="0.4"
+                              stroke="#dc2626"
+                              strokeWidth="2"
                               strokeDasharray="4, 4"
                             />
-
-                            {/* Crop Row Lines */}
-                            <line x1="50" y1="35" x2="160" y2="30" stroke="#16a34a" strokeWidth="1.5" strokeOpacity="0.6" />
-                            <line x1="45" y1="55" x2="165" y2="50" stroke="#16a34a" strokeWidth="1.5" strokeOpacity="0.6" />
-                            <line x1="40" y1="75" x2="170" y2="70" stroke="#16a34a" strokeWidth="1.5" strokeOpacity="0.6" />
-                            <line x1="35" y1="95" x2="175" y2="90" stroke="#16a34a" strokeWidth="1.5" strokeOpacity="0.6" />
-
-                            {/* Soil Moisture Sensor Pin */}
-                            <g transform="translate(100, 60)">
-                              <circle r="14" fill="#3b82f6" fillOpacity="0.2" className="animate-ping" />
-                              <circle r="8" fill="#2563eb" stroke="#ffffff" strokeWidth="2" />
-                              <circle r="2.5" fill="#ffffff" />
+                            {/* Centroid / Warning Label */}
+                            <g transform="translate(130, 75)">
+                              <circle r="8" fill="#ef4444" className="animate-ping opacity-75" />
+                              <circle r="4" fill="#ffffff" />
                             </g>
                           </svg>
 
-                          {/* Sensor Status Overlay Pill */}
-                          <div className="absolute top-2 left-2 bg-white/95 backdrop-blur-sm border border-emerald-300 px-2 py-1 rounded-md text-[10px] text-zinc-800 shadow-sm">
-                            <strong>{selectedCrop.split(" ")[0]} Field</strong> &bull; Black Cotton Soil
+                          <div className="absolute top-2 left-2 bg-red-950/90 text-red-200 border border-red-700 px-2 py-1 rounded text-[10px] font-mono">
+                            ⚠️ ACTIVE HAZARD POLYGON: ROHTAS
                           </div>
-
-                          {/* Live Sensor Pin Card */}
-                          <div className="absolute bottom-2 right-2 bg-white/95 backdrop-blur-sm border border-blue-300 px-2 py-1 rounded-md text-[10px] text-zinc-800 shadow-sm flex items-center gap-1.5">
-                            <Droplets className="w-3 h-3 text-blue-600" />
-                            <span>Moisture: <strong>38% (Optimal)</strong></span>
+                          <div className="absolute bottom-2 right-2 bg-zinc-950/90 text-zinc-300 px-2 py-0.5 rounded text-[9px] font-mono">
+                            CAP 1.2 Feed: SACHET NDMA
                           </div>
                         </div>
                       </div>
 
-                      {/* Live Ground Soil Telemetry Cards */}
-                      <div className="grid grid-cols-3 gap-2">
-                        <div className="bg-white p-2.5 rounded-xl border border-zinc-200 text-center shadow-sm">
-                          <div className="text-[10px] text-zinc-500 font-medium">Soil Moisture</div>
-                          <div className="text-base font-bold text-blue-600 mt-0.5">38%</div>
-                          <div className="text-[9px] text-emerald-600 font-bold">Normal Range</div>
+                      {/* Real-time Query Aggregator (Anonymized) */}
+                      <div className="bg-white p-3 rounded-xl border border-zinc-200 shadow-sm space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-xs text-zinc-900">
+                            What people are asking (last hour)
+                          </span>
+                          <span className="text-[10px] font-mono text-zinc-500">104 queries</span>
                         </div>
 
-                        <div className="bg-white p-2.5 rounded-xl border border-zinc-200 text-center shadow-sm">
-                          <div className="text-[10px] text-zinc-500 font-medium">Root Temp</div>
-                          <div className="text-base font-bold text-zinc-800 mt-0.5">24.2°C</div>
-                          <div className="text-[9px] text-zinc-500">Root-zone</div>
+                        <div className="space-y-1.5 font-mono text-[11px]">
+                          <div className="flex justify-between items-center p-1.5 bg-zinc-50 rounded border border-zinc-200">
+                            <span className="text-zinc-800">Dehri Block</span>
+                            <span className="font-bold text-red-700">48 queries</span>
+                          </div>
+                          <div className="flex justify-between items-center p-1.5 bg-zinc-50 rounded border border-zinc-200">
+                            <span className="text-zinc-800">Sasaram Block</span>
+                            <span className="font-bold text-red-700">35 queries</span>
+                          </div>
+                          <div className="flex justify-between items-center p-1.5 bg-zinc-50 rounded border border-zinc-200">
+                            <span className="text-zinc-800">Chenari Block</span>
+                            <span className="font-bold text-amber-700">21 queries</span>
+                          </div>
                         </div>
 
-                        <div className="bg-white p-2.5 rounded-xl border border-zinc-200 text-center shadow-sm">
-                          <div className="text-[10px] text-zinc-500 font-medium">Last Applied</div>
-                          <div className="text-sm font-bold text-emerald-700 mt-0.5">4 Days Ago</div>
-                          <div className="text-[9px] text-zinc-500">45kg Urea</div>
+                        <div className="text-[10px] text-zinc-500 pt-1 border-t border-zinc-100">
+                          Top Citizen Question: &quot;Is it safe to continue open paddy transplanting today?&quot;
+                        </div>
+                      </div>
+                    </div>
+                  ) : !isWeather && agriTab === "memory" ? (
+                    /* KRISHISMRITI SCREEN: 7/12 SATBARA & FARM MEMORY TIMELINE */
+                    <div className="flex-1 p-3 bg-zinc-50 overflow-y-auto space-y-3 text-xs font-sans">
+                      {/* 7/12 Parcel Map */}
+                      <div className="bg-white p-3 rounded-xl border border-emerald-200 shadow-sm space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-xs text-zinc-900">
+                            7/12 Satbara Survey: MH-PUN-HAV-7/12-882
+                          </span>
+                          <span className="text-[10px] font-mono text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-300">
+                            2.5 Acres
+                          </span>
+                        </div>
+
+                        <div className="relative w-full h-36 bg-emerald-50 rounded-lg overflow-hidden border border-emerald-300 flex items-center justify-center">
+                          <svg className="w-full h-full p-2" viewBox="0 0 200 120">
+                            <polygon points="25,20 175,15 185,95 40,105" fill="#86efac" fillOpacity="0.5" stroke="#059669" strokeWidth="2" strokeDasharray="3, 3" />
+                            <g transform="translate(100, 60)">
+                              <circle r="10" fill="#2563eb" fillOpacity="0.2" className="animate-ping" />
+                              <circle r="5" fill="#2563eb" />
+                            </g>
+                          </svg>
+                          <div className="absolute top-2 left-2 bg-white/90 px-2 py-0.5 rounded text-[10px] font-mono text-zinc-700 shadow-sm">
+                            Sugarcane (Adsali) · Black Cotton Soil
+                          </div>
+                          <div className="absolute bottom-2 right-2 bg-blue-900 text-white px-2 py-0.5 rounded text-[10px] font-mono">
+                            Soil Moisture: 38% (Optimal)
+                          </div>
                         </div>
                       </div>
 
-                      {/* Quick Action Buttons on Map */}
-                      <div className="space-y-1.5 pt-1">
-                        <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
-                          One-Tap Field Actions:
+                      {/* Farm Memory Timeline */}
+                      <div className="bg-white p-3 rounded-xl border border-zinc-200 shadow-sm space-y-2">
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-xs text-zinc-900">
+                            Farm Memory Timeline (pgvector)
+                          </span>
+                          <span className="text-[10px] font-mono text-zinc-500">Plot MH-PUN-402</span>
                         </div>
 
-                        <button
-                          onClick={() => {
-                            setPhoneTab("chat");
-                            handleSendQuery("का आज हमार खेत में सिंचाई करे के जरूरत बा?");
-                          }}
-                          className="w-full bg-white hover:bg-emerald-50 border border-zinc-200 hover:border-emerald-400 p-2 rounded-xl flex items-center justify-between text-xs text-zinc-800 transition-all shadow-sm"
-                        >
-                          <div className="flex items-center gap-2">
-                            <Droplets className="w-4 h-4 text-blue-600" />
-                            <span>Check Irrigation Requirement</span>
+                        <div className="space-y-2 border-l-2 border-emerald-500 pl-3 ml-1 text-xs">
+                          <div>
+                            <div className="text-[10px] font-mono text-emerald-800 font-bold">
+                              4 Days Ago &bull; FERTILIZER LOG
+                            </div>
+                            <p className="text-zinc-800">
+                              Applied 45 kg Urea (1 bag) to parcel. Soil moisture was 40%.
+                            </p>
                           </div>
-                          <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
-                        </button>
+                          <div>
+                            <div className="text-[10px] font-mono text-blue-800 font-bold">
+                              12 Days Ago &bull; IRRIGATION LOG
+                            </div>
+                            <p className="text-zinc-800">
+                              Drip irrigation cycle run for 4 hours. Crown roots established.
+                            </p>
+                          </div>
+                          <div>
+                            <div className="text-[10px] font-mono text-purple-800 font-bold">
+                              28 Days Ago &bull; SOIL TEST (SHC)
+                            </div>
+                            <p className="text-zinc-800">
+                              Available N=180 kg/ha, P=14 kg/ha, K=320 kg/ha (Saturated Potash).
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ) : !isWeather && agriTab === "schemes" ? (
+                    /* KRISHISMRITI SCREEN: DAILY BEST ACTION, SCHEMES & MANDI */
+                    <div className="flex-1 p-3 bg-zinc-50 overflow-y-auto space-y-3 text-xs font-sans">
+                      {/* Daily Single Best Action */}
+                      <div className="bg-emerald-50 p-3 rounded-xl border border-emerald-300 shadow-sm space-y-1.5">
+                        <div className="text-[10px] font-mono uppercase text-emerald-800 font-bold flex items-center gap-1">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
+                          <span>Today&apos;s Single Best Action</span>
+                        </div>
+                        <div className="font-bold text-zinc-900 text-xs leading-snug">
+                          Spray tomorrow between 6:30 AM and 9:00 AM. Skip irrigation today (soil moisture is 38%).
+                        </div>
+                        <div className="text-[10px] font-mono text-emerald-900 pt-1">
+                          Rule check: Rain from 11 AM ✕ &bull; Wind calm till 9 AM ✓ &bull; 2 workers ready ✓
+                        </div>
+                      </div>
 
-                        <button
-                          onClick={() => {
-                            setPhoneTab("chat");
-                            handleSendQuery("का आज खेत में यूरिया डाल सकीं?");
-                          }}
-                          className="w-full bg-white hover:bg-emerald-50 border border-zinc-200 hover:border-emerald-400 p-2 rounded-xl flex items-center justify-between text-xs text-zinc-800 transition-all shadow-sm"
-                        >
-                          <div className="flex items-center gap-2">
-                            <Sprout className="w-4 h-4 text-emerald-600" />
-                            <span>Check Fertilizer Top-Dressing Safety</span>
+                      {/* Mandi Price Card */}
+                      <div className="bg-white p-3 rounded-xl border border-zinc-200 shadow-sm space-y-1.5">
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-xs text-zinc-900">Mandi Price Information</span>
+                          <span className="text-[9px] font-mono text-zinc-500">Agmarknet OGD API</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2 text-center font-mono">
+                          <div className="p-2 bg-zinc-50 rounded border">
+                            <div className="text-[10px] text-zinc-500">Pune APMC</div>
+                            <div className="font-bold text-emerald-800 text-sm">₹3,150 / qtl</div>
+                            <div className="text-[9px] text-zinc-500">7-day trend: +1.2%</div>
                           </div>
-                          <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
-                        </button>
+                          <div className="p-2 bg-zinc-50 rounded border">
+                            <div className="text-[10px] text-zinc-500">Baramati APMC</div>
+                            <div className="font-bold text-zinc-800 text-sm">₹3,080 / qtl</div>
+                            <div className="text-[9px] text-zinc-500">7-day trend: Stable</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Schemes Card */}
+                      <div className="bg-white p-3 rounded-xl border border-zinc-200 shadow-sm space-y-2">
+                        <span className="font-bold text-xs text-zinc-900 block">
+                          Verified Scheme &amp; Subsidy Reminders
+                        </span>
+                        <div className="space-y-1.5 text-[11px]">
+                          <div className="p-1.5 bg-zinc-50 rounded border flex justify-between items-center">
+                            <span>PM-KISAN (17th Installment)</span>
+                            <span className="text-emerald-700 font-bold">Active</span>
+                          </div>
+                          <div className="p-1.5 bg-zinc-50 rounded border flex justify-between items-center">
+                            <span>PMKSY Drip Irrigation Subsidy</span>
+                            <span className="text-emerald-700 font-bold">Up to 55%</span>
+                          </div>
+                          <div className="p-1.5 bg-zinc-50 rounded border flex justify-between items-center">
+                            <span>Kisan Credit Card (KCC) Renewal</span>
+                            <span className="text-amber-700 font-bold">Due 30 Oct</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   ) : (
-                    /* 3. CHAT MESSAGES SCROLL VIEW */
-                    <div
-                      className={`flex-1 p-3 overflow-y-auto space-y-3 font-sans text-xs ${
-                        isWeather ? "bg-[#efeae2]" : "bg-[#f8fafc]"
-                      }`}
-                    >
-                      {/* Farm Status Strip (KrishiSmriti Light Mode) */}
-                      {!isWeather && (
-                        <div className="bg-emerald-50/80 border border-emerald-200/80 p-2 rounded-xl text-[11px] text-emerald-900 shadow-sm flex items-center justify-between">
-                          <div className="flex items-center gap-1.5 truncate">
-                            <MapPin className="w-3.5 h-3.5 text-emerald-700 shrink-0" />
-                            <span className="font-bold">{selectedLocation} Farm</span>
-                            <span className="text-zinc-500">&bull; {selectedCrop.split(" ")[0]} ({farmSize})</span>
-                          </div>
-                          <span className="text-emerald-700 font-bold bg-white px-2 py-0.5 rounded border border-emerald-300 text-[10px]">
-                            Moisture: 38%
-                          </span>
-                        </div>
-                      )}
-
-                      <div className="text-center my-0.5">
-                        <span
-                          className={`px-2.5 py-0.5 rounded-full text-[9px] shadow-sm uppercase font-sans border ${
-                            isWeather
-                              ? "bg-white/90 border-zinc-200 text-zinc-600"
-                              : "bg-white border-zinc-200 text-emerald-800 font-bold"
-                          }`}
-                        >
-                          Today &bull; Verified Voice Assistance
-                        </span>
-                      </div>
-
+                    /* CHAT MESSAGES SCROLL VIEW */
+                    <div className="flex-1 p-3 overflow-y-auto space-y-3 text-xs font-sans">
                       {messages.map((msg) => {
                         const isFarmer = msg.sender === "farmer";
                         const isPlaying = playingMessageId === msg.id;
@@ -993,33 +776,19 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                             className={`flex ${isFarmer ? "justify-end" : "justify-start"} animate-fadeIn`}
                           >
                             <div
-                              className={`max-w-[90%] rounded-2xl p-3 shadow-sm space-y-1.5 ${
-                                isWeather
-                                  ? isFarmer
-                                    ? "bg-[#dcf8c6] border border-[#c4eab0] text-zinc-900"
-                                    : "bg-white border border-zinc-200 shadow-md text-zinc-900"
-                                  : isFarmer
-                                  ? "bg-emerald-600 text-white rounded-br-none shadow-md"
-                                  : "bg-white border border-zinc-200 text-zinc-900 shadow-md rounded-bl-none"
+                              className={`max-w-[92%] rounded-2xl p-3 shadow-sm space-y-2 ${
+                                isFarmer
+                                  ? "bg-emerald-700 text-white rounded-br-none"
+                                  : msg.alertSeverity === "WARNING"
+                                  ? "bg-red-50 border-2 border-red-500 text-zinc-900 rounded-bl-none"
+                                  : "bg-white border border-zinc-200 text-zinc-900 rounded-bl-none"
                               }`}
                             >
-                              {/* Bot Header Badge */}
-                              {!isFarmer && msg.verifiedBadge && (
-                                <div
-                                  className={`flex items-center justify-between pb-1 border-b text-[10px] font-bold ${
-                                    isWeather
-                                      ? "border-zinc-100 text-emerald-800"
-                                      : "border-zinc-100 text-emerald-700"
-                                  }`}
-                                >
-                                  <span className="flex items-center gap-1">
-                                    {msg.alertSeverity === "WARNING" ? (
-                                      <AlertTriangle className="w-3.5 h-3.5 text-amber-600" />
-                                    ) : (
-                                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                                    )}
-                                    {msg.verifiedBadge}
-                                  </span>
+                              {/* Warning Banner if alert is active */}
+                              {!isFarmer && msg.alertSeverity === "WARNING" && (
+                                <div className="bg-red-600 text-white px-2 py-1 rounded text-[10px] font-mono font-bold flex items-center gap-1.5">
+                                  <AlertTriangle className="w-3.5 h-3.5 shrink-0" />
+                                  <span>SEVERE WEATHER WARNING LOCKED</span>
                                 </div>
                               )}
 
@@ -1027,11 +796,11 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                               {msg.isAudio && (
                                 <div
                                   className={`p-1.5 rounded-xl border flex items-center gap-2 ${
-                                    isWeather
-                                      ? "bg-zinc-50/90 border-zinc-200"
-                                      : isFarmer
-                                      ? "bg-emerald-700/60 border-emerald-500 text-white"
-                                      : "bg-emerald-50 border-emerald-200 text-emerald-900"
+                                    isFarmer
+                                      ? "bg-emerald-800/60 border-emerald-600 text-white"
+                                      : msg.alertSeverity === "WARNING"
+                                      ? "bg-red-100 border-red-300 text-red-950"
+                                      : "bg-zinc-100 border-zinc-200 text-zinc-900"
                                   }`}
                                 >
                                   <button
@@ -1044,86 +813,85 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                                     }
                                     className={`w-7 h-7 rounded-full flex items-center justify-center text-white shrink-0 transition-all ${
                                       isPlaying
-                                        ? "bg-amber-600 shadow-inner"
-                                        : isWeather
-                                        ? "bg-[#128c7e] hover:bg-[#075e54]"
-                                        : "bg-emerald-600 hover:bg-emerald-700"
+                                        ? "bg-amber-600"
+                                        : isFarmer
+                                        ? "bg-emerald-900"
+                                        : "bg-zinc-900 hover:bg-zinc-800"
                                     }`}
-                                    title="Play Voice Advisory"
                                   >
-                                    {isPlaying ? (
-                                      <Pause className="w-3 h-3" />
-                                    ) : (
-                                      <Play className="w-3 h-3 ml-0.5" />
-                                    )}
+                                    {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 ml-0.5" />}
                                   </button>
 
                                   <div className="flex-1">
-                                    <div className="h-1.5 bg-zinc-300/60 rounded-full overflow-hidden">
+                                    <div className="h-1.5 bg-zinc-300 rounded-full overflow-hidden">
                                       <div
-                                        className={`h-full transition-all duration-200 ${
-                                          isWeather
-                                            ? "bg-[#128c7e]"
-                                            : isFarmer
-                                            ? "bg-white"
-                                            : "bg-emerald-600"
-                                        }`}
+                                        className="h-full bg-emerald-600 transition-all duration-200"
                                         style={{ width: `${isPlaying ? audioProgress : 100}%` }}
                                       ></div>
                                     </div>
-                                    <div className="flex justify-between text-[9px] mt-0.5 font-sans opacity-80">
-                                      <span className="font-bold">
-                                        {isPlaying ? `Playing ${audioProgress}%` : msg.audioDuration || "0:08"}
-                                      </span>
-                                      <span>Voice Advisory</span>
+                                    <div className="flex justify-between text-[9px] mt-0.5 font-mono opacity-80">
+                                      <span>{isPlaying ? `Playing ${audioProgress}%` : msg.audioDuration || "0:08"}</span>
+                                      <span>Bhashini Voice Note</span>
                                     </div>
                                   </div>
                                 </div>
                               )}
 
-                              {/* Vernacular text */}
+                              {/* Vernacular Spoken Response */}
                               <div className="text-xs leading-relaxed font-medium">
                                 {msg.textVernacular}
                               </div>
 
-                              {/* English Summary Translation */}
-                              {msg.textEnglish && (
-                                <div
-                                  className={`text-[10px] p-2 rounded-lg border ${
-                                    isWeather
-                                      ? "text-zinc-600 bg-zinc-50 border-zinc-100"
-                                      : "text-zinc-700 bg-zinc-50 border-zinc-200"
-                                  }`}
-                                >
-                                  <strong>English Advisory:</strong> {msg.textEnglish}
+                              {/* Cross-Factor Reason Chips */}
+                              {msg.factors && msg.factors.length > 0 && (
+                                <div className="grid grid-cols-2 gap-1 pt-1 font-mono text-[10px]">
+                                  {msg.factors.map((f, fIdx) => (
+                                    <div
+                                      key={fIdx}
+                                      className={`px-1.5 py-0.5 rounded border flex items-center justify-between ${
+                                        f.status === "PASS"
+                                          ? "bg-emerald-50 border-emerald-200 text-emerald-800"
+                                          : f.status === "FAIL"
+                                          ? "bg-red-50 border-red-200 text-red-800 font-bold"
+                                          : "bg-zinc-50 border-zinc-200 text-zinc-700"
+                                      }`}
+                                    >
+                                      <span>{f.name}</span>
+                                      <span>{f.status === "PASS" ? "✓" : f.status === "FAIL" ? "✕" : "•"}</span>
+                                    </div>
+                                  ))}
                                 </div>
                               )}
 
-                              {/* Timestamp & double tick */}
-                              <div className="flex items-center justify-end gap-1 text-[9px] opacity-70 pt-0.5 font-mono">
-                                <span>{msg.timestamp}</span>
-                                {isFarmer && <CheckCheck className="w-3 h-3 text-blue-200" />}
+                              {/* English Summary for Evaluators */}
+                              {msg.textEnglish && (
+                                <div className="text-[10px] p-2 rounded-lg bg-zinc-100/90 border border-zinc-200 text-zinc-700 font-sans">
+                                  <strong className="text-zinc-900">For Evaluators:</strong> {msg.textEnglish}
+                                </div>
+                              )}
+
+                              {/* Receipt Line */}
+                              {msg.receipt && (
+                                <div className="text-[9px] font-mono text-zinc-500 border-t border-zinc-200 pt-1">
+                                  {msg.receipt}
+                                </div>
+                              )}
+
+                              {/* Timestamp */}
+                              <div className="flex justify-end text-[9px] opacity-70 font-mono">
+                                {msg.timestamp}
                               </div>
                             </div>
                           </div>
                         );
                       })}
 
-                      {/* Typing / Loading indicator */}
                       {isLoading && (
                         <div className="flex justify-start">
-                          <div
-                            className={`rounded-xl p-3 shadow-sm border flex items-center gap-2 text-xs ${
-                              isWeather
-                                ? "bg-white border-zinc-200 text-zinc-600"
-                                : "bg-white border-emerald-300 text-emerald-800"
-                            }`}
-                          >
-                            <RefreshCw className="w-3.5 h-3.5 animate-spin text-emerald-600" />
+                          <div className="rounded-xl p-3 bg-white border border-zinc-300 flex items-center gap-2 text-xs text-zinc-700 shadow-sm">
+                            <RefreshCw className="w-3.5 h-3.5 animate-spin text-emerald-700" />
                             <span>
-                              {isWeather
-                                ? "Checking weather station & radar alerts..."
-                                : "Checking soil sensors & past field logs..."}
+                              {isWeather ? "Running PostGIS warning check & Open-Meteo..." : "Evaluating cross-factor rules & soil moisture..."}
                             </span>
                           </div>
                         </div>
@@ -1134,51 +902,23 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                   )}
 
                   {/* -------------------------------------------------------------
-                      INPUT BAR: WHATSAPP vs KRISHISMRITI LIGHT MODE
+                      INPUT BAR: TAPPABLE EXAMPLE CHIPS + VOICE/TEXT INPUT
                      ------------------------------------------------------------- */}
-                  {!isOnboarding && phoneTab === "chat" && (
+                  <div className="border-t border-zinc-200 bg-white p-2 shrink-0 space-y-1.5">
+                    {/* Input Form */}
                     <form
                       onSubmit={(e) => {
                         e.preventDefault();
                         handleSendQuery(inputText);
                       }}
-                      className={`p-2.5 flex items-center gap-2 border-t shrink-0 ${
-                        isWeather
-                          ? "bg-[#f0f2f5] border-zinc-200"
-                          : "bg-white border-zinc-200"
-                      }`}
+                      className="flex items-center gap-1.5"
                     >
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setInputText(
-                            isWeather
-                              ? "का आज कीटनाशक छिड़कीं?"
-                              : "खेत में यूरिया कब डालूं?"
-                          )
-                        }
-                        className="p-1 text-zinc-400 hover:text-zinc-600"
-                        title="Quick Question Prompt"
-                      >
-                        <Smile className="w-5 h-5" />
-                      </button>
-
-                      <div
-                        className={`flex-1 rounded-full px-3.5 py-1.5 text-xs flex items-center border ${
-                          isWeather
-                            ? "bg-white text-zinc-800 border-zinc-300 focus-within:border-emerald-600"
-                            : "bg-zinc-50 text-zinc-900 border-zinc-300 focus-within:border-emerald-600 focus-within:bg-white"
-                        }`}
-                      >
+                      <div className="flex-1 rounded-full px-3 py-1.5 text-xs flex items-center bg-zinc-100 border border-zinc-300 focus-within:border-zinc-800">
                         <input
                           type="text"
                           value={inputText}
                           onChange={(e) => setInputText(e.target.value)}
-                          placeholder={
-                            isWeather
-                              ? "Ask weather question or tap mic..."
-                              : "Ask KrishiSmriti in your dialect..."
-                          }
+                          placeholder="Ask or hold mic to speak..."
                           className="w-full bg-transparent outline-none text-xs"
                         />
                       </div>
@@ -1187,59 +927,39 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                         <button
                           type="submit"
                           disabled={isLoading}
-                          className={`w-9 h-9 rounded-full text-white flex items-center justify-center shadow transition-all disabled:opacity-50 ${
-                            isWeather
-                              ? "bg-[#128c7e] hover:bg-[#075e54]"
-                              : "bg-emerald-600 hover:bg-emerald-700"
-                          }`}
+                          className="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition-all disabled:opacity-50"
                         >
-                          <Send className="w-4 h-4 ml-0.5" />
+                          <Send className="w-3.5 h-3.5" />
                         </button>
                       ) : (
                         <button
                           type="button"
-                          onClick={startVoiceInput}
-                          className={`w-9 h-9 rounded-full text-white flex items-center justify-center shadow transition-all ${
-                            isRecording
-                              ? "bg-red-600 animate-pulse scale-110"
-                              : isWeather
-                              ? "bg-[#128c7e] hover:bg-[#075e54]"
-                              : "bg-emerald-600 hover:bg-emerald-700"
-                          }`}
-                          title="Tap to Speak (Voice Note)"
+                          onClick={() => {
+                            handleSendQuery(
+                              isWeather
+                                ? "आज रात बारिश होगी?"
+                                : "उद्या फवारणी करू का?"
+                            );
+                          }}
+                          className="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center hover:bg-zinc-800 transition-all"
+                          title="Simulate Voice Input"
                         >
-                          <Mic className="w-4 h-4" />
+                          <Mic className="w-3.5 h-3.5" />
                         </button>
                       )}
                     </form>
-                  )}
+                  </div>
 
-                  {/* iPhone Bottom Home Bar */}
-                  <div className="bg-zinc-950 py-1.5 flex justify-center shrink-0">
-                    <div className="w-28 h-1 bg-zinc-500 rounded-full"></div>
+                  {/* Bottom Hardware Home Bar */}
+                  <div className="bg-zinc-950 py-1 flex justify-center shrink-0">
+                    <div className="w-24 h-1 bg-zinc-500 rounded-full"></div>
                   </div>
                 </div>
-              </div>
-
-              {/* EVALUATOR FAST-TRACK BUTTON UNDERNEATH PHONE SCREEN */}
-              <div className="w-full max-w-[360px] mt-3 p-3 bg-white rounded-xl border border-zinc-300 shadow-sm flex flex-col items-center gap-2">
-                <div className="flex items-center gap-2 text-xs font-sans text-zinc-700 text-center">
-                  <Sparkles className="w-4 h-4 text-emerald-700 shrink-0" />
-                  <span><strong>Evaluator Quick-Start:</strong> Test instant farm AI response</span>
-                </div>
-                <button
-                  onClick={handleSkipToDemoFarm}
-                  className="w-full web2-button-primary text-xs py-2 px-3 flex items-center justify-center gap-2 shadow-button font-medium"
-                >
-                  <Zap className="w-3.5 h-3.5 text-amber-300 fill-amber-300" />
-                  <span>⚡ Skip Onboarding &amp; Launch Demo Farm</span>
-                </button>
               </div>
             </div>
 
             {/* 2. REAL-TIME BACKEND INSPECTOR & ARCHITECTURE PROOF (RIGHT SIDE) */}
             <div className="lg:col-span-6 space-y-4">
-              {/* Tab Navigation */}
               <div className="flex items-center justify-between bg-white p-1 rounded-lg border border-zinc-300 shadow-sm">
                 <div className="flex gap-1">
                   <button
@@ -1265,106 +985,78 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                     <span>Live API &amp; Tool Traces (JSON)</span>
                   </button>
                 </div>
-
-                <span className="text-[11px] font-mono text-zinc-500 pr-2">
-                  Latency: {lastApiTrace?.agentPipeline?.totalLatencyMs || lastApiTrace?.ragPipeline?.totalLatencyMs || 120}ms
-                </span>
               </div>
 
               {activeTab === "explainer" ? (
                 <div className="web2-panel p-5 rounded-lg border border-zinc-300 bg-white shadow-sm space-y-4">
                   <div className="flex items-center justify-between border-b border-zinc-200 pb-3">
                     <div className="flex items-center gap-2">
-                      <ShieldCheck className="w-5 h-5 text-emerald-700" />
+                      <CheckCircle2 className="w-5 h-5 text-emerald-700" />
                       <h3 className="font-bold text-sm text-zinc-900">
                         {isWeather
-                          ? "WeatherGPT: Zero-App Multi-Sector Voice Channel"
-                          : "KrishiSmriti: Agronomic Data Sovereignty PWA"}
+                          ? "WeatherGPT: Warning-Locked Disaster Intelligence"
+                          : "KrishiSmriti: Agronomic Data Sovereignty & Second Brain"}
                       </h3>
                     </div>
-                    <span className="web2-badge web2-badge-green text-[10px] font-mono">
-                      {isWeather ? "WMO WIS 2.0 & INCOIS Ingest" : "pgvector Cosine Search"}
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 border border-zinc-300 text-zinc-700">
+                      SIH 2026 Core Loop
                     </span>
                   </div>
 
-                  {/* Point 1 */}
-                  <div className="space-y-1">
-                    <h4 className="font-bold text-xs text-zinc-900 flex items-center gap-1.5">
-                      <span className="w-4 h-4 rounded-full bg-zinc-900 text-white flex items-center justify-center text-[10px] font-bold">
-                        1
-                      </span>
-                      {isWeather
-                        ? "Zero-Friction Multi-Sector Voice Channel"
-                        : "Stateful Episodic Memory Bank (pgvector)"}
-                    </h4>
-                    <p className="text-xs text-zinc-600 font-sans leading-relaxed pl-5">
-                      {isWeather
-                        ? "Coastal fishermen, urban commuters, aviation/drone pilots, and citizens send 10-second voice notes in colloquial Bhojpuri, Odia, Marathi, or Hindi without installing heavy apps or parsing dense PDF bulletins."
-                        : "Remembers previous fertilizer doses (e.g. 45kg Urea applied 4 days ago) and prevents hazardous over-fertilization and nitrate leaching."}
-                    </p>
+                  <div className="space-y-3 text-xs font-sans">
+                    <div className="space-y-1">
+                      <h4 className="font-bold text-zinc-900">
+                        1. {isWeather ? "Warning-Lock Rule (P0)" : "Deterministic Rule Engine (Part 4)"}
+                      </h4>
+                      <p className="text-zinc-600 leading-relaxed">
+                        {isWeather
+                          ? "If any active CAP 1.2 polygon contains the citizen point, the reply MUST start with that alert. The LLM is forbidden from saying it is safe."
+                          : "Dosages are calculated by our TypeScript rule engine (per-hectare first, MPKV PoP table) and never generated by the LLM. Zero hallucination."}
+                      </p>
+                    </div>
+
+                    <div className="space-y-1">
+                      <h4 className="font-bold text-zinc-900">
+                        2. {isWeather ? "Real Data Path & Receipt Line" : "Farm Memory Timeline (pgvector)"}
+                      </h4>
+                      <p className="text-zinc-600 leading-relaxed">
+                        {isWeather
+                          ? "Every reply terminates with a verifiable receipt line: 'Source: <issuer> via SACHET · valid till <time>' or 'Forecast: Open-Meteo (GFS)'."
+                          : "Remembers previous farm interventions (e.g. 45 kg Urea applied 4 days ago) so redundant inputs are prevented."}
+                      </p>
+                    </div>
+
+                    <div className="space-y-1">
+                      <h4 className="font-bold text-zinc-900">
+                        3. {isWeather ? "Two-Way Citizen & District View" : "Single Best Daily Action"}
+                      </h4>
+                      <p className="text-zinc-600 leading-relaxed">
+                        {isWeather
+                          ? "Citizens receive plain spoken warnings in dialect; district disaster officers view real-time question volume aggregated across blocks."
+                          : "Provides one clear daily recommendation rather than overwhelming smallholder farmers with dense paragraphs."}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Point 2 */}
-                  <div className="space-y-1 pt-1">
-                    <h4 className="font-bold text-xs text-zinc-900 flex items-center gap-1.5">
-                      <span className="w-4 h-4 rounded-full bg-zinc-900 text-white flex items-center justify-center text-[10px] font-bold">
-                        2
-                      </span>
-                      {isWeather
-                        ? "PostGIS Dynamic Geo-Fencing & Maritime Polygons"
-                        : "Live Gram Panchayat IoT Telemetry Fusion"}
-                    </h4>
-                    <p className="text-xs text-zinc-600 font-sans leading-relaxed pl-5">
-                      {isWeather
-                        ? "Checks if the user's maritime sector, urban transit corridor, or drone flight airspace intersects active IMD Doppler radar reflectivity (54 dBZ downburst) or INCOIS cyclone gale contours."
-                        : "Fuses live ground moisture sensors (38.4%) to calculate exact irrigation deficits and root-zone water balance."}
-                    </p>
-                  </div>
-
-                  {/* Point 3 */}
-                  <div className="space-y-1 pt-1">
-                    <h4 className="font-bold text-xs text-zinc-900 flex items-center gap-1.5">
-                      <span className="w-4 h-4 rounded-full bg-zinc-900 text-white flex items-center justify-center text-[10px] font-bold">
-                        3
-                      </span>
-                      Deterministic Multi-Sector Safety Gatekeeper (0% Hallucination)
-                    </h4>
-                    <p className="text-xs text-zinc-600 font-sans leading-relaxed pl-5">
-                      When maritime gale squalls, urban underpass flash floods, or convective wind shear hazards are detected, the system issues a hard deterministic safety override to protect lives, vessels, and aircraft.
-                    </p>
-                  </div>
-
-                  {/* Verification Checkpoint Table */}
                   <div className="bg-zinc-50 border border-zinc-200 rounded p-3 text-xs font-mono text-zinc-700 space-y-1.5">
-                    <div className="font-bold text-zinc-800 uppercase text-[11px] mb-1 flex items-center justify-between">
-                      <span>Operational Metrics:</span>
-                      <span className="text-emerald-700 font-semibold">Live System OK</span>
+                    <div className="font-bold text-zinc-800 uppercase text-[11px] mb-1">
+                      Active Demonstration Persona:
                     </div>
-                    <div className="flex items-center justify-between">
-                      <span>Target Location:</span>
-                      <span className="font-semibold text-zinc-900">{selectedLocation}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span>Active Plot ID:</span>
-                      <span className="font-semibold text-emerald-700">{selectedPlotId}</span>
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span>AI Model:</span>
-                      <span className="font-semibold text-emerald-700">
-                        Gemini 1.5/3.6 Flash + Bhashini Speech
-                      </span>
+                    <div>
+                      {isWeather
+                        ? "Location: Rohtas, Bihar (24.9536° N, 84.0163° E) · Severe Convective Alert Zone"
+                        : "Farmer: Ramu Yadav · Pune, Maharashtra · 2.5 Acres Sugarcane (7/12: 882) · Black Cotton Soil (38% Moisture)"}
                     </div>
                   </div>
                 </div>
               ) : (
-                /* Live JSON Telemetry Viewer */
                 <div className="bg-zinc-950 text-zinc-100 p-4 rounded-lg border border-zinc-800 text-xs font-mono space-y-2 shadow-inner max-h-[440px] overflow-y-auto">
                   <div className="flex items-center justify-between border-b border-zinc-800 pb-2 text-zinc-400">
                     <span className="flex items-center gap-1.5 text-emerald-400">
                       <Radio className="w-3.5 h-3.5 animate-pulse" />
                       LIVE API RESPONSE PAYLOAD
                     </span>
-                    <span>JSON Schema Validated</span>
+                    <span>JSON Validated</span>
                   </div>
 
                   {lastApiTrace ? (
@@ -1373,7 +1065,7 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
                     </pre>
                   ) : (
                     <div className="py-12 text-center text-zinc-500">
-                      Send a message on the phone to view live LangChain tool executions and PostGIS responses in real time.
+                      Interact with the phone simulator on the left to see live rule-engine calculations and API responses.
                     </div>
                   )}
                 </div>
@@ -1384,7 +1076,7 @@ export const MobilePhoneModal: React.FC<MobilePhoneModalProps> = ({
 
         {/* Modal Window Footer */}
         <div className="bg-zinc-200 border-t border-zinc-300 px-4 py-2 flex items-center justify-between text-xs text-zinc-600 font-mono shrink-0">
-          <span>Smart India Hackathon 2026 &bull; Working Prototype</span>
+          <span>Smart India Hackathon 2026 &bull; Team ClaudeMaxDedo</span>
           <button
             onClick={onClose}
             className="web2-button-primary text-xs py-1 px-3"

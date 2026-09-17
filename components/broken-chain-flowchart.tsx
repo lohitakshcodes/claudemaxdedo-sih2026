@@ -260,12 +260,12 @@ export const BrokenChainFlowchart: React.FC<BrokenChainFlowchartProps> = ({ proj
           </div>
           <h3 className="text-lg sm:text-xl font-bold text-zinc-900 tracking-tight">
             {isWeather
-              ? "The Broken Meteorological Transmission Chain vs. WeatherGPT Zero-Copy Pipeline"
-              : "The 'Decision Blindness' Trap vs. AgriGPT Autonomous Second Brain Pipeline"}
+              ? "The Meteorological Transmission Chain & WeatherGPT Warning-Locked Pipeline"
+              : "The 'Decision Blindness' Trap vs. KrishiSmriti Autonomous Second Brain Pipeline"}
           </h3>
           <p className="text-xs sm:text-sm text-zinc-600 mt-1 font-sans">
             {isWeather
-              ? "Visualizing why India loses $10B–$15B annually despite supercomputers, and how our decoupled 5-stage architecture resolves the last-mile barrier."
+              ? "Visualizing how the meteorological transmission chain breaks down in the last mile, and how our warning-locked, action-first architecture bridges the gap."
               : "Visualizing why existing single-feature apps fail smallholder farmers, and how our multi-variable conflict engine delivers unified daily action."}
           </p>
         </div>
@@ -464,8 +464,8 @@ export const BrokenChainFlowchart: React.FC<BrokenChainFlowchartProps> = ({ proj
             <Layers className="w-4 h-4 text-zinc-700" />
             <h4 className="font-bold text-xs text-zinc-900 uppercase font-mono tracking-wide">
               {isWeather
-                ? "4 Systemic Bottlenecks in the Current Weather Ecosystem (Research Doc 2, P. 18)"
-                : "The 4 Structural Breakdowns of Existing Agri Apps (Research Doc 1, P. 1-2)"}
+                ? "4 Systemic Bottlenecks in the Current Weather Ecosystem"
+                : "The 4 Structural Breakdowns of Existing Advisory Apps"}
             </h4>
           </div>
           <span className="text-[11px] font-mono text-zinc-500">SIH 2026 Innovation Summary</span>

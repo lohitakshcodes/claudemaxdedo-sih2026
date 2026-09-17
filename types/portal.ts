@@ -8,6 +8,12 @@ export interface TelemetryPacket {
   status: "OK" | "ALERT" | "INGESTED" | "SYNCED";
 }
 
+export interface MetricTag {
+  type: "Source" | "Measured" | "Design target";
+  url?: string;
+  detail?: string;
+}
+
 export interface MetricCardItem {
   label: string;
   value: string;
@@ -15,6 +21,7 @@ export interface MetricCardItem {
   trend?: string;
   severity?: "neutral" | "warning" | "danger" | "success";
   citationUrl?: string;
+  tag?: MetricTag;
 }
 
 export interface ArchitectureColumnItem {
@@ -48,6 +55,7 @@ export interface ImpactRow {
   statusQuo: string;
   ourSolution: string;
   metricGain: string;
+  tag?: MetricTag;
 }
 
 export interface ProofOfWorkItem {
@@ -59,6 +67,7 @@ export interface ProofOfWorkItem {
   actionText: string;
   url?: string;
   modalType?: "swagger" | "dataset" | "audio";
+  icon?: "code" | "database" | "mic";
 }
 
 export interface TeamMember {
@@ -196,6 +205,7 @@ export interface PortalConfig {
     label: string;
     value: string;
     sublabel: string;
+    tag?: MetricTag;
   }[];
   telemetry: {
     title: string;

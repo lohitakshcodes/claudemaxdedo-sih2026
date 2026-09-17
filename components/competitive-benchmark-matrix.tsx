@@ -143,7 +143,7 @@ export const CompetitiveBenchmarkMatrix: React.FC<CompetitiveBenchmarkMatrixProp
 
                   <div className="mt-2 pt-2 border-t border-zinc-200/70 flex items-center justify-between text-[10px] font-mono">
                     <span className={p.isOurSolution ? "text-emerald-800 font-bold" : "text-zinc-500"}>
-                      {p.isOurSolution ? "Winner: Action Engine" : "Status: Structural Dead-End"}
+                      {p.isOurSolution ? "KrishiSmriti: Multi-Factor Action Engine" : "Focus: " + p.category}
                     </span>
                     <span className="text-zinc-400 group-hover:text-zinc-800 flex items-center gap-1">
                       <span>Details</span>
@@ -308,7 +308,7 @@ export const CompetitiveBenchmarkMatrix: React.FC<CompetitiveBenchmarkMatrixProp
               <span className="text-xs font-mono font-bold text-zinc-800">
                 MASTER COMPARISON MATRIX (Full Landscape Audit)
               </span>
-              <span className="text-[11px] font-mono text-zinc-500">4 Legacy Models vs AgriGPT</span>
+              <span className="text-[11px] font-mono text-zinc-500">Ecosystem Comparison vs KrishiSmriti</span>
             </div>
 
             <div className="overflow-x-auto">

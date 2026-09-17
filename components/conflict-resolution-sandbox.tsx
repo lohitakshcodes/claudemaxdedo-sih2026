@@ -94,7 +94,7 @@ export const ConflictResolutionSandbox: React.FC<ConflictResolutionSandboxProps>
             </span>
           </div>
           <p className="text-xs text-zinc-600 font-sans mt-0.5">
-            Smallholder farmers suffer from single-variable thinking. Adjust real-world farm constraints below to see how AgriGPT computes the single mathematically optimal daily action.
+            Smallholder farmers suffer from single-variable thinking. Adjust real-world farm constraints below to see how KrishiSmriti computes the single mathematically optimal daily action.
           </p>
         </div>
 

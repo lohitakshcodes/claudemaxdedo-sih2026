@@ -156,6 +156,7 @@ export async function POST(req: NextRequest) {
         english: agentResult.englishAdvisory,
         vernacular: vernacularAdvisory,
         language: originalLanguage,
+        receipt: agentResult.receipt,
       },
     });
   } catch (error: any) {

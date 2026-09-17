@@ -423,7 +423,7 @@ def generate_krishismriti_presentation():
         ])
     ]
     build_split_slide(prs.slides[1], "KRISHISMRITI — DETERMINISTIC AGRO-INTELLIGENCE & SECOND BRAIN", 
-                      slide2_sections, header_color, 'scripts/diagrams/agrigpt_concept_infographic.jpg')
+                      slide2_sections, header_color, 'scripts/diagrams/krishismriti_concept_infographic.jpg')
     
     # SLIDE 3: TECHNICAL APPROACH (STACKED LAYOUT WITH 4-LAYER AGRI-ARCHITECTURE DIAGRAM)
     slide3_sections = [
@@ -464,7 +464,7 @@ def generate_krishismriti_presentation():
         ])
     ]
     build_split_slide(prs.slides[4], "SOCIO-ECONOMIC IMPACT & NATIONAL SCALABILITY", 
-                      slide5_sections, header_color, 'scripts/diagrams/agrigpt_impact_infographic.jpg')
+                      slide5_sections, header_color, 'scripts/diagrams/krishismriti_impact_infographic.jpg')
     
     # SLIDE 6: RESEARCH AND REFERENCES (FULL-WIDTH STRUCTURED CARDS)
     slide6_sections = [

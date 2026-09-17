@@ -58,7 +58,7 @@ export const PersonalizationLayersVisualizer: React.FC<PersonalizationLayersVisu
             </span>
           </div>
           <p className="text-xs text-zinc-600 font-sans mt-0.5">
-            Generic agricultural apps broadcast identical district-wide text. AgriGPT tunes recommendations to field micro-topography, individual soil chemistry, and household logistics.
+            Generic agricultural apps broadcast identical district-wide text. KrishiSmriti tunes recommendations to field micro-topography, individual soil chemistry, and household logistics.
           </p>
         </div>
 
@@ -141,7 +141,7 @@ export const PersonalizationLayersVisualizer: React.FC<PersonalizationLayersVisu
               <div className="p-3.5 rounded bg-emerald-50/70 border border-emerald-300 space-y-1">
                 <div className="font-mono text-emerald-900 font-bold uppercase text-[10px] flex items-center gap-1">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>AgriGPT Deep Personalization Engine:</span>
+                  <span>KrishiSmriti Deep Personalization Engine:</span>
                 </div>
                 <p className="text-zinc-900 leading-relaxed">{currentLayer.personalizationEngine}</p>
               </div>

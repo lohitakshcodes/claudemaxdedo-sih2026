@@ -42,6 +42,9 @@ import {
   Flame,
   TrendingDown,
   BookOpen,
+  Code,
+  Database,
+  Volume2,
 } from "lucide-react";
 
 interface PortalTemplateProps {
@@ -85,19 +88,19 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
   return (
     <div className="min-h-screen bg-white text-zinc-900 flex flex-col font-sans selection:bg-zinc-200 selection:text-zinc-900">
       {/* 1. TOP INSTITUTIONAL THIN ALERT BAR */}
-      <aside aria-label="Institutional Notice" className="bg-zinc-100 border-b border-zinc-300 py-1.5 px-4 text-xs font-mono text-zinc-700 select-none">
+      <aside aria-label="Hackathon Submission Notice" className="bg-zinc-100 border-b border-zinc-300 py-1.5 px-4 text-xs font-mono text-zinc-700 select-none">
         <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span className="inline-block w-2 h-2 rounded-full bg-zinc-600"></span>
             <span>
-              SMART INDIA HACKATHON 2026 — OFFICIAL IDEA SUBMISSION | PS ID:{" "}
+              {isWeather ? "WeatherGPT · SIH 2026 · Team ClaudeMaxDedo" : "KrishiSmriti · SIH 2026 · Team ClaudeMaxDedo"} | PS ID:{" "}
               <strong className="text-zinc-900">{config.psId}</strong> | THEME:{" "}
-              <strong className="text-zinc-900">{config.theme}</strong> | TEAM:{" "}
-              <strong className="text-zinc-900">{config.teamName}</strong>
+              <strong className="text-zinc-900">{config.theme}</strong> | TEAM ID:{" "}
+              <strong className="text-zinc-900">SIH079</strong>
             </span>
           </div>
           <div className="flex items-center gap-3 text-zinc-600">
-            <span>Ministry: {config.ministryShort}</span>
+            <span>Problem statement by {isWeather ? "MoES / IMD" : "MoA&FW"}</span>
             <span>&bull;</span>
             <span className="text-emerald-700 font-semibold flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 inline-block"></span>
@@ -286,11 +289,29 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
                   {config.quickStats.map((stat, idx) => (
                     <div
                       key={idx}
-                      className="web2-panel-gray p-3 rounded border border-zinc-200 bg-white"
+                      className="web2-panel-gray p-3 rounded border border-zinc-200 bg-white flex flex-col justify-between"
                     >
-                      <div className="text-xs text-zinc-500 font-mono uppercase">{stat.label}</div>
-                      <div className="text-lg font-bold text-zinc-900 tracking-tight mt-0.5">
-                        {stat.value}
+                      <div>
+                        <div className="flex items-center justify-between gap-1">
+                          <span className="text-xs text-zinc-500 font-mono uppercase">{stat.label}</span>
+                          {stat.tag && (
+                            <span
+                              className={`text-[9px] font-mono px-1.5 py-0.5 rounded font-semibold shrink-0 ${
+                                stat.tag.type === "Source"
+                                  ? "bg-blue-100 text-blue-800 border border-blue-200"
+                                  : stat.tag.type === "Measured"
+                                  ? "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                                  : "bg-amber-100 text-amber-800 border border-amber-200"
+                              }`}
+                              title={stat.tag.detail}
+                            >
+                              {stat.tag.type}
+                            </span>
+                          )}
+                        </div>
+                        <div className="text-base sm:text-lg font-bold text-zinc-900 tracking-tight mt-0.5">
+                          {stat.value}
+                        </div>
                       </div>
                       <div className="text-[11px] text-zinc-500 font-sans mt-0.5">
                         {stat.sublabel}
@@ -300,34 +321,53 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
                 </div>
               </div>
 
-              {/* Right Column: 16:9 YouTube Video Embed Container */}
+              {/* Right Column: 16:9 Video / Interactive Demo Preview Container */}
               <div id="demo-video-container" className="lg:col-span-6 scroll-mt-24">
                 <div className="web2-panel rounded-lg border border-zinc-300 p-2 bg-zinc-100 shadow-md">
                   <div className="flex items-center justify-between px-2 py-1.5 text-xs font-mono text-zinc-600 border-b border-zinc-200 mb-2">
                     <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-red-600 inline-block"></span>
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-600 inline-block"></span>
                       <span className="font-semibold text-zinc-800">
-                        OFFICIAL PROTOTYPE DEMO [SIH 2026]
+                        INTERACTIVE DEMO &amp; EVALUATOR WALKTHROUGH
                       </span>
                     </div>
                     <span className="text-[11px] bg-zinc-200 px-1.5 py-0.5 rounded text-zinc-700 font-medium">
-                      1080p HD &bull; Evaluator Submission
+                      SIH 2026 Prototype
                     </span>
                   </div>
 
-                  {/* Responsive 16:9 Aspect Ratio Iframe Wrapper */}
+                  {/* Clean Interactive Video / Demo Container */}
                   <div className="relative w-full overflow-hidden rounded border border-zinc-300 bg-zinc-900 pt-[56.25%]">
-                    <iframe
-                      className="absolute inset-0 w-full h-full"
-                      src={`https://www.youtube-nocookie.com/embed/${config.heroVideoId}?rel=0&modestbranding=1`}
-                      title={`${config.brandName} Official Prototype Demonstration`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
+                    {config.heroVideoId && config.heroVideoId !== "dQw4w9WgXcQ" ? (
+                      <iframe
+                        className="absolute inset-0 w-full h-full"
+                        src={`https://www.youtube-nocookie.com/embed/${config.heroVideoId}?rel=0&modestbranding=1`}
+                        title={`${config.brandName} Prototype Walkthrough`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    ) : (
+                      <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-950 p-6 text-center text-white">
+                        <Play className="w-12 h-12 text-emerald-400 mb-3 animate-pulse" />
+                        <h4 className="text-base font-bold text-white mb-1">
+                          {config.brandName} Live Interactive Prototype
+                        </h4>
+                        <p className="text-xs text-zinc-300 max-w-md mb-4">
+                          Click below to launch the live mobile simulator and test real queries, rule checks, and voice notes.
+                        </p>
+                        <button
+                          onClick={() => openModal("deployed")}
+                          className="web2-button-primary text-xs py-2 px-4 shadow-lg flex items-center gap-1.5"
+                        >
+                          <ExternalLink className="w-4 h-4" />
+                          <span>Launch Interactive Prototype</span>
+                        </button>
+                      </div>
+                    )}
                   </div>
 
                   <div className="px-2 pt-2 pb-1 flex items-center justify-between text-[11px] font-mono text-zinc-500">
-                    <span>Source: Verified Submission Repository</span>
+                    <span>Source: Public GitHub Repository</span>
                     <span>Team: ClaudeMaxDedo</span>
                   </div>
                 </div>
@@ -362,8 +402,24 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
                   className="web2-panel p-4 rounded-md border border-zinc-300 bg-zinc-50 hover:bg-white transition-colors flex flex-col justify-between"
                 >
                   <div>
-                    <div className="text-xs font-mono text-zinc-500 uppercase tracking-wide">
-                      {m.label}
+                    <div className="flex items-center justify-between gap-1">
+                      <span className="text-xs font-mono text-zinc-500 uppercase tracking-wide">
+                        {m.label}
+                      </span>
+                      {m.tag && (
+                        <span
+                          className={`text-[9px] font-mono px-1.5 py-0.5 rounded font-semibold shrink-0 ${
+                            m.tag.type === "Source"
+                              ? "bg-blue-100 text-blue-800 border border-blue-200"
+                              : m.tag.type === "Measured"
+                              ? "bg-emerald-100 text-emerald-800 border border-emerald-200"
+                              : "bg-amber-100 text-amber-800 border border-amber-200"
+                          }`}
+                          title={m.tag.detail}
+                        >
+                          {m.tag.type}
+                        </span>
+                      )}
                     </div>
                     <div className="text-2xl sm:text-3xl font-bold text-zinc-900 tracking-tight my-1.5">
                       {m.value}
@@ -379,7 +435,7 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="truncate max-w-[95%] text-zinc-600 hover:text-emerald-700 underline underline-offset-2 flex items-center gap-1 font-medium"
-                          title={`Open official report: ${m.trend}`}
+                          title={`Open source citation: ${m.trend}`}
                         >
                           <span className="truncate">Source: {m.trend}</span>
                           <ExternalLink className="w-2.5 h-2.5 shrink-0 text-emerald-600" />
@@ -448,7 +504,7 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
               </div>
             )}
 
-            {/* Comprehension Gap Comparison: Legacy Single-Variable vs AgriGPT Second Brain */}
+            {/* Comprehension Gap Comparison: Legacy Single-Variable vs KrishiSmriti Second Brain */}
             <div className="web2-panel rounded-lg border border-zinc-300 overflow-hidden shadow-sm">
               <div className="bg-zinc-100 border-b border-zinc-300 px-5 py-3 flex items-center justify-between">
                 <h3 className="font-bold text-sm text-zinc-900">
@@ -662,8 +718,8 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
                   </div>
                   <p className="text-xs text-zinc-600 font-sans leading-relaxed">
                     {isWeather
-                      ? "Before WeatherGPT can generate voice advisories for farmers, it continuously listens to live meteorological data streams from national agencies (such as IMD Doppler radar scans, WMO WIS 2.0 MQTT queues, and CAP 1.2 disaster bulletins). This console demonstrates our live ingestion pipeline in action: every 2.5 seconds, incoming weather packets are received and indexed in under 40 milliseconds."
-                      : "Before AgriGPT can advise a farmer on irrigation or mandi arbitrage, it continuously ingests raw physical data streams from satellites and markets (such as Sentinel-1/2 radar backscatter, SoilGrids 250m soil chemistry, Agmarknet live auction ticks, and village LoRa ground sensors). This console demonstrates our live ingestion pipeline in action: fresh data packets arrive every 2.5 seconds with sub-40ms latency."}
+                      ? "Before WeatherGPT generates voice advisories for citizens and farmers, it listens to meteorological and disaster alert streams from national agencies (such as IMD forecasts, WMO WIS 2.0 MQTT notifications, and NDMA SACHET CAP 1.2 disaster bulletins). This console demonstrates our live ingestion pipeline in action: incoming weather packets and alert polygons are ingested and indexed continuously."
+                      : "Before KrishiSmriti advises a farmer on irrigation or mandi realization, it ingests physical and agricultural data streams (such as Open-Meteo hourly weather, SoilGrids/SHC soil chemistry, Agmarknet live market arrivals, and Panchayat sensor feeds). This console demonstrates our live ingestion pipeline in action: incoming telemetry is validated and indexed continuously."}
                   </p>
                 </div>
               </div>
@@ -825,8 +881,35 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
                           <span className="text-emerald-700 font-bold mr-1.5">&#10003;</span>
                           {row.ourSolution}
                         </td>
-                        <td className="py-3.5 px-4 text-right align-middle font-mono font-bold text-emerald-800">
-                          {row.metricGain}
+                        <td className="py-3.5 px-4 text-right align-middle font-mono">
+                          <div className="font-bold text-emerald-800">{row.metricGain}</div>
+                          {row.tag && (
+                            <div className="mt-1 flex justify-end">
+                              {row.tag.url ? (
+                                <a
+                                  href={row.tag.url}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  title={row.tag.detail || "Source citation"}
+                                  className="inline-flex items-center gap-0.5 text-[9px] font-mono px-1.5 py-0.5 rounded border border-blue-200 bg-blue-50 text-blue-800 hover:bg-blue-100 transition-colors"
+                                >
+                                  <span>Source</span>
+                                  <ExternalLink className="w-2.5 h-2.5" />
+                                </a>
+                              ) : (
+                                <span
+                                  title={row.tag.detail}
+                                  className={`inline-flex items-center text-[9px] font-mono px-1.5 py-0.5 rounded border ${
+                                    row.tag.type === "Measured"
+                                      ? "border-emerald-200 bg-emerald-50 text-emerald-800"
+                                      : "border-amber-200 bg-amber-50 text-amber-800"
+                                  }`}
+                                >
+                                  {row.tag.type}
+                                </span>
+                              )}
+                            </div>
+                          )}
                         </td>
                       </tr>
                     ))}
@@ -852,27 +935,27 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
               </p>
             </div>
 
-            {/* 4 Tactile Link Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-              {config.proofOfWork.items.map((item) => (
+            {/* Proof Cards Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {config.proofOfWork.items.map((item, idx) => (
                 <div
-                  key={item.id}
-                  className="web2-panel rounded-lg border border-zinc-300 p-5 bg-white hover:border-zinc-400 transition-all flex flex-col justify-between shadow-tactile group"
+                  key={idx}
+                  className="web2-panel rounded-lg border border-zinc-300 p-5 bg-white flex flex-col justify-between hover:border-zinc-400 transition-all shadow-sm"
                 >
                   <div className="space-y-3">
                     <div className="flex items-center justify-between">
-                      <span className="web2-badge text-[11px] font-mono py-0.5 px-2 bg-zinc-100 border-zinc-300">
+                      <div className="w-8 h-8 rounded border border-zinc-300 bg-zinc-100 flex items-center justify-center text-zinc-700">
+                        {item.icon === "code" && <Code className="w-4 h-4" />}
+                        {item.icon === "database" && <Database className="w-4 h-4" />}
+                        {item.icon === "mic" && <Volume2 className="w-4 h-4" />}
+                      </div>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-zinc-100 text-zinc-600 border border-zinc-200 uppercase">
                         {item.badge}
                       </span>
-                      {item.url ? (
-                        <ArrowUpRight className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 transition-colors" />
-                      ) : (
-                        <FileCheck className="w-4 h-4 text-zinc-400 group-hover:text-zinc-900 transition-colors" />
-                      )}
                     </div>
 
                     <div>
-                      <h3 className="font-bold text-sm text-zinc-900 tracking-tight group-hover:text-zinc-950">
+                      <h3 className="font-bold text-sm text-zinc-900 flex items-center gap-1.5">
                         {item.title}
                       </h3>
                       <p className="text-xs font-mono text-zinc-500 mt-0.5">{item.subtitle}</p>
@@ -992,17 +1075,19 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <div>
             <div className="font-bold text-zinc-800">
-              SMART INDIA HACKATHON 2026 | National Level Hackathon
+              SMART INDIA HACKATHON 2026 | Team ClaudeMaxDedo
             </div>
             <div className="text-zinc-500 mt-0.5">
-              Ministry of Education &amp; AICTE &bull; Official Submission Dossier for {config.ministryShort}
+              {config.id === "weathergpt"
+                ? "SIH 2026 prototype by Team ClaudeMaxDedo · not affiliated with MoES, IMD or NDMA."
+                : "SIH 2026 prototype by Team ClaudeMaxDedo · not affiliated with MoA&FW or ICAR."}
             </div>
           </div>
 
           <div className="text-right">
             <div>Team ClaudeMaxDedo &bull; Problem Statement ID: {config.psId}</div>
             <div className="text-zinc-500 mt-0.5">
-              Build: v1.4.2-prod &bull; Status: {config.trlStatus} (TRL-3 Validated)
+              Build: Prototype &bull; Status: {config.trlStatus}
             </div>
           </div>
         </div>

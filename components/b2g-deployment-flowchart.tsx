@@ -70,7 +70,7 @@ export const B2gDeploymentFlowchart: React.FC = () => {
           <div className="flex items-center gap-2 mb-1">
             <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
             <span className="text-xs font-mono font-bold uppercase text-zinc-500 tracking-wider">
-              DPI Deployment Blueprint &bull; Research Doc 1 (P. 16–21)
+              DPI Deployment Blueprint &bull; Digital Agriculture Mission
             </span>
           </div>
           <h3 className="text-lg sm:text-xl font-bold text-zinc-900 tracking-tight">

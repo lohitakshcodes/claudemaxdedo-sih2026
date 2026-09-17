@@ -2,18 +2,17 @@
 
 import React, { useState } from "react";
 import {
-  TrendingDown,
-  Sprout,
+  CloudLightning,
   ShieldAlert,
-  Building2,
-  Plane,
-  Anchor,
-  IndianRupee,
-  DollarSign,
-  AlertOctagon,
+  Sprout,
+  Users,
+  FlaskConical,
+  ExternalLink,
+  Info,
+  TrendingDown,
   CheckCircle2,
+  Calendar,
   Layers,
-  ArrowRight,
 } from "lucide-react";
 
 interface MacroLossFlowchartProps {
@@ -25,131 +24,151 @@ export const MacroLossFlowchart: React.FC<MacroLossFlowchartProps> = ({ projectI
 
   const isWeather = projectId === "weathergpt";
 
-  // Data from Research Doc 2 Page 15
+  // Verified figures matching PPT Slide 6 references
   const weatherSectors = [
     {
       id: 0,
-      name: "Farmers & Agriculture",
-      icon: Sprout,
-      annualLossUsd: "$10B – $15B",
-      annualLossInr: "₹80,000 Cr – ₹1,20,000 Cr+",
-      sharePct: 62,
-      coreDriver: "Misinterpreting rainfall timing/intensity; unguided pesticide & sowing schedules.",
-      consequence: "Destroyed crop yields, wasted inputs (seeds/fertilizers), post-harvest rotting in open fields.",
-      solution: "Hyperlocal H3 geofenced 14-second WhatsApp voice notes in native dialect with radar rain warnings.",
-      evidence: "Between 2015-2021, India lost 33.9M hectares to excess rain and 35M hectares to droughts (WEF Report).",
+      name: "Extreme Weather Days & Casualties",
+      icon: CloudLightning,
+      primaryStat: "99% of days in Jan–Sep 2025",
+      secondaryStat: "4,064 Deaths Recorded",
+      sourceName: "CSE & Down To Earth (Nov 2025)",
+      sourceUrl: "https://www.cseindia.org/extreme-weather-events-2025-report",
+      tagType: "Source",
+      sharePct: 35,
+      coreDriver: "Extreme weather occurred on nearly every day in early 2025 across 33 states/UTs.",
+      consequence: "Loss of 4,064 lives, 3.2M hectares of crops damaged, and massive infrastructure disruption.",
+      solution: "Warning-locked voice advisories that instantly prioritize CAP 1.2 alerts over casual queries.",
     },
     {
       id: 1,
-      name: "Disaster Response & Relief",
+      name: "Lightning Casualties (Rural Bias)",
       icon: ShieldAlert,
-      annualLossUsd: "$5B – $8B",
-      annualLossInr: "₹40,000 Cr – ₹64,000 Cr",
-      sharePct: 24,
-      coreDriver: "Delayed action on broad regional warnings; failure to run geo-fenced targeted evacuations.",
-      consequence: "Over-allocation of municipal emergency funds, redundant shelters, destroyed bridges and roads.",
-      solution: "Uber H3 spatial geofencing matching active CAP hazard polygons in sub-milliseconds to push targeted alerts.",
-      evidence: "State Disaster Management Authorities (SDMAs) suffer from lack of dynamic spatial polygon mapping.",
+      primaryStat: "39.7% of Nature-Related Deaths",
+      secondaryStat: "2,558 Deaths in 2023",
+      sourceName: "NCRB ADSI 2023",
+      sourceUrl: "https://downtoearth.org.in/natural-disasters/lightning-deaths-ncrb-2023",
+      tagType: "Source",
+      sharePct: 25,
+      coreDriver: "Outdoor agricultural workers in rural states (e.g. Rohtas, Bihar) receive radar alerts too late.",
+      consequence: "Lightning accounted for 2,558 deaths out of 6,437 nature-related accidental deaths nationwide in 2023.",
+      solution: "Local polygon-matched lightning warnings that alert the user when their GPS point falls inside an active CAP zone.",
     },
     {
       id: 2,
-      name: "Urban Centers & Smart Cities",
-      icon: Building2,
-      annualLossUsd: "$1.5B – $3B",
-      annualLossInr: "₹12,000 Cr – ₹24,000 Cr",
-      sharePct: 9,
-      coreDriver: "Lack of block-level urban flood & drainage capacity forecasting.",
-      consequence: "Submerged commercial hubs, vehicular destruction, lost working hours due to traffic paralysis.",
-      solution: "Real-time rain gauge MQTT streams calculating runoff probability to trigger pre-emptive sluice gate opening.",
-      evidence: "Concrete heat islands alter drainage paths, leaving urban centers paralyzed by unpredicted cloudbursts.",
+      name: "Early Warning Payoff (50x Benefit)",
+      icon: TrendingDown,
+      primaryStat: "₹50,447 Cr Economic Benefit",
+      secondaryStat: "₹990 Cr HPC Investment",
+      sourceName: "NCAER 2020 for MoES",
+      sourceUrl: "https://www.deccanherald.com/india/monsoon-mission-yields-50-times-returns-ncaer-study-897368.html",
+      tagType: "Source",
+      sharePct: 20,
+      coreDriver: "High-performance forecasting creates immense value, but 98% of benefit depends on farmer comprehension.",
+      consequence: "Farmers who received and acted on agromet advisories saved substantial input and irrigation costs.",
+      solution: "Two-way voice communication converting complex meteorologist radar data into clear, actionable advice.",
     },
     {
       id: 3,
-      name: "Aviation & Logistics",
-      icon: Plane,
-      annualLossUsd: "$200M – $400M",
-      annualLossInr: "₹1,600 Cr – ₹3,200 Cr",
-      sharePct: 3,
-      coreDriver: "Inability to translate general forecasts into flight-level turbulence & runway crosswinds.",
-      consequence: "Flight diversions, millions of liters in excess jet fuel burn, perishable cargo spoilage in transit.",
-      solution: "Queries WRF high-resolution grid data for flight ceiling, visibility, and wind shear vectors in tabular METAR.",
-      evidence: "Northern India winter fog and sudden convective microbursts cause cascading airline holding patterns.",
+      name: "WMO Global Early Warning Benchmark",
+      icon: Info,
+      primaryStat: "Damage Cut Up To 30%",
+      secondaryStat: "8x Lower Mortality",
+      sourceName: "WMO Early Warnings for All",
+      sourceUrl: "https://wmo.int/early-warnings-for-all",
+      tagType: "Source",
+      sharePct: 12,
+      coreDriver: "WMO findings prove that a 24-hour warning reduces impending disaster damage by nearly a third.",
+      consequence: "Countries with limited early warning coverage experience 8 times higher disaster mortality.",
+      solution: "Zero-latency warning check ensuring active hazard polygons override normal weather responses.",
     },
     {
       id: 4,
-      name: "Fishing & Marine",
-      icon: Anchor,
-      annualLossUsd: "$150M – $300M",
-      annualLossInr: "₹1,200 Cr – ₹2,500 Cr",
-      sharePct: 2,
-      coreDriver: "Ineffective hyper-local sea-state & wave-height communication to traditional fishermen.",
-      consequence: "Capsized boats, abandoned fishing nets, unnecessary shore returns during false alarms, wasted diesel.",
-      solution: "Dialect voice warnings calculating wave swell height and squall probability with explicit SAFE/UNSAFE advisory.",
-      evidence: "Coastal bulletins broadcast broad wave warnings across hundreds of kilometers of open sea.",
+      name: "Rural Digital & Literacy Barrier",
+      icon: Users,
+      primaryStat: "43% Penetration in Bihar",
+      secondaryStat: "886M Internet Users Total",
+      sourceName: "IAMAI–Kantar (Jan 2025)",
+      sourceUrl: "https://yourstory.com/2025/01/iamai-kantar-report-india-internet-users-2024",
+      tagType: "Source",
+      sharePct: 8,
+      coreDriver: "While national internet penetration grows, states like Bihar remain below 45% digital reach.",
+      consequence: "Complex English/Hindi weather apps fail rural citizens who rely solely on spoken dialect.",
+      solution: "Voice-first PWA with Bhashini Indic ASR/TTS for Bhojpuri and Hindi, with SMS fallback.",
     },
   ];
 
-  // Data from Research Doc 3 Page 20 (Indian Agriculture Breakdown)
+  // Verified figures matching KrishiSmriti PPT references
   const agriSectors = [
     {
       id: 0,
-      name: "Extreme Weather Yield Destruction",
-      icon: Sprout,
-      annualLossUsd: "$15B – $18B",
-      annualLossInr: "₹1,20,000 Cr – ₹1,50,000 Cr",
-      sharePct: 38,
-      coreDriver: "Unpredicted heavy rain during harvest, unadjusted irrigation schedules, frost/heatwaves.",
-      consequence: "33.9 million hectares lost to excess rains and 35 million hectares to drought between 2015–2021.",
-      solution: "Sentinel-1 SAR radar soil moisture + Open-Meteo micro-forecasts alerting farmers 72h prior to harvest.",
-      evidence: "National Disaster Management Authority (NDMA) & World Economic Forum (WEF) 2024 Audit.",
+      name: "Agricultural Extension Gap",
+      icon: Users,
+      primaryStat: "57.8% Received No Advice",
+      secondaryStat: "42.2% Got Technical Guidance",
+      sourceName: "NSS 77th Round, NSO (2021)",
+      sourceUrl: "https://mospi.gov.in/sites/default/files/publication_reports/Report_no_587_NSS_77th_Round.pdf",
+      tagType: "Source",
+      sharePct: 35,
+      coreDriver: "The majority of smallholder households have zero access to reliable agronomic extension officers.",
+      consequence: "Critical decisions on sowing, spraying, and irrigation are made through guesswork or input shopkeepers.",
+      solution: "An autonomous farm second brain that remembers plot history and provides one verified daily action.",
     },
     {
       id: 1,
-      name: "Mandi Price Asymmetry & Distress Sales",
-      icon: TrendingDown,
-      annualLossUsd: "$6B – $11B",
-      annualLossInr: "₹50,000 Cr – ₹90,000 Cr",
-      sharePct: 24,
-      coreDriver: "Farmers harvest without knowing real-time demand across neighboring APMC yards.",
-      consequence: "Truckloads arrive at flooded yards where prices crashed, forcing distress sales at 30-40% discounts.",
-      solution: "Real-time Agmarknet mandi arbitrage calculator factoring diesel transit cost per km to maximize net profit.",
-      evidence: "NITI Aayog Agrarian Economy Working Group Report on post-harvest market arrival shocks.",
+      name: "Extreme Weather Crop Losses",
+      icon: Sprout,
+      primaryStat: "68.9 Million Hectares Damaged",
+      secondaryStat: "33.9M Ha Rain + 35M Ha Drought",
+      sourceName: "WEF Report via AffairsCloud (2015–21)",
+      sourceUrl: "https://affairscloud.com/india-lost-33-9-million-hectares-of-crops-due-to-excess-rain-wef-report/",
+      tagType: "Source",
+      sharePct: 25,
+      coreDriver: "Unpredicted heavy rainfall and severe droughts during critical vegetative and harvest phases.",
+      consequence: "Massive localized crop failure across 68.9M ha over 6 years without farm-level contingency guidance.",
+      solution: "Cross-factor check combining Open-Meteo hourly rain/wind with soil moisture to protect field work.",
     },
     {
       id: 2,
-      name: "Peak Labor Shortages & Harvest Delays",
-      icon: AlertOctagon,
-      annualLossUsd: "$6B – $10B",
-      annualLossInr: "₹50,000 Cr – ₹80,000 Cr",
+      name: "Accidental Chemical Poisoning",
+      icon: FlaskConical,
+      primaryStat: "~7,000 Deaths / Year",
+      secondaryStat: "NCRB ADSI (2014–21 Avg)",
+      sourceName: "NCRB Accidental Deaths & Suicides in India",
+      sourceUrl: "https://ncrb.gov.in/adsi-reports-of-previous-years",
+      tagType: "Source",
       sharePct: 20,
-      coreDriver: "Simultaneous national demand surges during harvest; labor migration to government schemes (MGNREGA).",
-      consequence: "Crops rot in open fields before workers can pick them; emergency wage spikes bankrupt smallholders.",
-      solution: "Village-level labor demand smoothing engine that staggers harvest and pools Custom Hiring Center (CHC) machinery.",
-      evidence: "ICAR field studies on localized harvest bottlenecking across cotton, soybean, and wheat belts.",
+      coreDriver: "Unguided chemical dosages and dangerous spraying in high winds lead to severe respiratory and dermal toxicity.",
+      consequence: "Tragic loss of lives and long-term farmer neurological impairment from over-concentrated spraying.",
+      solution: "Deterministic rule engine that locks dosages to ICAR PoP and warns against spraying in windy conditions.",
     },
     {
       id: 3,
-      name: "Chemical Fertilizer & Pesticide Overuse",
-      icon: ShieldAlert,
-      annualLossUsd: "$3B – $4.5B",
-      annualLossInr: "₹25,000 Cr – ₹35,000 Cr",
-      sharePct: 10,
-      coreDriver: "Farmers over-apply Urea and toxic pesticides as an unguided precautionary measure.",
-      consequence: "Burns cash, causes pest resistance, and strips ₹1.97 Lakh Crore in long-term soil nutrient capacity.",
-      solution: "Deterministic Python Math engine locking fertilizer advice to ICAR soil health card equations (NPK/acre).",
-      evidence: "ICAR National Bureau of Soil Survey & Land Use Planning; PIB Fertilizer Subsidy Report.",
+      name: "Agromet Advisory Return on Investment",
+      icon: TrendingDown,
+      primaryStat: "50x Economic Return",
+      secondaryStat: "₹990 Cr → ₹50,447 Cr",
+      sourceName: "NCAER 2020 Study for MoES",
+      sourceUrl: "https://www.deccanherald.com/india/monsoon-mission-yields-50-times-returns-ncaer-study-897368.html",
+      tagType: "Source",
+      sharePct: 12,
+      coreDriver: "Quantified proof that timely weather and crop advisories generate massive direct savings for cultivators.",
+      consequence: "Farmers who synchronize irrigation with rainfall forecasts avoid wasting costly diesel and electricity.",
+      solution: "Daily 'Single Best Action' home card synthesizing weather, soil moisture, and power schedules.",
     },
     {
       id: 4,
-      name: "Informal Moneylender Debt Traps",
-      icon: IndianRupee,
-      annualLossUsd: "$5B",
-      annualLossInr: "₹40,000 Cr",
+      name: "Digital Agriculture Mission",
+      icon: Layers,
+      primaryStat: "₹2,817 Cr Approved",
+      secondaryStat: "Krishi-DSS & AgriStack Base",
+      sourceName: "PIB Press Release (Sept 2024)",
+      sourceUrl: "https://pib.gov.in/PressReleasePage.aspx?PRID=2050965",
+      tagType: "Source",
       sharePct: 8,
-      coreDriver: "Lacking formal crop planning and scheme access, farmers borrow from local moneylenders at 24%–36% APR.",
-      consequence: "Over ₹40,000 Crore lost in exorbitant interest payments alone, leading to chronic generational distress.",
-      solution: "Direct integration with PMFBY crop insurance deadlines, AgriStack Farmer IDs, and KVK extension co-pilots.",
-      evidence: "RBI Working Group on Agricultural Credit in Rural India.",
+      coreDriver: "Government initiative establishing digital public infrastructure for Indian agriculture.",
+      consequence: "Enables vendor-neutral public platforms to connect farmer IDs (AgriStack) with decision support systems.",
+      solution: "Free B2G deployment model funded through state Digital Agriculture Mission grants for Gram Panchayats.",
     },
   ];
 
@@ -163,34 +182,36 @@ export const MacroLossFlowchart: React.FC<MacroLossFlowchartProps> = ({ projectI
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-zinc-200 pb-4">
         <div>
           <div className="flex items-center gap-2 mb-1">
-            <span className="w-2 h-2 rounded-full bg-red-600"></span>
+            <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
             <span className="text-xs font-mono font-bold uppercase text-zinc-500 tracking-wider">
-              Quantified Problem Evidence &bull; Research Blueprint (Doc 2, P. 15)
+              Evidence-Backed Problem Diagnostics &bull; Verified Citations
             </span>
           </div>
           <h3 className="text-lg sm:text-xl font-bold text-zinc-900 tracking-tight">
             {isWeather
-              ? "The Multi-Billion-Dollar Economic Drain: Misinterpretation of Weather across 5 Sectors"
-              : "Financial Losses in Indian Agriculture: ₹1.5+ Lakh Crore Annual Breakdown"}
+              ? "The Last-Mile Weather Deficit: 5 Verified Structural Vulnerabilities"
+              : "Decision Blindness in Agriculture: 5 Verified Ground-Truth Evidence Points"}
           </h3>
           <p className="text-xs sm:text-sm text-zinc-600 mt-1 font-sans">
             {isWeather
-              ? "The crisis is not the absence of supercomputer weather models—it is the 'Last-Mile Interpretation Deficit'. Click any sector to inspect root causes and quantified consequences."
-              : "Smallholder farmers do not lack effort; they lack connected context. Click any economic failure mode to view verified research data and our engineering mitigation."}
+              ? "The crisis is not the lack of satellite data—it is the last-mile comprehension deficit. Click any sector to view verified government and academic evidence."
+              : "Smallholder farmers struggle with single-factor thinking. Click any ground-truth challenge to inspect verified research data and our rule-engine mitigation."}
           </p>
         </div>
 
-        <div className="bg-red-50 border border-red-200 p-2.5 rounded-md text-xs font-mono shrink-0">
-          <div className="text-red-900 font-bold">Total Annual Loss in India:</div>
-          <div className="text-sm font-extrabold text-red-700">₹1.2L Cr – ₹1.5L Cr+ ($15–18B)</div>
+        <div className="bg-zinc-100 border border-zinc-300 p-2.5 rounded-md text-xs font-mono shrink-0">
+          <div className="text-zinc-600 font-bold uppercase text-[10px]">Benchmark Research Base:</div>
+          <div className="text-xs font-bold text-zinc-900 mt-0.5">
+            {isWeather ? "CSE, NCRB, NCAER & WMO" : "NSS 77th, NCRB, WEF & PIB"}
+          </div>
         </div>
       </div>
 
-      {/* Visual Proportional Loss Distribution Bar */}
+      {/* Visual Proportional Distribution Bar */}
       <div className="space-y-1.5 select-none">
         <div className="flex items-center justify-between text-[11px] font-mono text-zinc-500">
-          <span>Sector Loss Distribution:</span>
-          <span>Click any block below to inspect</span>
+          <span>Evidence Distribution:</span>
+          <span>Click any block below to inspect details</span>
         </div>
         <div className="h-6 w-full rounded-md overflow-hidden flex border border-zinc-300 shadow-inner">
           {currentSectors.map((s) => (
@@ -198,96 +219,138 @@ export const MacroLossFlowchart: React.FC<MacroLossFlowchartProps> = ({ projectI
               key={s.id}
               onClick={() => setSelectedSector(s.id)}
               style={{ width: `${s.sharePct}%` }}
-              className={`h-full cursor-pointer transition-all flex items-center justify-center text-[10px] font-mono font-bold truncate px-1 ${
+              className={`h-full cursor-pointer transition-all border-r border-white/40 flex items-center justify-center text-[10px] font-bold text-white ${
                 selectedSector === s.id
-                  ? "bg-red-700 text-white"
-                  : "bg-zinc-200 hover:bg-red-200 text-zinc-800 border-r border-white/50"
+                  ? "bg-zinc-900 ring-2 ring-zinc-950 z-10"
+                  : s.id === 0
+                  ? "bg-emerald-800 hover:bg-emerald-900"
+                  : s.id === 1
+                  ? "bg-emerald-700 hover:bg-emerald-800"
+                  : s.id === 2
+                  ? "bg-emerald-600 hover:bg-emerald-700"
+                  : s.id === 3
+                  ? "bg-emerald-500 hover:bg-emerald-600"
+                  : "bg-emerald-400 hover:bg-emerald-500"
               }`}
-              title={`${s.name}: ${s.sharePct}% of total loss (${s.annualLossInr})`}
+              title={`${s.name}: ${s.primaryStat}`}
             >
-              {s.sharePct > 7 && `${s.name.split(" ")[0]} (${s.sharePct}%)`}
+              <span className="truncate px-1 hidden sm:inline">{s.name.split(" ")[0]}</span>
             </div>
           ))}
         </div>
       </div>
 
-      {/* Sector Cards Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
-        {currentSectors.map((s) => {
-          const SIcon = s.icon;
-          const isSel = selectedSector === s.id;
-          return (
-            <button
-              key={s.id}
-              onClick={() => setSelectedSector(s.id)}
-              className={`p-3 rounded-lg border text-left transition-all flex flex-col justify-between select-none ${
-                isSel
-                  ? "bg-red-50 border-red-500 shadow-sm ring-1 ring-red-400"
-                  : "bg-zinc-50 border-zinc-200 hover:bg-zinc-100 hover:border-zinc-300"
-              }`}
-            >
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <SIcon
-                    className={`w-4 h-4 ${isSel ? "text-red-700" : "text-zinc-600"}`}
-                  />
-                  <span className="text-[10px] font-mono font-bold text-zinc-500">
-                    {s.sharePct}%
+      {/* Interactive Sector Detail Card */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+        {/* Left Column: Sector Selector Tabs */}
+        <div className="lg:col-span-4 space-y-2">
+          {currentSectors.map((s) => {
+            const isSelected = selectedSector === s.id;
+            const SectorIcon = s.icon;
+            return (
+              <div
+                key={s.id}
+                onClick={() => setSelectedSector(s.id)}
+                className={`cursor-pointer p-3 rounded-lg border transition-all text-xs font-mono flex items-center justify-between ${
+                  isSelected
+                    ? "bg-zinc-900 text-white border-zinc-900 shadow-sm"
+                    : "bg-white text-zinc-800 border-zinc-300 hover:bg-zinc-50 hover:border-zinc-400"
+                }`}
+              >
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div
+                    className={`p-1.5 rounded shrink-0 ${
+                      isSelected ? "bg-zinc-800 text-emerald-400" : "bg-zinc-100 text-zinc-700"
+                    }`}
+                  >
+                    <SectorIcon className="w-3.5 h-3.5" />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="font-bold truncate">{s.name}</div>
+                    <div
+                      className={`text-[11px] truncate font-sans ${
+                        isSelected ? "text-zinc-300" : "text-zinc-500"
+                      }`}
+                    >
+                      {s.primaryStat}
+                    </div>
+                  </div>
+                </div>
+
+                <span
+                  className={`text-[10px] px-1.5 py-0.5 rounded border shrink-0 ${
+                    isSelected
+                      ? "bg-zinc-800 text-zinc-300 border-zinc-700"
+                      : "bg-zinc-100 text-zinc-600 border-zinc-200"
+                  }`}
+                >
+                  {s.tagType}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Right Column: In-Depth Diagnostic Audit */}
+        <div className="lg:col-span-8 bg-zinc-50 border border-zinc-300 rounded-lg p-5 space-y-4">
+          {/* Header of Selected Item */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-zinc-200 pb-3">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-md bg-white border border-zinc-300 text-zinc-800">
+                <Icon className="w-5 h-5" />
+              </div>
+              <div>
+                <h4 className="font-bold text-base text-zinc-900">{current.name}</h4>
+                <div className="flex items-center gap-2 mt-0.5">
+                  <span className="text-xs font-mono font-bold text-emerald-800">
+                    {current.primaryStat}
                   </span>
-                </div>
-                <div className="font-bold text-xs text-zinc-900 leading-tight truncate">
-                  {s.name}
+                  <span className="text-xs text-zinc-400">&bull;</span>
+                  <span className="text-xs font-mono text-zinc-600">{current.secondaryStat}</span>
                 </div>
               </div>
-              <div className="text-[11px] font-mono font-bold text-red-700 mt-2">
-                {s.annualLossUsd}
+            </div>
+
+            <a
+              href={current.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="web2-button text-xs py-1 px-2.5 flex items-center gap-1.5 shrink-0"
+            >
+              <span>{current.sourceName}</span>
+              <ExternalLink className="w-3 h-3" />
+            </a>
+          </div>
+
+          {/* Root Cause & Real-World Consequence */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-sans">
+            <div className="p-3 bg-white rounded border border-zinc-200 space-y-1">
+              <div className="font-mono text-zinc-500 font-bold uppercase text-[10px]">
+                Underlying Ground-Truth Cause:
               </div>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Deep-Dive Interactive Drilldown Box */}
-      <div className="p-4 rounded-lg border border-zinc-300 bg-zinc-50 space-y-3 font-sans text-xs">
-        <div className="flex items-center justify-between border-b border-zinc-200 pb-2">
-          <div className="flex items-center gap-2">
-            <Icon className="w-4 h-4 text-red-700" />
-            <span className="font-bold text-sm text-zinc-900">{current.name}</span>
-          </div>
-          <div className="flex items-center gap-2 font-mono text-xs">
-            <span className="bg-red-100 text-red-900 px-2 py-0.5 rounded font-bold border border-red-300">
-              Loss: {current.annualLossInr} ({current.annualLossUsd})
-            </span>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="space-y-1">
-            <div className="font-mono text-[10px] uppercase font-bold text-zinc-500">
-              Core Driver of Misinterpretation:
+              <p className="text-zinc-700 leading-relaxed">{current.coreDriver}</p>
             </div>
-            <p className="text-zinc-700 leading-relaxed">{current.coreDriver}</p>
-          </div>
 
-          <div className="space-y-1">
-            <div className="font-mono text-[10px] uppercase font-bold text-zinc-500">
-              Primary Financial Consequence:
+            <div className="p-3 bg-white rounded border border-zinc-200 space-y-1">
+              <div className="font-mono text-red-900 font-bold uppercase text-[10px]">
+                Documented Impact on Ground:
+              </div>
+              <p className="text-zinc-700 leading-relaxed">{current.consequence}</p>
             </div>
-            <p className="text-red-900 font-medium leading-relaxed">{current.consequence}</p>
           </div>
 
-          <div className="bg-white p-3 rounded border border-zinc-200 space-y-1 font-mono text-[11px]">
-            <div className="text-emerald-800 font-bold uppercase flex items-center gap-1">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-              <span>How Our Platform Stops This:</span>
+          {/* Engineering Mitigation */}
+          <div className="bg-emerald-50/80 border border-emerald-300 rounded p-3.5 flex items-start gap-3">
+            <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+            <div className="space-y-0.5">
+              <div className="text-xs font-mono font-bold text-emerald-950 uppercase">
+                Our Engineering Architecture Counter-Measure:
+              </div>
+              <p className="text-xs text-emerald-900 font-sans leading-relaxed">
+                {current.solution}
+              </p>
             </div>
-            <p className="text-zinc-700 font-sans text-xs leading-relaxed">{current.solution}</p>
           </div>
-        </div>
-
-        <div className="pt-2 border-t border-zinc-200 flex items-center justify-between text-[11px] font-mono text-zinc-500">
-          <span>Official Benchmark: {current.evidence}</span>
-          <span className="text-zinc-400">SIH 2026 Audit Registry</span>
         </div>
       </div>
     </div>

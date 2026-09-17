@@ -3,19 +3,18 @@ import { PortalTemplate } from "@/components/portal-template";
 import { krishiSmritiConfig } from "@/data/krishismriti-config";
 
 export const metadata: Metadata = {
-  title: "KrishiSmriti | Ministry of Agriculture Official Evaluator Portal (SIH26193) — Team ClaudeMaxDedo",
+  title: "KrishiSmriti · SIH 2026 · Team ClaudeMaxDedo",
   description:
-    "Autonomous Multimodal Agro-Advisory & Mandi Arbitrage Engine Powered by Sentinel-1 SAR & Dialect Voice AI. Evaluator portal for Smart India Hackathon 2026 PS ID SIH26193.",
+    "The Farm's Second Brain: Cross-Factor Agro-Decision & Memory Engine. Smart India Hackathon 2026 entry (PS ID SIH26193, Team ClaudeMaxDedo).",
   keywords: [
     "KrishiSmriti",
-    "Ministry of Agriculture",
     "SIH26193",
     "Smart India Hackathon 2026",
     "ClaudeMaxDedo",
-    "Sentinel-1 SAR",
-    "Agmarknet",
-    "LoRaWAN",
-    "Mandi Arbitrage",
+    "Farm Second Brain",
+    "ICAR Rule Engine",
+    "Bhashini",
+    "pgvector",
   ],
 };
 
