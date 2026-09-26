@@ -347,21 +347,60 @@ export const PortalTemplate: React.FC<PortalTemplateProps> = ({ config }) => {
                         allowFullScreen
                       />
                     ) : (
-                      <div className="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-950 p-6 text-center text-white">
-                        <Play className="w-12 h-12 text-emerald-400 mb-3 animate-pulse" />
-                        <h4 className="text-base font-bold text-white mb-1">
-                          {config.brandName} Live Interactive Prototype
-                        </h4>
-                        <p className="text-xs text-zinc-300 max-w-md mb-4">
-                          Click below to launch the live mobile simulator and test real queries, rule checks, and voice notes.
-                        </p>
-                        <button
-                          onClick={() => openModal("deployed")}
-                          className="web2-button-primary text-xs py-2 px-4 shadow-lg flex items-center gap-1.5"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          <span>Launch Interactive Prototype</span>
-                        </button>
+                      <div className="absolute inset-0 w-full h-full flex flex-col justify-between bg-zinc-950 p-4 sm:p-5 text-white">
+                        {/* Top Status Strip */}
+                        <div className="flex items-center justify-between border-b border-zinc-800 pb-2">
+                          <div className="flex items-center gap-2">
+                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <span className="font-mono text-xs text-emerald-400 font-bold uppercase tracking-wider">
+                              {isWeather ? "Warning-Locked Voice Engine" : "Kisan Second Brain Simulator"}
+                            </span>
+                          </div>
+                          <span className="text-[10px] font-mono bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded border border-zinc-700">
+                            TRL 6 Operational
+                          </span>
+                        </div>
+
+                        {/* Middle Interactive Waveform & Summary */}
+                        <div className="my-auto py-2 text-center space-y-2.5">
+                          <div className="flex items-center justify-center gap-1.5 h-8 px-4">
+                            {[0.35, 0.75, 0.45, 0.95, 0.6, 1.0, 0.8, 0.5, 0.9, 0.65, 0.4, 0.85, 0.5, 0.7, 0.35].map((val, i) => (
+                              <div
+                                key={i}
+                                className="w-1.5 bg-emerald-500 rounded-full animate-pulse"
+                                style={{
+                                  height: `${val * 100}%`,
+                                  animationDelay: `${i * 85}ms`,
+                                  animationDuration: "650ms",
+                                }}
+                              />
+                            ))}
+                          </div>
+                          <div>
+                            <h4 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                              {config.brandName} Live Operational Simulator
+                            </h4>
+                            <p className="text-xs text-zinc-400 max-w-sm mx-auto font-sans line-clamp-2">
+                              {isWeather
+                                ? "Audition 6 multi-hazard disaster scenarios (cyclones, cloudbursts, heatwaves) with audio playback & PostGIS radar maps."
+                                : "Explore Ramu Yadav's 2.5-acre sugarcane plot, deterministic ICAR fertilizer sizing, and daily mandi price arbitrage."}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Bottom Action Strip */}
+                        <div className="flex items-center justify-between gap-3 pt-2 border-t border-zinc-800 text-xs font-mono">
+                          <span className="text-zinc-500 text-[11px] hidden sm:inline">
+                            {isWeather ? "NDMA SACHET · WMO WIS 2.0" : "AgriStack · Sentinel-1 SAR"}
+                          </span>
+                          <button
+                            onClick={() => openModal("deployed")}
+                            className="web2-button-primary text-xs py-2 px-4 shadow-lg flex items-center gap-1.5 ml-auto font-bold"
+                          >
+                            <ExternalLink className="w-4 h-4" />
+                            <span>Launch Live Mobile Simulator</span>
+                          </button>
+                        </div>
                       </div>
                     )}
                   </div>

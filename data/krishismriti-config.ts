@@ -19,7 +19,7 @@ export const krishiSmritiConfig: PortalConfig = {
     description:
       "Test the cross-factor decision check, deterministic ICAR fertilizer calculator, farm memory timeline, and mandi price viewer for Ramu Yadav's 2.5-acre sugarcane plot in Pune.",
   },
-  heroVideoId: "kJQP7kiw5Fk", // Clean demo embed container
+  heroVideoId: "", // Clean interactive operational simulator launcher
   quickStats: [
     {
       label: "Decision Model",

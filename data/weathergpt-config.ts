@@ -19,7 +19,7 @@ export const weatherGptConfig: PortalConfig = {
     description:
       "Test citizen voice questions with warning-lock verification across 6 multi-hazard disaster scenarios (cyclones, cloudbursts, heatwaves, lightning, flash floods), dynamic audio waveform playback, and district officer polygon radar views.",
   },
-  heroVideoId: "kJQP7kiw5Fk", // Clean demo embed container (replaced Rick Astley placeholder)
+  heroVideoId: "", // Clean interactive operational simulator launcher
   quickStats: [
     {
       label: "Disaster Warnings",
