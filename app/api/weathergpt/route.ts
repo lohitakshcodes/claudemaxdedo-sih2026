@@ -89,14 +89,42 @@ export async function POST(req: NextRequest) {
     const isClimateNormal = query.includes("सामान्य") || canonicalEnglishQuery.toLowerCase().includes("normal");
     const isRainQuery = query.includes("बारिश होगी") || canonicalEnglishQuery.toLowerCase().includes("rain");
 
+    const formatAlertVernacular = (alert: any, lang: "bho" | "hi") => {
+      const isBho = lang === "bho";
+      if (alert.id === "cap-incois-paradip-cyclone") {
+        return isBho
+          ? `[चेतावनी: समुद्री चक्रवात व प्रचंड लहर - ${alert.sender}]\nपारादीप-जगतसिंहपुर तट पर 65-75 किमी/घंटा के आंधी आ 4.2 मीटर ऊंच लहर उठ रहल बा। समुंदर में 5 नॉटिकल मील से आगे जाए पर सख्त रोक बा। सभे नाव सुरक्षित घाट पर बांधल राखल जाव।\n${agentResult.receipt}`
+          : `[चेतावनी: समुद्री चक्रवात व प्रचंड लहरें - ${alert.sender}]\nपारादीप-जगतसिंहपुर तट पर 65-75 किमी/घंटा की तूफानी हवाएं और 4.2 मीटर ऊंची लहरें हैं। 5 नॉटिकल मील से आगे समुद्र में जाना सख्त वर्जित है। सभी नावें सुरक्षित बंदरगाह पर रखें।\n${agentResult.receipt}`;
+      }
+      if (alert.id === "cap-sdma-mandi-cloudburst") {
+        return isBho
+          ? `[रेड अलर्ट: बादल फटना आ अचानक बाढ़ - ${alert.sender}]\nमंडी में 112 मिमी भारी बादल फटे से ब्यास नदी खतरा के निशान से 1.8 मीटर ऊपर बह रहल बा। नदी किनारे के घर तुरंत खाली क के सरकारी स्कूल राहत शिविर में जाईं।\n${agentResult.receipt}`
+          : `[रेड अलर्ट: बादल फटना व अचानक बाढ़ - ${alert.sender}]\nमंडी में 112 मिमी भारी बादल फटने से ब्यास नदी खतरे के निशान से 1.8 मीटर ऊपर बह रही है। निचले तटवर्ती इलाकों को तुरंत खाली करके सुरक्षित उच्च प्राथमिक स्कूल राहत शिविर में जाएं।\n${agentResult.receipt}`;
+      }
+      if (alert.id === "cap-imd-nagpur-heatwave") {
+        return isBho
+          ? `[रेड अलर्ट: भीषण लू आ तेज धूप - ${alert.sender}]\nनागपुर-विदर्भ में तापमान 46.8°C पहुंच गइल बा। दुपहरिया 11:00 से 4:00 बजे ले खेत में कटाई आ धूप में काम तुरंत रोक दीं। पानी आ ओआरएस पीवत रहीं।\n${agentResult.receipt}`
+          : `[रेड अलर्ट: भीषण लू व हीटवेव - ${alert.sender}]\nनागपुर-विदर्भ में तापमान 46.8°C और वेट-बल्ब इंडेक्स (WBGT 34.2°C) पहुंच गया है। सुबह 11:00 बजे से शाम 4:00 बजे तक खेतों में कटाई व मजदूरी तुरंत बंद रखें। ओआरएस और पानी पीते रहें।\n${agentResult.receipt}`;
+      }
+      if (alert.id === "cap-delhi-traffic-waterlog") {
+        return isBho
+          ? `[चेतावनी: भारी जलभराव आ सबवे जाम - ${alert.sender}]\nमिंटो ब्रिज अंडरपास में 3.2 फीट से बेसी पानी भर गइल बा, रास्ता बंद बा। रडार से 48 मिमी/घंटा बरखा दर्ज। कृपया बाराखंभा फ्लाईओवर से जाईं।\n${agentResult.receipt}`
+          : `[चेतावनी: भारी जलभराव व सबवे जाम - ${alert.sender}]\nमिंटो ब्रिज व तिलक ब्रिज अंडरपास में 3.2 फीट से अधिक जलभराव के कारण यातायात पूरी तरह बंद है। डॉपलर रडार से 48 मिमी/घंटा बारिश दर्ज। कृपया बाराखंभा फ्लाईओवर से डायवर्ट हों।\n${agentResult.receipt}`;
+      }
+      return isBho
+        ? `[चेतावनी: ${alert.event} - ${alert.sender}]\n${alert.areaDesc || "रोहतास जिला"} में मेघगर्जन आ वज्रपात के अलर्ट बा। तुरंत पक्की छत के नीचे शरण लीं। खुले खेत आ गाछ से दूर रहीं।\n${agentResult.receipt}`
+        : `[चेतावनी: ${alert.event} - ${alert.sender}]\n${alert.areaDesc || "रोहतास जिले"} में मेघगर्जन व वज्रपात का रेड अलर्ट सक्रिय है। तत्काल पक्की छत के नीचे शरण लें। खेतों और पेड़ों से दूर रहें।\n${agentResult.receipt}`;
+    };
+
+    const locDisplayName = agentResult.resolvedLocation.displayName.split(",")[0] || "रोहतास";
+
     if (originalLanguage === "bho") {
       if (agentResult.activeAlerts.length > 0) {
-        const alert = agentResult.activeAlerts[0];
-        vernacularAdvisory = `[चेतावनी: ${alert.event} - ${alert.sender}]\nरोहतास जिला में मेघगर्जन आ वज्रपात के अलर्ट बा। तुरंत पक्की छत के नीचे शरण लीं। खुले खेत आ गाछ से दूर रहीं।\n${agentResult.receipt}`;
+        vernacularAdvisory = formatAlertVernacular(agentResult.activeAlerts[0], "bho");
       } else if (isClimateNormal) {
-        vernacularAdvisory = `रोहतास में ई हफ्ता के बारिश सामान्य दायरा में बा (IMD 30-साल जलवायु औसत: 182 mm)। कवनो अप्रत्याशित सूखा या बाढ़ के खतरा नइखे।\n${agentResult.receipt}`;
+        vernacularAdvisory = `${locDisplayName} में ई हफ्ता के बारिश सामान्य दायरा में बा (IMD 30-साल जलवायु औसत: 182 mm)। कवनो अप्रत्याशित सूखा या बाढ़ के खतरा नइखे।\n${agentResult.receipt}`;
       } else if (isRainQuery && agentResult.weatherData.current.precipitation <= 0.5) {
-        vernacularAdvisory = `आज रात रोहतास में बारिश के आसार नइखे (0.0 mm)। रात के तापमान 28.4°C आ हवा शांत (11 km/h) रही। कवनो अलर्ट नइखे।\n${agentResult.receipt}`;
+        vernacularAdvisory = `आज रात ${locDisplayName} में बारिश के आसार नइखे (0.0 mm)। रात के तापमान ${agentResult.weatherData.current.temperature2m}°C आ हवा शांत (11 km/h) रही। कवनो अलर्ट नइखे।\n${agentResult.receipt}`;
       } else {
         const vernacularTranslation = await bhashiniTranslate({
           sourceText: agentResult.englishAdvisory,
@@ -107,12 +135,11 @@ export async function POST(req: NextRequest) {
       }
     } else if (originalLanguage === "hi") {
       if (agentResult.activeAlerts.length > 0) {
-        const alert = agentResult.activeAlerts[0];
-        vernacularAdvisory = `[चेतावनी: ${alert.event} - ${alert.sender}]\nरोहतास जिले में मेघगर्जन व वज्रपात का रेड अलर्ट सक्रिय है। तत्काल पक्की छत के नीचे शरण लें। खेतों और पेड़ों से दूर रहें।\n${agentResult.receipt}`;
+        vernacularAdvisory = formatAlertVernacular(agentResult.activeAlerts[0], "hi");
       } else if (isClimateNormal) {
-        vernacularAdvisory = `रोहतास में इस सप्ताह वर्षा सामान्य सीमा (IMD 30-वर्षीय जलवायु औसत: 182 मिमी) के भीतर है। कोई असामान्य जोखिम नहीं है।\n${agentResult.receipt}`;
+        vernacularAdvisory = `${locDisplayName} में इस सप्ताह वर्षा सामान्य सीमा (IMD 30-वर्षीय जलवायु औसत: 182 मिमी) के भीतर है। कोई असामान्य जोखिम नहीं है।\n${agentResult.receipt}`;
       } else if (isRainQuery && agentResult.weatherData.current.precipitation <= 0.5) {
-        vernacularAdvisory = `आज रात रोहतास में बारिश की संभावना नहीं है (0.0 mm)। रात का तापमान 28.4°C और हवा शांत (11 km/h) रहेगी। कोई सक्रिय चेतावनी नहीं है।\n${agentResult.receipt}`;
+        vernacularAdvisory = `आज रात ${locDisplayName} में बारिश की संभावना नहीं है (0.0 mm)। रात का तापमान ${agentResult.weatherData.current.temperature2m}°C और हवा शांत (11 km/h) रहेगी। कोई सक्रिय चेतावनी नहीं है।\n${agentResult.receipt}`;
       } else {
         const vernacularTranslation = await bhashiniTranslate({
           sourceText: agentResult.englishAdvisory,

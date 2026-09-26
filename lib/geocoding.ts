@@ -32,6 +32,15 @@ const INDIAN_LOCATIONS_FALLBACK: Record<string, { lat: number; lng: number; stat
   jaipur: { lat: 26.9124, lng: 75.7873, state: "Rajasthan", name: "Jaipur, Rajasthan, India" },
   ahmedabad: { lat: 23.0225, lng: 72.5714, state: "Gujarat", name: "Ahmedabad, Gujarat, India" },
   chandigarh: { lat: 30.7333, lng: 76.7794, state: "Punjab/Haryana", name: "Chandigarh, India" },
+  rohtas: { lat: 24.9536, lng: 84.0163, state: "Bihar", name: "Rohtas District, Bihar, India" },
+  sasaram: { lat: 24.9500, lng: 84.0300, state: "Bihar", name: "Sasaram, Rohtas, Bihar, India" },
+  dehri: { lat: 24.9100, lng: 84.1800, state: "Bihar", name: "Dehri-on-Sone, Rohtas, Bihar, India" },
+  paradip: { lat: 20.2644, lng: 86.6780, state: "Odisha", name: "Paradip Port, Jagatsinghpur, Odisha, India" },
+  jagatsinghpur: { lat: 20.2600, lng: 86.1700, state: "Odisha", name: "Jagatsinghpur Coastal Belt, Odisha, India" },
+  mandi: { lat: 31.7087, lng: 76.9318, state: "Himachal Pradesh", name: "Mandi (Beas Basin), Himachal Pradesh, India" },
+  kullu: { lat: 31.9579, lng: 77.1095, state: "Himachal Pradesh", name: "Kullu Valley, Himachal Pradesh, India" },
+  noida: { lat: 28.5355, lng: 77.3910, state: "Uttar Pradesh", name: "Noida, Gautam Buddha Nagar, Uttar Pradesh, India" },
+  gurugram: { lat: 28.4595, lng: 77.0266, state: "Haryana", name: "Gurugram, Haryana, India" },
 };
 
 const geocodeCache = new Map<string, GeocodingResult>();
@@ -167,8 +176,15 @@ export function extractLocationFromQuery(query: string, explicitLocation?: strin
     { key: "bhopal", name: "Bhopal" },
     { key: "amravati", name: "Amravati" },
     { key: "solapur", name: "Solapur" },
-    { key: "satara", name: "Satara" },
     { key: "kolhapur", name: "Kolhapur" },
+    { key: "rohtas", name: "Rohtas" },
+    { key: "sasaram", name: "Sasaram" },
+    { key: "dehri", name: "Dehri" },
+    { key: "paradip", name: "Paradip" },
+    { key: "mandi", name: "Mandi" },
+    { key: "kullu", name: "Kullu" },
+    { key: "noida", name: "Noida" },
+    { key: "gurugram", name: "Gurugram" },
   ];
 
   for (const item of knownPlaces) {

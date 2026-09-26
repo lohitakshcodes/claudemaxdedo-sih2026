@@ -182,6 +182,94 @@ export async function queryPostgisDisasterAlerts(
     ];
   }
 
+  // Paradip, Odisha Coastal Polygon (INCOIS SAMUDRA & IMD Cyclone Warning Centre)
+  const inParadipZone = (lng >= 86.40 && lng <= 86.90 && lat >= 20.00 && lat <= 20.50) ||
+    (Math.abs(lat - 20.2644) < 0.2 && Math.abs(lng - 86.6780) < 0.2);
+  if (inParadipZone) {
+    return [
+      {
+        id: "cap-incois-paradip-cyclone",
+        identifier: "URN:IN-INCOIS:SAMUDRA:2026:OD-PDR-091",
+        sender: "incois.samudra@incois.gov.in",
+        event: "Severe Cyclonic Gale & High Sea Swell Hazard",
+        urgency: "Immediate",
+        severity: "Severe",
+        certainty: "Observed",
+        headline: "INCOIS SAMUDRA Orange Alert: Squally wind speed reaching 65-75 km/h with rough sea condition (Wave Height 4.2m) off Paradip-Jagatsinghpur coast.",
+        description: "Deep depression intensifying over Bay of Bengal. Dangerous surf and gale winds exceeding 65 km/h active along coastal zone.",
+        instruction: "Total suspension of all marine fishing operations. Fisherfolk are strictly forbidden from venturing into deep sea or beyond 5 nautical miles. Moor all trawlers safely at harbor.",
+        areaDesc: "Paradip Port, Jagatsinghpur Coastal Belt, Odisha",
+        expiresAt: new Date(Date.now() + 18 * 3600 * 1000).toISOString(),
+      },
+    ];
+  }
+
+  // Mandi / Beas River Basin, Himachal Pradesh (HP SDMA & Central Water Commission)
+  const inMandiZone = (lng >= 76.70 && lng <= 77.20 && lat >= 31.50 && lat <= 32.00) ||
+    (Math.abs(lat - 31.7087) < 0.2 && Math.abs(lng - 76.9318) < 0.2);
+  if (inMandiZone) {
+    return [
+      {
+        id: "cap-sdma-mandi-cloudburst",
+        identifier: "URN:IN-HP:SDMA:2026:HPC-MAN-112",
+        sender: "sdma.alert@hp.gov.in",
+        event: "Flash Flood & Cloudburst Inundation Warning",
+        urgency: "Immediate",
+        severity: "Critical",
+        certainty: "Observed",
+        headline: "HP SDMA & CWC Red Alert: Flash flood surge along Beas river basin following 112mm localized cloudburst in Mandi-Pandoh corridor.",
+        description: "Beas river water discharge surging 1.8 meters above danger mark. Severe landslide and mudflow risk on NH-21.",
+        instruction: "Immediately evacuate all low-lying riverside dwellings. Move to designated higher-ground relief shelters (Govt Senior Secondary School Mandi). Do not attempt to cross swollen nullahs.",
+        areaDesc: "Mandi Sadar, Pandoh, Balh Valley, Himachal Pradesh",
+        expiresAt: new Date(Date.now() + 8 * 3600 * 1000).toISOString(),
+      },
+    ];
+  }
+
+  // Nagpur / Vidarbha, Maharashtra (IMD Severe Heatwave / Loo Warning)
+  const inNagpurZone = (lng >= 78.80 && lng <= 79.40 && lat >= 20.90 && lat <= 21.40) ||
+    (Math.abs(lat - 21.1458) < 0.2 && Math.abs(lng - 79.0882) < 0.2);
+  if (inNagpurZone) {
+    return [
+      {
+        id: "cap-imd-nagpur-heatwave",
+        identifier: "URN:IN-IMD:HEATWAVE:2026:MH-NGP-407",
+        sender: "rwfc.nagpur@imd.gov.in",
+        event: "Severe Heatwave & High WBGT Warning",
+        urgency: "Expected",
+        severity: "Severe",
+        certainty: "Observed",
+        headline: "IMD Red Heatwave Warning: Peak daytime temperatures reaching 46.8°C with extreme Wet Bulb Globe Temperature (WBGT: 34.2°C) over Vidarbha.",
+        description: "Severe heatwave condition prevailing over Nagpur, Chandrapur and Wardha districts. Extremely high risk of heat stroke and dehydration.",
+        instruction: "Strict suspension of agricultural harvesting and manual outdoor labor between 11:00 AM and 4:00 PM. Drink plenty of water/ORS. Keep livestock in shaded enclosures.",
+        areaDesc: "Nagpur, Wardha, Chandrapur agro-belt, Maharashtra",
+        expiresAt: new Date(Date.now() + 14 * 3600 * 1000).toISOString(),
+      },
+    ];
+  }
+
+  // Delhi-NCR Urban Flash Flooding & Underpass Waterlogging
+  const inDelhiZone = (lng >= 76.90 && lng <= 77.50 && lat >= 28.30 && lat <= 28.90) ||
+    (Math.abs(lat - 28.6139) < 0.2 && Math.abs(lng - 77.2090) < 0.2);
+  if (inDelhiZone) {
+    return [
+      {
+        id: "cap-delhi-traffic-waterlog",
+        identifier: "URN:IN-DL:DISASTER:2026:DL-NCR-502",
+        sender: "traffic.delhipolice@nic.in",
+        event: "Urban Inundation & Subway Waterlogging Alert",
+        urgency: "Immediate",
+        severity: "Severe",
+        certainty: "Observed",
+        headline: "Delhi Traffic Police & IMD Nowcast: Severe convective cell (48mm/hr rain) causing critical waterlogging (depth > 3.2 ft) at Minto Bridge & Tilak Bridge underpasses.",
+        description: "Doppler Weather Radar (DWR Palam) detects intense thunderstorm squall (wind gust 58 km/h). Severe traffic bottleneck across Connaught Place, ITO, and Ring Road.",
+        instruction: "Avoid waterlogged underpasses. Minto Bridge subway is closed to all vehicular traffic. Divert via Barakhamba flyover and Ranjit Singh flyover.",
+        areaDesc: "Central Delhi, ITO, Ring Road, New Delhi",
+        expiresAt: new Date(Date.now() + 5 * 3600 * 1000).toISOString(),
+      },
+    ];
+  }
+
   return [];
 }
 

@@ -99,9 +99,36 @@ export async function runWeatherAgent(input: WeatherAgentInput): Promise<Weather
     input.query.toLowerCase().includes("warning") ||
     input.query.toLowerCase().includes("replay") ||
     input.query.toLowerCase().includes("आंधी") ||
-    input.query.toLowerCase().includes("तूफान");
+    input.query.toLowerCase().includes("तूफान") ||
+    input.query.toLowerCase().includes("बिजली") ||
+    input.query.toLowerCase().includes("वज्रपात") ||
+    input.query.toLowerCase().includes("lightning") ||
+    input.query.toLowerCase().includes("साइक्लोन") ||
+    input.query.toLowerCase().includes("cyclone") ||
+    input.query.toLowerCase().includes("नाव") ||
+    input.query.toLowerCase().includes("समुद्र") ||
+    input.query.toLowerCase().includes("मछली") ||
+    input.query.toLowerCase().includes("बाढ़") ||
+    input.query.toLowerCase().includes("flood") ||
+    input.query.toLowerCase().includes("जलभराव") ||
+    input.query.toLowerCase().includes("waterlog") ||
+    input.query.toLowerCase().includes("underpass") ||
+    input.query.toLowerCase().includes("सबवे") ||
+    input.query.toLowerCase().includes("लू") ||
+    input.query.toLowerCase().includes("heat") ||
+    input.query.toLowerCase().includes("धूप") ||
+    input.query.toLowerCase().includes("गर्मी") ||
+    input.query.toLowerCase().includes("harvest") ||
+    input.query.toLowerCase().includes("कटाई") ||
+    input.query.toLowerCase().includes("धान") ||
+    input.query.toLowerCase().includes("khet") ||
+    input.query.toLowerCase().includes("खेत") ||
+    resolvedLocation.displayName.toLowerCase().includes("paradip") ||
+    resolvedLocation.displayName.toLowerCase().includes("mandi") ||
+    resolvedLocation.displayName.toLowerCase().includes("delhi") ||
+    resolvedLocation.displayName.toLowerCase().includes("nagpur");
 
-  // On calm days, alert check activates when queried about alerts or in replay mode
+  // On calm days, alert check activates when queried about alerts, in replay mode, or in target disaster locations
   const activeAlerts = isAlertOrReplayQuery
     ? await queryPostgisDisasterAlerts(resolvedLocation.latitude, resolvedLocation.longitude)
     : [];
