@@ -36,9 +36,96 @@ interface LocationPreset {
   hasPostGisAlert: boolean;
   alertHeadline?: string;
   polygon: [number, number][]; // [lat, lng] array
+  category?: "disaster" | "agro" | "normal";
+  hazardType?: string;
 }
 
 const PRESET_LOCATIONS: LocationPreset[] = [
+  {
+    name: "Rohtas",
+    lat: 24.9536,
+    lng: 84.0163,
+    state: "Bihar",
+    crop: "Paddy (Swarna / Sona Masoori)",
+    hasPostGisAlert: true,
+    alertHeadline: "Severe Lightning & Thunderstorm Hazard (NDMA SACHET CAP 1.2)",
+    hazardType: "Lightning Alert",
+    category: "disaster",
+    polygon: [
+      [24.80, 83.80],
+      [25.10, 83.80],
+      [25.10, 84.20],
+      [24.80, 84.20],
+    ],
+  },
+  {
+    name: "Paradip",
+    lat: 20.2644,
+    lng: 86.6780,
+    state: "Odisha Coast",
+    crop: "Marine Fisheries / Deep Sea Trawlers",
+    hasPostGisAlert: true,
+    alertHeadline: "Cyclonic Gale 65-75 km/h & 4.2m Swells (INCOIS SAMUDRA Orange Alert)",
+    hazardType: "Cyclone Surge",
+    category: "disaster",
+    polygon: [
+      [20.15, 86.50],
+      [20.40, 86.50],
+      [20.40, 86.85],
+      [20.15, 86.85],
+    ],
+  },
+  {
+    name: "Mandi",
+    lat: 31.7087,
+    lng: 76.9318,
+    state: "Himachal Pradesh",
+    crop: "Beas River Basin / Apple & Maize",
+    hasPostGisAlert: true,
+    alertHeadline: "112mm Cloudburst & Beas River Surge +1.8m (HP SDMA & CWC Red Alert)",
+    hazardType: "Cloudburst Flood",
+    category: "disaster",
+    polygon: [
+      [31.60, 76.80],
+      [31.85, 76.80],
+      [31.85, 77.10],
+      [31.60, 77.10],
+    ],
+  },
+  {
+    name: "Nagpur",
+    lat: 21.1458,
+    lng: 79.0882,
+    state: "Maharashtra",
+    crop: "Cotton & Orange / Vidarbha Agro-Belt",
+    hasPostGisAlert: true,
+    alertHeadline: "Severe Heatwave 46.8°C & WBGT 34.2°C (IMD Vidarbha Red Alert)",
+    hazardType: "Extreme Heatwave",
+    category: "disaster",
+    polygon: [
+      [21.00, 78.90],
+      [21.30, 78.90],
+      [21.30, 79.25],
+      [21.00, 79.25],
+    ],
+  },
+  {
+    name: "Delhi",
+    lat: 28.6328,
+    lng: 77.2201,
+    state: "Delhi-NCR",
+    crop: "Minto Bridge Underpass / Transit Corridor",
+    hasPostGisAlert: true,
+    alertHeadline: "Subway Inundation >3.2 ft & DWR Palam Radar 48mm/hr Nowcast",
+    hazardType: "Subway Flood",
+    category: "disaster",
+    polygon: [
+      [28.55, 77.15],
+      [28.70, 77.15],
+      [28.70, 77.30],
+      [28.55, 77.30],
+    ],
+  },
   {
     name: "Varanasi",
     lat: 25.3176,
@@ -47,6 +134,8 @@ const PRESET_LOCATIONS: LocationPreset[] = [
     crop: "Wheat (PBW-502)",
     hasPostGisAlert: true,
     alertHeadline: "Severe Squall & Atmospheric Turbulence Corridor (IMD/WIS 2.0)",
+    hazardType: "Squall Corridor",
+    category: "agro",
     polygon: [
       [25.20, 82.80],
       [25.50, 82.80],
@@ -61,7 +150,9 @@ const PRESET_LOCATIONS: LocationPreset[] = [
     state: "Maharashtra",
     crop: "Sugarcane / Grapes",
     hasPostGisAlert: false,
-    alertHeadline: "Clear Agro-Meteorological Operating Window",
+    alertHeadline: "Clear Agro-Meteorological Operating Window (No Active Alerts)",
+    hazardType: "Normal Window",
+    category: "normal",
     polygon: [
       [18.40, 73.70],
       [18.70, 73.70],
@@ -76,27 +167,14 @@ const PRESET_LOCATIONS: LocationPreset[] = [
     state: "Uttar Pradesh",
     crop: "Wheat / Mustard",
     hasPostGisAlert: false,
-    alertHeadline: "Panchayat IoT Soil Moisture Zone Active",
+    alertHeadline: "Panchayat IoT Soil Moisture Zone Active (Sentinel-1 SAR Calibrated)",
+    hazardType: "IoT Grid",
+    category: "agro",
     polygon: [
       [26.80, 81.05],
       [27.05, 81.05],
       [27.05, 81.35],
       [26.80, 81.35],
-    ],
-  },
-  {
-    name: "Nagpur",
-    lat: 21.1458,
-    lng: 79.0882,
-    state: "Maharashtra",
-    crop: "Cotton / Orange",
-    hasPostGisAlert: true,
-    alertHeadline: "High Thermal Gradient & Dry Gust Warning",
-    polygon: [
-      [21.00, 78.90],
-      [21.30, 78.90],
-      [21.30, 79.25],
-      [21.00, 79.25],
     ],
   },
 ];
@@ -420,14 +498,23 @@ export const RadarMapVisualizer: React.FC<RadarMapVisualizerProps> = ({
                 key={preset.name}
                 onClick={() => handleSelectLocation(preset)}
                 disabled={isQuerying}
-                className={`px-2.5 py-1 rounded font-medium transition-all flex items-center gap-1 text-xs border ${
+                className={`px-2 py-1 rounded font-medium transition-all flex items-center gap-1.5 text-xs border ${
                   isSelected
                     ? "bg-zinc-900 text-white border-zinc-900 shadow-sm"
                     : "bg-white text-zinc-700 border-zinc-300 hover:bg-zinc-100"
                 }`}
               >
-                <MapPin className={`w-3 h-3 ${preset.hasPostGisAlert ? "text-red-400" : "text-emerald-400"}`} />
-                <span>{preset.name}</span>
+                <MapPin className={`w-3 h-3 ${preset.hasPostGisAlert ? "text-red-500" : "text-emerald-500"}`} />
+                <span className="font-semibold">{preset.name}</span>
+                {preset.hazardType && (
+                  <span className={`text-[9px] px-1 py-0.2 rounded font-mono ${
+                    isSelected
+                      ? preset.hasPostGisAlert ? "bg-red-950 text-red-300" : "bg-zinc-800 text-zinc-300"
+                      : preset.hasPostGisAlert ? "bg-red-50 text-red-700 border border-red-200" : "bg-zinc-100 text-zinc-600 border border-zinc-200"
+                  }`}>
+                    {preset.hazardType.split(" ")[0]}
+                  </span>
+                )}
                 {preset.hasPostGisAlert && (
                   <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
                 )}

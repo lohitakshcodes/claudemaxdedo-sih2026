@@ -238,20 +238,57 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET() {
-  return NextResponse.json({
-    service: "WeatherGPT Agentic Router",
-    psId: "SIH26068",
-    status: "HEALTHY",
-    capabilities: [
-      "WMO WIS 2.0 MQTT 5.0 Live Ingestion",
-      "PostGIS ST_Contains Polygon Geo-Fencing",
-      "Nominatim OpenStreetMap Geocoding Engine",
-      "Open-Meteo GFS 0.25° Real-Time NWP Integration",
-      "LangChain Tool-Calling Agent (Gemini 1.5 Flash)",
-      "Bhashini Multilingual ASR/NMT/TTS (14+ Indic Dialects)",
-      "Deterministic CAP 1.2 Safety Gatekeeper",
-    ],
-    timestamp: new Date().toISOString(),
-  });
+export async function GET(req: NextRequest) {
+  const { searchParams } = new URL(req.url);
+  const location = searchParams.get("location");
+  const latStr = searchParams.get("latitude");
+  const lngStr = searchParams.get("longitude");
+
+  // If no spatial parameters, return standard health check for SIH evaluator & monitoring
+  if (!location && !latStr && !lngStr) {
+    return NextResponse.json({
+      service: "WeatherGPT Agentic Router",
+      psId: "SIH26068",
+      status: "HEALTHY",
+      capabilities: [
+        "WMO WIS 2.0 MQTT 5.0 Live Ingestion",
+        "PostGIS ST_Contains Polygon Geo-Fencing",
+        "Nominatim OpenStreetMap Geocoding Engine",
+        "Open-Meteo GFS 0.25° Real-Time NWP Integration",
+        "LangChain Tool-Calling Agent (Gemini 1.5 Flash)",
+        "Bhashini Multilingual ASR/NMT/TTS (14+ Indic Dialects)",
+        "Deterministic CAP 1.2 Safety Gatekeeper",
+      ],
+      timestamp: new Date().toISOString(),
+    });
+  }
+
+  // If spatial parameters provided (e.g. from RadarMapVisualizer), return real-time meteorology & PostGIS alert status
+  const start = Date.now();
+  try {
+    const lat = latStr ? parseFloat(latStr) : undefined;
+    const lng = lngStr ? parseFloat(lngStr) : undefined;
+    const agentResult = await runWeatherAgent({
+      query: searchParams.get("query") || `Weather check for ${location || "India"}`,
+      location: location || undefined,
+      latitude: lat,
+      longitude: lng,
+    });
+
+    return NextResponse.json({
+      service: "WeatherGPT Agentic Router",
+      status: "SUCCESS",
+      resolvedLocation: agentResult.resolvedLocation,
+      weatherData: agentResult.weatherData,
+      activeAlerts: agentResult.activeAlerts,
+      decisionStatus: agentResult.decisionGate,
+      receipt: agentResult.receipt,
+      totalExecutionMs: Date.now() - start,
+    });
+  } catch (err: any) {
+    return NextResponse.json(
+      { status: "ERROR", message: err?.message || "Internal server error" },
+      { status: 500 }
+    );
+  }
 }
