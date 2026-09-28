@@ -50,6 +50,18 @@ Official dual-portal evaluator portfolio for **Team ClaudeMaxDedo** at **Smart I
    - `#code-demo`: Proof of Work hub linking to GitHub, OpenAPI/Swagger interactive modal, raw NetCDF/GeoTIFF datasets, and Bhashini dialect audio samples.
    - `#team`: Clean 2x3 grid displaying all 6 team members with verified roles.
 
+5. **Phase 3 NWP Model Layer & Uncertainty Engine**:
+   - **Pluggable `WeatherModelProvider` Interface**:
+     - `GFS (NOAA 0.25° Seamless)`: **Connected** (Operational live primary model).
+     - `ECMWF (IFS 0.25° HRES)`: **Connected** (High-resolution European ensemble cross-check).
+     - `ICON (DWD 13km / 0.25°)`: **Connected** (German Weather Service cross-check).
+     - `WRF (3km Mesoscale Mesh)`: **Adapter Ready** (*Awaiting on-prem HPC cluster endpoint configuration. NOT claimed as connected*).
+     - `NCUM (NCMRWF 12km India Grid)`: **Adapter Ready** (*MoES NCMRWF regional ingestion interface*).
+   - **Ensemble Divergence & Uncertainty Flagging**: Configured in `/config/thresholds.json` (`ΔT > 3.0°C`, `ΔP > 8.0mm`, `ΔW > 15.0km/h`). Structured divergence passed to LLM and displayed as an Amber Uncertainty Notice.
+   - **Marine Wave & Swell Integration**: Real-time Open-Meteo Marine API for coastal coordinates (`LIVE`), graceful fallback with notice for inland coordinates (`SAMPLE`).
+   - **Location-Based Forecasting & H3 Spatial Hex Cells**: Browser Geolocation, Nominatim place geocoding, interactive Leaflet pin-drop map, Uber H3 Res-7 & Res-8 cell indexing, and reverse administrative boundary lookup.
+   - **30-Year Climate Trend & Anomaly Engine (Code Decides, LLM Explains)**: 1995–2025 ERA5 climatological normals, pure-code deterministic anomaly calculation (mm, %, IMD category), Recharts monthly curves, and downloadable raw telemetry CSV.
+
 ---
 
 ## 🛠️ Technology Stack

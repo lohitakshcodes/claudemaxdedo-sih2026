@@ -31,6 +31,19 @@ const WeatherGptRequestSchema = z.object({
   farmerName: z.string().optional().default("National Weather Subscriber"),
   cropType: z.string().optional().default("Multi-Sector Operations"),
   forceReplay: z.boolean().optional().default(false),
+  persona: z.string().optional().default("farmer"),
+  selectedModel: z.string().optional().default("gfs"),
+  conversationHistory: z
+    .array(
+      z.object({
+        sender: z.enum(["user", "farmer", "bot"]),
+        text: z.string(),
+        location: z.string().optional(),
+        persona: z.string().optional(),
+      })
+    )
+    .optional()
+    .default([]),
 });
 
 export async function POST(req: NextRequest) {
@@ -50,6 +63,9 @@ export async function POST(req: NextRequest) {
       farmerName,
       cropType,
       forceReplay,
+      persona,
+      selectedModel,
+      conversationHistory,
     } = validatedData;
 
     // -------------------------------------------------------------------------
@@ -70,7 +86,17 @@ export async function POST(req: NextRequest) {
     // -------------------------------------------------------------------------
     // STEP 2: LANGCHAIN AGENTIC TOOL EXECUTION & ORCHESTRATION
     // -------------------------------------------------------------------------
-    const resolvedLocationQuery = location || (latitude && longitude ? undefined : extractLocationFromQuery(canonicalEnglishQuery, location));
+    let contextLocation = location;
+    if (!contextLocation && conversationHistory && conversationHistory.length > 0) {
+      for (let i = conversationHistory.length - 1; i >= 0; i--) {
+        if (conversationHistory[i].location) {
+          contextLocation = conversationHistory[i].location;
+          break;
+        }
+      }
+    }
+
+    const resolvedLocationQuery = contextLocation || (latitude && longitude ? undefined : extractLocationFromQuery(canonicalEnglishQuery, contextLocation));
 
     const agentResult = await runWeatherAgent({
       query: canonicalEnglishQuery,
@@ -80,6 +106,9 @@ export async function POST(req: NextRequest) {
       cropType,
       language: originalLanguage,
       forceReplay,
+      persona: persona || "farmer",
+      selectedModel: selectedModel || "gfs",
+      conversationHistory,
     });
 
     // -------------------------------------------------------------------------
@@ -216,7 +245,18 @@ export async function POST(req: NextRequest) {
         liveMeteoTelemetry: agentResult.weatherData,
         toolExecutions: agentResult.toolCallTraces,
         totalLatencyMs,
+        persona: agentResult.persona,
+        systemPrompt: agentResult.systemPrompt,
       },
+      persona: agentResult.persona,
+      isOutOfScope: agentResult.isOutOfScope || false,
+      selectedModel: agentResult.selectedModel,
+      nwpComparison: agentResult.nwpComparison,
+      marineWeather: agentResult.marineWeather,
+      spatialData: agentResult.spatialData,
+      historicalClimate: agentResult.historicalClimate,
+      heroCard: agentResult.heroCard,
+      verdictPayload: agentResult.verdictPayload,
       advisory: {
         english: agentResult.englishAdvisory,
         vernacular: vernacularAdvisory,

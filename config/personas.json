@@ -1,0 +1,377 @@
+{
+  "system_instruction": "You are WeatherGPT, a deterministic meteorological advisory agent. All verdicts and numbers are pre-computed by the backend and passed to you as structured JSON. Explain them in the user's language and persona format. Never alter, add, or estimate numbers or verdicts. If data is missing, say so.",
+  "persona_formatting": {
+    "farmer": "Lead with IMMEDIATE ACTION (Spray/Harvest/Irrigate: YES/NO). Simple language, local agricultural impact (ICAR guidance), specific time windows.",
+    "fisherman": "Lead with SEA SAFETY VERDICT (Safe to sail: YES/NO). Include swell/wave height, wind in knots, safe distance from shore, coastal alert level.",
+    "disaster_officer": "Lead with HAZARD LEVEL & STATUS CODE. Include affected H3 grid cells, river gauge vs danger mark, evacuation protocol, emergency contacts.",
+    "researcher": "Provide raw parameters: precipitation (mm), wind vector (m/s), pressure (hPa), humidity (%), cloud cover (%), CAPE, model name and run timestamp.",
+    "citizen": "Lead with DIRECT COMMUTE/DAILY ADVISORY. Road/subway waterlogging risk, umbrella requirement, temperature, hourly rain probability.",
+    "aviation": "Lead with FLIGHT-WEATHER CATEGORY and a go/no-go weather summary. Include visibility, cloud base, wind/gusts, thunderstorm risk, valid-until time."
+  },
+  "personas": [
+    {
+      "id": "farmer",
+      "icon": "🌾",
+      "heroCardType": "farmer_action",
+      "labels": {
+        "en": "Farmer",
+        "hi": "किसान",
+        "bho": "किसान",
+        "mr": "शेतकरी"
+      },
+      "description": {
+        "en": "Crop advisories, spraying, irrigation, harvest, frost, heatwave, soil moisture.",
+        "hi": "फसल सलाह, छिड़काव, सिंचाई, कटाई, पाला, लू और मिट्टी की नमी।",
+        "bho": "फसल सलाह, कीटनाशक छिड़काव, पटवन, कटाई, पाला आ लू।",
+        "mr": "पीक सल्ला, फवारणी, सिंचन, काढणी, गारपीट, उष्णतेची लाट आणि जमिनीतील ओलावा."
+      },
+      "quickPrompts": [
+        {
+          "id": "farmer-spray",
+          "query": "कल सुबह कीटनाशक छिड़क सकते हैं?",
+          "labels": {
+            "en": "Can I spray pesticide tomorrow?",
+            "hi": "कल सुबह कीटनाशक छिड़काव कर सकते हैं?",
+            "bho": "काल्हु सबेरे कीटनाशक छिड़कल जा सकेला?",
+            "mr": "उद्या सकाळी कीटकनाशक फवारणी करू का?"
+          }
+        },
+        {
+          "id": "farmer-irrigate",
+          "query": "क्या आज खेत में सिंचाई करनी चाहिए?",
+          "labels": {
+            "en": "Should I irrigate fields today?",
+            "hi": "क्या आज खेत में सिंचाई करनी चाहिए?",
+            "bho": "का आज खेत में पानी पटावे के चाहीं?",
+            "mr": "आज शेताला पाणी द्यावे का?"
+          }
+        },
+        {
+          "id": "farmer-harvest",
+          "query": "क्या इस हफ्ते फसल कटाई सुरक्षित है?",
+          "labels": {
+            "en": "Is it safe to harvest this week?",
+            "hi": "क्या इस हफ्ते फसल कटाई सुरक्षित है?",
+            "bho": "का ई हफ्ता फसल कटाई सुरक्षित बा?",
+            "mr": "या आठवड्यात पीक काढणी करणे सुरक्षित आहे का?"
+          }
+        },
+        {
+          "id": "farmer-heatwave",
+          "query": "दोपहर में गेहूं कटाई कर सकते हैं? बहुत तेज धूप है",
+          "labels": {
+            "en": "Can we harvest wheat in afternoon? Harsh sun",
+            "hi": "दोपहर में गेहूं कटाई कर सकते हैं? बहुत तेज धूप है",
+            "bho": "दुपहरिया में कटाई कर सकिले? घाम बहुत तेज बा",
+            "mr": "दुपारी गव्हाची काढणी करू शकतो का? कडक ऊन आहे"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fisherman",
+      "icon": "🐟",
+      "heroCardType": "marine_safety",
+      "labels": {
+        "en": "Fisherman",
+        "hi": "मछुआरा",
+        "bho": "मछुआरा",
+        "mr": "मासेमार"
+      },
+      "description": {
+        "en": "Wave/swell height, wind in knots, squall and deep-sea warnings, tide schedule, coastal alert level.",
+        "hi": "लहर/ज्वार ऊंचाई, हवा नॉट्स में, आंधी और गहरे समुद्र की चेतावनी, ज्वार समय, तटीय अलर्ट।",
+        "bho": "लहर के ऊंचाई, हवा के गति (नॉट्स), गहरे समुंदर के चेतावनी, ज्वार भाटा।",
+        "mr": "लाटांची उंची, वाऱ्याचा वेग नॉट्समध्ये, वादळाचा इशारा, भरती-ओहोटीची वेळ, किनारपट्टी सतर्कता स्तर."
+      },
+      "quickPrompts": [
+        {
+          "id": "fisherman-sail",
+          "query": "क्या आज रात नाव लेकर गहरे समुद्र में मछली पकड़ने जा सकते हैं?",
+          "labels": {
+            "en": "Can we sail into deep sea tonight for fishing?",
+            "hi": "क्या आज रात गहरे समुद्र में मछली पकड़ने जा सकते हैं?",
+            "bho": "का आज रात गहरे समुंदर में नाव लेके जाइल ठीक बा?",
+            "mr": "आज रात्री खोल समुद्रात मासेमारीसाठी जाऊ शकतो का?"
+          }
+        },
+        {
+          "id": "fisherman-swell",
+          "query": "समुद्र में लहरों और ज्वार की ऊंचाई क्या है?",
+          "labels": {
+            "en": "What is current swell/wave height offshore?",
+            "hi": "समुद्र में लहरों और ज्वार की ऊंचाई क्या है?",
+            "bho": "समुंदर में लहर के ऊंचाई केतना बा?",
+            "mr": "समुद्रात लाटांची उंची किती आहे?"
+          }
+        },
+        {
+          "id": "fisherman-wind",
+          "query": "हवा की गति नॉट्स में और समुद्री आंधी की चेतावनी जांचें",
+          "labels": {
+            "en": "Check wind in knots & offshore squall warnings",
+            "hi": "हवा की गति नॉट्स में और समुद्री आंधी की चेतावनी जांचें",
+            "bho": "हवा के गति (नॉट्स) आ समुंद्री आंधी के चेतावनी बतावीं",
+            "mr": "वाऱ्याचा वेग (नॉट्स) आणि वादळाचा इशारा तपासा"
+          }
+        },
+        {
+          "id": "fisherman-tide",
+          "query": "तटीय ज्वार समय और सुरक्षित दूरी क्या है?",
+          "labels": {
+            "en": "What is tide schedule and safe distance from shore?",
+            "hi": "तटीय ज्वार समय और सुरक्षित दूरी क्या है?",
+            "bho": "तट से सुरक्षित दूरी आ ज्वार समय का बा?",
+            "mr": "भरतीची वेळ आणि किनाऱ्यापासून सुरक्षित अंतर काय आहे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "disaster_officer",
+      "icon": "🚨",
+      "heroCardType": "disaster_command",
+      "labels": {
+        "en": "Disaster Officer",
+        "hi": "आपदा प्रबंधन अधिकारी",
+        "bho": "आपदा अधिकारी",
+        "mr": "आपत्ती अधिकारी"
+      },
+      "description": {
+        "en": "Hazard level, district metrics, alert polygons, evacuation readiness, waterlogging and river levels.",
+        "hi": "आपदा स्तर, जिला मैट्रिक्स, अलर्ट पॉलीगॉन, निकासी तत्परता, जलभराव और नदी जलस्तर।",
+        "bho": "आपदा स्तर, जिला मैट्रिक्स, अलर्ट पॉलीगॉन, निकासी तैयारी आ नदी जलस्तर।",
+        "mr": "आपत्ती पातळी, जिल्हा मेट्रिक्स, अलर्ट बहुभुज, स्थलांतर तयारी, पाणी साचणे आणि नदी पातळी."
+      },
+      "quickPrompts": [
+        {
+          "id": "disaster-river",
+          "query": "नदी का जलस्तर बढ़ रहा है, क्या गाँव खाली करना पड़ेगा?",
+          "labels": {
+            "en": "River level is rising rapidly, do we need to evacuate?",
+            "hi": "नदी का जलस्तर बढ़ रहा है, क्या गाँव खाली करना पड़ेगा?",
+            "bho": "नदी के पानी चढ़ रहल बा, का गाँव खाली करे के परी?",
+            "mr": "नदीची पाणी पातळी वाढत आहे, गाव रिकामे करावे लागेल का?"
+          }
+        },
+        {
+          "id": "disaster-lightning",
+          "query": "गाँव में चेतावनी है? खेत में काम कर रहे हैं",
+          "labels": {
+            "en": "Active CAP alert status: lightning & thunderstorm",
+            "hi": "गाँव में चेतावनी है? खेत में काम कर रहे हैं",
+            "bho": "गाँव में चेतावनी बा? खेत में काम करत बानी",
+            "mr": "गावात काही इशारा आहे का? शेतात काम चालू आहे"
+          }
+        },
+        {
+          "id": "disaster-h3",
+          "query": "सक्रिय चेतावनी वाले H3 ग्रिड पॉलीगॉन और खतरे का स्तर दिखाएं",
+          "labels": {
+            "en": "Display active alert H3 grid cells & hazard level",
+            "hi": "सक्रिय चेतावनी वाले H3 ग्रिड पॉलीगॉन और खतरे का स्तर दिखाएं",
+            "bho": "सक्रिय चेतावनी वाला ग्रिड सेल आ खतरा के स्तर देखावीं",
+            "mr": "सक्रिय अलर्ट असणारे ग्रिड क्षेत्र आणि धोक्याची पातळी दाखवा"
+          }
+        },
+        {
+          "id": "disaster-evac",
+          "query": "प्रखंड स्तरीय निकासी प्रोटोकॉल और नजदीकी आश्रय स्थल सूची",
+          "labels": {
+            "en": "Block evacuation protocols & emergency shelters",
+            "hi": "प्रखंड स्तरीय निकासी प्रोटोकॉल और नजदीकी आश्रय स्थल सूची",
+            "bho": "ब्लॉक स्तर निकासी प्रोटोकॉल आ राहत शिविर लिस्ट",
+            "mr": "तालुका पातळीवरील स्थलांतर प्रोटोकॉल आणि मदत केंद्रे"
+          }
+        }
+      ]
+    },
+    {
+      "id": "researcher",
+      "icon": "🔬",
+      "heroCardType": "research_telemetry",
+      "labels": {
+        "en": "Researcher / Analyst",
+        "hi": "शोधकर्ता / विश्लेषक",
+        "bho": "शोधकर्ता",
+        "mr": "संशोधक / विश्लेषक"
+      },
+      "description": {
+        "en": "Raw parameters, model run info, CAPE, precipitation in mm, coordinate grid, anomalies, CSV export.",
+        "hi": "कच्चे पैरामीटर, मॉडल रन विवरण, CAPE, वर्षा (मिमी), निर्देशांक ग्रिड, विसंगतियां, CSV निर्यात।",
+        "bho": "कच्चा पैरामीटर, मॉडल रन जानकारी, CAPE, वर्षा मिमी, ग्रिड विसंगति, CSV एक्सपोर्ट।",
+        "mr": "कच्चे घटक, मॉडेल रन माहिती, CAPE, पाऊस (मिमी), निर्देशांक ग्रिड, विसंगती, CSV निर्यात."
+      },
+      "quickPrompts": [
+        {
+          "id": "research-cape",
+          "query": "कच्चे मौसम पैरामीटर दिखाएं: CAPE, दबाव, आर्द्रता और हवा वेक्टर",
+          "labels": {
+            "en": "Show raw parameters: CAPE, pressure, humidity, wind vector",
+            "hi": "कच्चे मौसम पैरामीटर दिखाएं: CAPE, दबाव, आर्द्रता और हवा वेक्टर",
+            "bho": "कच्चा मौसम पैरामीटर देखावीं: CAPE, हवा दबाव, नमी आ पवन वेक्टर",
+            "mr": "हवामान घटक दाखवा: CAPE, दाब, आर्द्रता आणि वारा वेक्टर"
+          }
+        },
+        {
+          "id": "research-precip",
+          "query": "वर्तमान वर्षा (मिमी) और 30-वर्षीय IMD जलवायु बेसलाइन विसंगति",
+          "labels": {
+            "en": "Precipitation in mm vs 30-year IMD climate anomaly",
+            "hi": "वर्तमान वर्षा (मिमी) और 30-वर्षीय IMD जलवायु बेसलाइन विसंगति",
+            "bho": "वर्षा (मिमी) आ 30-साल IMD जलवायु बेसलाइन विसंगति",
+            "mr": "सध्याचा पाऊस (मिमी) आणि ३० वर्षांची हवामान विसंगती"
+          }
+        },
+        {
+          "id": "research-model",
+          "query": "Open-Meteo GFS 0.25° मॉडल रन टाइमस्टैम्प और ग्रिड कोऑर्डिनेट्स",
+          "labels": {
+            "en": "GFS 0.25° NWP model run info & grid coordinates",
+            "hi": "Open-Meteo GFS 0.25° मॉडल रन टाइमस्टैम्प और ग्रिड कोऑर्डिनेट्स",
+            "bho": "GFS 0.25° मॉडल रन समय आ ग्रिड निर्देशांक",
+            "mr": "GFS ०.२५° मॉडेल रन वेळ आणि ग्रिड निर्देशांक"
+          }
+        },
+        {
+          "id": "research-monsoon-anomaly",
+          "query": "Was last monsoon above normal for Nashik?",
+          "labels": {
+            "en": "Was last monsoon above normal for Nashik?",
+            "hi": "क्या नासिक में पिछला मानसून सामान्य से अधिक था?",
+            "bho": "का नासिक में पिछिला मानसून सामान्य से ढेर रहल?",
+            "mr": "नाशिकमध्ये मागचा मान्सून सरासरीपेक्षा जास्त होता का?"
+          }
+        },
+        {
+          "id": "research-csv",
+          "query": "शोध विश्लेषण के लिए CSV टेलीमेट्री डेटा पेलोड तैयार करें",
+          "labels": {
+            "en": "Prepare CSV telemetry payload for research export",
+            "hi": "शोध विश्लेषण के लिए CSV टेलीमेट्री डेटा पेलोड तैयार करें",
+            "bho": "शोध खातिर CSV टेलीमेट्री डेटा तैयार करीं",
+            "mr": "संशोधनासाठी CSV टेलिमेट्री डेटा तयार करा"
+          }
+        }
+      ]
+    },
+    {
+      "id": "citizen",
+      "icon": "🏙️",
+      "heroCardType": "commute_advisor",
+      "labels": {
+        "en": "Citizen / Commuter",
+        "hi": "आम नागरिक / यात्री",
+        "bho": "आम नागरिक",
+        "mr": "नागरिक / प्रवासी"
+      },
+      "description": {
+        "en": "Commute advice, urban flooding and waterlogging risk, umbrella, temperature, hourly rain probability.",
+        "hi": "यात्रा सलाह, शहरी बाढ़ और जलभराव का जोखिम, छाता, तापमान, प्रति घंटे बारिश की संभावना।",
+        "bho": "आवागमन सलाह, शहरी जलभराव आ जाम के खतरा, छाता, तापमान, बारिश संभावना।",
+        "mr": "प्रवास सल्ला, शहरी पूर आणि पाणी साचण्याचा धोका, छत्री, तापमान, तासानुसार पावसाची शक्यता."
+      },
+      "quickPrompts": [
+        {
+          "id": "citizen-waterlog",
+          "query": "शाम 5 बजे ऑफिस से निकलना है, क्या मिंटो ब्रिज / सबवे में जलभराव है?",
+          "labels": {
+            "en": "Leaving office at 5 PM, is subway/road waterlogged?",
+            "hi": "शाम 5 बजे ऑफिस से निकलना है, क्या मिंटो ब्रिज / सबवे में जलभराव है?",
+            "bho": "सांझ 5 बजे ऑफिस से निकले के बा, सबवे में पानी भरल बा?",
+            "mr": "संध्याकाळी ५ वाजता निघायचे आहे, सबवेमध्ये पाणी साचले आहे का?"
+          }
+        },
+        {
+          "id": "citizen-umbrella",
+          "query": "क्या आज छाता लेकर बाहर निकलना जरूरी है?",
+          "labels": {
+            "en": "Do I need an umbrella today? Rain probability?",
+            "hi": "क्या आज छाता लेकर बाहर निकलना जरूरी है?",
+            "bho": "का आज छाता लेके निकले के जरूरी बा?",
+            "mr": "आज बाहेर पडताना छत्री घेणे आवश्यक आहे का?"
+          }
+        },
+        {
+          "id": "citizen-hourly",
+          "query": "अगले 6 घंटों में बारिश की संभावना और मौसम कैसा रहेगा?",
+          "labels": {
+            "en": "Hourly rain probability & weather for next 6 hours",
+            "hi": "अगले 6 घंटों में बारिश की संभावना और मौसम कैसा रहेगा?",
+            "bho": "आगिला 6 घंटा में बरखा के संभावना आ मौसम कइसन रही?",
+            "mr": "पुढील ६ तासांत पावसाची शक्यता आणि हवामान कसे असेल?"
+          }
+        },
+        {
+          "id": "citizen-temp",
+          "query": "आज का तापमान और हवा की गुणवत्ता कैसी है?",
+          "labels": {
+            "en": "Current temperature, heat index & wind conditions",
+            "hi": "आज का तापमान और हवा की स्थिति कैसी है?",
+            "bho": "आज के तापमान आ हवा के स्थिति कइसन बा?",
+            "mr": "आजचे तापमान आणि वाऱ्याची स्थिती कशी आहे?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "aviation",
+      "icon": "✈️",
+      "heroCardType": "aviation_flight",
+      "labels": {
+        "en": "Aviation",
+        "hi": "विमानन",
+        "bho": "विमानन",
+        "mr": "विमान वाहतूक"
+      },
+      "description": {
+        "en": "Visibility, cloud base, wind and gusts, thunderstorm risk, flight-weather category (VFR/MVFR/IFR/LIFR).",
+        "hi": "दृश्यता, बादलों का आधार (क्लाउड बेस), हवा और झोंके, आंधी का खतरा, उड़ान मौसम श्रेणी (VFR/IFR)।",
+        "bho": "दृश्यता, बादल के आधार, हवा के झोंका, आंधी खतरा, उड़ान श्रेणी (VFR/IFR)।",
+        "mr": "दृश्यमानता, ढगांची तळ पातळी, वादळी वारे, विजांचा धोका, उड्डाण हवामान श्रेणी (VFR/IFR)."
+      },
+      "quickPrompts": [
+        {
+          "id": "aviation-category",
+          "query": "उड़ान मौसम श्रेणी जांचें: VFR / MVFR / IFR और गो/नो-गो स्थिति",
+          "labels": {
+            "en": "Flight category check: VFR / MVFR / IFR go/no-go status",
+            "hi": "उड़ान मौसम श्रेणी जांचें: VFR / MVFR / IFR और गो/नो-गो स्थिति",
+            "bho": "उड़ान श्रेणी जांच: VFR / IFR गो/नो-गो स्थिति",
+            "mr": "उड्डाण हवामान श्रेणी: VFR / MVFR / IFR आणि गो/नो-गो स्थिती"
+          }
+        },
+        {
+          "id": "aviation-visibility",
+          "query": "हवाई पट्टी पर सतह दृश्यता (मीटर) और क्लाउड सीलिंग बेस क्या है?",
+          "labels": {
+            "en": "Surface visibility in meters & cloud ceiling base",
+            "hi": "हवाई पट्टी पर सतह दृश्यता (मीटर) और क्लाउड सीलिंग बेस क्या है?",
+            "bho": "रनवे पर दृश्यता (मीटर) आ बादल के सीलिंग स्तर का बा?",
+            "mr": "धावपट्टीवर दृश्यमानता (मीटर) आणि ढगांची पातळी काय आहे?"
+          }
+        },
+        {
+          "id": "aviation-crosswind",
+          "query": "हवाई पट्टी पर क्रॉसविंड और हवा के झोंकों (गस्ट्स) की गति बताएं",
+          "labels": {
+            "en": "Runway crosswind velocity and gust factor in knots",
+            "hi": "हवाई पट्टी पर क्रॉसविंड और हवा के झोंकों (गस्ट्स) की गति बताएं",
+            "bho": "रनवे पर क्रॉसविंड आ झोंका के गति नॉट्स में बतावीं",
+            "mr": "धावपट्टीवर क्रॉसविंड आणि वादळी वाऱ्याचा वेग सांगा"
+          }
+        },
+        {
+          "id": "aviation-storm",
+          "query": "टर्मिनल क्षेत्र में आंधी-तूफान (TS) और विंड शीयर का जोखिम जांचें",
+          "labels": {
+            "en": "Terminal thunderstorm (TS) & low-level wind shear risk",
+            "hi": "टर्मिनल क्षेत्र में आंधी-तूफान (TS) और विंड शीयर का जोखिम जांचें",
+            "bho": "हवाई क्षेत्र में आंधी आ विंड शीयर के खतरा जांचल जाव",
+            "mr": "विमानतळ क्षेत्रात वादळ आणि विंड शिअरचा धोका तपासा"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -144,15 +144,15 @@ export async function POST(req: NextRequest) {
     if (isSprayQuery || (!isFertilizerQuery && !isIrrigationQuery)) {
       recommendationType = "PROCEED_ACTION";
       englishAdvisory = `Single Best Action: Spray tomorrow between 6:30 AM and 9:00 AM only. Rain begins at 11:00 AM, but wind remains calm (<8 km/h) before 9:00 AM with 2 workers available. Skip irrigation as soil moisture is at 38%.`;
-      receiptLine = "Data-backed: Open-Meteo hourly · Soil sensor (38%) · IMD Pune · Valid till 11:00 AM";
+      receiptLine = "Data-backed: Open-Meteo hourly · Soil Moisture Grid (38%) · IMD Pune · Valid till 11:00 AM";
     } else if (isFertilizerQuery) {
       recommendationType = "HOLD_INPUT";
       englishAdvisory = `Hold Urea application today. Farm memory confirms you applied 45 kg of Urea 4 days ago. Your Soil Health Card shows potassium saturation, saving ₹1,840/acre on Potash. Next scheduled dose is in 10 days.`;
       receiptLine = "Data-backed: Farm Memory (4d ago) · Soil Health Card SHC-MH-882 · Rule Engine";
     } else if (isIrrigationQuery) {
       recommendationType = "HOLD_INPUT";
-      englishAdvisory = `Skip irrigation today. Ground sensor records 38% root-zone moisture in black cotton soil, and rain is forecast tomorrow at 11:00 AM. Additional watering risks root waterlogging.`;
-      receiptLine = "Data-backed: Panchayat IoT Sensor (38% moisture) · Open-Meteo Rain Forecast";
+      englishAdvisory = `Skip irrigation today. AgriStack records 38% root-zone moisture in black cotton soil, and rain is forecast tomorrow at 11:00 AM. Additional watering risks root waterlogging.`;
+      receiptLine = "Data-backed: AgriStack CWC Moisture Grid (38%) · Open-Meteo Rain Forecast";
     }
 
     // Number check: Ensure dosages and metrics exist in deterministic outputs

@@ -1,0 +1,206 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "description": "Meteorological, agricultural, marine, disaster, and aviation deterministic threshold parameters for WeatherGPT.",
+  "farmer": {
+    "spray": {
+      "max_wind_kmh": {
+        "value": 15.0,
+        "unit": "km/h",
+        "source": "ICAR Central Institute for Cotton Research (CICR) Spray Advisory Protocol",
+        "rationale": "Winds exceeding 15 km/h cause droplet drift away from target foliage and contaminate surrounding plots or water bodies."
+      },
+      "min_wind_kmh": {
+        "value": 3.0,
+        "unit": "km/h",
+        "source": "FAO Guidelines on Good Practice for Ground Application of Pesticides",
+        "rationale": "Calm air (<3 km/h) creates thermal inversion where spray droplets hang suspended and fail to settle on crops."
+      },
+      "max_rain_next_24h_mm": {
+        "value": 0.5,
+        "unit": "mm",
+        "source": "ICAR Krishi Vigyan Kendra (KVK) Standard Operating Procedures",
+        "rationale": "Any rainfall >0.5 mm washes off freshly deposited foliar chemicals before systemic absorption can occur."
+      },
+      "min_temp_celsius": {
+        "value": 12.0,
+        "unit": "°C",
+        "source": "ICAR Indian Agricultural Research Institute (IARI) Plant Protection",
+        "rationale": "Temperatures below 12°C reduce stomatal opening and plant uptake of systemic agrochemicals."
+      },
+      "max_temp_celsius": {
+        "value": 35.0,
+        "unit": "°C",
+        "source": "ICAR-IARI Agronomy Division",
+        "rationale": "Temperatures above 35°C accelerate droplet evaporation and cause chemical scorching/phytotoxicity on crop leaf margins."
+      }
+    },
+    "irrigate": {
+      "rain_threshold_next_24h_mm": {
+        "value": 5.0,
+        "unit": "mm",
+        "source": "Ministry of Agriculture & Farmers Welfare, Pradhan Mantri Krishi Sinchayee Yojana (PMKSY)",
+        "rationale": "Forecast precipitation of >=5 mm satisfies surface crop water requirements; applying irrigation wastes groundwater and leads to waterlogging."
+      },
+      "optimal_soil_moisture_pct": {
+        "value": 65.0,
+        "unit": "%",
+        "source": "ICAR Central Soil Salinity Research Institute (CSSRI)",
+        "rationale": "Soil moisture exceeding 65% of field capacity indicates adequate root-zone hydration; further irrigation risks root hypoxia."
+      }
+    },
+    "harvest": {
+      "max_rain_probability_pct": {
+        "value": 30.0,
+        "unit": "%",
+        "source": "ICAR Directorate of Wheat and Rice Research",
+        "rationale": "Rain probability exceeding 30% during harvest window increases grain moisture content and elevates post-harvest aflatoxin/fungal spoilage."
+      },
+      "max_wind_gust_kmh": {
+        "value": 35.0,
+        "unit": "km/h",
+        "source": "ICAR Agricultural Meteorology Division",
+        "rationale": "Wind gusts exceeding 35 km/h during crop maturity cause severe crop lodging (flattening of stalks) and grain shattering."
+      }
+    }
+  },
+  "fisherman": {
+    "safe_to_sail": {
+      "max_wave_height_meters": {
+        "value": 2.0,
+        "unit": "m",
+        "source": "INCOIS (Indian National Centre for Ocean Information Services) Ocean State Forecast",
+        "rationale": "Significant wave heights above 2.0 meters produce treacherous sea conditions for motorized artisanal craft and small trawlers."
+      },
+      "max_wind_knots": {
+        "value": 22.0,
+        "unit": "knots",
+        "source": "IMD Marine Weather Forecasting Protocol (Beaufort Scale 6 - Strong Breeze)",
+        "rationale": "Sustained surface winds above 22 knots create steep whitecaps and squally conditions hazardous to small sea vessels."
+      },
+      "coastal_alert_ban": {
+        "value": "ORANGE_OR_RED",
+        "source": "INCOIS / NDMA Marine Cyclone Warning SOP",
+        "rationale": "Any active Orange or Red coastal squall advisory mandates a total prohibition on offshore navigation beyond harbor limits."
+      }
+    }
+  },
+  "disaster_officer": {
+    "rainfall_intensity_mm_hr": {
+      "moderate": {
+        "value": 15.0,
+        "unit": "mm/h",
+        "source": "IMD Precipitation Classification Standards",
+        "rationale": "Rainfall between 15 and 30 mm/hr overwhelms urban drains and initiates localized surface runoff."
+      },
+      "heavy": {
+        "value": 30.0,
+        "unit": "mm/h",
+        "source": "IMD Severe Weather Warning Protocol",
+        "rationale": "Rainfall between 30 and 64 mm/hr triggers flash flooding in low-lying river catchments and road underpasses."
+      },
+      "cloudburst": {
+        "value": 100.0,
+        "unit": "mm/h",
+        "source": "IMD Official Cloudburst Definition",
+        "rationale": "Rainfall exceeding 100 mm in a single hour over a 20-30 sq km parcel constitutes an emergency cloudburst."
+      }
+    },
+    "wind_speed_kmh": {
+      "warning": {
+        "value": 50.0,
+        "unit": "km/h",
+        "source": "NDMA Cyclone Disaster Management Guidelines",
+        "rationale": "Wind gusts >50 km/h cause damage to thatched structures, uproot weak tree branches, and pose overhead wire hazards."
+      },
+      "critical": {
+        "value": 75.0,
+        "unit": "km/h",
+        "source": "NDMA Severe Cyclonic Storm Protocol",
+        "rationale": "Winds >75 km/h cause structural roof failures, uproot large trees, and demand preemptive shelter evacuation."
+      }
+    }
+  },
+  "citizen": {
+    "umbrella": {
+      "rain_prob_threshold_pct": {
+        "value": 35.0,
+        "unit": "%",
+        "source": "WMO Public Weather Services Guidelines",
+        "rationale": "Probability of precipitation above 35% justifies carrying personal rain gear for daily urban commutes."
+      },
+      "precip_amount_mm": {
+        "value": 0.2,
+        "unit": "mm",
+        "source": "IMD Trace Precipitation Standard",
+        "rationale": "Precipitation exceeding 0.2 mm creates detectable wet ground and pedestrian discomfort."
+      }
+    },
+    "waterlogging_risk": {
+      "hourly_rate_mm": {
+        "value": 15.0,
+        "unit": "mm/h",
+        "source": "Central Public Health & Environmental Engineering Organisation (CPHEEO) Storm Drainage Manual",
+        "rationale": "Indian municipal drainage design capacity is typically 12-15 mm/hr; rates above this trigger rapid roadway flooding."
+      },
+      "accumulation_3h_mm": {
+        "value": 35.0,
+        "unit": "mm/3h",
+        "source": "Delhi PWD & Mumbai MCGM Monsoon Disaster SOP",
+        "rationale": "Cumulative 3-hour rainfall above 35 mm overwhelms subway pump sumps and underpass drainage reservoirs."
+      }
+    }
+  },
+  "aviation": {
+    "categories": {
+      "VFR": {
+        "min_ceiling_ft": 3000,
+        "min_visibility_m": 8000,
+        "source": "ICAO Annex 2 (Rules of the Air) & DGCA India CAR Section 9",
+        "rationale": "Visual Flight Rules: Ceiling > 3,000 ft AGL and Visibility > 8,000 m (5 miles) permit visual flight navigation."
+      },
+      "MVFR": {
+        "min_ceiling_ft": 1000,
+        "max_ceiling_ft": 3000,
+        "min_visibility_m": 5000,
+        "max_visibility_m": 8000,
+        "source": "FAA / ICAO Aerodrome Weather Standards",
+        "rationale": "Marginal VFR: Ceiling between 1,000-3,000 ft AGL and/or visibility 5,000-8,000 m requires heightened caution."
+      },
+      "IFR": {
+        "min_ceiling_ft": 500,
+        "max_ceiling_ft": 1000,
+        "min_visibility_m": 1500,
+        "max_visibility_m": 5000,
+        "source": "ICAO Annex 3 (Meteorological Service for International Air Navigation)",
+        "rationale": "Instrument Flight Rules: Ceiling 500-1,000 ft AGL and/or visibility 1,500-5,000 m mandates instrument clearance."
+      },
+      "LIFR": {
+        "max_ceiling_ft": 500,
+        "max_visibility_m": 1500,
+        "source": "ICAO / DGCA Instrument Approach Standards",
+        "rationale": "Low Instrument Flight Rules: Ceiling < 500 ft AGL or visibility < 1,500 m poses severe instrument approach restrictions."
+      }
+    }
+  },
+  "nwp_model_disagreement": {
+    "temperature_delta_c": {
+      "value": 3.0,
+      "unit": "°C",
+      "source": "WMO Commission for Basic Systems (CBS) Ensemble Prediction Guidance",
+      "rationale": "Inter-model 2m temperature spread greater than 3.0°C indicates significant boundary-layer thermal uncertainty or front timing discrepancies."
+    },
+    "precipitation_delta_mm": {
+      "value": 8.0,
+      "unit": "mm",
+      "source": "NCMRWF Operational Verification Standards for Multi-Model Ensembles",
+      "rationale": "Precipitation differences exceeding 8.0 mm in a 24-hour accumulation window represent convective parameterization divergences between GFS, ECMWF, and ICON."
+    },
+    "wind_speed_delta_kmh": {
+      "value": 15.0,
+      "unit": "km/h",
+      "source": "IMD Medium-Range Weather Forecasting Division",
+      "rationale": "Surface wind differences above 15.0 km/h (approx 8 knots) directly affect coastal safety and crop spraying operational windows."
+    }
+  }
+}
