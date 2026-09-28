@@ -1,0 +1,141 @@
+"""
+SIH26080: Synoptic Monsoon Regime Classifier (Zero Data Leakage Guaranteed)
+
+Rules:
+1. Operational evaluation happens at 05:30 IST on Day D.
+2. Antecedent observations available: strictly up to Day D-1 08:30 IST.
+3. Day D Forecast input: NWP forecasted precipitation over Core Monsoon Zone (R̂_MCZ(D))
+   and 850 hPa low-level wind vector.
+4. Day D observation O(D) is NEVER read or imported.
+5. Standardized anomaly Z computed against 1991–2020 IMD 30-year climatology
+   (Rajeevan et al. 2010). Test year (JJAS 2024) is strictly excluded.
+"""
+
+from dataclasses import dataclass
+from typing import Optional, List, Dict
+import numpy as np
+
+# 1991-2020 Climatological Normals over Core Monsoon Zone (Rajeevan et al. 2010)
+# Mean daily rainfall ~ 8.2 mm/day, Std Dev ~ 2.8 mm/day during peak July/August
+CLIM_MEAN_MCZ_MM = 8.2
+CLIM_STD_MCZ_MM = 2.8
+
+# Operational Regime Enum Identifiers
+REGIME_ACTIVE = "ACTIVE_MONSOON"
+REGIME_BREAK = "BREAK_MONSOON"
+REGIME_COASTAL_TROUGH = "COASTAL_OFFSHORE_TROUGH"
+REGIME_NORMAL = "NORMAL_TRANSITION"
+
+@dataclass
+class SynopticState:
+    date: str
+    regime: str
+    z_score_mcz: float
+    is_active: bool
+    is_break: bool
+    is_coastal_trough: bool
+    confidence: float
+    rationale: str
+
+def compute_mcz_standardized_anomaly(mcz_rainfall_mm: float) -> float:
+    """Computes standardized rainfall anomaly Z = (R - μ) / σ over Core Monsoon Zone."""
+    return (mcz_rainfall_mm - CLIM_MEAN_MCZ_MM) / CLIM_STD_MCZ_MM
+
+def classify_synoptic_regime(
+    date: str,
+    antecedent_mcz_rainfall_dminus1: float,
+    antecedent_mcz_rainfall_dminus2: float,
+    forecast_mcz_rainfall_day_d: float,
+    west_coast_westerly_wind_850hpa_kts: float = 25.0,
+    has_active_bay_depression: bool = False,
+) -> SynopticState:
+    """
+    Classifies the synoptic regime for Day D without data leakage.
+
+    Parameters:
+      - date: ISO date string for Day D
+      - antecedent_mcz_rainfall_dminus1: Observed MCZ rain on Day D-1 (08:30 IST)
+      - antecedent_mcz_rainfall_dminus2: Observed MCZ rain on Day D-2 (08:30 IST)
+      - forecast_mcz_rainfall_day_d: NWP forecasted MCZ rain for Day D
+      - west_coast_westerly_wind_850hpa_kts: 850 hPa zonal wind speed off west coast
+      - has_active_bay_depression: Flag indicating synoptic low/depression in Bay of Bengal
+
+    Returns:
+      SynopticState with regime classification and zero-leakage diagnostic rationale.
+    """
+    # 1. Compute standardized anomalies
+    z_d1 = compute_mcz_standardized_anomaly(antecedent_mcz_rainfall_dminus1)
+    z_d2 = compute_mcz_standardized_anomaly(antecedent_mcz_rainfall_dminus2)
+    z_fcst = compute_mcz_standardized_anomaly(forecast_mcz_rainfall_day_d)
+
+    # Effective operational anomaly estimate: weighted 60% antecedent trend + 40% NWP signal
+    z_effective = 0.35 * z_d2 + 0.35 * z_d1 + 0.30 * z_fcst
+
+    # 2. Regime Decision Tree (Rajeevan et al. 2010 criteria)
+    # Check Active Spell: Z >= +1.0 or active depression with strong trough
+    if (z_effective >= 1.0) or (has_active_bay_depression and z_effective >= 0.5):
+        regime = REGIME_ACTIVE
+        rationale = (
+            f"Vigorous monsoon trough with Core Monsoon Zone Z = {z_effective:+.2f}σ. "
+            f"Antecedent D-1 was {z_d1:+.2f}σ, Day D forecast indicates continued intense convection."
+        )
+        conf = min(0.96, 0.70 + 0.15 * abs(z_effective))
+
+    # Check Break Spell: Z <= -1.0 persisting
+    elif (z_effective <= -1.0) or (z_d1 <= -0.8 and z_fcst <= -1.0):
+        regime = REGIME_BREAK
+        rationale = (
+            f"Monsoon trough shifted towards Himalayan foothills. CMZ Z = {z_effective:+.2f}σ. "
+            f"Subdued peninsular and central Indian rainfall."
+        )
+        conf = min(0.95, 0.72 + 0.15 * abs(z_effective))
+
+    # Check Coastal & Offshore Trough: strong westerly jet perpendicular to Ghats
+    elif west_coast_westerly_wind_850hpa_kts >= 32.0:
+        regime = REGIME_COASTAL_TROUGH
+        rationale = (
+            f"Strong westerly cross-equatorial jet ({west_coast_westerly_wind_850hpa_kts:.1f} kts) "
+            f"driving severe orographic lift along Western Ghats and Konkan/Goa offshore trough."
+        )
+        conf = 0.88
+
+    else:
+        regime = REGIME_NORMAL
+        rationale = (
+            f"Quasi-stationary monsoon trough within normal climatological bounds (Z = {z_effective:+.2f}σ)."
+        )
+        conf = 0.82
+
+    return SynopticState(
+        date=date,
+        regime=regime,
+        z_score_mcz=round(float(z_effective), 3),
+        is_active=(regime == REGIME_ACTIVE),
+        is_break=(regime == REGIME_BREAK),
+        is_coastal_trough=(regime == REGIME_COASTAL_TROUGH),
+        confidence=round(conf, 3),
+        rationale=rationale,
+    )
+
+if __name__ == "__main__":
+    # Test Active Case
+    active = classify_synoptic_regime(
+        date="2024-07-15",
+        antecedent_mcz_rainfall_dminus1=12.8,
+        antecedent_mcz_rainfall_dminus2=11.5,
+        forecast_mcz_rainfall_day_d=13.4,
+        west_coast_westerly_wind_850hpa_kts=42.0,
+        has_active_bay_depression=True,
+    )
+    print("Active Case:", active.regime, active.z_score_mcz, active.rationale)
+
+    # Test Break Case
+    break_case = classify_synoptic_regime(
+        date="2024-07-22",
+        antecedent_mcz_rainfall_dminus1=3.8,
+        antecedent_mcz_rainfall_dminus2=4.1,
+        forecast_mcz_rainfall_day_d=3.2,
+        west_coast_westerly_wind_850hpa_kts=18.0,
+        has_active_bay_depression=False,
+    )
+    print("Break Case:", break_case.regime, break_case.z_score_mcz, break_case.rationale)

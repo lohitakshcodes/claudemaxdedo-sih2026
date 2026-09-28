@@ -2,6 +2,8 @@
 /node_modules
 /.pnp
 .pnp.js
+.venv/
+venv/
 
 # testing
 /coverage
@@ -37,3 +39,11 @@ next-env.d.ts
 # slide render inspection artifacts
 scripts/diagrams/*slide*.png
 scripts/diagrams/*preview*.png
+
+# SIH26080 ML/NWP dataset caches (strictly out of git)
+data_cache/
+sih26080_data/
+*.grd
+*.nc
+*.zarr
+
