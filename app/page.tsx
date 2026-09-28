@@ -72,11 +72,11 @@ export default function RootIndexPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-zinc-50 border border-zinc-200 p-3 rounded text-xs font-mono text-zinc-700">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <span>Domain RMSE: 6.8 &rarr; 4.8 mm</span>
+                  <span>Domain RMSE: 17.2 &rarr; 15.2 mm</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <span>Heavy Rain ETS: 0.51 &rarr; 0.66</span>
+                  <span>Heavy Rain ETS: 0.12 &rarr; 0.17</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
@@ -88,7 +88,7 @@ export default function RootIndexPage() {
             <div className="pt-6">
               <Link
                 href="/sih26080"
-                className="web2-button-primary w-full text-xs py-3 flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-mono font-bold rounded"
+                className="web2-button-primary w-full text-xs py-3 flex items-center justify-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white font-mono font-bold rounded shadow-sm"
               >
                 <span>Enter SIH26080 Evaluator Portal &amp; Interactive Benchmarks</span>
                 <ArrowRight className="w-4 h-4" />
@@ -96,106 +96,53 @@ export default function RootIndexPage() {
             </div>
           </div>
 
-          {/* Secondary Portals Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* WeatherGPT Card */}
-            <div className="web2-panel rounded-lg border border-zinc-300 bg-white p-6 shadow-tactile flex flex-col justify-between hover:border-zinc-400 transition-all">
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="web2-badge web2-badge-blue text-xs font-mono">
-                    PS ID: SIH26068
-                  </span>
-                  <span className="text-xs font-mono text-zinc-500">MoES / IMD</span>
-                </div>
-
-                <div>
-                  <h2 className="text-xl font-bold text-zinc-900 tracking-tight">
-                    WeatherGPT
-                  </h2>
-                  <p className="text-xs font-mono text-zinc-500 mt-0.5">
-                    Disaster Management &amp; Climate Tech
-                  </p>
-                </div>
-
-                <p className="text-xs text-zinc-600 leading-relaxed font-sans">
-                  Autonomous Multi-Sector Weather &amp; Maritime Voice Intelligence via WMO WIS 2.0 MQTT edge brokers, S-Band Doppler radar indexing, and Bhashini multilingual speech agents for coastal fishermen, commuters, aviation, and public safety.
-                </p>
-
-                <div className="bg-zinc-50 border border-zinc-200 p-2.5 rounded text-xs font-mono text-zinc-700 space-y-1">
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>WMO WIS 2.0 MQTT Live Ingestion</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Deterministic CAP 1.2 Gatekeeper</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>14 Indic Dialects Voice Pipeline</span>
-                  </div>
-                </div>
+          {/* Secondary Agro-Intelligence Portal Card */}
+          <div className="web2-panel rounded-lg border border-zinc-300 bg-white p-6 shadow-tactile flex flex-col justify-between hover:border-zinc-400 transition-all">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="web2-badge web2-badge-green text-xs font-mono">
+                  PS ID: SIH26193
+                </span>
+                <span className="text-xs font-mono text-zinc-500">Ministry of Agriculture</span>
               </div>
 
-              <div className="pt-6">
-                <Link
-                  href="/weathergpt"
-                  className="web2-button-primary w-full text-xs py-2.5 flex items-center justify-center gap-2"
-                >
-                  <span>Enter WeatherGPT Evaluator Portal</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+              <div>
+                <h2 className="text-xl font-bold text-zinc-900 tracking-tight">
+                  KrishiSmriti
+                </h2>
+                <p className="text-xs font-mono text-zinc-500 mt-0.5">
+                  The Farm&apos;s Second Brain &bull; 12-Factor Deterministic Decision Engine
+                </p>
+              </div>
+
+              <p className="text-xs text-zinc-600 leading-relaxed font-sans">
+                Deterministic Cross-Factor Advisory Engine evaluating weather windows, Panchayat soil moisture (38%), Soil Health Card chemistry, pgvector episodic memory, and Agmarknet APMC mandi arbitrage.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-zinc-50 border border-zinc-200 p-2.5 rounded text-xs font-mono text-zinc-700">
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>12-Factor Matrix Pass</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>Agmarknet Arbitrage</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+                  <span>SHA-256 Advisory Hash</span>
+                </div>
               </div>
             </div>
 
-            {/* KrishiSmriti Card */}
-            <div className="web2-panel rounded-lg border border-zinc-300 bg-white p-6 shadow-tactile flex flex-col justify-between hover:border-zinc-400 transition-all">
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="web2-badge web2-badge-green text-xs font-mono">
-                    PS ID: SIH26193
-                  </span>
-                  <span className="text-xs font-mono text-zinc-500">Ministry of Agriculture</span>
-                </div>
-
-                <div>
-                  <h2 className="text-xl font-bold text-zinc-900 tracking-tight">
-                    KrishiSmriti
-                  </h2>
-                  <p className="text-xs font-mono text-zinc-500 mt-0.5">
-                    Agriculture, FoodTech &amp; Rural Development
-                  </p>
-                </div>
-
-                <p className="text-xs text-zinc-600 leading-relaxed font-sans">
-                  Multimodal Agro-Advisory &amp; Mandi Arbitrage Engine powered by Sentinel-1 Synthetic Aperture Radar (SAR), Agmarknet live price feeds, and ICAR dosage guardrails.
-                </p>
-
-                <div className="bg-zinc-50 border border-zinc-200 p-2.5 rounded text-xs font-mono text-zinc-700 space-y-1">
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>Sentinel-1 SAR 10m Soil Moisture</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>2,400+ APMC Mandi Arbitrage Sync</span>
-                  </div>
-                  <div className="flex items-center gap-1.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>ICAR Package of Practices Locked</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="pt-6">
-                <Link
-                  href="/krishismriti"
-                  className="web2-button-primary w-full text-xs py-2.5 flex items-center justify-center gap-2"
-                >
-                  <span>Enter KrishiSmriti Evaluator Portal</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
+            <div className="pt-6">
+              <Link
+                href="/krishismriti"
+                className="web2-button-primary w-full text-xs py-2.5 flex items-center justify-center gap-2"
+              >
+                <span>Enter KrishiSmriti Evaluator Portal</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </div>
           </div>
         </div>

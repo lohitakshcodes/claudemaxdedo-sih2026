@@ -9,9 +9,9 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Smart India Hackathon 2026 Portfolio — Team ClaudeMaxDedo",
+  title: "SIH26080: Regime-Aware AI Post-Processing of Monsoon Rainfall Forecasts — Team ClaudeMaxDedo",
   description:
-    "Official high-performance project portals for Team ClaudeMaxDedo at SIH 2026: WeatherGPT (MoES/IMD SIH26068) and KrishiSmriti (Ministry of Agriculture SIH26193).",
+    "Official high-performance project portal for Team ClaudeMaxDedo at SIH 2026: Regime-Aware AI Post-Processing of Monsoon Rainfall Forecasts (Ministry of Earth Sciences / NCMRWF & IMD PS ID SIH26080).",
   robots: {
     index: false, // Internal evaluator submission
     follow: false,
