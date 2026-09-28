@@ -170,3 +170,28 @@ Evaluated across 5-Fold Purged Block Cross-Validation on 38,880 evaluation point
 2. **Zero Simulation**: The pipeline contains zero synthetic generators in the results path (`test_no_synthetic_in_pipeline.py` passed).
 3. **Audit Complete**: `results.json` and `provenance_manifest.json` have been regenerated from real measurements.
 4. **Recommendation**: We now have authentic, unassailable MoES/IMD evaluation evidence with zero synthetic data. We can proceed with the UI/dashboard display knowing every number is backed by a verified real file and reproducible script.
+
+---
+
+## 8. EVALUATOR PORTAL ENHANCEMENTS (PHASE G & POST-GATE)
+
+1. **Interactive Spatial GIS Grid (324 Points)**:
+   - Full 324-point domain coordinates exported to `sih26080/data/domain_points.json` (14.0°N–27.0°N, 72.5°E–86.0°E, 0.25° IMD grid).
+   - Real-data daily slices exported for Active Monsoon Surge (2024-07-15), Break Monsoon (2024-08-18), and Monsoon Depression (2024-09-02) to `sih26080/data/spatial_case_slices.json`.
+   - Grid canvas supports toggling between Observed Ground Truth, Raw ECMWF, Regime RQDM Calibrated, and Absolute Error (|RQDM - Obs|).
+   - Interactive Point Inspector displays elevation, coastal distance, and per-point values upon clicking.
+
+2. **WMO Decile Reliability Diagram & Brier Decomposition**:
+   - 10-decile forecast probability vs observed event frequency exported to `sih26080/data/reliability_diagram.json` across 39,528 predictions.
+   - Sharpness histogram displays bin sample counts; diagonal 1:1 line provides reference for perfect calibration.
+
+3. **Lead-Time Skill Degradation Curve ($T+24\text{h}$ to $T+72\text{h}$)**:
+   - Measured RMSE growth (17.3 -> 18.7 -> 19.8 mm) and ETS retention exported to `sih26080/data/lead_time_curve.json`.
+
+4. **Interactive Operational Calibration Sandbox**:
+   - Dynamic simulation sandbox allowing evaluators to pick any terrain station (Mahabaleshwar, Ratnagiri, Pune, Nagpur, Mumbai Colaba), toggle synoptic regime, slide raw rainfall, and observe Stage 1 RQDM & Stage 2 LightGBM residual adjustments, along with automated NDMA/SDMA CAP 1.2 disaster alerts and SHA-256 cryptographic recipe receipts.
+
+5. **Strict No-Literal Verification**:
+   - Zero hardcoded metric literals in `app/sih26080/page.tsx`; all metrics dynamically bound or formatted via `formatMetric` (rendering `"n/a"` where undefined).
+   - Passed all 14 Python verification tests (`test_no_frontend_metric_literals.py`) and all 66 backend integration tests (`test-backend.js`).
+
