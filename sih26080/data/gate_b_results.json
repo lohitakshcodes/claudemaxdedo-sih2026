@@ -1,63 +1,64 @@
 {
   "gate_b_benchmark": {
     "Raw ECMWF IFS": {
-      "rmse": 7.94,
-      "bias": 0.5444,
-      "pod": 0.5251,
-      "far": 0.0355,
-      "csi": 0.5152,
-      "ets": 0.5082,
+      "rmse": 17.19,
+      "bias": 0.5861,
+      "pod": 0.1832,
+      "far": 0.6875,
+      "csi": 0.1305,
+      "ets": 0.1228,
       "ci_ets": [
-        0.468,
-        0.552
+        0.105,
+        0.142
       ]
     },
     "Global Quantile Mapping (EQM)": {
-      "rmse": 7.63,
-      "bias": 1.0174,
-      "pod": 0.7703,
-      "far": 0.2429,
-      "csi": 0.6176,
-      "ets": 0.6092,
+      "rmse": 18.05,
+      "bias": 0.9805,
+      "pod": 0.2955,
+      "far": 0.6986,
+      "csi": 0.1754,
+      "ets": 0.1651,
       "ci_ets": [
-        0.572,
-        0.646
+        0.147,
+        0.183
       ]
     },
     "Regime-Aware RQDM (Stage 1)": {
-      "rmse": 5.98,
-      "bias": 1.0097,
-      "pod": 0.7703,
-      "far": 0.2371,
-      "csi": 0.6215,
-      "ets": 0.6131,
+      "rmse": 18.69,
+      "bias": 1.0,
+      "pod": 0.3028,
+      "far": 0.6972,
+      "csi": 0.1784,
+      "ets": 0.1681,
       "ci_ets": [
-        0.577,
-        0.652
+        0.149,
+        0.187
       ]
     },
     "RQDM + LightGBM Corrector (Stage 2)": {
-      "rmse": 5.84,
-      "bias": 0.8514,
-      "pod": 0.7162,
-      "far": 0.1587,
-      "csi": 0.631,
-      "ets": 0.6234,
+      "rmse": 15.12,
+      "bias": 0.2308,
+      "pod": 0.1355,
+      "far": 0.4127,
+      "csi": 0.1237,
+      "ets": 0.1198,
       "ci_ets": [
-        0.587,
-        0.667
+        0.1,
+        0.139
       ]
     }
   },
   "feature_importances": {
-    "orographic_flux": 28.5,
-    "elevation_m": 22.1,
-    "dist_coast_km": 16.4,
-    "rqdm_fcst_mm": 14.2,
-    "wind_u_850": 8.7,
-    "raw_fcst_mm": 5.1,
-    "mcz_z_score": 3.2,
-    "regime_code": 1.8
+    "raw_fcst_mm": 11.15,
+    "rqdm_fcst_mm": 11.32,
+    "elevation_m": 7.51,
+    "dist_coast_km": 19.16,
+    "wind_u_850": 10.21,
+    "wind_v_850": 13.82,
+    "orographic_flux": 9.51,
+    "regime_code": 1.94,
+    "mcz_z_score": 15.39
   },
   "threshold_mm": 64.5
 }

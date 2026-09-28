@@ -1,0 +1,54 @@
+{
+  "attribution": "Weather data by Open-Meteo.com under Creative Commons Attribution 4.0 International (CC BY 4.0)",
+  "source": "https://previous-runs-api.open-meteo.com",
+  "model": "ecmwf_ifs025",
+  "season": "JJAS 2024",
+  "date_range": [
+    "2024-06-01",
+    "2024-09-30"
+  ],
+  "total_domain_points": 324,
+  "total_point_days": 39528,
+  "parquet_file": "data/cache/openmeteo_ecmwf_jjas2024.parquet",
+  "parquet_sha256": "5230553914e4751aa512097382e1577b7c8bc373280fc843e69e52d146e975a1",
+  "parquet_size_bytes": 451160,
+  "coverage_by_month": {
+    "2024-06": {
+      "month": "2024-06",
+      "days": 30,
+      "points_evaluated": 324,
+      "points_with_100pct_coverage": 324,
+      "coverage_percentage": 100.0,
+      "mean_lead_d1_rainfall_mm": 7.53,
+      "max_lead_d1_rainfall_mm": 214.2
+    },
+    "2024-07": {
+      "month": "2024-07",
+      "days": 31,
+      "points_evaluated": 324,
+      "points_with_100pct_coverage": 324,
+      "coverage_percentage": 100.0,
+      "mean_lead_d1_rainfall_mm": 15.29,
+      "max_lead_d1_rainfall_mm": 227.7
+    },
+    "2024-08": {
+      "month": "2024-08",
+      "days": 31,
+      "points_evaluated": 324,
+      "points_with_100pct_coverage": 324,
+      "coverage_percentage": 100.0,
+      "mean_lead_d1_rainfall_mm": 10.36,
+      "max_lead_d1_rainfall_mm": 184.8
+    },
+    "2024-09": {
+      "month": "2024-09",
+      "days": 30,
+      "points_evaluated": 324,
+      "points_with_100pct_coverage": 324,
+      "coverage_percentage": 100.0,
+      "mean_lead_d1_rainfall_mm": 8.7,
+      "max_lead_d1_rainfall_mm": 277.8
+    }
+  },
+  "status": "VERIFIED_100_PERCENT_COMPLETE"
+}

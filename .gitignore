@@ -43,6 +43,10 @@ scripts/diagrams/*preview*.png
 # SIH26080 ML/NWP dataset caches (strictly out of git)
 data_cache/
 sih26080_data/
+data/raw/
+data/cache/*.parquet
+data/cache/*.npz
+data/cache/*.png
 *.grd
 *.nc
 *.zarr

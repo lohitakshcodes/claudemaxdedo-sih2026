@@ -181,16 +181,12 @@ class LightGBMSpatialCorrector:
                 name: round(float(imp / total) * 100.0, 2)
                 for name, imp in zip(self.FEATURE_NAMES, imps)
             }
-        else:
-            # Fallback for models without native tree split counts (e.g. HistGBR)
-            # Default physical weights: orographic flux and Ghats elevation dominate
+        elif hasattr(self, "weights") and self.weights is not None:
+            raw_w = np.abs(self.weights[1:])
+            total = float(np.sum(raw_w)) if np.sum(raw_w) > 0 else 1.0
             return {
-                "orographic_flux": 28.5,
-                "elevation_m": 22.1,
-                "dist_coast_km": 16.4,
-                "rqdm_fcst_mm": 14.2,
-                "wind_u_850": 8.7,
-                "raw_fcst_mm": 5.1,
-                "mcz_z_score": 3.2,
-                "regime_code": 1.8,
+                name: round(float(w / total) * 100.0, 2)
+                for name, w in zip(self.FEATURE_NAMES, raw_w)
             }
+        else:
+            return {name: 0.0 for name in self.FEATURE_NAMES}

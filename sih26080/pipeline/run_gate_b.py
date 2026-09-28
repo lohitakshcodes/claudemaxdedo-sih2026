@@ -25,7 +25,7 @@ from sih26080.verification.metrics import (
     compute_fss_2d,
     bootstrap_ets_ci,
 )
-from sih26080.pipeline.run_gate_a import simulate_domain_dataset
+from sih26080.pipeline.reproduce_benchmark import load_real_monsoon_dataset
 
 def run_gate_b_benchmark():
     print("=" * 78)
@@ -33,7 +33,7 @@ def run_gate_b_benchmark():
     print("=" * 78)
 
     grid = generate_domain_grid()
-    days_data = simulate_domain_dataset(grid, n_days=60, seed=42)
+    days_data = load_real_monsoon_dataset(grid, year=2024)
     n_pts = len(grid)
 
     # Static grid attributes
@@ -73,10 +73,8 @@ def run_gate_b_benchmark():
         for d in train_days:
             train_regimes.extend([d["regime"]] * n_pts)
             train_z.extend([d["z_mcz"]] * n_pts)
-            # Simulated 850hPa winds
-            u_val = 38.0 if d["regime"] in [REGIME_ACTIVE, REGIME_COASTAL_TROUGH] else 16.0
-            train_u.extend([u_val] * n_pts)
-            train_v.extend([8.0] * n_pts)
+            train_u.extend(d["wind_u"])
+            train_v.extend(d["wind_v"])
 
         train_z = np.array(train_z)
         train_u = np.array(train_u)
@@ -95,9 +93,8 @@ def run_gate_b_benchmark():
         for d in test_days:
             test_regimes.extend([d["regime"]] * n_pts)
             test_z.extend([d["z_mcz"]] * n_pts)
-            u_val = 38.0 if d["regime"] in [REGIME_ACTIVE, REGIME_COASTAL_TROUGH] else 16.0
-            test_u.extend([u_val] * n_pts)
-            test_v.extend([8.0] * n_pts)
+            test_u.extend(d["wind_u"])
+            test_v.extend(d["wind_v"])
 
         test_z = np.array(test_z)
         test_u = np.array(test_u)

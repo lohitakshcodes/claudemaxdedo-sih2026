@@ -24,92 +24,7 @@ from sih26080.verification.metrics import (
     bootstrap_ets_ci,
 )
 
-def simulate_domain_dataset(grid_points: List[Dict[str, Any]], n_days: int = 60, seed: int = 42):
-    """
-    Simulates a scientifically calibrated JJAS 2024 dataset over the 300 domain grid points
-    matching empirical characteristics of ECMWF IFS and IMD 0.25° gridded observations.
-    """
-    rng = np.random.default_rng(seed)
-    n_pts = len(grid_points)
-
-    days_data = []
-
-    # Regime schedule for 60 monsoon days: 20 Active, 14 Break, 16 Coastal, 10 Normal
-    regime_schedule = (
-        [REGIME_ACTIVE] * 20
-        + [REGIME_BREAK] * 14
-        + [REGIME_COASTAL_TROUGH] * 16
-        + [REGIME_NORMAL] * 10
-    )
-    rng.shuffle(regime_schedule)
-
-    for day_idx, reg in enumerate(regime_schedule):
-        date_str = f"2024-07-{day_idx+1:02d}" if day_idx < 31 else f"2024-08-{day_idx-30:02d}"
-
-        # Synoptic parameters
-        if reg == REGIME_ACTIVE:
-            z_mcz = float(rng.normal(1.6, 0.3))
-            base_intensity = 28.0
-            wind_u = float(rng.normal(38.0, 4.0))
-        elif reg == REGIME_BREAK:
-            z_mcz = float(rng.normal(-1.5, 0.3))
-            base_intensity = 3.5
-            wind_u = float(rng.normal(14.0, 3.0))
-        elif reg == REGIME_COASTAL_TROUGH:
-            z_mcz = float(rng.normal(0.4, 0.3))
-            base_intensity = 18.0
-            wind_u = float(rng.normal(36.0, 3.5))
-        else:
-            z_mcz = float(rng.normal(0.1, 0.2))
-            base_intensity = 10.0
-            wind_u = float(rng.normal(24.0, 3.0))
-
-        obs_rain = np.zeros(n_pts, dtype=float)
-        raw_fcst = np.zeros(n_pts, dtype=float)
-
-        for p_idx, pt in enumerate(grid_points):
-            elev = pt["elevation_m"]
-            stratum = pt["terrain_stratum"]
-
-            # Orographic multiplier on truth
-            if stratum == "Windward Ghats":
-                orog_factor = 1.0 + (elev / 500.0) * (wind_u / 30.0)
-            elif stratum == "Coastal Plain":
-                orog_factor = 1.2 if reg in [REGIME_ACTIVE, REGIME_COASTAL_TROUGH] else 0.8
-            elif stratum == "Rain Shadow":
-                orog_factor = 0.25
-            else:
-                orog_factor = 1.0
-
-            true_mean = base_intensity * orog_factor
-            # Observed rainfall (Gamma distribution)
-            obs = float(rng.gamma(shape=1.8, scale=max(0.5, true_mean / 1.8)))
-
-            # Raw NWP model systematic flaws:
-            # 1. Under-predicts Windward Ghats extreme peaks by ~45%
-            # 2. Over-predicts Break monsoon rainfall over peninsular interior
-            # 3. Smooths and smears rain over Rain Shadow
-            if stratum == "Windward Ghats":
-                fcst = obs * float(rng.normal(0.58, 0.08))
-            elif reg == REGIME_BREAK:
-                fcst = obs + float(rng.exponential(scale=6.0))
-            elif stratum == "Rain Shadow":
-                fcst = max(0.0, obs * 1.5 + float(rng.normal(3.0, 1.0)))
-            else:
-                fcst = obs * float(rng.normal(0.85, 0.12))
-
-            obs_rain[p_idx] = max(0.0, obs)
-            raw_fcst[p_idx] = max(0.0, fcst)
-
-        days_data.append({
-            "date": date_str,
-            "regime": reg,
-            "z_mcz": z_mcz,
-            "obs_rain": obs_rain,
-            "raw_fcst": raw_fcst,
-        })
-
-    return days_data
+from sih26080.pipeline.reproduce_benchmark import load_real_monsoon_dataset
 
 def run_gate_a_benchmark():
     print("=" * 78)
@@ -119,8 +34,8 @@ def run_gate_a_benchmark():
     grid = generate_domain_grid()
     print(f"Domain Grid: {len(grid)} points across Maharashtra, Western Ghats & CMZ")
 
-    days_data = simulate_domain_dataset(grid, n_days=60, seed=42)
-    print(f"Dataset: {len(days_data)} days (JJAS 2024 simulation)")
+    days_data = load_real_monsoon_dataset(grid, year=2024)
+    print(f"Dataset: {len(days_data)} days (Real JJAS 2024)")
 
     # 5-Fold Rolling Block Cross-Validation (ensures zero data leakage)
     n_days = len(days_data)

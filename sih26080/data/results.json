@@ -1,6 +1,25 @@
 {
-  "timestamp_utc": "2026-09-28T09:52:16Z",
-  "commit_hash": "19be756",
+  "data_source": "real",
+  "date_ranges": [
+    "2024-06-01",
+    "2024-09-30"
+  ],
+  "input_files": {
+    "imd_observation": {
+      "file": "data/raw/imd/RF25_ind2024_rfp25.nc",
+      "sha256": "1ef02aeba5694dbb57a6cca23a3c2cc11740affb185137c1eacbeab59893228a",
+      "type": "IMD 0.25\u00b0 Gridded Daily Rainfall NetCDF (366 days, 2024 leap year)",
+      "size_bytes": 25501532
+    },
+    "openmeteo_forecast": {
+      "file": "data/cache/openmeteo_ecmwf_jjas2024.parquet",
+      "sha256": "5230553914e4751aa512097382e1577b7c8bc373280fc843e69e52d146e975a1",
+      "type": "Open-Meteo ECMWF IFS 0.25\u00b0 Previous Runs (39,528 point-days, 100% non-null verified)",
+      "attribution": "Weather data by Open-Meteo.com under Creative Commons Attribution 4.0 International (CC BY 4.0)"
+    }
+  },
+  "timestamp_utc": "2026-09-28T10:54:33Z",
+  "commit_hash": "f8236de",
   "domain": {
     "total_points": 324,
     "regions": {
@@ -19,243 +38,249 @@
     "india_total_points_note": "Domain covers Western Ghats & Maharashtra Corridor (0.5\u00b0) and Core Monsoon Zone sample (1.0\u00b0). It is NOT full-India all-land."
   },
   "verification_threshold_mm": 64.5,
-  "sample_size_point_days": 19440,
+  "sample_size_point_days": 38880,
   "overall_benchmark": {
     "Raw ECMWF IFS (0.25\u00b0)": {
-      "rmse_mm": 6.76,
-      "mae_mm": 4.03,
-      "bias": 0.5466,
-      "pod": 0.5263,
-      "far": 0.037,
-      "csi": 0.5159,
-      "ets": 0.5092,
+      "rmse_mm": 17.19,
+      "mae_mm": 9.25,
+      "bias": 0.5861,
+      "pod": 0.1832,
+      "far": 0.6875,
+      "csi": 0.1305,
+      "ets": 0.1228,
       "ets_95ci_1000reps": [
-        0.468,
-        0.554
+        0.104,
+        0.143
       ],
       "contingency": {
-        "H": 260,
-        "M": 234,
-        "Fa": 10,
-        "C": 18936,
-        "N": 19440
+        "H": 150,
+        "M": 669,
+        "Fa": 330,
+        "C": 37731,
+        "N": 38880
       }
     },
     "Negative Control (Smoothed)": {
-      "rmse_mm": 7.26,
-      "mae_mm": 4.35,
-      "bias": 0.4251,
-      "pod": 0.4211,
-      "far": 0.0095,
-      "csi": 0.4194,
-      "ets": 0.413,
+      "rmse_mm": 16.97,
+      "mae_mm": 9.21,
+      "bias": 0.547,
+      "pod": 0.1636,
+      "far": 0.7009,
+      "csi": 0.1183,
+      "ets": 0.1109,
       "ets_95ci_1000reps": [
-        0.372,
-        0.459
+        0.093,
+        0.13
       ],
       "contingency": {
-        "H": 208,
-        "M": 286,
-        "Fa": 2,
-        "C": 18944,
-        "N": 19440
+        "H": 134,
+        "M": 685,
+        "Fa": 314,
+        "C": 37747,
+        "N": 38880
       }
     },
     "Global Quantile Mapping (EQM)": {
-      "rmse_mm": 6.16,
-      "mae_mm": 3.77,
-      "bias": 1.0162,
-      "pod": 0.8097,
-      "far": 0.2032,
-      "csi": 0.6711,
-      "ets": 0.6639,
+      "rmse_mm": 18.05,
+      "mae_mm": 8.6,
+      "bias": 0.9805,
+      "pod": 0.2955,
+      "far": 0.6986,
+      "csi": 0.1754,
+      "ets": 0.1651,
       "ets_95ci_1000reps": [
-        0.626,
-        0.703
+        0.145,
+        0.184
       ],
       "contingency": {
-        "H": 400,
-        "M": 94,
-        "Fa": 102,
-        "C": 18844,
-        "N": 19440
+        "H": 242,
+        "M": 577,
+        "Fa": 561,
+        "C": 37500,
+        "N": 38880
       }
     },
     "Regime-Aware RQDM (Stage 1)": {
-      "rmse_mm": 4.77,
-      "mae_mm": 2.72,
-      "bias": 1.0263,
-      "pod": 0.8097,
-      "far": 0.211,
-      "csi": 0.6656,
-      "ets": 0.6582,
+      "rmse_mm": 18.69,
+      "mae_mm": 8.77,
+      "bias": 1.0,
+      "pod": 0.3028,
+      "far": 0.6972,
+      "csi": 0.1784,
+      "ets": 0.1681,
       "ets_95ci_1000reps": [
-        0.619,
-        0.696
+        0.149,
+        0.188
       ],
       "contingency": {
-        "H": 400,
-        "M": 94,
-        "Fa": 107,
-        "C": 18839,
-        "N": 19440
+        "H": 248,
+        "M": 571,
+        "Fa": 571,
+        "C": 37490,
+        "N": 38880
       }
     },
     "RQDM + Spatial Corrector (Stage 2)": {
-      "rmse_mm": 4.68,
-      "mae_mm": 2.58,
-      "bias": 0.9211,
-      "pod": 0.7753,
-      "far": 0.1582,
-      "csi": 0.6767,
-      "ets": 0.6699,
+      "rmse_mm": 15.22,
+      "mae_mm": 6.64,
+      "bias": 0.2418,
+      "pod": 0.138,
+      "far": 0.4293,
+      "csi": 0.125,
+      "ets": 0.1209,
       "ets_95ci_1000reps": [
-        0.632,
-        0.709
+        0.1,
+        0.145
       ],
       "contingency": {
-        "H": 383,
-        "M": 111,
-        "Fa": 72,
-        "C": 18874,
-        "N": 19440
+        "H": 113,
+        "M": 706,
+        "Fa": 85,
+        "C": 37976,
+        "N": 38880
       }
     }
   },
   "regime_breakdown": {
     "ACTIVE_MONSOON": {
-      "sample_n": 6480,
-      "events_heavy_rain": 411,
+      "sample_n": 13608,
+      "events_heavy_rain": 625,
       "raw_ecmwf": {
-        "rmse": 8.16,
-        "ets": 0.5211,
-        "bias": 0.5718
+        "rmse": 23.08,
+        "ets": 0.1314,
+        "bias": 0.5856
       },
       "global_eqm": {
-        "rmse": 6.6,
-        "ets": 0.6962,
-        "bias": 1.017
+        "rmse": 24.18,
+        "ets": 0.1825,
+        "bias": 0.9504
       },
       "regime_rqdm": {
-        "rmse": 6.49,
-        "ets": 0.695,
-        "bias": 1.0073
+        "rmse": 25.24,
+        "ets": 0.1851,
+        "bias": 1.0
       },
       "stage2_corrector": {
-        "rmse": 6.44,
-        "ets": 0.7051,
-        "bias": 0.9173
+        "rmse": 20.75,
+        "ets": 0.1442,
+        "bias": 0.2816
       }
     },
     "BREAK_MONSOON": {
-      "sample_n": 4536,
-      "events_heavy_rain": 0,
+      "sample_n": 10368,
+      "events_heavy_rain": 40,
       "raw_ecmwf": {
-        "rmse": 7.76,
-        "ets": 0.0,
-        "bias": 1.0
+        "rmse": 10.84,
+        "ets": 0.0729,
+        "bias": 0.8
       },
       "global_eqm": {
-        "rmse": 8.19,
-        "ets": 0.0,
-        "bias": 1.0
+        "rmse": 11.37,
+        "ets": 0.1122,
+        "bias": 1.675
       },
       "regime_rqdm": {
-        "rmse": 2.83,
-        "ets": 0.0,
-        "bias": 1.0
+        "rmse": 11.03,
+        "ets": 0.0852,
+        "bias": 0.875
       },
       "stage2_corrector": {
-        "rmse": 2.39,
-        "ets": 0.0,
-        "bias": 1.0
+        "rmse": 8.93,
+        "ets": -0.0003,
+        "bias": 0.075
       }
     },
     "COASTAL_OFFSHORE_TROUGH": {
-      "sample_n": 5184,
-      "events_heavy_rain": 81,
+      "sample_n": 0,
+      "events_heavy_rain": 0,
       "raw_ecmwf": {
-        "rmse": 5.47,
-        "ets": 0.4107,
-        "bias": 0.4321
+        "rmse": NaN,
+        "ets": 0.0,
+        "bias": 1.0
       },
       "global_eqm": {
-        "rmse": 4.75,
-        "ets": 0.4986,
-        "bias": 1.0247
+        "rmse": NaN,
+        "ets": 0.0,
+        "bias": 1.0
       },
       "regime_rqdm": {
-        "rmse": 4.64,
-        "ets": 0.4893,
-        "bias": 1.1235
+        "rmse": NaN,
+        "ets": 0.0,
+        "bias": 1.0
       },
       "stage2_corrector": {
-        "rmse": 4.58,
-        "ets": 0.504,
-        "bias": 0.9383
+        "rmse": NaN,
+        "ets": 0.0,
+        "bias": 1.0
       }
     },
     "NORMAL_TRANSITION": {
-      "sample_n": 3240,
-      "events_heavy_rain": 2,
+      "sample_n": 14904,
+      "events_heavy_rain": 154,
       "raw_ecmwf": {
-        "rmse": 2.88,
-        "ets": 0.0,
-        "bias": 0.0
+        "rmse": 14.23,
+        "ets": 0.074,
+        "bias": 0.5325
       },
       "global_eqm": {
-        "rmse": 3.23,
-        "ets": 0.0,
-        "bias": 0.0
+        "rmse": 15.02,
+        "ets": 0.0833,
+        "bias": 0.9221
       },
       "regime_rqdm": {
-        "rmse": 2.66,
-        "ets": -0.0003,
-        "bias": 1.0
+        "rmse": 15.66,
+        "ets": 0.0892,
+        "bias": 1.0325
       },
       "stage2_corrector": {
-        "rmse": 2.69,
-        "ets": -0.0003,
-        "bias": 1.0
+        "rmse": 12.47,
+        "ets": 0.0348,
+        "bias": 0.1234
       }
     }
   },
   "probabilistic_verification": {
     "threshold_mm": 64.5,
     "raw_ecmwf": {
-      "brier_score": 0.01,
-      "brier_skill_score": 0.597,
-      "expected_calibration_error": 0.0147,
-      "climatological_base_rate": 0.0254
+      "brier_score": 0.0254,
+      "brier_skill_score": -0.2297,
+      "expected_calibration_error": 0.018,
+      "climatological_base_rate": 0.0211
     },
     "regime_rqdm": {
-      "brier_score": 0.0078,
-      "brier_skill_score": 0.6851,
-      "expected_calibration_error": 0.0046,
-      "climatological_base_rate": 0.0254
+      "brier_score": 0.0253,
+      "brier_skill_score": -0.2287,
+      "expected_calibration_error": 0.0245,
+      "climatological_base_rate": 0.0211
     }
   },
   "fss_scales_verified": [
     {
-      "window_cells": 1,
+      "window_radius": 0,
       "scale_km": 55,
-      "label": "Point Grid-Cell (0.5\u00b0)",
-      "fss_raw": 0.51,
-      "fss_rqdm": 0.61
+      "label": "Single Grid-Cell (~55km)",
+      "fss_raw": 0.14,
+      "fss_rqdm": 0.17,
+      "fss_delta": 0.03,
+      "days_evaluated": 85
     },
     {
-      "window_cells": 3,
+      "window_radius": 1,
       "scale_km": 165,
-      "label": "District Cluster (3x3 grid)",
-      "fss_raw": 0.68,
-      "fss_rqdm": 0.81
+      "label": "District Scale 3x3 (~165km)",
+      "fss_raw": 0.23,
+      "fss_rqdm": 0.26,
+      "fss_delta": 0.03,
+      "days_evaluated": 85
     },
     {
-      "window_cells": 5,
+      "window_radius": 2,
       "scale_km": 275,
-      "label": "Sub-Divisional Synoptic (5x5 grid)",
-      "fss_raw": 0.79,
-      "fss_rqdm": 0.9
+      "label": "Sub-Divisional 5x5 (~275km)",
+      "fss_raw": 0.27,
+      "fss_rqdm": 0.3,
+      "fss_delta": 0.03,
+      "days_evaluated": 85
     }
   ],
   "data_availability_probe": {
