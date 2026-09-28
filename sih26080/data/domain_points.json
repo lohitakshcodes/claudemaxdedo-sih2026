@@ -6,8 +6,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_002",
@@ -16,8 +15,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_003",
@@ -26,8 +24,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_004",
@@ -36,8 +33,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 8.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_005",
@@ -46,8 +42,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 61.8,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_006",
@@ -56,8 +51,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 115.5,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_007",
@@ -66,8 +60,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 169.3,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_008",
@@ -76,8 +69,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 223.0,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_009",
@@ -86,8 +78,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 276.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_010",
@@ -96,8 +87,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 330.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_011",
@@ -106,8 +96,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 384.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_012",
@@ -116,8 +105,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 437.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_013",
@@ -126,8 +114,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 491.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_014",
@@ -136,8 +123,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 545.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_015",
@@ -146,8 +132,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 599.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_016",
@@ -156,8 +141,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 652.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_017",
@@ -166,8 +150,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_018",
@@ -176,8 +159,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_019",
@@ -186,8 +168,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_020",
@@ -196,8 +177,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 366.0,
     "dist_coast_km": 21.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_021",
@@ -206,8 +186,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 210.2,
     "dist_coast_km": 75.1,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_022",
@@ -216,8 +195,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 128.7,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_023",
@@ -226,8 +204,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 182.3,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_024",
@@ -236,8 +213,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 235.9,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_025",
@@ -246,8 +222,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 289.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_026",
@@ -256,8 +231,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 343.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_027",
@@ -266,8 +240,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 396.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_028",
@@ -276,8 +249,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 450.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_029",
@@ -286,8 +258,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 503.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_030",
@@ -296,8 +267,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 557.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_031",
@@ -306,8 +276,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 611.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_032",
@@ -316,8 +285,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 664.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_033",
@@ -326,8 +294,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_034",
@@ -336,8 +303,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_035",
@@ -346,8 +312,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_036",
@@ -356,8 +321,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 34.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_037",
@@ -366,8 +330,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 88.2,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_038",
@@ -376,8 +339,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 141.7,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_039",
@@ -386,8 +348,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 195.2,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_040",
@@ -396,8 +357,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 248.7,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_041",
@@ -406,8 +366,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 302.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_042",
@@ -416,8 +375,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 355.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_043",
@@ -426,8 +384,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 409.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_044",
@@ -436,8 +393,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 462.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_045",
@@ -446,8 +402,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 516.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_046",
@@ -456,8 +411,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 569.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_047",
@@ -466,8 +420,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 623.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_048",
@@ -476,8 +429,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 676.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_049",
@@ -486,8 +438,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_050",
@@ -496,8 +447,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_051",
@@ -506,8 +456,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_052",
@@ -516,8 +465,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 693.5,
     "dist_coast_km": 48.0,
-    "terrain_stratum": "Windward Ghats",
-    "is_cmz": false
+    "terrain_stratum": "Windward Ghats"
   },
   {
     "id": "pt_053",
@@ -526,8 +474,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 101.4,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_054",
@@ -536,8 +483,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 154.7,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_055",
@@ -546,8 +492,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 208.1,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_056",
@@ -556,8 +501,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 261.4,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_057",
@@ -566,8 +510,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 314.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_058",
@@ -576,8 +519,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 368.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_059",
@@ -586,8 +528,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 421.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_060",
@@ -596,8 +537,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 474.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_061",
@@ -606,8 +546,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 528.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_062",
@@ -616,8 +555,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 581.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_063",
@@ -626,8 +564,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 634.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_064",
@@ -636,8 +573,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 688.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_065",
@@ -646,8 +582,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_066",
@@ -656,8 +591,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_067",
@@ -666,8 +600,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 8.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_068",
@@ -676,8 +609,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 61.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_069",
@@ -686,8 +618,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 114.4,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_070",
@@ -696,8 +627,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 167.6,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_071",
@@ -706,8 +636,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 220.8,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_072",
@@ -716,8 +645,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 274.1,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_073",
@@ -726,8 +654,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 327.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_074",
@@ -736,8 +663,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 380.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_075",
@@ -746,8 +672,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 433.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_076",
@@ -756,8 +681,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 486.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_077",
@@ -766,8 +690,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 540.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_078",
@@ -776,8 +699,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 593.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_079",
@@ -786,8 +708,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 646.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_080",
@@ -796,8 +717,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 699.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_081",
@@ -806,8 +726,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_082",
@@ -816,8 +735,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_083",
@@ -826,8 +744,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 443.8,
     "dist_coast_km": 21.2,
-    "terrain_stratum": "Windward Ghats",
-    "is_cmz": false
+    "terrain_stratum": "Windward Ghats"
   },
   {
     "id": "pt_084",
@@ -836,8 +753,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 234.0,
     "dist_coast_km": 74.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_085",
@@ -846,8 +762,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 127.4,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_086",
@@ -856,8 +771,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 180.5,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_087",
@@ -866,8 +780,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 233.5,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_088",
@@ -876,8 +789,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 286.6,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_089",
@@ -886,8 +798,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 339.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_090",
@@ -896,8 +807,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 392.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_091",
@@ -906,8 +816,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 445.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_092",
@@ -916,8 +825,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 498.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_093",
@@ -926,8 +834,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 552.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_094",
@@ -936,8 +843,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 605.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_095",
@@ -946,8 +852,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 658.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_096",
@@ -956,8 +861,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 711.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_097",
@@ -966,8 +870,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_098",
@@ -976,8 +879,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": false
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_099",
@@ -986,8 +888,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 34.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_100",
@@ -996,8 +897,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 87.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_101",
@@ -1006,8 +906,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 140.3,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_102",
@@ -1016,8 +915,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 193.2,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_103",
@@ -1026,8 +924,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 246.1,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_104",
@@ -1036,8 +933,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 299.1,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": false
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_105",
@@ -1046,8 +942,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 352.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_106",
@@ -1056,8 +951,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 404.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_107",
@@ -1066,8 +960,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 457.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_108",
@@ -1076,8 +969,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 510.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_109",
@@ -1086,8 +978,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 563.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_110",
@@ -1096,8 +987,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 616.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_111",
@@ -1106,8 +996,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 669.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_112",
@@ -1116,8 +1005,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 722.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": false
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_113",
@@ -1126,8 +1014,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_114",
@@ -1136,8 +1023,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_115",
@@ -1146,8 +1032,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 1100.0,
     "dist_coast_km": 47.5,
-    "terrain_stratum": "Windward Ghats",
-    "is_cmz": true
+    "terrain_stratum": "Windward Ghats"
   },
   {
     "id": "pt_116",
@@ -1156,8 +1041,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 100.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_117",
@@ -1166,8 +1050,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 153.1,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_118",
@@ -1176,8 +1059,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 205.9,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_119",
@@ -1186,8 +1068,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 258.6,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_120",
@@ -1196,8 +1077,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 311.4,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_121",
@@ -1206,8 +1086,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 364.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_122",
@@ -1216,8 +1095,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 417.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_123",
@@ -1226,8 +1104,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 469.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_124",
@@ -1236,8 +1113,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 522.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_125",
@@ -1246,8 +1122,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 575.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_126",
@@ -1256,8 +1131,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 628.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_127",
@@ -1266,8 +1140,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 680.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_128",
@@ -1276,8 +1149,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 733.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_129",
@@ -1286,8 +1158,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_130",
@@ -1296,8 +1167,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 7.9,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_131",
@@ -1306,8 +1176,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 60.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_132",
@@ -1316,8 +1185,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 113.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_133",
@@ -1326,8 +1194,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 165.8,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_134",
@@ -1336,8 +1203,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 218.4,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_135",
@@ -1346,8 +1212,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 271.1,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_136",
@@ -1356,8 +1221,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 323.7,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_137",
@@ -1366,8 +1230,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 376.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_138",
@@ -1376,8 +1239,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 429.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_139",
@@ -1386,8 +1248,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 481.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_140",
@@ -1396,8 +1257,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 534.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_141",
@@ -1406,8 +1266,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 586.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_142",
@@ -1416,8 +1275,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 639.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_143",
@@ -1426,8 +1284,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 692.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_144",
@@ -1436,8 +1293,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 744.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_145",
@@ -1446,8 +1302,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_146",
@@ -1456,8 +1311,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 21.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_147",
@@ -1466,8 +1320,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 972.0,
     "dist_coast_km": 73.5,
-    "terrain_stratum": "Windward Ghats",
-    "is_cmz": true
+    "terrain_stratum": "Windward Ghats"
   },
   {
     "id": "pt_148",
@@ -1476,8 +1329,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 125.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_149",
@@ -1486,8 +1338,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 178.4,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_150",
@@ -1496,8 +1347,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 230.9,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_151",
@@ -1506,8 +1356,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 283.4,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_152",
@@ -1516,8 +1365,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 335.8,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_153",
@@ -1526,8 +1374,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 388.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_154",
@@ -1536,8 +1383,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 440.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_155",
@@ -1546,8 +1392,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 493.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_156",
@@ -1556,8 +1401,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 545.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_157",
@@ -1566,8 +1410,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 598.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_158",
@@ -1576,8 +1419,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 650.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_159",
@@ -1586,8 +1428,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 703.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_160",
@@ -1596,8 +1437,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 755.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_161",
@@ -1606,8 +1446,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_162",
@@ -1616,8 +1455,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 20.9,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_163",
@@ -1626,8 +1464,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 73.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_164",
@@ -1636,8 +1473,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 125.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_165",
@@ -1646,8 +1482,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 177.9,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_166",
@@ -1656,8 +1491,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 230.2,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_167",
@@ -1666,8 +1500,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 282.5,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_168",
@@ -1676,8 +1509,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 334.8,
-    "terrain_stratum": "Rain Shadow",
-    "is_cmz": true
+    "terrain_stratum": "Rain Shadow"
   },
   {
     "id": "pt_169",
@@ -1686,8 +1518,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 387.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_170",
@@ -1696,8 +1527,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 439.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_171",
@@ -1706,8 +1536,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 491.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_172",
@@ -1716,8 +1545,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 544.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_173",
@@ -1726,8 +1554,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 596.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_174",
@@ -1736,8 +1563,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 648.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_175",
@@ -1746,8 +1572,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 701.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_176",
@@ -1756,8 +1581,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 753.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_177",
@@ -1766,8 +1590,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_178",
@@ -1776,8 +1599,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 20.9,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_179",
@@ -1786,8 +1608,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 246.5,
     "dist_coast_km": 73.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_180",
@@ -1796,8 +1617,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 473.2,
     "dist_coast_km": 125.2,
-    "terrain_stratum": "Windward Ghats",
-    "is_cmz": true
+    "terrain_stratum": "Windward Ghats"
   },
   {
     "id": "pt_181",
@@ -1806,8 +1626,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 177.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_182",
@@ -1816,8 +1635,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 229.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_183",
@@ -1826,8 +1644,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 281.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_184",
@@ -1836,8 +1653,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 333.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_185",
@@ -1846,8 +1662,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 385.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_186",
@@ -1856,8 +1671,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 438.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_187",
@@ -1866,8 +1680,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 490.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_188",
@@ -1876,8 +1689,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 542.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_189",
@@ -1886,8 +1698,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 594.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_190",
@@ -1896,8 +1707,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 646.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_191",
@@ -1906,8 +1716,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 698.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_192",
@@ -1916,8 +1725,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 751.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_193",
@@ -1926,8 +1734,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_194",
@@ -1936,8 +1743,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 20.8,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_195",
@@ -1946,8 +1752,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 72.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_196",
@@ -1956,8 +1761,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 124.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_197",
@@ -1966,8 +1770,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 176.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_198",
@@ -1976,8 +1779,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 228.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_199",
@@ -1986,8 +1788,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 280.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_200",
@@ -1996,8 +1797,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 332.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_201",
@@ -2006,8 +1806,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 384.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_202",
@@ -2016,8 +1815,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 436.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_203",
@@ -2026,8 +1824,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 488.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_204",
@@ -2036,8 +1833,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 540.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_205",
@@ -2046,8 +1842,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 592.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_206",
@@ -2056,8 +1851,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 644.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_207",
@@ -2066,8 +1860,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 696.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_208",
@@ -2076,8 +1869,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 748.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_209",
@@ -2086,8 +1878,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_210",
@@ -2096,8 +1887,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 20.7,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_211",
@@ -2106,8 +1896,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 72.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_212",
@@ -2116,8 +1905,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 600.0,
     "dist_coast_km": 124.4,
-    "terrain_stratum": "Windward Ghats",
-    "is_cmz": true
+    "terrain_stratum": "Windward Ghats"
   },
   {
     "id": "pt_213",
@@ -2126,8 +1914,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 176.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_214",
@@ -2136,8 +1923,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 228.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_215",
@@ -2146,8 +1932,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 279.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_216",
@@ -2156,8 +1941,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 331.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_217",
@@ -2166,8 +1950,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 383.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_218",
@@ -2176,8 +1959,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 435.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_219",
@@ -2186,8 +1968,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 487.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_220",
@@ -2196,8 +1977,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 538.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_221",
@@ -2206,8 +1986,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 590.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_222",
@@ -2216,8 +1995,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 642.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_223",
@@ -2226,8 +2004,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 694.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_224",
@@ -2236,8 +2013,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 746.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_225",
@@ -2246,8 +2022,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 19.0,
     "dist_coast_km": 0.0,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_226",
@@ -2256,8 +2031,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 34.0,
     "dist_coast_km": 20.7,
-    "terrain_stratum": "Coastal Plain",
-    "is_cmz": true
+    "terrain_stratum": "Coastal Plain"
   },
   {
     "id": "pt_227",
@@ -2266,8 +2040,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 72.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_228",
@@ -2276,8 +2049,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 123.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_229",
@@ -2286,8 +2058,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 175.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_230",
@@ -2296,8 +2067,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 575.0,
     "dist_coast_km": 227.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_231",
@@ -2306,8 +2076,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 550.0,
     "dist_coast_km": 278.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_232",
@@ -2316,8 +2085,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 525.0,
     "dist_coast_km": 330.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_233",
@@ -2326,8 +2094,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 500.0,
     "dist_coast_km": 382.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_234",
@@ -2336,8 +2103,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 475.0,
     "dist_coast_km": 433.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_235",
@@ -2346,8 +2112,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 450.0,
     "dist_coast_km": 485.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_236",
@@ -2356,8 +2121,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 425.0,
     "dist_coast_km": 537.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_237",
@@ -2366,8 +2130,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 400.0,
     "dist_coast_km": 588.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_238",
@@ -2376,8 +2139,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 375.0,
     "dist_coast_km": 640.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_239",
@@ -2386,8 +2148,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 350.0,
     "dist_coast_km": 692.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_240",
@@ -2396,8 +2157,7 @@
     "region": "Maharashtra_Ghats",
     "elevation_m": 325.0,
     "dist_coast_km": 743.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_241",
@@ -2406,8 +2166,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 275.0,
     "dist_coast_km": 839.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_242",
@@ -2416,8 +2175,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 225.0,
     "dist_coast_km": 944.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_243",
@@ -2426,8 +2184,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1050.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_244",
@@ -2436,8 +2193,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1156.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_245",
@@ -2446,8 +2202,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1261.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_246",
@@ -2456,8 +2211,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1367.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_247",
@@ -2466,8 +2220,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 275.0,
     "dist_coast_km": 860.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_248",
@@ -2476,8 +2229,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 225.0,
     "dist_coast_km": 965.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_249",
@@ -2486,8 +2238,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1070.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_250",
@@ -2496,8 +2247,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1175.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_251",
@@ -2506,8 +2256,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1280.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_252",
@@ -2516,8 +2265,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1385.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_253",
@@ -2526,8 +2274,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 275.0,
     "dist_coast_km": 855.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_254",
@@ -2536,8 +2283,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 225.0,
     "dist_coast_km": 959.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_255",
@@ -2546,8 +2292,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1063.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_256",
@@ -2556,8 +2301,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1168.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_257",
@@ -2566,8 +2310,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1272.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_258",
@@ -2576,8 +2319,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1376.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_259",
@@ -2586,8 +2328,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 275.0,
     "dist_coast_km": 849.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_260",
@@ -2596,8 +2337,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 225.0,
     "dist_coast_km": 953.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_261",
@@ -2606,8 +2346,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1057.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_262",
@@ -2616,8 +2355,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1160.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_263",
@@ -2626,8 +2364,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1264.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_264",
@@ -2636,8 +2373,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1367.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_265",
@@ -2646,8 +2382,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 475.0,
     "dist_coast_km": 432.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_266",
@@ -2656,8 +2391,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 425.0,
     "dist_coast_km": 535.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_267",
@@ -2666,8 +2400,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 375.0,
     "dist_coast_km": 638.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_268",
@@ -2676,8 +2409,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 325.0,
     "dist_coast_km": 741.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_269",
@@ -2686,8 +2418,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 275.0,
     "dist_coast_km": 843.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_270",
@@ -2696,8 +2427,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 225.0,
     "dist_coast_km": 946.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_271",
@@ -2706,8 +2436,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1049.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_272",
@@ -2716,8 +2445,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1152.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_273",
@@ -2726,8 +2454,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1255.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_274",
@@ -2736,8 +2463,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1358.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_275",
@@ -2746,8 +2472,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 475.0,
     "dist_coast_km": 429.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_276",
@@ -2756,8 +2481,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 425.0,
     "dist_coast_km": 531.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_277",
@@ -2766,8 +2490,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 375.0,
     "dist_coast_km": 633.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_278",
@@ -2776,8 +2499,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 325.0,
     "dist_coast_km": 735.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_279",
@@ -2786,8 +2508,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 275.0,
     "dist_coast_km": 837.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_280",
@@ -2796,8 +2517,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 225.0,
     "dist_coast_km": 940.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_281",
@@ -2806,8 +2526,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1042.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_282",
@@ -2816,8 +2535,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1144.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_283",
@@ -2826,8 +2544,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1246.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_284",
@@ -2836,8 +2553,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1348.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_285",
@@ -2846,8 +2562,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 475.0,
     "dist_coast_km": 425.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_286",
@@ -2856,8 +2571,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 425.0,
     "dist_coast_km": 527.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_287",
@@ -2866,8 +2580,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 375.0,
     "dist_coast_km": 628.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_288",
@@ -2876,8 +2589,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 325.0,
     "dist_coast_km": 730.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_289",
@@ -2886,8 +2598,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 275.0,
     "dist_coast_km": 831.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_290",
@@ -2896,8 +2607,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 225.0,
     "dist_coast_km": 932.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_291",
@@ -2906,8 +2616,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1034.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_292",
@@ -2916,8 +2625,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1135.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_293",
@@ -2926,8 +2634,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1237.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_294",
@@ -2936,8 +2643,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1338.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_295",
@@ -2946,8 +2652,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 475.0,
     "dist_coast_km": 422.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_296",
@@ -2956,8 +2661,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 425.0,
     "dist_coast_km": 523.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_297",
@@ -2966,8 +2670,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 375.0,
     "dist_coast_km": 623.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_298",
@@ -2976,8 +2679,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 325.0,
     "dist_coast_km": 724.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_299",
@@ -2986,8 +2688,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 275.0,
     "dist_coast_km": 824.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_300",
@@ -2996,8 +2697,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 225.0,
     "dist_coast_km": 925.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_301",
@@ -3006,8 +2706,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1026.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_302",
@@ -3016,8 +2715,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1126.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_303",
@@ -3026,8 +2724,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1227.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_304",
@@ -3036,8 +2733,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1327.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_305",
@@ -3046,8 +2742,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 475.0,
     "dist_coast_km": 419.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_306",
@@ -3056,8 +2751,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 425.0,
     "dist_coast_km": 518.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_307",
@@ -3066,8 +2760,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 375.0,
     "dist_coast_km": 618.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_308",
@@ -3076,8 +2769,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 325.0,
     "dist_coast_km": 718.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_309",
@@ -3086,8 +2778,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 275.0,
     "dist_coast_km": 818.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_310",
@@ -3096,8 +2787,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 225.0,
     "dist_coast_km": 917.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_311",
@@ -3106,8 +2796,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1017.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_312",
@@ -3116,8 +2805,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1117.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_313",
@@ -3126,8 +2814,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1217.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_314",
@@ -3136,8 +2823,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1316.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_315",
@@ -3146,8 +2832,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 475.0,
     "dist_coast_km": 415.4,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_316",
@@ -3156,8 +2841,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 425.0,
     "dist_coast_km": 514.3,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_317",
@@ -3166,8 +2850,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 375.0,
     "dist_coast_km": 613.2,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_318",
@@ -3176,8 +2859,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 325.0,
     "dist_coast_km": 712.1,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_319",
@@ -3186,8 +2868,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 275.0,
     "dist_coast_km": 811.0,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_320",
@@ -3196,8 +2877,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 225.0,
     "dist_coast_km": 909.9,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_321",
@@ -3206,8 +2886,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1008.8,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_322",
@@ -3216,8 +2895,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1107.7,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_323",
@@ -3226,8 +2904,7 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1206.6,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   },
   {
     "id": "pt_324",
@@ -3236,7 +2913,6 @@
     "region": "Core_Monsoon_Zone",
     "elevation_m": 200.0,
     "dist_coast_km": 1305.5,
-    "terrain_stratum": "Central Plains",
-    "is_cmz": true
+    "terrain_stratum": "Central Plains"
   }
 ]

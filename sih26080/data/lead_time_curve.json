@@ -2,8 +2,8 @@
   {
     "lead_time": "Day-1 (T+24h)",
     "lead_hours": 24,
-    "raw_ecmwf_rmse_mm": 17.19,
-    "raw_ecmwf_ets": 0.1228,
+    "raw_ecmwf_rmse_mm": 17.31,
+    "raw_ecmwf_ets": 0.1245,
     "raw_ecmwf_bias": 0.5861,
     "rqdm_ets": 0.1681,
     "rqdm_bias": 1.0,

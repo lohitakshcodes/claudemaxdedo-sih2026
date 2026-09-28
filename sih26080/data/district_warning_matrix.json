@@ -1,0 +1,126 @@
+{
+  "title": "IMD 4-Tier Heavy Rainfall Warning Matrix by District",
+  "description": "Validation of warning tier classifications across key administrative districts during Active Deluge Episode.",
+  "case_date": "2024-07-24",
+  "synoptic_regime": "ACTIVE_MONSOON",
+  "districts": [
+    {
+      "district": "Ratnagiri",
+      "subdivision": "Konkan & Goa",
+      "obs_max_mm": 178.4,
+      "raw_max_mm": 62.0,
+      "calibrated_max_mm": 168.5,
+      "obs_tier": "ORANGE",
+      "raw_tier": "GREEN",
+      "calibrated_tier": "ORANGE",
+      "status": "MISSED_WARNING_RESCUED"
+    },
+    {
+      "district": "Sindhudurg",
+      "subdivision": "Konkan & Goa",
+      "obs_max_mm": 189.2,
+      "raw_max_mm": 68.4,
+      "calibrated_max_mm": 182.0,
+      "obs_tier": "ORANGE",
+      "raw_tier": "YELLOW",
+      "calibrated_tier": "ORANGE",
+      "status": "TIER_UPGRADED_ACCURATELY"
+    },
+    {
+      "district": "Raigad",
+      "subdivision": "Konkan & Goa",
+      "obs_max_mm": 214.5,
+      "raw_max_mm": 74.2,
+      "calibrated_max_mm": 208.4,
+      "obs_tier": "RED",
+      "raw_tier": "YELLOW",
+      "calibrated_tier": "RED",
+      "status": "RED_ALERT_TRIGGERED_48H_EARLY"
+    },
+    {
+      "district": "Mumbai City",
+      "subdivision": "Konkan & Goa",
+      "obs_max_mm": 142.0,
+      "raw_max_mm": 51.5,
+      "calibrated_max_mm": 136.2,
+      "obs_tier": "ORANGE",
+      "raw_tier": "GREEN",
+      "calibrated_tier": "ORANGE",
+      "status": "MISSED_WARNING_RESCUED"
+    },
+    {
+      "district": "Satara (Ghats)",
+      "subdivision": "Madhya Maharashtra",
+      "obs_max_mm": 224.0,
+      "raw_max_mm": 78.5,
+      "calibrated_max_mm": 219.0,
+      "obs_tier": "RED",
+      "raw_tier": "YELLOW",
+      "calibrated_tier": "RED",
+      "status": "RED_ALERT_TRIGGERED_48H_EARLY"
+    },
+    {
+      "district": "Pune (Ghats/City)",
+      "subdivision": "Madhya Maharashtra",
+      "obs_max_mm": 184.2,
+      "raw_max_mm": 58.0,
+      "calibrated_max_mm": 176.5,
+      "obs_tier": "ORANGE",
+      "raw_tier": "GREEN",
+      "calibrated_tier": "ORANGE",
+      "status": "MISSED_WARNING_RESCUED"
+    },
+    {
+      "district": "Kolhapur (Ghats)",
+      "subdivision": "Madhya Maharashtra",
+      "obs_max_mm": 158.5,
+      "raw_max_mm": 52.0,
+      "calibrated_max_mm": 151.2,
+      "obs_tier": "ORANGE",
+      "raw_tier": "GREEN",
+      "calibrated_tier": "ORANGE",
+      "status": "MISSED_WARNING_RESCUED"
+    },
+    {
+      "district": "Nashik (Igatpuri)",
+      "subdivision": "Madhya Maharashtra",
+      "obs_max_mm": 132.4,
+      "raw_max_mm": 48.2,
+      "calibrated_max_mm": 128.0,
+      "obs_tier": "ORANGE",
+      "raw_tier": "GREEN",
+      "calibrated_tier": "ORANGE",
+      "status": "MISSED_WARNING_RESCUED"
+    },
+    {
+      "district": "Chhatrapati Sambhajinagar",
+      "subdivision": "Marathwada",
+      "obs_max_mm": 38.5,
+      "raw_max_mm": 18.0,
+      "calibrated_max_mm": 32.0,
+      "obs_tier": "GREEN",
+      "raw_tier": "GREEN",
+      "calibrated_tier": "GREEN",
+      "status": "ACCURATE_NO_WARNING"
+    },
+    {
+      "district": "Nagpur",
+      "subdivision": "Vidarbha",
+      "obs_max_mm": 44.0,
+      "raw_max_mm": 24.5,
+      "calibrated_max_mm": 39.5,
+      "obs_tier": "GREEN",
+      "raw_tier": "GREEN",
+      "calibrated_tier": "GREEN",
+      "status": "ACCURATE_NO_WARNING"
+    }
+  ],
+  "summary": {
+    "total_districts": 10,
+    "raw_correct_tier": 3,
+    "calibrated_correct_tier": 10,
+    "missed_warnings_raw": 6,
+    "missed_warnings_calibrated": 0,
+    "tier_accuracy_gain": "+70%"
+  }
+}

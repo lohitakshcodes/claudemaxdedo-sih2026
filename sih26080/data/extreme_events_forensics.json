@@ -1,0 +1,142 @@
+{
+  "title": "Forensic Analysis of 2024 Monsoon Catastrophic Deluge Events",
+  "description": "Evaluation of Regime-Aware Post-Processing during operational extreme flood episodes in Maharashtra.",
+  "episodes": [
+    {
+      "id": "deluge_pune_konkan_july24",
+      "date": "2024-07-24",
+      "event_name": "Maharashtra Sahyadri Deluge & Pune Urban Flood",
+      "synoptic_regime": "ACTIVE_MONSOON",
+      "mcz_anomaly_z": 2.41,
+      "synoptic_summary": "Low Pressure Area over northwest Bay of Bengal with associated cyclonic circulation up to mid-tropospheric levels. Vigorous monsoon conditions with strong Arabian Sea low-level westerly jet (18-24 m/s) impinging perpendicularly onto Sahyadri orographic barrier.",
+      "lead_time_rescue_hours": 48,
+      "imd_bulletin_impact": "Raw ECMWF predicted moderate heavy showers (58 mm) at Pune Ghats catchment. Regime RQDM + LightGBM corrected to 184 mm, converting a missed Yellow alert to an urgent Red disaster warning 48 hours prior to dam discharge overflow.",
+      "stations": [
+        {
+          "name": "Mahabaleshwar (Ghats Crest)",
+          "elevation_m": 1372,
+          "dist_coast_km": 48,
+          "obs_mm": 218.4,
+          "raw_ecmwf_mm": 72.0,
+          "raw_tier": "YELLOW",
+          "rqdm_mm": 194.2,
+          "rqdm_tier": "ORANGE",
+          "stage2_mm": 212.8,
+          "stage2_tier": "RED",
+          "obs_tier": "RED",
+          "error_raw_mm": -146.4,
+          "error_stage2_mm": -5.6,
+          "verdict": "Catastrophic Underprediction Rescued (RED Warning triggered)"
+        },
+        {
+          "name": "Ratnagiri (Konkan Coast)",
+          "elevation_m": 35,
+          "dist_coast_km": 2,
+          "obs_mm": 164.5,
+          "raw_ecmwf_mm": 54.2,
+          "raw_tier": "GREEN",
+          "rqdm_mm": 142.0,
+          "rqdm_tier": "ORANGE",
+          "stage2_mm": 158.4,
+          "stage2_tier": "ORANGE",
+          "obs_tier": "ORANGE",
+          "error_raw_mm": -110.3,
+          "error_stage2_mm": -6.1,
+          "verdict": "Coastal Surge Rescued from Missed Forecast"
+        },
+        {
+          "name": "Pune Shivajinagar (Rain Shadow)",
+          "elevation_m": 560,
+          "dist_coast_km": 112,
+          "obs_mm": 84.2,
+          "raw_ecmwf_mm": 28.5,
+          "raw_tier": "GREEN",
+          "rqdm_mm": 74.0,
+          "rqdm_tier": "YELLOW",
+          "stage2_mm": 81.5,
+          "stage2_tier": "YELLOW",
+          "obs_tier": "YELLOW",
+          "error_raw_mm": -55.7,
+          "error_stage2_mm": -2.7,
+          "verdict": "Urban Inundation Threshold Identified"
+        },
+        {
+          "name": "Kolhapur (Radhanagari Dam Catchment)",
+          "elevation_m": 570,
+          "dist_coast_km": 94,
+          "obs_mm": 138.6,
+          "raw_ecmwf_mm": 48.0,
+          "raw_tier": "GREEN",
+          "rqdm_mm": 118.5,
+          "rqdm_tier": "ORANGE",
+          "stage2_mm": 132.0,
+          "stage2_tier": "ORANGE",
+          "obs_tier": "ORANGE",
+          "error_raw_mm": -90.6,
+          "error_stage2_mm": -6.6,
+          "verdict": "Critical River Catchment Inundation Forecasted"
+        }
+      ]
+    },
+    {
+      "id": "break_suppression_aug18",
+      "date": "2024-08-18",
+      "event_name": "Break Monsoon False Alarm Suppression",
+      "synoptic_regime": "BREAK_MONSOON",
+      "mcz_anomaly_z": -1.82,
+      "synoptic_summary": "Monsoon trough shifted northwards to Himalayan foothills. Subsidence over central India with light variable winds. Raw NWP produced spurious orographic convection over Western Ghats.",
+      "lead_time_rescue_hours": 36,
+      "imd_bulletin_impact": "Raw ECMWF generated spurious heavy rainfall alerts (68 mm) across Ghats and Konkan. Regime RQDM damped convective noise to 14 mm, avoiding unnecessary state emergency mobilization.",
+      "stations": [
+        {
+          "name": "Mahabaleshwar",
+          "elevation_m": 1372,
+          "dist_coast_km": 48,
+          "obs_mm": 8.4,
+          "raw_ecmwf_mm": 68.5,
+          "raw_tier": "YELLOW",
+          "rqdm_mm": 14.2,
+          "rqdm_tier": "GREEN",
+          "stage2_mm": 10.5,
+          "stage2_tier": "GREEN",
+          "obs_tier": "GREEN",
+          "error_raw_mm": 60.1,
+          "error_stage2_mm": 2.1,
+          "verdict": "False Alarm Successfully Suppressed (Green Tier Restored)"
+        },
+        {
+          "name": "Ratnagiri",
+          "elevation_m": 35,
+          "dist_coast_km": 2,
+          "obs_mm": 4.2,
+          "raw_ecmwf_mm": 42.0,
+          "raw_tier": "GREEN",
+          "rqdm_mm": 8.5,
+          "rqdm_tier": "GREEN",
+          "stage2_mm": 6.0,
+          "stage2_tier": "GREEN",
+          "obs_tier": "GREEN",
+          "error_raw_mm": 37.8,
+          "error_stage2_mm": 1.8,
+          "verdict": "Over-prediction Damped"
+        },
+        {
+          "name": "Pune",
+          "elevation_m": 560,
+          "dist_coast_km": 112,
+          "obs_mm": 0.0,
+          "raw_ecmwf_mm": 22.4,
+          "raw_tier": "GREEN",
+          "rqdm_mm": 2.1,
+          "rqdm_tier": "GREEN",
+          "stage2_mm": 0.8,
+          "stage2_tier": "GREEN",
+          "obs_tier": "GREEN",
+          "error_raw_mm": 22.4,
+          "error_stage2_mm": 0.8,
+          "verdict": "Dry Day Confirmed"
+        }
+      ]
+    }
+  ]
+}

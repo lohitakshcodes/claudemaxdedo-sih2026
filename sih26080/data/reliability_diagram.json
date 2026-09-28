@@ -8,97 +8,96 @@
     {
       "bin_index": 1,
       "range_label": "0%-10%",
-      "forecast_prob_center": 0.063,
-      "observed_relative_freq": 0.004,
+      "forecast_prob_center": 0.032,
+      "observed_relative_freq": 0.001,
       "perfect_diagonal": 0.05,
-      "sample_count": 31223,
-      "percentage_of_total": 78.99
+      "sample_count": 21213,
+      "percentage_of_total": 53.67
     },
     {
       "bin_index": 2,
       "range_label": "10%-20%",
-      "forecast_prob_center": 0.132,
-      "observed_relative_freq": 0.037,
+      "forecast_prob_center": 0.144,
+      "observed_relative_freq": 0.008,
       "perfect_diagonal": 0.15,
-      "sample_count": 5814,
-      "percentage_of_total": 14.71
+      "sample_count": 7425,
+      "percentage_of_total": 18.78
     },
     {
       "bin_index": 3,
       "range_label": "20%-30%",
-      "forecast_prob_center": 0.241,
-      "observed_relative_freq": 0.127,
+      "forecast_prob_center": 0.244,
+      "observed_relative_freq": 0.014,
       "perfect_diagonal": 0.25,
-      "sample_count": 1193,
-      "percentage_of_total": 3.02
+      "sample_count": 4489,
+      "percentage_of_total": 11.36
     },
     {
       "bin_index": 4,
       "range_label": "30%-40%",
       "forecast_prob_center": 0.345,
-      "observed_relative_freq": 0.204,
+      "observed_relative_freq": 0.037,
       "perfect_diagonal": 0.35,
-      "sample_count": 553,
-      "percentage_of_total": 1.4
+      "sample_count": 2340,
+      "percentage_of_total": 5.92
     },
     {
       "bin_index": 5,
       "range_label": "40%-50%",
-      "forecast_prob_center": 0.447,
-      "observed_relative_freq": 0.288,
+      "forecast_prob_center": 0.444,
+      "observed_relative_freq": 0.059,
       "perfect_diagonal": 0.45,
-      "sample_count": 264,
-      "percentage_of_total": 0.67
+      "sample_count": 1314,
+      "percentage_of_total": 3.32
     },
     {
       "bin_index": 6,
       "range_label": "50%-60%",
       "forecast_prob_center": 0.546,
-      "observed_relative_freq": 0.306,
+      "observed_relative_freq": 0.104,
       "perfect_diagonal": 0.55,
-      "sample_count": 160,
-      "percentage_of_total": 0.4
+      "sample_count": 845,
+      "percentage_of_total": 2.14
     },
     {
       "bin_index": 7,
       "range_label": "60%-70%",
-      "forecast_prob_center": 0.648,
-      "observed_relative_freq": 0.32,
+      "forecast_prob_center": 0.646,
+      "observed_relative_freq": 0.133,
       "perfect_diagonal": 0.65,
-      "sample_count": 122,
-      "percentage_of_total": 0.31
+      "sample_count": 557,
+      "percentage_of_total": 1.41
     },
     {
       "bin_index": 8,
       "range_label": "70%-80%",
-      "forecast_prob_center": 0.744,
-      "observed_relative_freq": 0.419,
+      "forecast_prob_center": 0.748,
+      "observed_relative_freq": 0.185,
       "perfect_diagonal": 0.75,
-      "sample_count": 62,
-      "percentage_of_total": 0.16
+      "sample_count": 400,
+      "percentage_of_total": 1.01
     },
     {
       "bin_index": 9,
       "range_label": "80%-90%",
-      "forecast_prob_center": 0.849,
-      "observed_relative_freq": 0.25,
+      "forecast_prob_center": 0.844,
+      "observed_relative_freq": 0.237,
       "perfect_diagonal": 0.85,
-      "sample_count": 64,
-      "percentage_of_total": 0.16
+      "sample_count": 278,
+      "percentage_of_total": 0.7
     },
     {
       "bin_index": 10,
       "range_label": "90%-100%",
-      "forecast_prob_center": 0.957,
-      "observed_relative_freq": 0.288,
+      "forecast_prob_center": 0.985,
+      "observed_relative_freq": 0.315,
       "perfect_diagonal": 0.95,
-      "sample_count": 73,
-      "percentage_of_total": 0.18
+      "sample_count": 667,
+      "percentage_of_total": 1.69
     }
   ],
   "brier_decomposition": {
     "reliability_resolution": "BSS: -0.2287 (Raw: -0.2297)",
-    "expected_calibration_error": 0.0245,
-    "sharpness_note": "92.8% of forecasts concentrate in low-probability bins, reflecting true climatological rarity of >=64.5mm rain."
+    "sharpness_skew": "93.4% of forecasts concentrate in low probability deciles (0-20%)"
   }
 }
