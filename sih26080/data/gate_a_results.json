@@ -66,8 +66,8 @@
     },
     "COASTAL_OFFSHORE_TROUGH": {
       "sample_n": 0,
-      "raw_rmse": NaN,
-      "rqdm_rmse": NaN,
+      "raw_rmse": null,
+      "rqdm_rmse": null,
       "raw_ets": 0.0,
       "rqdm_ets": 0.0
     },

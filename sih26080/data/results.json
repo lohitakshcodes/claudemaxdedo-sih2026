@@ -18,8 +18,8 @@
       "attribution": "Weather data by Open-Meteo.com under Creative Commons Attribution 4.0 International (CC BY 4.0)"
     }
   },
-  "timestamp_utc": "2026-09-28T10:54:33Z",
-  "commit_hash": "f8236de",
+  "timestamp_utc": "2026-09-28T11:38:29Z",
+  "commit_hash": "7103e3c",
   "domain": {
     "total_points": 324,
     "regions": {
@@ -194,22 +194,22 @@
       "sample_n": 0,
       "events_heavy_rain": 0,
       "raw_ecmwf": {
-        "rmse": NaN,
+        "rmse": null,
         "ets": 0.0,
         "bias": 1.0
       },
       "global_eqm": {
-        "rmse": NaN,
+        "rmse": null,
         "ets": 0.0,
         "bias": 1.0
       },
       "regime_rqdm": {
-        "rmse": NaN,
+        "rmse": null,
         "ets": 0.0,
         "bias": 1.0
       },
       "stage2_corrector": {
-        "rmse": NaN,
+        "rmse": null,
         "ets": 0.0,
         "bias": 1.0
       }

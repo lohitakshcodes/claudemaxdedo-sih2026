@@ -1,8 +1,8 @@
 {
   "manifest_version": "1.0",
-  "created_at_utc": "2026-09-28T10:54:33Z",
-  "commit_hash": "f8236de",
-  "results_json_sha256": "cf83911e3aea68f2c6ad537d64aadc03c08699ac2f6286cf8f8ebb2e7c38afea",
+  "created_at_utc": "2026-09-28T11:38:29Z",
+  "commit_hash": "7103e3c",
+  "results_json_sha256": "ca10dbb2beb2dd63dfa1a3bdab3217a3f2e9ce222d6641694d8d6c2c271e0d9e",
   "data_sources": [
     {
       "name": "ECMWF IFS (0.25\u00b0 HRES)",

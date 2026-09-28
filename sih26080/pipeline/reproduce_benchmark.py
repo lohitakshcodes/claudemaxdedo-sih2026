@@ -557,6 +557,17 @@ def run_master_reproducible_pipeline():
         "data_availability_probe": probe_availability,
     }
 
+    def sanitize_nan(obj):
+        if isinstance(obj, float) and (np.isnan(obj) or np.isinf(obj)):
+            return None
+        if isinstance(obj, dict):
+            return {k: sanitize_nan(v) for k, v in obj.items()}
+        if isinstance(obj, list):
+            return [sanitize_nan(v) for v in obj]
+        return obj
+
+    results_data = sanitize_nan(results_data)
+
     with open(results_path, "w") as f:
         json.dump(results_data, f, indent=2)
 
