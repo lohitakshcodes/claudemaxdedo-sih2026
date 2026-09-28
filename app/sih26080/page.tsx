@@ -93,8 +93,14 @@ export default function SIH26080Portal() {
 
   const rawEcmwf = benchmark["Raw ECMWF IFS (0.25°)"];
   const regimeRqdm = benchmark["Regime-Aware RQDM (Stage 1)"];
-  const stage2Corrector = benchmark["RQDM + Spatial Corrector (Stage 2)"];
   const globalEqm = benchmark["Global Quantile Mapping (EQM)"];
+  const stage2Corrector = benchmark["RQDM + Spatial Corrector (Stage 2)"];
+
+  // Null-safe formatter for undefined/zero-event metrics (Rule: n/a where undefined)
+  const formatMetric = (val: number | null | undefined, digits: number = 2, unit: string = ""): string => {
+    if (val === null || val === undefined || isNaN(val)) return "n/a";
+    return `${val.toFixed(digits)}${unit}`;
+  };
 
   // Export JSON summary handler
   const handleExportJSON = () => {
@@ -425,19 +431,19 @@ export default function SIH26080Portal() {
                     <div className="space-y-1 pt-1">
                       <div className="flex justify-between text-zinc-600">
                         <span>Raw ECMWF:</span>
-                        <span>RMSE: {r.raw_ecmwf.rmse.toFixed(1)} mm | ETS: {r.raw_ecmwf.ets.toFixed(2)} | BIAS: {r.raw_ecmwf.bias.toFixed(2)}</span>
+                        <span>RMSE: {formatMetric(r.raw_ecmwf?.rmse, 1, " mm")} | ETS: {formatMetric(r.raw_ecmwf?.ets, 2)} | BIAS: {formatMetric(r.raw_ecmwf?.bias, 2)}</span>
                       </div>
                       <div className="flex justify-between text-zinc-600">
                         <span>Global EQM:</span>
-                        <span>RMSE: {r.global_eqm.rmse.toFixed(1)} mm | ETS: {r.global_eqm.ets.toFixed(2)} | BIAS: {r.global_eqm.bias.toFixed(2)}</span>
+                        <span>RMSE: {formatMetric(r.global_eqm?.rmse, 1, " mm")} | ETS: {formatMetric(r.global_eqm?.ets, 2)} | BIAS: {formatMetric(r.global_eqm?.bias, 2)}</span>
                       </div>
                       <div className="flex justify-between font-bold text-blue-700">
                         <span>Regime RQDM (Ours):</span>
-                        <span>RMSE: {r.regime_rqdm.rmse.toFixed(1)} mm | ETS: {r.regime_rqdm.ets.toFixed(2)} | BIAS: {r.regime_rqdm.bias.toFixed(2)}</span>
+                        <span>RMSE: {formatMetric(r.regime_rqdm?.rmse, 1, " mm")} | ETS: {formatMetric(r.regime_rqdm?.ets, 2)} | BIAS: {formatMetric(r.regime_rqdm?.bias, 2)}</span>
                       </div>
                       <div className="flex justify-between font-bold text-emerald-800">
                         <span>Stage 2 Corrector:</span>
-                        <span>RMSE: {r.stage2_corrector.rmse.toFixed(1)} mm | ETS: {r.stage2_corrector.ets.toFixed(2)} | BIAS: {r.stage2_corrector.bias.toFixed(2)}</span>
+                        <span>RMSE: {formatMetric(r.stage2_corrector?.rmse, 1, " mm")} | ETS: {formatMetric(r.stage2_corrector?.ets, 2)} | BIAS: {formatMetric(r.stage2_corrector?.bias, 2)}</span>
                       </div>
                     </div>
                   </div>
