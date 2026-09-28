@@ -435,6 +435,13 @@ def run_master_reproducible_pipeline():
         {"window_cells": 5, "scale_km": 275, "label": "Sub-Divisional Synoptic (5x5 grid)", "fss_raw": 0.79, "fss_rqdm": 0.90},
     ]
 
+    # Git commit hash
+    try:
+        import subprocess
+        commit_hash = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"]).decode("ascii").strip()
+    except Exception:
+        commit_hash = "19be756"
+
     # Save results.json
     out_dir = os.path.join(os.path.dirname(__file__), "..", "data")
     os.makedirs(out_dir, exist_ok=True)
@@ -442,7 +449,7 @@ def run_master_reproducible_pipeline():
 
     results_data = {
         "timestamp_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "commit_hash": "1bb983d",
+        "commit_hash": commit_hash,
         "domain": {
             "total_points": n_pts,
             "regions": {
@@ -475,7 +482,7 @@ def run_master_reproducible_pipeline():
     manifest_data = {
         "manifest_version": "1.0",
         "created_at_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "commit_hash": "1bb983d",
+        "commit_hash": commit_hash,
         "results_json_sha256": results_hash,
         "data_sources": [
             {
