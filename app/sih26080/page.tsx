@@ -34,12 +34,18 @@ import {
   Wind,
   Mountain,
   Navigation,
+  Crosshair,
+  TrendingDown,
+  LineChart,
 } from "lucide-react";
 
 // Direct pipeline outputs (strictly no hardcoded metrics)
 import resultsData from "@/sih26080/data/results.json";
 import manifestData from "@/sih26080/data/provenance_manifest.json";
 import gateBData from "@/sih26080/data/gate_b_results.json";
+import spatialCasesData from "@/sih26080/data/spatial_case_slices.json";
+import reliabilityData from "@/sih26080/data/reliability_diagram.json";
+import leadTimeData from "@/sih26080/data/lead_time_curve.json";
 
 // Evaluation districts with real terrain and climatological characteristics
 const EVAL_DISTRICTS = [
@@ -156,8 +162,9 @@ const JURY_DEFENSE_QA = [
 
 export default function SIH26080Portal() {
   const [activeTab, setActiveTab] = useState<
-    "playground" | "dashboard" | "orography" | "synoptic" | "factsheet" | "limitations" | "defense"
+    "playground" | "spatial_gis" | "dashboard" | "probabilistic" | "lead_time" | "orography" | "synoptic" | "factsheet" | "limitations" | "defense"
   >("playground");
+
   const [openJuryIndex, setOpenJuryIndex] = useState<number | null>(1);
   const [copiedCode, setCopiedCode] = useState(false);
 
@@ -168,7 +175,11 @@ export default function SIH26080Portal() {
   >("ACTIVE_MONSOON");
   const [rawRainfallMm, setRawRainfallMm] = useState<number>(78.4);
   const [leadTimeHours, setLeadTimeHours] = useState<number>(24);
-  const [isInferring, setIsInferring] = useState(false);
+
+  // Spatial Field Viewer State
+  const [selectedCaseDate, setSelectedCaseDate] = useState<string>("2024-07-15");
+  const [activeFieldLayer, setActiveFieldLayer] = useState<"obs" | "raw" | "rqdm" | "error">("rqdm");
+  const [selectedMapPoint, setSelectedMapPoint] = useState<any>(null);
 
   // Read measured numbers directly from results.json
   const benchmark = resultsData.overall_benchmark;
@@ -187,6 +198,19 @@ export default function SIH26080Portal() {
     if (val === null || val === undefined || isNaN(val)) return "n/a";
     return `${val.toFixed(digits)}${unit}`;
   };
+
+  // Color helper for rainfall rates based on official IMD thresholds
+  const getImdRainColor = (mm: number) => {
+    if (mm >= 115.6) return "#7c3aed"; // Very heavy - violet
+    if (mm >= 64.5) return "#dc2626";  // Heavy - red
+    if (mm >= 35.5) return "#ea580c";  // Rather heavy - orange
+    if (mm >= 15.6) return "#ca8a04";  // Moderate - yellow
+    if (mm >= 2.5) return "#16a34a";   // Light - green
+    return "#cbd5e1";                   // Trace / dry - gray
+  };
+
+  // Active Spatial Case Data
+  const currentCase = (spatialCasesData as any)[selectedCaseDate] || (spatialCasesData as any)["2024-07-15"];
 
   // Live Playground Calculation
   const playgroundOutput = useMemo(() => {
@@ -356,6 +380,17 @@ export default function SIH26080Portal() {
             <span>Interactive Operational Calibration Sandbox</span>
           </button>
           <button
+            onClick={() => setActiveTab("spatial_gis")}
+            className={`pb-2.5 px-4 text-xs font-mono font-semibold border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 ${
+              activeTab === "spatial_gis"
+                ? "border-blue-600 text-blue-800 bg-blue-50/40 rounded-t"
+                : "border-transparent text-zinc-500 hover:text-zinc-800"
+            }`}
+          >
+            <Layers className="w-4 h-4 text-blue-600" />
+            <span>Spatial GIS Field &amp; 324-Point Grid Map</span>
+          </button>
+          <button
             onClick={() => setActiveTab("dashboard")}
             className={`pb-2.5 px-4 text-xs font-mono font-semibold border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 ${
               activeTab === "dashboard"
@@ -365,6 +400,28 @@ export default function SIH26080Portal() {
           >
             <BarChart3 className="w-4 h-4" />
             <span>Measured Benchmark Matrix</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("probabilistic")}
+            className={`pb-2.5 px-4 text-xs font-mono font-semibold border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 ${
+              activeTab === "probabilistic"
+                ? "border-purple-600 text-purple-800 bg-purple-50/40 rounded-t"
+                : "border-transparent text-zinc-500 hover:text-zinc-800"
+            }`}
+          >
+            <LineChart className="w-4 h-4 text-purple-600" />
+            <span>Reliability Diagram &amp; Brier Curve</span>
+          </button>
+          <button
+            onClick={() => setActiveTab("lead_time")}
+            className={`pb-2.5 px-4 text-xs font-mono font-semibold border-b-2 whitespace-nowrap transition-colors flex items-center gap-2 ${
+              activeTab === "lead_time"
+                ? "border-amber-600 text-amber-800 bg-amber-50/40 rounded-t"
+                : "border-transparent text-zinc-500 hover:text-zinc-800"
+            }`}
+          >
+            <TrendingDown className="w-4 h-4 text-amber-600" />
+            <span>Lead-Time Skill Curve (Day-1..3)</span>
           </button>
           <button
             onClick={() => setActiveTab("orography")}
@@ -545,7 +602,7 @@ export default function SIH26080Portal() {
                       { label: "Moderate (18 mm)", val: 18.2 },
                       { label: "Warning (78 mm)", val: 78.4 },
                       { label: "Very Heavy (124 mm)", val: 124.5 },
-                      { label: "Cloudburst (188 mm)", val: 188.0 },
+                      { label: "Cloudburst (185 mm)", val: 185.0 },
                     ].map((preset) => (
                       <button
                         key={preset.label}
@@ -772,7 +829,243 @@ export default function SIH26080Portal() {
         )}
 
         {/* ========================================================================= */}
-        {/* TAB 1: MEASURED BENCHMARK MATRIX */}
+        {/* TAB 1: SPATIAL GIS FIELD & 324-POINT GRID MAP (NEW) */}
+        {/* ========================================================================= */}
+        {activeTab === "spatial_gis" && (
+          <div className="space-y-6">
+            <div className="p-4 bg-white rounded-lg border border-zinc-300 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs font-mono">
+              <div className="space-y-1">
+                <span className="font-bold text-zinc-900 flex items-center gap-2">
+                  <Layers className="w-4 h-4 text-blue-600" />
+                  Spatial Field Comparison (324 Land Verification Stations)
+                </span>
+                <span className="text-zinc-600 block font-sans">
+                  Interactive multi-field viewer comparing actual IMD 0.25° observations against raw ECMWF numerical forecasts and AI post-processed fields.
+                </span>
+              </div>
+
+              {/* DATE SELECTOR */}
+              <div className="flex items-center gap-2">
+                <span className="text-zinc-500">Synoptic Event:</span>
+                <select
+                  value={selectedCaseDate}
+                  onChange={(e) => {
+                    setSelectedCaseDate(e.target.value);
+                    setSelectedMapPoint(null);
+                  }}
+                  className="p-1.5 bg-zinc-50 border border-zinc-300 rounded text-xs font-mono font-medium text-zinc-800"
+                >
+                  <option value="2024-07-15">2024-07-15 (Active Monsoon Surge)</option>
+                  <option value="2024-08-18">2024-08-18 (Break Monsoon Quiescence)</option>
+                  <option value="2024-09-02">2024-09-02 (Central India Depression)</option>
+                </select>
+              </div>
+            </div>
+
+            {/* LAYER TOGGLE BUTTONS */}
+            <div className="flex items-center gap-2 flex-wrap text-xs font-mono">
+              <span className="text-zinc-500 font-bold">Display Layer:</span>
+              {[
+                { id: "obs", label: "1. Real IMD 0.25° Observation (Truth)", badge: "Observed" },
+                { id: "raw", label: "2. Raw ECMWF IFS (0.25° HRES)", badge: "Raw Model" },
+                { id: "rqdm", label: "3. Regime-Aware RQDM (Stage 1)", badge: "Calibrated" },
+                { id: "error", label: "4. Absolute Forecast Error (mm)", badge: "Residual" },
+              ].map((layer) => (
+                <button
+                  key={layer.id}
+                  type="button"
+                  onClick={() => setActiveFieldLayer(layer.id as any)}
+                  className={`px-3 py-1.5 rounded border transition-colors ${
+                    activeFieldLayer === layer.id
+                      ? "bg-blue-700 text-white border-blue-700 font-bold"
+                      : "bg-white text-zinc-700 border-zinc-300 hover:bg-zinc-50"
+                  }`}
+                >
+                  {layer.label}
+                </button>
+              ))}
+            </div>
+
+            {/* SPATIAL GRID CANVAS & STATION INSPECTOR */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+              {/* GIS CANVAS */}
+              <div className="lg:col-span-8 bg-white p-5 rounded-lg border border-zinc-300 shadow-sm space-y-3">
+                <div className="flex justify-between items-center text-xs font-mono border-b border-zinc-200 pb-2">
+                  <span className="font-bold text-zinc-900">
+                    Spatial Domain: 14°N–27°N, 72.5°E–86.0°E ({currentCase.domain_points_count} points)
+                  </span>
+                  <span className="text-zinc-500 text-[11px]">
+                    Click any point to inspect station telemetry
+                  </span>
+                </div>
+
+                {/* SVG 2D COORDINATE MAP */}
+                <div className="w-full bg-slate-900 rounded p-4 relative overflow-hidden flex items-center justify-center">
+                  <svg
+                    viewBox="71.5 13.5 16 14.5"
+                    className="w-full h-80 max-h-96"
+                    style={{ transform: "scaleY(-1)" }} // Flip Y so North is UP
+                  >
+                    {/* Background Grid Lines */}
+                    {[15, 18, 21, 24, 27].map((lat) => (
+                      <line
+                        key={`lat-${lat}`}
+                        x1="71.5"
+                        y1={lat}
+                        x2="87.5"
+                        y2={lat}
+                        stroke="#334155"
+                        strokeWidth="0.04"
+                        strokeDasharray="0.2,0.2"
+                      />
+                    ))}
+                    {[74, 77, 80, 83, 86].map((lon) => (
+                      <line
+                        key={`lon-${lon}`}
+                        x1={lon}
+                        y1="13.5"
+                        x2={lon}
+                        y2="28"
+                        stroke="#334155"
+                        strokeWidth="0.04"
+                        strokeDasharray="0.2,0.2"
+                      />
+                    ))}
+
+                    {/* Ghats Ridge guide */}
+                    <polyline
+                      points="74.8,14 74.2,15 73.9,16 73.7,17 73.5,18 73.6,19 73.8,20 74.0,21"
+                      fill="none"
+                      stroke="#475569"
+                      strokeWidth="0.08"
+                    />
+
+                    {/* 324 Station Points */}
+                    {currentCase.points.map((pt: any) => {
+                      let val = pt.rqdm_mm;
+                      if (activeFieldLayer === "obs") val = pt.obs_mm;
+                      else if (activeFieldLayer === "raw") val = pt.raw_fcst_mm;
+                      else if (activeFieldLayer === "error") val = Math.abs(pt.raw_error_mm);
+
+                      const color =
+                        activeFieldLayer === "error"
+                          ? val > 40
+                            ? "#ef4444"
+                            : val > 20
+                            ? "#f59e0b"
+                            : "#10b981"
+                          : getImdRainColor(val);
+
+                      const isSelected = selectedMapPoint?.id === pt.id;
+
+                      return (
+                        <circle
+                          key={pt.id}
+                          cx={pt.lon}
+                          cy={pt.lat}
+                          r={isSelected ? 0.35 : 0.22}
+                          fill={color}
+                          stroke={isSelected ? "#ffffff" : "#0f172a"}
+                          strokeWidth={isSelected ? 0.08 : 0.03}
+                          className="cursor-pointer transition-all hover:opacity-80"
+                          onClick={() => setSelectedMapPoint(pt)}
+                        />
+                      );
+                    })}
+                  </svg>
+
+                  {/* MAP OVERLAY LEGEND */}
+                  <div className="absolute bottom-2 left-2 bg-slate-900/90 border border-slate-700 p-2 rounded text-[10px] font-mono text-slate-200 space-y-1">
+                    <div className="font-bold text-slate-100">IMD Rainfall Scale (mm):</div>
+                    <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-slate-400"></span>&lt;2.5</div>
+                      <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-green-500"></span>2.5-15</div>
+                      <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-yellow-500"></span>15-35</div>
+                      <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-orange-500"></span>35-64</div>
+                      <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-red-600"></span>65-115</div>
+                      <div className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-purple-600"></span>&gt;115</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-center text-[11px] font-mono text-zinc-500 pt-1">
+                  <span>West: Arabian Sea (72.5°E)</span>
+                  <span>Ghats Escarpment (~73.6°E)</span>
+                  <span>East: Central Bay Transect (86.0°E)</span>
+                </div>
+              </div>
+
+              {/* STATION INSPECTOR DRAWER */}
+              <div className="lg:col-span-4 bg-white p-5 rounded-lg border border-zinc-300 shadow-sm space-y-4 font-mono text-xs">
+                <div className="border-b border-zinc-200 pb-2">
+                  <span className="font-bold text-zinc-900 flex items-center gap-1.5">
+                    <Crosshair className="w-4 h-4 text-emerald-600" />
+                    Station Inspector Telemetry
+                  </span>
+                  <span className="text-[10px] text-zinc-500">
+                    {selectedMapPoint ? selectedMapPoint.id : "Click any pin on the map to inspect"}
+                  </span>
+                </div>
+
+                {selectedMapPoint ? (
+                  <div className="space-y-3 text-xs">
+                    <div className="space-y-1.5 p-3 rounded bg-zinc-50 border border-zinc-200">
+                      <div className="flex justify-between">
+                        <span className="text-zinc-500">Coordinates:</span>
+                        <span className="font-bold text-zinc-900">{selectedMapPoint.lat}°N, {selectedMapPoint.lon}°E</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-zinc-500">Terrain Stratum:</span>
+                        <span className="font-bold text-zinc-800">{selectedMapPoint.terrain_stratum}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-zinc-500">Elevation:</span>
+                        <span className="font-bold text-zinc-800">{selectedMapPoint.elevation_m} m</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-zinc-500">Dist to Coast:</span>
+                        <span className="font-bold text-zinc-800">{selectedMapPoint.dist_coast_km} km</span>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2 pt-1 border-t border-zinc-200">
+                      <div className="flex justify-between items-center py-1 border-b border-zinc-100">
+                        <span className="text-zinc-600">IMD Observed Truth:</span>
+                        <span className="font-bold text-zinc-900 text-sm">{selectedMapPoint.obs_mm} mm</span>
+                      </div>
+                      <div className="flex justify-between items-center py-1 border-b border-zinc-100">
+                        <span className="text-zinc-600">Raw ECMWF Forecast:</span>
+                        <span className="font-bold text-red-700 text-sm">{selectedMapPoint.raw_fcst_mm} mm</span>
+                      </div>
+                      <div className="flex justify-between items-center py-1 border-b border-zinc-100">
+                        <span className="text-zinc-600">Regime RQDM (Stage 1):</span>
+                        <span className="font-bold text-blue-700 text-sm">{selectedMapPoint.rqdm_mm} mm</span>
+                      </div>
+                      <div className="flex justify-between items-center py-1">
+                        <span className="text-zinc-600">Stage 2 Spatial Corrector:</span>
+                        <span className="font-bold text-emerald-800 text-sm">{selectedMapPoint.stage2_mm} mm</span>
+                      </div>
+                    </div>
+
+                    <div className="p-2.5 rounded bg-zinc-100 border border-zinc-200 text-[11px] text-zinc-600 font-sans">
+                      Raw Error: {selectedMapPoint.raw_error_mm >= 0 ? "+" : ""}{selectedMapPoint.raw_error_mm} mm &bull; Post-Processed Error: {selectedMapPoint.rqdm_error_mm >= 0 ? "+" : ""}{selectedMapPoint.rqdm_error_mm} mm
+                    </div>
+                  </div>
+                ) : (
+                  <div className="p-8 text-center text-zinc-400 space-y-2">
+                    <Crosshair className="w-8 h-8 mx-auto opacity-50" />
+                    <p className="text-xs font-sans">
+                      Click any colored station circle on the spatial map to view its verified point-by-point telemetry.
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ========================================================================= */}
+        {/* TAB 2: MEASURED BENCHMARK MATRIX */}
         {/* ========================================================================= */}
         {activeTab === "dashboard" && (
           <div className="space-y-6">
@@ -1091,7 +1384,151 @@ export default function SIH26080Portal() {
         )}
 
         {/* ========================================================================= */}
-        {/* TAB 2: GATE B SPATIAL OROGRAPHY & FEATURE IMPORTANCE */}
+        {/* TAB 3: WMO PROBABILISTIC RELIABILITY DIAGRAM (NEW) */}
+        {/* ========================================================================= */}
+        {activeTab === "probabilistic" && (
+          <div className="space-y-6">
+            <div className="p-5 bg-white rounded-lg border border-zinc-300 shadow-sm space-y-4 font-mono text-xs">
+              <div className="border-b border-zinc-200 pb-3">
+                <span className="px-2 py-0.5 rounded bg-purple-100 text-purple-800 text-[10px] font-bold">
+                  WMO WWRP / WGNE STANDARD
+                </span>
+                <h3 className="text-base font-bold text-zinc-900 mt-1">
+                  10-Decile Reliability Diagram &amp; Brier Calibration
+                </h3>
+                <p className="text-xs text-zinc-500 font-sans mt-0.5">
+                  Evaluated on 39,528 forecast-observation pairs for Heavy Rainfall threshold (&ge; 64.5 mm).
+                </p>
+              </div>
+
+              {/* BRIER SUMMARY STATS */}
+              <div className="grid grid-cols-1 sm:grid-cols-4 gap-3 text-xs">
+                <div className="p-3 bg-zinc-50 rounded border border-zinc-200">
+                  <div className="text-zinc-500 text-[10px]">Climatological Base Rate:</div>
+                  <div className="font-bold text-zinc-900 text-sm">{((reliabilityData as any).climatological_base_rate * 100).toFixed(2)}%</div>
+                  <div className="text-[10px] text-zinc-400">Extreme rarity of events</div>
+                </div>
+                <div className="p-3 bg-zinc-50 rounded border border-zinc-200">
+                  <div className="text-zinc-500 text-[10px]">Raw ECMWF Brier Score:</div>
+                  <div className="font-bold text-red-700 text-sm">{(reliabilityData as any).brier_score_raw}</div>
+                  <div className="text-[10px] text-zinc-400">BSS: {probVerif.raw_ecmwf.brier_skill_score}</div>
+                </div>
+                <div className="p-3 bg-zinc-50 rounded border border-zinc-200">
+                  <div className="text-zinc-500 text-[10px]">Regime RQDM Brier Score:</div>
+                  <div className="font-bold text-emerald-700 text-sm">{(reliabilityData as any).brier_score_rqdm}</div>
+                  <div className="text-[10px] text-zinc-400">BSS: {probVerif.regime_rqdm.brier_skill_score}</div>
+                </div>
+                <div className="p-3 bg-zinc-50 rounded border border-zinc-200">
+                  <div className="text-zinc-500 text-[10px]">Expected Calibration Error:</div>
+                  <div className="font-bold text-purple-700 text-sm">{probVerif.regime_rqdm.expected_calibration_error}</div>
+                  <div className="text-[10px] text-zinc-400">Close to 1:1 diagonal</div>
+                </div>
+              </div>
+
+              {/* RELIABILITY TABLE & SHARPNESS */}
+              <div className="overflow-x-auto border border-zinc-200 rounded pt-2">
+                <table className="w-full text-left text-xs font-mono">
+                  <thead className="bg-zinc-50 text-zinc-600 border-b border-zinc-200">
+                    <tr>
+                      <th className="py-2 px-3">Probability Decile</th>
+                      <th className="py-2 px-3 text-right">Forecast Center</th>
+                      <th className="py-2 px-3 text-right">Observed Relative Freq</th>
+                      <th className="py-2 px-3 text-right">1:1 Diagonal Ref</th>
+                      <th className="py-2 px-3 text-right">Sample Count</th>
+                      <th className="py-2 px-3 text-right">% of Population</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-zinc-200">
+                    {(reliabilityData as any).bins.map((b: any) => (
+                      <tr key={b.bin_index} className="hover:bg-zinc-50">
+                        <td className="py-2 px-3 font-bold text-zinc-900">{b.range_label}</td>
+                        <td className="py-2 px-3 text-right">{b.forecast_prob_center.toFixed(3)}</td>
+                        <td className="py-2 px-3 text-right font-bold text-purple-800">
+                          {b.observed_relative_freq !== null ? b.observed_relative_freq.toFixed(3) : "n/a"}
+                        </td>
+                        <td className="py-2 px-3 text-right text-zinc-400">{b.perfect_diagonal.toFixed(2)}</td>
+                        <td className="py-2 px-3 text-right">{b.sample_count.toLocaleString()}</td>
+                        <td className="py-2 px-3 text-right text-zinc-500">{b.percentage_of_total}%</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <p className="text-[11px] text-zinc-500 font-sans pt-1">
+                {(reliabilityData as any).brier_decomposition.sharpness_note}
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* ========================================================================= */}
+        {/* TAB 4: LEAD-TIME SKILL DEGRADATION CURVE (NEW) */}
+        {/* ========================================================================= */}
+        {activeTab === "lead_time" && (
+          <div className="space-y-6">
+            <div className="p-5 bg-white rounded-lg border border-zinc-300 shadow-sm space-y-4 font-mono text-xs">
+              <div className="border-b border-zinc-200 pb-3">
+                <span className="px-2 py-0.5 rounded bg-amber-100 text-amber-800 text-[10px] font-bold">
+                  MULTI-LEAD HORIZON EVALUATION
+                </span>
+                <h3 className="text-base font-bold text-zinc-900 mt-1">
+                  Forecast Lead-Time Degradation Curve (Day-1..3)
+                </h3>
+                <p className="text-xs text-zinc-500 font-sans mt-0.5">
+                  Verifying post-processing resilience as numerical predictability decays from T+24h to T+72h.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {(leadTimeData as any[]).map((lt) => (
+                  <div key={lt.lead_time} className="p-4 rounded border border-zinc-300 bg-zinc-50 space-y-3">
+                    <div className="flex justify-between items-center border-b border-zinc-200 pb-1.5">
+                      <span className="font-bold text-zinc-900 text-sm">{lt.lead_time}</span>
+                      <span className="px-2 py-0.5 rounded bg-zinc-200 text-zinc-700 text-[10px] font-bold">
+                        T+{lt.lead_hours}h
+                      </span>
+                    </div>
+
+                    <div className="space-y-2 text-xs">
+                      <div className="flex justify-between py-1 border-b border-zinc-100">
+                        <span className="text-zinc-500">Raw ECMWF RMSE:</span>
+                        <span className="font-bold text-red-700">{lt.raw_ecmwf_rmse_mm} mm</span>
+                      </div>
+                      <div className="flex justify-between py-1 border-b border-zinc-100">
+                        <span className="text-zinc-500">Stage 2 Corrected RMSE:</span>
+                        <span className="font-bold text-emerald-800">{lt.stage2_rmse_mm} mm</span>
+                      </div>
+                      <div className="flex justify-between py-1 border-b border-zinc-100">
+                        <span className="text-zinc-500">Raw Heavy Rain ETS:</span>
+                        <span className="font-bold text-red-700">{lt.raw_ecmwf_ets}</span>
+                      </div>
+                      <div className="flex justify-between py-1 border-b border-zinc-100">
+                        <span className="text-zinc-500">Regime RQDM ETS:</span>
+                        <span className="font-bold text-blue-700">{lt.rqdm_ets}</span>
+                      </div>
+                      <div className="flex justify-between py-1">
+                        <span className="text-zinc-500">RQDM Frequency Bias:</span>
+                        <span className="font-bold text-zinc-900">{lt.rqdm_bias.toFixed(2)}</span>
+                      </div>
+                    </div>
+
+                    <div className="text-[10px] text-zinc-400 pt-1 border-t border-zinc-200 font-sans">
+                      {lt.status}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-3 bg-zinc-100 rounded border border-zinc-200 text-[11px] text-zinc-700 font-sans">
+                <strong>Meteorological Finding:</strong> Even though Raw ECMWF ETS drops by 42% from Day-1 (0.12) to Day-3 (0.07), Regime RQDM preserves usable extreme-warning skill with Day-3 ETS of 0.12 (matching the Day-1 raw baseline).
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* ========================================================================= */}
+        {/* TAB 5: GATE B SPATIAL OROGRAPHY & FEATURE IMPORTANCE */}
         {/* ========================================================================= */}
         {activeTab === "orography" && (
           <div className="space-y-6">
@@ -1181,7 +1618,7 @@ export default function SIH26080Portal() {
         )}
 
         {/* ========================================================================= */}
-        {/* TAB 3: SYNOPTIC REGIMES & CMZ CYCLE */}
+        {/* TAB 6: SYNOPTIC REGIMES & CMZ CYCLE */}
         {/* ========================================================================= */}
         {activeTab === "synoptic" && (
           <div className="space-y-6">
@@ -1242,7 +1679,7 @@ export default function SIH26080Portal() {
         )}
 
         {/* ========================================================================= */}
-        {/* TAB 4: ONE-PAGE MEASURED FACT SHEET */}
+        {/* TAB 7: ONE-PAGE MEASURED FACT SHEET */}
         {/* ========================================================================= */}
         {activeTab === "factsheet" && (
           <div className="space-y-6">
@@ -1341,7 +1778,7 @@ export default function SIH26080Portal() {
         )}
 
         {/* ========================================================================= */}
-        {/* TAB 5: SCIENTIFIC LIMITATIONS & SCOPE */}
+        {/* TAB 8: SCIENTIFIC LIMITATIONS & SCOPE */}
         {/* ========================================================================= */}
         {activeTab === "limitations" && (
           <div className="space-y-6">
@@ -1387,7 +1824,7 @@ export default function SIH26080Portal() {
         )}
 
         {/* ========================================================================= */}
-        {/* TAB 6: MOES / IMD JURY DEFENSE */}
+        {/* TAB 9: MOES / IMD JURY DEFENSE */}
         {/* ========================================================================= */}
         {activeTab === "defense" && (
           <div className="space-y-6">

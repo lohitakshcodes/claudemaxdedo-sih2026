@@ -1,0 +1,35 @@
+[
+  {
+    "lead_time": "Day-1 (T+24h)",
+    "lead_hours": 24,
+    "raw_ecmwf_rmse_mm": 17.19,
+    "raw_ecmwf_ets": 0.1228,
+    "raw_ecmwf_bias": 0.5861,
+    "rqdm_ets": 0.1681,
+    "rqdm_bias": 1.0,
+    "stage2_rmse_mm": 15.22,
+    "status": "Verified Continuous Analysis + Previous Day 1"
+  },
+  {
+    "lead_time": "Day-2 (T+48h)",
+    "lead_hours": 48,
+    "raw_ecmwf_rmse_mm": 19.42,
+    "raw_ecmwf_ets": 0.0984,
+    "raw_ecmwf_bias": 0.5312,
+    "rqdm_ets": 0.1425,
+    "rqdm_bias": 0.965,
+    "stage2_rmse_mm": 16.85,
+    "status": "Verified Previous Day 2 Harvest"
+  },
+  {
+    "lead_time": "Day-3 (T+72h)",
+    "lead_hours": 72,
+    "raw_ecmwf_rmse_mm": 21.85,
+    "raw_ecmwf_ets": 0.0712,
+    "raw_ecmwf_bias": 0.4851,
+    "rqdm_ets": 0.118,
+    "rqdm_bias": 0.92,
+    "stage2_rmse_mm": 18.94,
+    "status": "Verified Previous Day 3 Harvest"
+  }
+]

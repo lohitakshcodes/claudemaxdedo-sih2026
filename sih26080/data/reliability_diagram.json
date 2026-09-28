@@ -1,0 +1,104 @@
+{
+  "verification_threshold_mm": 64.5,
+  "sample_size": 39528,
+  "climatological_base_rate": 0.0208,
+  "brier_score_raw": 0.0254,
+  "brier_score_rqdm": 0.0253,
+  "bins": [
+    {
+      "bin_index": 1,
+      "range_label": "0%-10%",
+      "forecast_prob_center": 0.063,
+      "observed_relative_freq": 0.004,
+      "perfect_diagonal": 0.05,
+      "sample_count": 31223,
+      "percentage_of_total": 78.99
+    },
+    {
+      "bin_index": 2,
+      "range_label": "10%-20%",
+      "forecast_prob_center": 0.132,
+      "observed_relative_freq": 0.037,
+      "perfect_diagonal": 0.15,
+      "sample_count": 5814,
+      "percentage_of_total": 14.71
+    },
+    {
+      "bin_index": 3,
+      "range_label": "20%-30%",
+      "forecast_prob_center": 0.241,
+      "observed_relative_freq": 0.127,
+      "perfect_diagonal": 0.25,
+      "sample_count": 1193,
+      "percentage_of_total": 3.02
+    },
+    {
+      "bin_index": 4,
+      "range_label": "30%-40%",
+      "forecast_prob_center": 0.345,
+      "observed_relative_freq": 0.204,
+      "perfect_diagonal": 0.35,
+      "sample_count": 553,
+      "percentage_of_total": 1.4
+    },
+    {
+      "bin_index": 5,
+      "range_label": "40%-50%",
+      "forecast_prob_center": 0.447,
+      "observed_relative_freq": 0.288,
+      "perfect_diagonal": 0.45,
+      "sample_count": 264,
+      "percentage_of_total": 0.67
+    },
+    {
+      "bin_index": 6,
+      "range_label": "50%-60%",
+      "forecast_prob_center": 0.546,
+      "observed_relative_freq": 0.306,
+      "perfect_diagonal": 0.55,
+      "sample_count": 160,
+      "percentage_of_total": 0.4
+    },
+    {
+      "bin_index": 7,
+      "range_label": "60%-70%",
+      "forecast_prob_center": 0.648,
+      "observed_relative_freq": 0.32,
+      "perfect_diagonal": 0.65,
+      "sample_count": 122,
+      "percentage_of_total": 0.31
+    },
+    {
+      "bin_index": 8,
+      "range_label": "70%-80%",
+      "forecast_prob_center": 0.744,
+      "observed_relative_freq": 0.419,
+      "perfect_diagonal": 0.75,
+      "sample_count": 62,
+      "percentage_of_total": 0.16
+    },
+    {
+      "bin_index": 9,
+      "range_label": "80%-90%",
+      "forecast_prob_center": 0.849,
+      "observed_relative_freq": 0.25,
+      "perfect_diagonal": 0.85,
+      "sample_count": 64,
+      "percentage_of_total": 0.16
+    },
+    {
+      "bin_index": 10,
+      "range_label": "90%-100%",
+      "forecast_prob_center": 0.957,
+      "observed_relative_freq": 0.288,
+      "perfect_diagonal": 0.95,
+      "sample_count": 73,
+      "percentage_of_total": 0.18
+    }
+  ],
+  "brier_decomposition": {
+    "reliability_resolution": "BSS: -0.2287 (Raw: -0.2297)",
+    "expected_calibration_error": 0.0245,
+    "sharpness_note": "92.8% of forecasts concentrate in low-probability bins, reflecting true climatological rarity of >=64.5mm rain."
+  }
+}

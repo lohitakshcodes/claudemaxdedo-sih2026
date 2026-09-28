@@ -1,0 +1,3242 @@
+[
+  {
+    "id": "pt_001",
+    "lat": 14.5,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_002",
+    "lat": 14.5,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_003",
+    "lat": 14.5,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_004",
+    "lat": 14.5,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 8.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_005",
+    "lat": 14.5,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 61.8,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_006",
+    "lat": 14.5,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 115.5,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_007",
+    "lat": 14.5,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 169.3,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_008",
+    "lat": 14.5,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 223.0,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_009",
+    "lat": 14.5,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 276.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_010",
+    "lat": 14.5,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 330.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_011",
+    "lat": 14.5,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 384.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_012",
+    "lat": 14.5,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 437.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_013",
+    "lat": 14.5,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 491.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_014",
+    "lat": 14.5,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 545.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_015",
+    "lat": 14.5,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 599.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_016",
+    "lat": 14.5,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 652.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_017",
+    "lat": 15.0,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_018",
+    "lat": 15.0,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_019",
+    "lat": 15.0,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_020",
+    "lat": 15.0,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 366.0,
+    "dist_coast_km": 21.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_021",
+    "lat": 15.0,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 210.2,
+    "dist_coast_km": 75.1,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_022",
+    "lat": 15.0,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 128.7,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_023",
+    "lat": 15.0,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 182.3,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_024",
+    "lat": 15.0,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 235.9,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_025",
+    "lat": 15.0,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 289.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_026",
+    "lat": 15.0,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 343.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_027",
+    "lat": 15.0,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 396.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_028",
+    "lat": 15.0,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 450.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_029",
+    "lat": 15.0,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 503.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_030",
+    "lat": 15.0,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 557.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_031",
+    "lat": 15.0,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 611.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_032",
+    "lat": 15.0,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 664.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_033",
+    "lat": 15.5,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_034",
+    "lat": 15.5,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_035",
+    "lat": 15.5,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_036",
+    "lat": 15.5,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 34.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_037",
+    "lat": 15.5,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 88.2,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_038",
+    "lat": 15.5,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 141.7,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_039",
+    "lat": 15.5,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 195.2,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_040",
+    "lat": 15.5,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 248.7,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_041",
+    "lat": 15.5,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 302.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_042",
+    "lat": 15.5,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 355.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_043",
+    "lat": 15.5,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 409.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_044",
+    "lat": 15.5,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 462.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_045",
+    "lat": 15.5,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 516.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_046",
+    "lat": 15.5,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 569.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_047",
+    "lat": 15.5,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 623.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_048",
+    "lat": 15.5,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 676.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_049",
+    "lat": 16.0,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_050",
+    "lat": 16.0,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_051",
+    "lat": 16.0,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_052",
+    "lat": 16.0,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 693.5,
+    "dist_coast_km": 48.0,
+    "terrain_stratum": "Windward Ghats",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_053",
+    "lat": 16.0,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 101.4,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_054",
+    "lat": 16.0,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 154.7,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_055",
+    "lat": 16.0,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 208.1,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_056",
+    "lat": 16.0,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 261.4,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_057",
+    "lat": 16.0,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 314.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_058",
+    "lat": 16.0,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 368.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_059",
+    "lat": 16.0,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 421.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_060",
+    "lat": 16.0,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 474.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_061",
+    "lat": 16.0,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 528.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_062",
+    "lat": 16.0,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 581.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_063",
+    "lat": 16.0,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 634.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_064",
+    "lat": 16.0,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 688.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_065",
+    "lat": 16.5,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_066",
+    "lat": 16.5,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_067",
+    "lat": 16.5,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 8.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_068",
+    "lat": 16.5,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 61.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_069",
+    "lat": 16.5,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 114.4,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_070",
+    "lat": 16.5,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 167.6,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_071",
+    "lat": 16.5,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 220.8,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_072",
+    "lat": 16.5,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 274.1,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_073",
+    "lat": 16.5,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 327.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_074",
+    "lat": 16.5,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 380.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_075",
+    "lat": 16.5,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 433.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_076",
+    "lat": 16.5,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 486.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_077",
+    "lat": 16.5,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 540.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_078",
+    "lat": 16.5,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 593.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_079",
+    "lat": 16.5,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 646.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_080",
+    "lat": 16.5,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 699.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_081",
+    "lat": 17.0,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_082",
+    "lat": 17.0,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_083",
+    "lat": 17.0,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 443.8,
+    "dist_coast_km": 21.2,
+    "terrain_stratum": "Windward Ghats",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_084",
+    "lat": 17.0,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 234.0,
+    "dist_coast_km": 74.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_085",
+    "lat": 17.0,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 127.4,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_086",
+    "lat": 17.0,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 180.5,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_087",
+    "lat": 17.0,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 233.5,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_088",
+    "lat": 17.0,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 286.6,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_089",
+    "lat": 17.0,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 339.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_090",
+    "lat": 17.0,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 392.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_091",
+    "lat": 17.0,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 445.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_092",
+    "lat": 17.0,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 498.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_093",
+    "lat": 17.0,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 552.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_094",
+    "lat": 17.0,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 605.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_095",
+    "lat": 17.0,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 658.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_096",
+    "lat": 17.0,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 711.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_097",
+    "lat": 17.5,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_098",
+    "lat": 17.5,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_099",
+    "lat": 17.5,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 34.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_100",
+    "lat": 17.5,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 87.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_101",
+    "lat": 17.5,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 140.3,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_102",
+    "lat": 17.5,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 193.2,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_103",
+    "lat": 17.5,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 246.1,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_104",
+    "lat": 17.5,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 299.1,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_105",
+    "lat": 17.5,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 352.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_106",
+    "lat": 17.5,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 404.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_107",
+    "lat": 17.5,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 457.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_108",
+    "lat": 17.5,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 510.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_109",
+    "lat": 17.5,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 563.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_110",
+    "lat": 17.5,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 616.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_111",
+    "lat": 17.5,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 669.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_112",
+    "lat": 17.5,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 722.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": false
+  },
+  {
+    "id": "pt_113",
+    "lat": 18.0,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_114",
+    "lat": 18.0,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_115",
+    "lat": 18.0,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 1100.0,
+    "dist_coast_km": 47.5,
+    "terrain_stratum": "Windward Ghats",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_116",
+    "lat": 18.0,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 100.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_117",
+    "lat": 18.0,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 153.1,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_118",
+    "lat": 18.0,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 205.9,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_119",
+    "lat": 18.0,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 258.6,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_120",
+    "lat": 18.0,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 311.4,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_121",
+    "lat": 18.0,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 364.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_122",
+    "lat": 18.0,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 417.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_123",
+    "lat": 18.0,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 469.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_124",
+    "lat": 18.0,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 522.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_125",
+    "lat": 18.0,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 575.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_126",
+    "lat": 18.0,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 628.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_127",
+    "lat": 18.0,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 680.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_128",
+    "lat": 18.0,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 733.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_129",
+    "lat": 18.5,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_130",
+    "lat": 18.5,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 7.9,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_131",
+    "lat": 18.5,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 60.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_132",
+    "lat": 18.5,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 113.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_133",
+    "lat": 18.5,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 165.8,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_134",
+    "lat": 18.5,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 218.4,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_135",
+    "lat": 18.5,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 271.1,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_136",
+    "lat": 18.5,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 323.7,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_137",
+    "lat": 18.5,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 376.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_138",
+    "lat": 18.5,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 429.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_139",
+    "lat": 18.5,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 481.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_140",
+    "lat": 18.5,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 534.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_141",
+    "lat": 18.5,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 586.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_142",
+    "lat": 18.5,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 639.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_143",
+    "lat": 18.5,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 692.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_144",
+    "lat": 18.5,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 744.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_145",
+    "lat": 19.0,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_146",
+    "lat": 19.0,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 21.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_147",
+    "lat": 19.0,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 972.0,
+    "dist_coast_km": 73.5,
+    "terrain_stratum": "Windward Ghats",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_148",
+    "lat": 19.0,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 125.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_149",
+    "lat": 19.0,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 178.4,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_150",
+    "lat": 19.0,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 230.9,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_151",
+    "lat": 19.0,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 283.4,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_152",
+    "lat": 19.0,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 335.8,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_153",
+    "lat": 19.0,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 388.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_154",
+    "lat": 19.0,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 440.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_155",
+    "lat": 19.0,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 493.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_156",
+    "lat": 19.0,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 545.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_157",
+    "lat": 19.0,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 598.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_158",
+    "lat": 19.0,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 650.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_159",
+    "lat": 19.0,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 703.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_160",
+    "lat": 19.0,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 755.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_161",
+    "lat": 19.5,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_162",
+    "lat": 19.5,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 20.9,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_163",
+    "lat": 19.5,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 73.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_164",
+    "lat": 19.5,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 125.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_165",
+    "lat": 19.5,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 177.9,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_166",
+    "lat": 19.5,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 230.2,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_167",
+    "lat": 19.5,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 282.5,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_168",
+    "lat": 19.5,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 334.8,
+    "terrain_stratum": "Rain Shadow",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_169",
+    "lat": 19.5,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 387.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_170",
+    "lat": 19.5,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 439.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_171",
+    "lat": 19.5,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 491.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_172",
+    "lat": 19.5,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 544.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_173",
+    "lat": 19.5,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 596.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_174",
+    "lat": 19.5,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 648.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_175",
+    "lat": 19.5,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 701.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_176",
+    "lat": 19.5,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 753.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_177",
+    "lat": 20.0,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_178",
+    "lat": 20.0,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 20.9,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_179",
+    "lat": 20.0,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 246.5,
+    "dist_coast_km": 73.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_180",
+    "lat": 20.0,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 473.2,
+    "dist_coast_km": 125.2,
+    "terrain_stratum": "Windward Ghats",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_181",
+    "lat": 20.0,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 177.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_182",
+    "lat": 20.0,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 229.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_183",
+    "lat": 20.0,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 281.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_184",
+    "lat": 20.0,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 333.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_185",
+    "lat": 20.0,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 385.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_186",
+    "lat": 20.0,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 438.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_187",
+    "lat": 20.0,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 490.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_188",
+    "lat": 20.0,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 542.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_189",
+    "lat": 20.0,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 594.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_190",
+    "lat": 20.0,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 646.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_191",
+    "lat": 20.0,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 698.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_192",
+    "lat": 20.0,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 751.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_193",
+    "lat": 20.5,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_194",
+    "lat": 20.5,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 20.8,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_195",
+    "lat": 20.5,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 72.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_196",
+    "lat": 20.5,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 124.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_197",
+    "lat": 20.5,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 176.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_198",
+    "lat": 20.5,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 228.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_199",
+    "lat": 20.5,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 280.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_200",
+    "lat": 20.5,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 332.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_201",
+    "lat": 20.5,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 384.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_202",
+    "lat": 20.5,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 436.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_203",
+    "lat": 20.5,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 488.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_204",
+    "lat": 20.5,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 540.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_205",
+    "lat": 20.5,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 592.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_206",
+    "lat": 20.5,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 644.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_207",
+    "lat": 20.5,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 696.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_208",
+    "lat": 20.5,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 748.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_209",
+    "lat": 21.0,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_210",
+    "lat": 21.0,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 20.7,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_211",
+    "lat": 21.0,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 72.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_212",
+    "lat": 21.0,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 600.0,
+    "dist_coast_km": 124.4,
+    "terrain_stratum": "Windward Ghats",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_213",
+    "lat": 21.0,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 176.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_214",
+    "lat": 21.0,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 228.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_215",
+    "lat": 21.0,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 279.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_216",
+    "lat": 21.0,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 331.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_217",
+    "lat": 21.0,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 383.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_218",
+    "lat": 21.0,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 435.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_219",
+    "lat": 21.0,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 487.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_220",
+    "lat": 21.0,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 538.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_221",
+    "lat": 21.0,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 590.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_222",
+    "lat": 21.0,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 642.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_223",
+    "lat": 21.0,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 694.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_224",
+    "lat": 21.0,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 746.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_225",
+    "lat": 21.5,
+    "lon": 72.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 19.0,
+    "dist_coast_km": 0.0,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_226",
+    "lat": 21.5,
+    "lon": 73.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 34.0,
+    "dist_coast_km": 20.7,
+    "terrain_stratum": "Coastal Plain",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_227",
+    "lat": 21.5,
+    "lon": 73.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 72.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_228",
+    "lat": 21.5,
+    "lon": 74.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 123.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_229",
+    "lat": 21.5,
+    "lon": 74.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 175.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_230",
+    "lat": 21.5,
+    "lon": 75.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 575.0,
+    "dist_coast_km": 227.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_231",
+    "lat": 21.5,
+    "lon": 75.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 550.0,
+    "dist_coast_km": 278.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_232",
+    "lat": 21.5,
+    "lon": 76.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 525.0,
+    "dist_coast_km": 330.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_233",
+    "lat": 21.5,
+    "lon": 76.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 500.0,
+    "dist_coast_km": 382.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_234",
+    "lat": 21.5,
+    "lon": 77.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 475.0,
+    "dist_coast_km": 433.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_235",
+    "lat": 21.5,
+    "lon": 77.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 450.0,
+    "dist_coast_km": 485.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_236",
+    "lat": 21.5,
+    "lon": 78.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 425.0,
+    "dist_coast_km": 537.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_237",
+    "lat": 21.5,
+    "lon": 78.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 400.0,
+    "dist_coast_km": 588.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_238",
+    "lat": 21.5,
+    "lon": 79.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 375.0,
+    "dist_coast_km": 640.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_239",
+    "lat": 21.5,
+    "lon": 79.5,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 350.0,
+    "dist_coast_km": 692.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_240",
+    "lat": 21.5,
+    "lon": 80.0,
+    "region": "Maharashtra_Ghats",
+    "elevation_m": 325.0,
+    "dist_coast_km": 743.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_241",
+    "lat": 18.0,
+    "lon": 81.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 275.0,
+    "dist_coast_km": 839.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_242",
+    "lat": 18.0,
+    "lon": 82.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 225.0,
+    "dist_coast_km": 944.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_243",
+    "lat": 18.0,
+    "lon": 83.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1050.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_244",
+    "lat": 18.0,
+    "lon": 84.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1156.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_245",
+    "lat": 18.0,
+    "lon": 85.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1261.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_246",
+    "lat": 18.0,
+    "lon": 86.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1367.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_247",
+    "lat": 19.0,
+    "lon": 81.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 275.0,
+    "dist_coast_km": 860.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_248",
+    "lat": 19.0,
+    "lon": 82.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 225.0,
+    "dist_coast_km": 965.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_249",
+    "lat": 19.0,
+    "lon": 83.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1070.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_250",
+    "lat": 19.0,
+    "lon": 84.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1175.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_251",
+    "lat": 19.0,
+    "lon": 85.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1280.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_252",
+    "lat": 19.0,
+    "lon": 86.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1385.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_253",
+    "lat": 20.0,
+    "lon": 81.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 275.0,
+    "dist_coast_km": 855.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_254",
+    "lat": 20.0,
+    "lon": 82.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 225.0,
+    "dist_coast_km": 959.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_255",
+    "lat": 20.0,
+    "lon": 83.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1063.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_256",
+    "lat": 20.0,
+    "lon": 84.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1168.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_257",
+    "lat": 20.0,
+    "lon": 85.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1272.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_258",
+    "lat": 20.0,
+    "lon": 86.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1376.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_259",
+    "lat": 21.0,
+    "lon": 81.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 275.0,
+    "dist_coast_km": 849.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_260",
+    "lat": 21.0,
+    "lon": 82.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 225.0,
+    "dist_coast_km": 953.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_261",
+    "lat": 21.0,
+    "lon": 83.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1057.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_262",
+    "lat": 21.0,
+    "lon": 84.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1160.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_263",
+    "lat": 21.0,
+    "lon": 85.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1264.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_264",
+    "lat": 21.0,
+    "lon": 86.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1367.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_265",
+    "lat": 22.0,
+    "lon": 77.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 475.0,
+    "dist_coast_km": 432.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_266",
+    "lat": 22.0,
+    "lon": 78.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 425.0,
+    "dist_coast_km": 535.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_267",
+    "lat": 22.0,
+    "lon": 79.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 375.0,
+    "dist_coast_km": 638.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_268",
+    "lat": 22.0,
+    "lon": 80.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 325.0,
+    "dist_coast_km": 741.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_269",
+    "lat": 22.0,
+    "lon": 81.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 275.0,
+    "dist_coast_km": 843.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_270",
+    "lat": 22.0,
+    "lon": 82.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 225.0,
+    "dist_coast_km": 946.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_271",
+    "lat": 22.0,
+    "lon": 83.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1049.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_272",
+    "lat": 22.0,
+    "lon": 84.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1152.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_273",
+    "lat": 22.0,
+    "lon": 85.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1255.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_274",
+    "lat": 22.0,
+    "lon": 86.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1358.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_275",
+    "lat": 23.0,
+    "lon": 77.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 475.0,
+    "dist_coast_km": 429.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_276",
+    "lat": 23.0,
+    "lon": 78.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 425.0,
+    "dist_coast_km": 531.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_277",
+    "lat": 23.0,
+    "lon": 79.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 375.0,
+    "dist_coast_km": 633.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_278",
+    "lat": 23.0,
+    "lon": 80.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 325.0,
+    "dist_coast_km": 735.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_279",
+    "lat": 23.0,
+    "lon": 81.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 275.0,
+    "dist_coast_km": 837.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_280",
+    "lat": 23.0,
+    "lon": 82.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 225.0,
+    "dist_coast_km": 940.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_281",
+    "lat": 23.0,
+    "lon": 83.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1042.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_282",
+    "lat": 23.0,
+    "lon": 84.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1144.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_283",
+    "lat": 23.0,
+    "lon": 85.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1246.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_284",
+    "lat": 23.0,
+    "lon": 86.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1348.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_285",
+    "lat": 24.0,
+    "lon": 77.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 475.0,
+    "dist_coast_km": 425.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_286",
+    "lat": 24.0,
+    "lon": 78.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 425.0,
+    "dist_coast_km": 527.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_287",
+    "lat": 24.0,
+    "lon": 79.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 375.0,
+    "dist_coast_km": 628.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_288",
+    "lat": 24.0,
+    "lon": 80.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 325.0,
+    "dist_coast_km": 730.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_289",
+    "lat": 24.0,
+    "lon": 81.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 275.0,
+    "dist_coast_km": 831.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_290",
+    "lat": 24.0,
+    "lon": 82.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 225.0,
+    "dist_coast_km": 932.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_291",
+    "lat": 24.0,
+    "lon": 83.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1034.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_292",
+    "lat": 24.0,
+    "lon": 84.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1135.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_293",
+    "lat": 24.0,
+    "lon": 85.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1237.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_294",
+    "lat": 24.0,
+    "lon": 86.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1338.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_295",
+    "lat": 25.0,
+    "lon": 77.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 475.0,
+    "dist_coast_km": 422.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_296",
+    "lat": 25.0,
+    "lon": 78.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 425.0,
+    "dist_coast_km": 523.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_297",
+    "lat": 25.0,
+    "lon": 79.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 375.0,
+    "dist_coast_km": 623.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_298",
+    "lat": 25.0,
+    "lon": 80.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 325.0,
+    "dist_coast_km": 724.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_299",
+    "lat": 25.0,
+    "lon": 81.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 275.0,
+    "dist_coast_km": 824.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_300",
+    "lat": 25.0,
+    "lon": 82.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 225.0,
+    "dist_coast_km": 925.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_301",
+    "lat": 25.0,
+    "lon": 83.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1026.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_302",
+    "lat": 25.0,
+    "lon": 84.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1126.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_303",
+    "lat": 25.0,
+    "lon": 85.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1227.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_304",
+    "lat": 25.0,
+    "lon": 86.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1327.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_305",
+    "lat": 26.0,
+    "lon": 77.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 475.0,
+    "dist_coast_km": 419.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_306",
+    "lat": 26.0,
+    "lon": 78.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 425.0,
+    "dist_coast_km": 518.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_307",
+    "lat": 26.0,
+    "lon": 79.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 375.0,
+    "dist_coast_km": 618.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_308",
+    "lat": 26.0,
+    "lon": 80.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 325.0,
+    "dist_coast_km": 718.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_309",
+    "lat": 26.0,
+    "lon": 81.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 275.0,
+    "dist_coast_km": 818.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_310",
+    "lat": 26.0,
+    "lon": 82.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 225.0,
+    "dist_coast_km": 917.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_311",
+    "lat": 26.0,
+    "lon": 83.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1017.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_312",
+    "lat": 26.0,
+    "lon": 84.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1117.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_313",
+    "lat": 26.0,
+    "lon": 85.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1217.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_314",
+    "lat": 26.0,
+    "lon": 86.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1316.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_315",
+    "lat": 27.0,
+    "lon": 77.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 475.0,
+    "dist_coast_km": 415.4,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_316",
+    "lat": 27.0,
+    "lon": 78.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 425.0,
+    "dist_coast_km": 514.3,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_317",
+    "lat": 27.0,
+    "lon": 79.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 375.0,
+    "dist_coast_km": 613.2,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_318",
+    "lat": 27.0,
+    "lon": 80.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 325.0,
+    "dist_coast_km": 712.1,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_319",
+    "lat": 27.0,
+    "lon": 81.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 275.0,
+    "dist_coast_km": 811.0,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_320",
+    "lat": 27.0,
+    "lon": 82.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 225.0,
+    "dist_coast_km": 909.9,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_321",
+    "lat": 27.0,
+    "lon": 83.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1008.8,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_322",
+    "lat": 27.0,
+    "lon": 84.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1107.7,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_323",
+    "lat": 27.0,
+    "lon": 85.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1206.6,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  },
+  {
+    "id": "pt_324",
+    "lat": 27.0,
+    "lon": 86.0,
+    "region": "Core_Monsoon_Zone",
+    "elevation_m": 200.0,
+    "dist_coast_km": 1305.5,
+    "terrain_stratum": "Central Plains",
+    "is_cmz": true
+  }
+]
