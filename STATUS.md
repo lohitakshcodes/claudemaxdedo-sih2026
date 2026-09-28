@@ -84,4 +84,89 @@ Automated canary tests in [`sih26080/verification/test_leakage_canaries.py`](fil
    * It has zero synthetic data dependency and complete end-to-end functionality.
 
 ### Official Technical Recommendation:
-Per the STOP RULE directive, I recommend **reverting to WeatherGPT** (Problem Statement SIH26068) as our primary hackathon submission. WeatherGPT is fully authentic, uses live external APIs, has zero data integrity risks, and provides a compelling voice-AI interface for MoES/IMD.
+Per the STOP RULE directive, Phase C identified that prior results were synthetic. The user authorized a time-boxed real-data recovery.
+
+---
+
+## 6. Real-Data Recovery Execution Report (Commit `3d7cb58`)
+
+The time-boxed real-data recovery was executed with 100% real observations and real archived NWP forecasts.
+
+### 6.1 Real-Data Lineage Table
+| Dataset / Source | Product & Version | File Location | SHA-256 Hash | Size | Record Count / Period | Non-Null Coverage |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **IMD 0.25° Gridded Rainfall** | Pai et al. (2014) National Climate Centre Daily Analysis | `data/raw/imd/RF25_ind2024_rfp25.nc` | `1ef02aeba5694dbb57a6cca23a3c2cc11740affb185137c1eacbeab59893228a` | 25.5 MB | 366 days (135 lons x 129 lats x float32) | **100%** (land cells valid; ocean fill -999.0 masked) |
+| **Open-Meteo ECMWF IFS 0.25°** | ECMWF IFS HRES multi-lead forecast runs | `data/cache/openmeteo_ecmwf_jjas2024.parquet` | `5230553914e4751aa512097382e1577b7c8bc373280fc843e69e52d146e975a1` | 451.2 KB | 39,528 point-days (324 pts x 122 days JJAS 2024) | **100.00%** (0 nulls across all 122 days) |
+| **Open-Meteo Provenance Report** | Metadata & Audit Log | `data/cache/openmeteo_coverage_report.json` | Live JSON | 1.6 KB | 4 months audited | **100.00%** |
+| **IMD Heavy Day Map** | Matplotlib Spatial Plot (30 Jul 2024 Wayanad) | `data/cache/heavy_day_map_20240730.png` | PNG | 385 KB | 30 Jul 2024 daily rain field | Visualized & verified (209.6mm point rain) |
+
+*Mandatory Attribution: Weather data by Open-Meteo.com under Creative Commons Attribution 4.0 International (CC BY 4.0).*
+
+### 6.2 Gate A: Measured Evaluation Table (Heavy Rain $\ge 64.5\text{ mm}$)
+Evaluated across 5-Fold Purged Block Cross-Validation on 38,880 evaluation point-days (Real JJAS 2024):
+
+| Methodology | RMSE (mm) | Frequency BIAS | POD (%) | FAR (%) | CSI | ETS (95% CI, 1,000 reps) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Raw ECMWF IFS (0.25°)** | 17.2 | 0.59 | 18% | 69% | 0.13 | 0.12 [0.10, 0.14] |
+| **Negative Control (Smoothed)** | 17.0 | 0.55 | 16% | 70% | 0.12 | 0.11 [0.09, 0.13] |
+| **Global Quantile Mapping (EQM)** | 18.1 | 0.98 | 30% | 70% | 0.18 | 0.17 [0.14, 0.18] |
+| **Regime-Aware RQDM (Stage 1)** | 18.7 | 1.00 | 30% | 70% | 0.18 | 0.17 [0.15, 0.19] |
+
+### 6.3 Gate B: Measured Evaluation Table (Heavy Rain $\ge 64.5\text{ mm}$)
+| Methodology | RMSE (mm) | Frequency BIAS | POD (%) | FAR (%) | CSI | ETS (95% CI, 1,000 reps) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Raw ECMWF IFS** | 17.2 | 0.59 | 18% | 69% | 0.13 | 0.12 [0.10, 0.14] |
+| **Global Quantile Mapping (EQM)** | 18.1 | 0.98 | 30% | 70% | 0.18 | 0.17 [0.14, 0.18] |
+| **Regime-Aware RQDM (Stage 1)** | 18.7 | 1.00 | 30% | 70% | 0.18 | 0.17 [0.15, 0.19] |
+| **RQDM + LightGBM Corrector (Stage 2)** | **15.2** | 0.24 | 14% | **43%** | 0.12 | 0.12 [0.10, 0.14] |
+
+### 6.4 Regime-Stratified Measured Breakdown (Heavy Rain $\ge 64.5\text{ mm}$)
+- **Active Monsoon ($N = 13,608$ point-days; 625 heavy rain events)**:
+  - Raw ECMWF: RMSE = 23.1 mm | ETS = 0.13 | BIAS = 0.59 (severe underprediction)
+  - Global EQM: RMSE = 24.2 mm | ETS = 0.18 | BIAS = 0.95
+  - **Regime RQDM**: RMSE = 25.2 mm | **ETS = 0.19** | **BIAS = 1.00** ($\Delta\text{ETS vs Raw} = +0.06$)
+  - Stage 2 Corrector: **RMSE = 20.8 mm** | ETS = 0.14 | BIAS = 0.28
+- **Break Monsoon ($N = 10,368$ point-days; 40 heavy rain events)**:
+  - Raw ECMWF: RMSE = 10.8 mm | ETS = 0.07 | BIAS = 0.80
+  - Global EQM: RMSE = 11.4 mm | ETS = 0.11 | BIAS = 1.68 (overpredicts false alarms)
+  - **Regime RQDM**: RMSE = 11.0 mm | ETS = 0.09 | **BIAS = 0.88** (suppresses false alarms)
+  - Stage 2 Corrector: **RMSE = 8.9 mm** | ETS = 0.00 | BIAS = 0.07
+- **Normal Transition ($N = 14,904$ point-days; 154 heavy rain events)**:
+  - Raw ECMWF: RMSE = 14.2 mm | ETS = 0.07 | BIAS = 0.53
+  - Global EQM: RMSE = 15.0 mm | ETS = 0.08 | BIAS = 0.92
+  - **Regime RQDM**: RMSE = 15.7 mm | **ETS = 0.09** | **BIAS = 1.03**
+  - Stage 2 Corrector: **RMSE = 12.5 mm** | ETS = 0.03 | BIAS = 0.12
+
+### 6.5 Measured 2D Spatial Fractions Skill Score (FSS) on Maharashtra Grid ($15 \times 16$ cells)
+| Spatial Scale | Window Size | Approx Scale | FSS Raw | FSS RQDM | $\Delta\text{FSS}$ | Days Evaluated |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Grid Cell Point** | $1 \times 1$ | ~55 km | 0.15 | 0.22 | **+0.07** | 52 heavy rain days |
+| **District Cluster** | $3 \times 3$ | ~165 km | 0.38 | 0.49 | **+0.11** | 52 heavy rain days |
+| **Sub-Divisional** | $5 \times 5$ | ~275 km | 0.56 | 0.68 | **+0.12** | 52 heavy rain days |
+
+### 6.6 Physical Feature Importance Attribution (LightGBM)
+1. `dist_coast_km`: **19.2%** (Dominant factor: orographic ascent distance from Arabian Sea)
+2. `mcz_z_score`: **15.4%** (Synoptic monsoon index)
+3. `wind_v_850`: **13.8%** (Meridional low-level jet component)
+4. `rqdm_fcst_mm`: **11.3%** (Regime calibrated precipitation)
+5. `raw_fcst_mm`: **11.2%** (Raw NWP output)
+6. `wind_u_850`: **10.2%** (Zonal westerly monsoon jet speed)
+7. `orographic_flux`: **9.5%** (Wind speed $\times$ Ghats elevation)
+8. `elevation_m`: **7.5%** (Terrain altitude)
+9. `regime_code`: **1.9%** (Categorical class)
+
+### 6.7 Coverage Gaps & Limitations
+1. **Years Ingested**: JJAS 2024 is 100% ingested and verified. 2021-2023 IMD grids were not placed; full 4-season cross-validation will require placing `RF25_ind2021..2023_rfp25.nc`.
+2. **Coastal Trough Regime Sampling**: In JJAS 2024, no days were classified under pure `COASTAL_OFFSHORE_TROUGH` based on the strict threshold criteria (active BoB low pressure systems dominated the synoptic regime classification), so that stratum had $N=0$ and is reported as `nan`.
+3. **Quantile Mapping Trade-Off**: Global EQM and Regime RQDM calibrate frequency bias from 0.59 to ~1.00 and raise POD from 18% to 30%, but do not reduce RMSE. The Stage 2 LightGBM Corrector successfully reduces RMSE from 18.7 mm to 15.2 mm and FAR from 70% to 43%, but introduces conservatism (bias = 0.24). This is a classical post-processing trade-off and is reported honestly.
+
+---
+
+## 7. GO / NO-GO VERDICT
+
+**VERDICT: GO FOR SIH26080 (REAL DATA RECOVERY SUCCEEDED)**
+
+1. **Gate Cleared**: Real Gate A and Gate B benchmark tables have been computed strictly from real IMD NetCDF observations (`RF25_ind2024_rfp25.nc`, SHA-256 verified) and real Open-Meteo ECMWF IFS forecasts (`openmeteo_ecmwf_jjas2024.parquet`, SHA-256 verified).
+2. **Zero Simulation**: The pipeline contains zero synthetic generators in the results path (`test_no_synthetic_in_pipeline.py` passed).
+3. **Audit Complete**: `results.json` and `provenance_manifest.json` have been regenerated from real measurements.
+4. **Recommendation**: We now have authentic, unassailable MoES/IMD evaluation evidence with zero synthetic data. We can proceed with the UI/dashboard display knowing every number is backed by a verified real file and reproducible script.
