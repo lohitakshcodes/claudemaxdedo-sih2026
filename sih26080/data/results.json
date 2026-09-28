@@ -1,0 +1,309 @@
+{
+  "timestamp_utc": "2026-09-28T09:49:17Z",
+  "commit_hash": "1bb983d",
+  "domain": {
+    "total_points": 324,
+    "regions": {
+      "Western_Ghats_Maharashtra": {
+        "points": 240,
+        "spacing_deg": 0.5,
+        "spacing_km_approx": 55.0
+      },
+      "Core_Monsoon_Zone_Transect": {
+        "points": 84,
+        "spacing_deg": 1.0,
+        "spacing_km_approx": 111.0
+      }
+    },
+    "land_only": true,
+    "india_total_points_note": "Domain covers Western Ghats & Maharashtra Corridor (0.5\u00b0) and Core Monsoon Zone sample (1.0\u00b0). It is NOT full-India all-land."
+  },
+  "verification_threshold_mm": 64.5,
+  "sample_size_point_days": 19440,
+  "overall_benchmark": {
+    "Raw ECMWF IFS (0.25\u00b0)": {
+      "rmse_mm": 6.76,
+      "mae_mm": 4.03,
+      "bias": 0.5466,
+      "pod": 0.5263,
+      "far": 0.037,
+      "csi": 0.5159,
+      "ets": 0.5092,
+      "ets_95ci_1000reps": [
+        0.468,
+        0.554
+      ],
+      "contingency": {
+        "H": 260,
+        "M": 234,
+        "Fa": 10,
+        "C": 18936,
+        "N": 19440
+      }
+    },
+    "Negative Control (Smoothed)": {
+      "rmse_mm": 7.26,
+      "mae_mm": 4.35,
+      "bias": 0.4251,
+      "pod": 0.4211,
+      "far": 0.0095,
+      "csi": 0.4194,
+      "ets": 0.413,
+      "ets_95ci_1000reps": [
+        0.372,
+        0.459
+      ],
+      "contingency": {
+        "H": 208,
+        "M": 286,
+        "Fa": 2,
+        "C": 18944,
+        "N": 19440
+      }
+    },
+    "Global Quantile Mapping (EQM)": {
+      "rmse_mm": 6.16,
+      "mae_mm": 3.77,
+      "bias": 1.0162,
+      "pod": 0.8097,
+      "far": 0.2032,
+      "csi": 0.6711,
+      "ets": 0.6639,
+      "ets_95ci_1000reps": [
+        0.626,
+        0.703
+      ],
+      "contingency": {
+        "H": 400,
+        "M": 94,
+        "Fa": 102,
+        "C": 18844,
+        "N": 19440
+      }
+    },
+    "Regime-Aware RQDM (Stage 1)": {
+      "rmse_mm": 4.77,
+      "mae_mm": 2.72,
+      "bias": 1.0263,
+      "pod": 0.8097,
+      "far": 0.211,
+      "csi": 0.6656,
+      "ets": 0.6582,
+      "ets_95ci_1000reps": [
+        0.619,
+        0.696
+      ],
+      "contingency": {
+        "H": 400,
+        "M": 94,
+        "Fa": 107,
+        "C": 18839,
+        "N": 19440
+      }
+    },
+    "RQDM + Spatial Corrector (Stage 2)": {
+      "rmse_mm": 4.68,
+      "mae_mm": 2.58,
+      "bias": 0.9211,
+      "pod": 0.7753,
+      "far": 0.1582,
+      "csi": 0.6767,
+      "ets": 0.6699,
+      "ets_95ci_1000reps": [
+        0.632,
+        0.709
+      ],
+      "contingency": {
+        "H": 383,
+        "M": 111,
+        "Fa": 72,
+        "C": 18874,
+        "N": 19440
+      }
+    }
+  },
+  "regime_breakdown": {
+    "ACTIVE_MONSOON": {
+      "sample_n": 6480,
+      "events_heavy_rain": 411,
+      "raw_ecmwf": {
+        "rmse": 8.16,
+        "ets": 0.5211,
+        "bias": 0.5718
+      },
+      "global_eqm": {
+        "rmse": 6.6,
+        "ets": 0.6962,
+        "bias": 1.017
+      },
+      "regime_rqdm": {
+        "rmse": 6.49,
+        "ets": 0.695,
+        "bias": 1.0073
+      },
+      "stage2_corrector": {
+        "rmse": 6.44,
+        "ets": 0.7051,
+        "bias": 0.9173
+      }
+    },
+    "BREAK_MONSOON": {
+      "sample_n": 4536,
+      "events_heavy_rain": 0,
+      "raw_ecmwf": {
+        "rmse": 7.76,
+        "ets": 0.0,
+        "bias": 1.0
+      },
+      "global_eqm": {
+        "rmse": 8.19,
+        "ets": 0.0,
+        "bias": 1.0
+      },
+      "regime_rqdm": {
+        "rmse": 2.83,
+        "ets": 0.0,
+        "bias": 1.0
+      },
+      "stage2_corrector": {
+        "rmse": 2.39,
+        "ets": 0.0,
+        "bias": 1.0
+      }
+    },
+    "COASTAL_OFFSHORE_TROUGH": {
+      "sample_n": 5184,
+      "events_heavy_rain": 81,
+      "raw_ecmwf": {
+        "rmse": 5.47,
+        "ets": 0.4107,
+        "bias": 0.4321
+      },
+      "global_eqm": {
+        "rmse": 4.75,
+        "ets": 0.4986,
+        "bias": 1.0247
+      },
+      "regime_rqdm": {
+        "rmse": 4.64,
+        "ets": 0.4893,
+        "bias": 1.1235
+      },
+      "stage2_corrector": {
+        "rmse": 4.58,
+        "ets": 0.504,
+        "bias": 0.9383
+      }
+    },
+    "NORMAL_TRANSITION": {
+      "sample_n": 3240,
+      "events_heavy_rain": 2,
+      "raw_ecmwf": {
+        "rmse": 2.88,
+        "ets": 0.0,
+        "bias": 0.0
+      },
+      "global_eqm": {
+        "rmse": 3.23,
+        "ets": 0.0,
+        "bias": 0.0
+      },
+      "regime_rqdm": {
+        "rmse": 2.66,
+        "ets": -0.0003,
+        "bias": 1.0
+      },
+      "stage2_corrector": {
+        "rmse": 2.69,
+        "ets": -0.0003,
+        "bias": 1.0
+      }
+    }
+  },
+  "probabilistic_verification": {
+    "threshold_mm": 64.5,
+    "raw_ecmwf": {
+      "brier_score": 0.01,
+      "brier_skill_score": 0.597,
+      "expected_calibration_error": 0.0147,
+      "climatological_base_rate": 0.0254
+    },
+    "regime_rqdm": {
+      "brier_score": 0.0078,
+      "brier_skill_score": 0.6851,
+      "expected_calibration_error": 0.0046,
+      "climatological_base_rate": 0.0254
+    }
+  },
+  "fss_scales_verified": [
+    {
+      "window_cells": 1,
+      "scale_km": 55,
+      "label": "Point Grid-Cell (0.5\u00b0)",
+      "fss_raw": 0.51,
+      "fss_rqdm": 0.61
+    },
+    {
+      "window_cells": 3,
+      "scale_km": 165,
+      "label": "District Cluster (3x3 grid)",
+      "fss_raw": 0.68,
+      "fss_rqdm": 0.81
+    },
+    {
+      "window_cells": 5,
+      "scale_km": 275,
+      "label": "Sub-Divisional Synoptic (5x5 grid)",
+      "fss_raw": 0.79,
+      "fss_rqdm": 0.9
+    }
+  ],
+  "data_availability_probe": {
+    "ECMWF_IFS": {
+      "Continuous_Analysis": {
+        "variable": "precipitation",
+        "period": "JJAS 2024",
+        "status": "VERIFIED_LIVE",
+        "endpoint": "historical-forecast-api.open-meteo.com"
+      },
+      "Previous_Day_1_Lead_T24h": {
+        "variable": "precipitation_previous_day1",
+        "period": "JJAS 2024",
+        "status": "VERIFIED_LIVE",
+        "endpoint": "previous-runs-api.open-meteo.com"
+      },
+      "Previous_Day_2_Lead_T48h": {
+        "variable": "precipitation_previous_day2",
+        "period": "JJAS 2024",
+        "status": "VERIFIED_LIVE",
+        "endpoint": "previous-runs-api.open-meteo.com"
+      },
+      "Previous_Day_3_Lead_T72h": {
+        "variable": "precipitation_previous_day3",
+        "period": "JJAS 2024",
+        "status": "VERIFIED_LIVE",
+        "endpoint": "previous-runs-api.open-meteo.com"
+      },
+      "Single_Run_Specific_UTC": {
+        "variable": "all",
+        "period": "JJAS 2024",
+        "status": "FAILED_NOT_SUPPORTED",
+        "endpoint": "single-run-api.open-meteo.com (DNS Err / HTTP 400)"
+      }
+    },
+    "GFS_Seamless": {
+      "Continuous_Analysis": {
+        "variable": "precipitation",
+        "period": "JJAS 2024",
+        "status": "VERIFIED_LIVE",
+        "endpoint": "historical-forecast-api.open-meteo.com"
+      },
+      "Previous_Day_1_to_3": {
+        "variable": "precipitation_previous_day1..3",
+        "period": "JJAS 2024",
+        "status": "VERIFIED_LIVE",
+        "endpoint": "previous-runs-api.open-meteo.com"
+      }
+    }
+  }
+}

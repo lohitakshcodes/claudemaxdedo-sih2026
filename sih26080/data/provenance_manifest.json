@@ -1,0 +1,33 @@
+{
+  "manifest_version": "1.0",
+  "created_at_utc": "2026-09-28T09:49:17Z",
+  "commit_hash": "1bb983d",
+  "results_json_sha256": "2148bafe9fca06153e8b475d1cc41103fa19ec9689b28900a8ea340d22763b76",
+  "data_sources": [
+    {
+      "name": "ECMWF IFS (0.25\u00b0 HRES)",
+      "provider": "Open-Meteo Previous Runs API & Historical Forecast API",
+      "variables": [
+        "precipitation_previous_day1",
+        "precipitation_previous_day2",
+        "precipitation_previous_day3",
+        "precipitation"
+      ],
+      "period": "JJAS 2024 (2024-06-01 to 2024-09-30)",
+      "status": "Verified Live"
+    },
+    {
+      "name": "IMD 0.25\u00b0 Gridded Rainfall Analysis",
+      "provider": "India Meteorological Department (National Climate Centre, Pune)",
+      "resolution": "0.25\u00b0 x 0.25\u00b0 (135 x 129 binary IEEE float grid)",
+      "time_standard": "08:30 IST 24-hour accumulation",
+      "status": "Verified Offline via imd_binary_reader.py"
+    },
+    {
+      "name": "IMD 1991-2020 Climatological Baseline",
+      "reference": "Rajeevan et al. (2010), J. Earth Syst. Sci.",
+      "status": "Zero-Leakage Baseline (JJAS 2024 strictly excluded)"
+    }
+  ],
+  "reproduction_command": "PYTHONPATH=. python3 sih26080/pipeline/reproduce_benchmark.py"
+}

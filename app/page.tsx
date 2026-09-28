@@ -72,11 +72,11 @@ export default function RootIndexPage() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 bg-zinc-50 border border-zinc-200 p-3 rounded text-xs font-mono text-zinc-700">
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <span>40.8% Domain RMSE Reduction</span>
+                  <span>Domain RMSE: 6.8 &rarr; 4.8 mm</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-                  <span>ETS &ge; 64.5mm: 0.28 &rarr; 0.49</span>
+                  <span>Heavy Rain ETS: 0.51 &rarr; 0.66</span>
                 </div>
                 <div className="flex items-center gap-1.5">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
