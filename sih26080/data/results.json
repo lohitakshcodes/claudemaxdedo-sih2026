@@ -144,6 +144,7 @@
   "regime_breakdown": {
     "ACTIVE_MONSOON": {
       "sample_n": 13608,
+      "distinct_days": 42,
       "events_heavy_rain": 625,
       "raw_ecmwf": {
         "rmse": 23.08,
@@ -168,6 +169,7 @@
     },
     "BREAK_MONSOON": {
       "sample_n": 10368,
+      "distinct_days": 32,
       "events_heavy_rain": 40,
       "raw_ecmwf": {
         "rmse": 10.84,
@@ -192,30 +194,37 @@
     },
     "COASTAL_OFFSHORE_TROUGH": {
       "sample_n": 0,
+      "distinct_days": 0,
       "events_heavy_rain": 0,
+      "status": "not evaluated",
       "raw_ecmwf": {
         "rmse": null,
-        "ets": 0.0,
-        "bias": 1.0
+        "ets": null,
+        "bias": null,
+        "status": "not evaluated"
       },
       "global_eqm": {
         "rmse": null,
-        "ets": 0.0,
-        "bias": 1.0
+        "ets": null,
+        "bias": null,
+        "status": "not evaluated"
       },
       "regime_rqdm": {
         "rmse": null,
-        "ets": 0.0,
-        "bias": 1.0
+        "ets": null,
+        "bias": null,
+        "status": "not evaluated"
       },
       "stage2_corrector": {
         "rmse": null,
-        "ets": 0.0,
-        "bias": 1.0
+        "ets": null,
+        "bias": null,
+        "status": "not evaluated"
       }
     },
     "NORMAL_TRANSITION": {
       "sample_n": 14904,
+      "distinct_days": 46,
       "events_heavy_rain": 154,
       "raw_ecmwf": {
         "rmse": 14.23,
@@ -243,15 +252,17 @@
     "threshold_mm": 64.5,
     "raw_ecmwf": {
       "brier_score": 0.0254,
-      "brier_skill_score": -0.2297,
+      "brier_skill_score": -0.2317,
       "expected_calibration_error": 0.018,
-      "climatological_base_rate": 0.0211
+      "climatological_base_rate": 0.0211,
+      "climatological_brier_score": 0.020621
     },
     "regime_rqdm": {
       "brier_score": 0.0253,
-      "brier_skill_score": -0.2287,
+      "brier_skill_score": -0.2269,
       "expected_calibration_error": 0.0245,
-      "climatological_base_rate": 0.0211
+      "climatological_base_rate": 0.0211,
+      "climatological_brier_score": 0.020621
     }
   },
   "fss_scales_verified": [

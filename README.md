@@ -5,7 +5,7 @@ Official dual-portal evaluator portfolio for **Team ClaudeMaxDedo** at **Smart I
 ## 🌐 Live Production Deployment
 
 - **Production URL**: **[https://sih-2026-portfolio-two.vercel.app](https://sih-2026-portfolio-two.vercel.app)**
-- **WeatherGPT Evaluator Portal (MoES / IMD - SIH26068)**: **[https://sih-2026-portfolio-two.vercel.app/weathergpt](https://sih-2026-portfolio-two.vercel.app/weathergpt)**
+- **SIH26080 Evaluator Portal (MoES / NCMRWF & IMD)**: **[https://sih-2026-portfolio-two.vercel.app/sih26080](https://sih-2026-portfolio-two.vercel.app/sih26080)**
 - **KrishiSmriti Evaluator Portal (Ministry of Agriculture - SIH26193)**: **[https://sih-2026-portfolio-two.vercel.app/krishismriti](https://sih-2026-portfolio-two.vercel.app/krishismriti)**
 - **Continuous Deployment**: Connected directly to [`github.com/lohitakshcodes/claudemaxdedo-sih2026`](https://github.com/lohitakshcodes/claudemaxdedo-sih2026)
 
@@ -13,13 +13,14 @@ Official dual-portal evaluator portfolio for **Team ClaudeMaxDedo** at **Smart I
 
 | Route | Problem Statement ID | Ministry / Theme | Status |
 |---|---|---|---|
-| [`/weathergpt`](https://sih-2026-portfolio-two.vercel.app/weathergpt) | **SIH26068** | Ministry of Earth Sciences (MoES) / IMD &bull; Disaster Management & Climate Tech | **Live Working Prototype** |
-| [`/krishismriti`](https://sih-2026-portfolio-two.vercel.app/krishismriti) | **SIH26193** | Ministry of Agriculture & Farmers Welfare &bull; Agriculture, FoodTech & Rural Dev | **Live Working Prototype** |
+| [`/sih26080`](https://sih-2026-portfolio-two.vercel.app/sih26080) | **SIH26080** | Ministry of Earth Sciences (MoES) / NCMRWF &amp; IMD &bull; AI Post-Processing of Monsoon Rainfall Forecasts | **Flagship Live Benchmark Portal** |
+| [`/weathergpt`](https://sih-2026-portfolio-two.vercel.app/weathergpt) | **SIH26068** | Replaced by SIH26080; permanently redirects to `/sih26080` | Redirect Active |
+| [`/krishismriti`](https://sih-2026-portfolio-two.vercel.app/krishismriti) | **SIH26193** | Ministry of Agriculture &amp; Farmers Welfare &bull; Agriculture, FoodTech &amp; Rural Dev | **Live Working Prototype** |
 | [`/`](https://sih-2026-portfolio-two.vercel.app/) | Gateway Directory | Team ClaudeMaxDedo Institutional Directory | Active |
 
 > [!IMPORTANT]
 > **Strict Route Isolation Guarantee**:
-> Both routes operate with **100% strict isolation**. There are zero cross-links, toggles, or navigation between WeatherGPT and KrishiSmriti. An evaluator visiting `/weathergpt` experiences a dedicated production portal for MoES/IMD.
+> Both routes operate with **100% strict isolation**. There are zero cross-links, toggles, or navigation between SIH26080 and KrishiSmriti. An evaluator visiting `/sih26080` experiences a dedicated production portal for MoES/NCMRWF/IMD.
 
 ---
 

@@ -1,0 +1,157 @@
+{
+  "title": "Three Auditable Demonstrations: Success, Failure, and Unsupported-Regime Fallback",
+  "policy_note": "These three cases illustrate operational behaviors under real conditions and synthetic fallback testing. They do NOT replace aggregate statistical evaluation.",
+  "cases": [
+    {
+      "id": "case_1_break_suppression",
+      "label": "Case 1: Break-Monsoon False Alarm Suppression (Success)",
+      "type": "real_historical",
+      "date": "2024-08-18",
+      "station": "Mahabaleshwar (17.92°N, 73.66°E, Elevation 1353m)",
+      "selection_rationale": "Illustrates how regime-conditioned mapping successfully suppresses spurious raw NWP convective false alarms during synoptic Break monsoon spells.",
+      "provenance": {
+        "dataset": "Open-Meteo Previous Runs ecmwf_ifs025 (Cycle 49R1 hindcast)",
+        "accumulation_window": "24h ending 08:30 IST 2024-08-18 (03:00 UTC 2024-08-17 to 03:00 UTC 2024-08-18)",
+        "intended_decision_time": "05:30 IST 2024-08-18 (using antecedent observations through 2024-08-17 08:30 IST)"
+      },
+      "measurements": {
+        "raw_forecast_mm": 68.5,
+        "raw_warning_tier": "YELLOW (False Alarm)",
+        "regime_inputs": {
+          "z_obs_dminus2": -1.95,
+          "z_obs_dminus1": -1.88,
+          "z_nwp_day_d": -1.54,
+          "z_effective": -1.80,
+          "has_bay_depression": false
+        },
+        "rule_trace": {
+          "step_1_active": false,
+          "step_2_break": true,
+          "condition": "Z_effective <= -1.0 (-1.80 <= -1.0)",
+          "final_regime": "BREAK_MONSOON",
+          "training_support_n_k": 10368,
+          "route": "REGIME_RQDM",
+          "fallback_reason": null
+        },
+        "stage_1_rqdm_mm": 14.2,
+        "stage_2_residual_adj_mm": -3.7,
+        "final_calibrated_mm": 10.5,
+        "final_warning_tier": "GREEN (Correct)",
+        "verifying_imd_obs_mm": 8.4,
+        "error_raw_mm": 60.1,
+        "error_calibrated_mm": 2.1,
+        "verdict": "False alarm eliminated; spurious 68.5mm NWP rain damped to 10.5mm, matching 8.4mm IMD observation."
+      },
+      "probability": {
+        "p_exceed_64_5mm": 0.001,
+        "method": "Gaussian survival function with Break-regime residual sigma=1.5mm",
+        "limitation": "Parametric assumption; sharpness concentrates at 0%."
+      },
+      "fallback_status": {
+        "is_fallback_active": false,
+        "fallback_reason": null
+      }
+    },
+    {
+      "id": "case_2_extreme_deluge_miss",
+      "label": "Case 2: Extreme Convective Deluge Underprediction (Real Failure)",
+      "date": "2024-07-26",
+      "type": "real_historical",
+      "station": "Tamhini Ghat / Mulshi Catchment (18.45°N, 73.42°E, Elevation 650m)",
+      "selection_rationale": "Transparently exposes Stage 2's fundamental limitation: because LightGBM minimizes continuous L2 error across 38,880 points, it penalizes false alarm overshoots and smooths localized extreme deluges, leading to a missed heavy rain threshold.",
+      "provenance": {
+        "dataset": "Open-Meteo Previous Runs ecmwf_ifs025 (Cycle 49R1 hindcast)",
+        "accumulation_window": "24h ending 08:30 IST 2024-07-26 (03:00 UTC 2024-07-25 to 03:00 UTC 2024-07-26)",
+        "intended_decision_time": "05:30 IST 2024-07-26"
+      },
+      "measurements": {
+        "raw_forecast_mm": 38.2,
+        "raw_warning_tier": "GREEN (Miss)",
+        "regime_inputs": {
+          "z_obs_dminus2": 1.45,
+          "z_obs_dminus1": 1.82,
+          "z_nwp_day_d": 1.10,
+          "z_effective": 1.47,
+          "has_bay_depression": true
+        },
+        "rule_trace": {
+          "step_1_active": true,
+          "condition": "Z_effective >= +1.0 (1.47 >= 1.0)",
+          "final_regime": "ACTIVE_MONSOON",
+          "training_support_n_k": 13608,
+          "route": "REGIME_RQDM",
+          "fallback_reason": null
+        },
+        "stage_1_rqdm_mm": 68.4,
+        "stage_2_residual_adj_mm": -14.2,
+        "final_calibrated_mm": 54.2,
+        "final_warning_tier": "YELLOW (Missed Heavy Rain Threshold >=64.5mm)",
+        "verifying_imd_obs_mm": 128.6,
+        "error_raw_mm": -90.4,
+        "error_calibrated_mm": -74.4,
+        "verdict": "Failure Case: While Stage 1 reached 68.4mm (crossing heavy rain threshold), Stage 2's negative residual adjustment pulled it down to 54.2mm, resulting in a missed heavy rain event (128.6mm observed). Exposes why Stage 2 POD drops to 0.138."
+      },
+      "probability": {
+        "p_exceed_64_5mm": 0.324,
+        "method": "Gaussian survival function around Stage 2 mean (mu=54.2, sigma=23.4)",
+        "limitation": "Underestimates tail probability due to Gaussian thin tails; fails to trigger urgent evacuation threshold."
+      },
+      "fallback_status": {
+        "is_fallback_active": false,
+        "fallback_reason": null
+      }
+    },
+    {
+      "id": "case_3_unsupported_regime_fallback",
+      "label": "Case 3: Coastal-Trough Zero-Support Fallback (Synthetic Engineering Fallback)",
+      "date": "2024-09-12",
+      "type": "synthetic_fallback_demonstration",
+      "station": "Ratnagiri Offshore Grid (16.5°N, 73.0°E, Sea-Coast Point)",
+      "selection_rationale": "Demonstrates the auditable fallback policy when the synoptic classifier identifies Coastal-Trough conditions but training fold has N_k = 0 samples. Prevents pipeline failure by safely routing to Global EQM.",
+      "provenance": {
+        "dataset": "Simulated operational boundary test for zero-support regime",
+        "accumulation_window": "24h ending 08:30 IST 2024-09-12",
+        "intended_decision_time": "05:30 IST 2024-09-12"
+      },
+      "measurements": {
+        "raw_forecast_mm": 72.0,
+        "raw_warning_tier": "YELLOW",
+        "regime_inputs": {
+          "z_obs_dminus2": -0.2,
+          "z_obs_dminus1": -0.1,
+          "z_nwp_day_d": 0.3,
+          "z_effective": 0.0,
+          "westerly_wind_kts": 32.0,
+          "has_offshore_trough_flag": true
+        },
+        "rule_trace": {
+          "step_1_active": false,
+          "step_2_break": false,
+          "step_3_coastal_trough": true,
+          "condition": "Offshore Trough AND Westerly Wind >= 25 kts",
+          "final_regime": "COASTAL_OFFSHORE_TROUGH",
+          "training_support_n_k": 0,
+          "route": "GLOBAL_EQM_FALLBACK",
+          "fallback_reason": "no_regime_training_samples"
+        },
+        "stage_1_rqdm_mm": 88.5,
+        "stage_2_residual_adj_mm": 0.0,
+        "final_calibrated_mm": 88.5,
+        "final_warning_tier": "ORANGE (Routed via Global EQM)",
+        "verifying_imd_obs_mm": 91.2,
+        "error_raw_mm": -19.2,
+        "error_calibrated_mm": -2.7,
+        "verdict": "Fallback Policy Verified: N_k=0 triggered safe routing to Global EQM with fallback_reason='no_regime_training_samples'. No unhandled exceptions; output clearly audited."
+      },
+      "probability": {
+        "p_exceed_64_5mm": 0.742,
+        "method": "Global EQM empirical residual spread",
+        "limitation": "Labeled as unverified coastal regime proxy; zero historical calibration."
+      },
+      "fallback_status": {
+        "is_fallback_active": true,
+        "fallback_reason": "no_regime_training_samples"
+      }
+    }
+  ]
+}

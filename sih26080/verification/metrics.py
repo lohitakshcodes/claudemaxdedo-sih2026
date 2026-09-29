@@ -11,7 +11,7 @@ Key Invariants:
 """
 
 import math
-from typing import Dict, Tuple, List, Optional
+from typing import Dict, Tuple, List, Optional, Any
 import numpy as np
 
 def compute_contingency_counts(
@@ -140,7 +140,7 @@ def compute_fss_2d(
     mse_ref = float(np.mean(f_pred ** 2) + np.mean(f_obs ** 2))
 
     if mse_ref < 1e-9:
-        return 1.0  # Perfect agreement on zero events
+        return float("nan")  # Undefined / zero-denominator per Roberts & Lean (2008) and MWR-D-24-0120.1
 
     fss = 1.0 - (mse / mse_ref)
     return float(round(max(0.0, min(1.0, fss)), 4))
@@ -153,7 +153,7 @@ def bootstrap_ets_ci(
     seed: int = 42,
 ) -> Tuple[float, float]:
     """
-    Computes 95% Confidence Interval for ETS via Block Bootstrapping.
+    Computes 95% Confidence Interval for ETS via Bootstrapping.
     Returns (ci_lower, ci_upper).
     """
     rng = np.random.default_rng(seed)
@@ -173,6 +173,150 @@ def bootstrap_ets_ci(
     ci_lower = float(np.percentile(ets_samples, 2.5))
     ci_upper = float(np.percentile(ets_samples, 97.5))
     return (round(ci_lower, 3), round(ci_upper, 3))
+
+
+def compute_paired_date_block_bootstrap(
+    dates: np.ndarray,
+    obs: np.ndarray,
+    preds_dict: Dict[str, np.ndarray],
+    threshold_mm: float = 64.5,
+    block_length_days: int = 1,
+    n_bootstrap: int = 500,
+    seed: int = 42,
+    confidence_level: float = 0.95,
+) -> Dict[str, Any]:
+    """
+    Executes paired date-block bootstrapping across models using identical date resamples.
+    Guarantees:
+    1. Preserves all spatial locations on a given date together (cluster sampling).
+    2. Builds consecutive multi-day blocks without bridging across date gaps.
+    3. Uses identical resampled blocks for all models in each replicate.
+    4. Recomputes aggregate scores from pooled underlying resampled records (not averaged daily scores).
+    5. Returns paired difference CIs (Stage 1 - Global EQM, Stage 2 - Stage 1).
+    """
+    dates = np.asarray(dates)
+    obs = np.asarray(obs, dtype=float)
+    unique_dates = np.unique(dates)
+    unique_dates.sort()
+    n_dates = len(unique_dates)
+
+    if n_dates < 5:
+        raise ValueError(f"Need at least 5 unique dates for date-block bootstrap, got {n_dates}")
+
+    # Map dates to row indices
+    date_to_indices = {}
+    for i, d in enumerate(dates):
+        if d not in date_to_indices:
+            date_to_indices[d] = []
+        date_to_indices[d].append(i)
+    for d in date_to_indices:
+        date_to_indices[d] = np.array(date_to_indices[d], dtype=int)
+
+    # Construct blocks of dates
+    # If block_length_days == 1, each block is [date]
+    # If block_length_days > 1, check consecutive calendar continuity
+    from datetime import datetime, timedelta
+    date_objs = [datetime.strptime(str(d)[:10], "%Y-%m-%d") for d in unique_dates]
+    
+    blocks = []
+    if block_length_days <= 1:
+        blocks = [[d] for d in unique_dates]
+    else:
+        # Build non-overlapping or moving blocks without crossing gaps > 1 day
+        for i in range(0, n_dates):
+            current_block = [unique_dates[i]]
+            for step in range(1, block_length_days):
+                if i + step < n_dates:
+                    expected_date = date_objs[i] + timedelta(days=step)
+                    if date_objs[i + step] == expected_date:
+                        current_block.append(unique_dates[i + step])
+                    else:
+                        break  # Gap encountered; do not bridge
+            blocks.append(current_block)
+
+    n_blocks = len(blocks)
+    rng = np.random.default_rng(seed)
+
+    # Initialize paired difference containers
+    models = list(preds_dict.keys())
+    metric_reps = {m: {"ETS": [], "POD": [], "FAR": [], "CSI": [], "BIAS": [], "RMSE": []} for m in models}
+    paired_diffs = {
+        "Stage1_minus_GlobalEQM": {"ETS": [], "POD": [], "FAR": [], "RMSE": []},
+        "Stage2_minus_Stage1": {"ETS": [], "POD": [], "FAR": [], "RMSE": []},
+    }
+
+    usable_replicates = 0
+    alpha_low = ((1.0 - confidence_level) / 2.0) * 100.0
+    alpha_high = (1.0 - ((1.0 - confidence_level) / 2.0)) * 100.0
+
+    for rep in range(n_bootstrap):
+        sampled_block_indices = rng.integers(0, n_blocks, size=n_blocks)
+        sampled_dates = []
+        for b_idx in sampled_block_indices:
+            sampled_dates.extend(blocks[b_idx])
+
+        # Pool all row indices
+        rep_indices_list = [date_to_indices[d] for d in sampled_dates if d in date_to_indices]
+        if not rep_indices_list:
+            continue
+        rep_idx = np.concatenate(rep_indices_list)
+
+        rep_obs = obs[rep_idx]
+        rep_preds = {m: preds_dict[m][rep_idx] for m in models}
+
+        # Check for minimum events
+        if np.sum(rep_obs >= threshold_mm) < 5:
+            continue
+
+        rep_scores = {}
+        for m in models:
+            cnt = compute_contingency_counts(rep_obs, rep_preds[m], threshold_mm=threshold_mm)
+            cat = compute_categorical_metrics(cnt)
+            cont = compute_continuous_metrics(rep_obs, rep_preds[m])
+            rep_scores[m] = {**cat, **cont}
+            for k in metric_reps[m]:
+                metric_reps[m][k].append(rep_scores[m][k])
+
+        # Paired differences
+        if "Regime-Aware RQDM (Stage 1)" in rep_scores and "Global Quantile Mapping (EQM)" in rep_scores:
+            s1 = rep_scores["Regime-Aware RQDM (Stage 1)"]
+            eqm = rep_scores["Global Quantile Mapping (EQM)"]
+            paired_diffs["Stage1_minus_GlobalEQM"]["ETS"].append(s1["ETS"] - eqm["ETS"])
+            paired_diffs["Stage1_minus_GlobalEQM"]["POD"].append(s1["POD"] - eqm["POD"])
+            paired_diffs["Stage1_minus_GlobalEQM"]["FAR"].append(s1["FAR"] - eqm["FAR"])
+            paired_diffs["Stage1_minus_GlobalEQM"]["RMSE"].append(s1["RMSE"] - eqm["RMSE"])
+
+        if "RQDM + Spatial Corrector (Stage 2)" in rep_scores and "Regime-Aware RQDM (Stage 1)" in rep_scores:
+            s2 = rep_scores["RQDM + Spatial Corrector (Stage 2)"]
+            s1 = rep_scores["Regime-Aware RQDM (Stage 1)"]
+            paired_diffs["Stage2_minus_Stage1"]["ETS"].append(s2["ETS"] - s1["ETS"])
+            paired_diffs["Stage2_minus_Stage1"]["POD"].append(s2["POD"] - s1["POD"])
+            paired_diffs["Stage2_minus_Stage1"]["FAR"].append(s2["FAR"] - s1["FAR"])
+            paired_diffs["Stage2_minus_Stage1"]["RMSE"].append(s2["RMSE"] - s1["RMSE"])
+
+        usable_replicates += 1
+
+    # Summarize paired CI
+    summary_diffs = {}
+    for comp_key, ddict in paired_diffs.items():
+        summary_diffs[comp_key] = {}
+        for mkey, values in ddict.items():
+            if len(values) > 10:
+                summary_diffs[comp_key][mkey] = {
+                    "mean_diff": round(float(np.mean(values)), 4),
+                    "median_diff": round(float(np.median(values)), 4),
+                    "ci_lower": round(float(np.percentile(values, alpha_low)), 4),
+                    "ci_upper": round(float(np.percentile(values, alpha_high)), 4),
+                }
+
+    return {
+        "bootstrap_seed": seed,
+        "confidence_level": confidence_level,
+        "block_length_days": block_length_days,
+        "total_requested_replicates": n_bootstrap,
+        "usable_replicates": usable_replicates,
+        "paired_differences": summary_diffs,
+    }
 
 if __name__ == "__main__":
     # Unit check

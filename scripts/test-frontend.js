@@ -93,12 +93,31 @@ async function runFrontendTests() {
   console.log("\n--- TEST SUITE 2: Live Frontend Route & Asset Verification ---");
 
   const pagesToTest = [
-    { route: "/", name: "Root Evaluator Gateway" },
-    { route: "/weathergpt", name: "WeatherGPT Portal (MoES/IMD)" },
-    { route: "/krishismriti", name: "KrishiSmriti Portal (Agri)" },
+    { route: "/", name: "Root Evaluator Gateway", checkAnchors: false },
+    { route: "/sih26080", name: "SIH26080 Evaluator Portal (MoES/IMD)", checkAnchors: false, isSih26080: true },
+    { route: "/krishismriti", name: "KrishiSmriti Portal (Agri)", checkAnchors: true },
   ];
 
   const baseUrl = "http://localhost:3000";
+
+  // Test WeatherGPT redirect to SIH26080
+  try {
+    const redirRes = await fetch(`${baseUrl}/weathergpt`, { redirect: "manual" });
+    assert(
+      redirRes.status === 307 || redirRes.status === 308,
+      "Route /weathergpt returns 307/308 redirect to /sih26080",
+      `Got status ${redirRes.status}`
+    );
+    const redirHtml = await redirRes.text();
+    const locationHeader = redirRes.headers.get("location");
+    assert(
+      (locationHeader && locationHeader.includes("/sih26080")) || redirHtml.includes("/sih26080"),
+      "Route /weathergpt redirects to /sih26080 location",
+      `Location was ${locationHeader}, html included /sih26080: ${redirHtml.includes("/sih26080")}`
+    );
+  } catch (err) {
+    assert(false, "WeatherGPT redirect test", err.message);
+  }
 
   for (const page of pagesToTest) {
     try {
@@ -137,10 +156,16 @@ async function runFrontendTests() {
       }
 
       // Verify essential UI anchors in portal pages
-      if (page.route !== "/") {
+      if (page.checkAnchors) {
         assert(html.includes('id="live-telemetry"'), `Route ${page.route} contains Live Telemetry section`);
         assert(html.includes('id="architecture"'), `Route ${page.route} contains Architecture section`);
         assert(html.includes('id="problem"'), `Route ${page.route} contains Problem Diagnostic section`);
+      }
+
+      if (page.isSih26080) {
+        assert(html.includes("SIH26080"), "SIH26080 page contains SIH26080 problem statement header");
+        assert(html.includes("STAGE 1: REGIME RQDM") || html.includes("REGIME RQDM"), "SIH26080 page contains RQDM Stage 1 calibration output");
+        assert(html.includes("Ratnagiri"), "SIH26080 page includes station terrain selection");
       }
     } catch (err) {
       assert(false, `Route ${page.route} fetch connection`, err.message);

@@ -1,62 +1,222 @@
 {
-  "title": "Component-by-Component Scientific Ablation",
-  "description": "Progressive ablation matrix showing skill metric evolution from Raw NWP to 2-Stage Post-Processing.",
+  "title": "Comprehensive 5-Stage Scientific Ablation & Trade-off Matrix",
+  "description": "Unified component-by-component evaluation showing continuous errors, complete 2x2 contingency counts, categorical metrics, paired bootstrap differences, and block sensitivity.",
+  "evaluation_metadata": {
+    "season": "JJAS 2024",
+    "verification_threshold_mm": 64.5,
+    "total_samples": 38880,
+    "observed_heavy_events": 819,
+    "distinct_dates": 120,
+    "bootstrap_seed": 42,
+    "bootstrap_confidence_level": 0.95,
+    "bootstrap_replicates": 500
+  },
   "components": [
     {
+      "id": "raw",
       "stage": "Step 0: Baseline",
-      "name": "Raw ECMWF IFS (0.25\u00b0)",
+      "name": "Raw ECMWF IFS (0.25°)",
       "description": "Uncalibrated operational numerical weather prediction model output.",
-      "rmse_mm": 18.73,
-      "ets_heavy": 0.1082,
-      "freq_bias": 0.5861,
-      "pod_percent": 18.2,
-      "far_percent": 69.8,
+      "rmse_mm": 17.19,
+      "mae_mm": 9.25,
+      "pod": 0.183,
+      "far": 0.688,
+      "success_ratio": 0.312,
+      "csi": 0.131,
+      "ets": 0.123,
+      "freq_bias": 0.586,
+      "hits": 150,
+      "misses": 669,
+      "false_alarms": 330,
+      "correct_negatives": 37731,
+      "predicted_events": 480,
+      "observed_events": 819,
       "fss_55km": 0.15,
       "fss_165km": 0.38,
       "fss_275km": 0.56,
-      "operational_flaw": "Severe dry bias over Western Ghats; misses 82% of heavy rain events."
+      "operational_tradeoff": "Substantial dry bias over Western Ghats; misses 81.7% of heavy rain events."
     },
     {
-      "stage": "Step 1A: + Standard Frequency Correction",
+      "id": "smoothed",
+      "stage": "Step 0-Ctrl: Negative Control",
+      "name": "Spatial Smoothed NWP (3x3 Boxcar)",
+      "description": "Uniform 3x3 boxcar spatial filtering as negative control.",
+      "rmse_mm": 16.97,
+      "mae_mm": 9.21,
+      "pod": 0.164,
+      "far": 0.701,
+      "success_ratio": 0.299,
+      "csi": 0.118,
+      "ets": 0.111,
+      "freq_bias": 0.547,
+      "hits": 134,
+      "misses": 685,
+      "false_alarms": 314,
+      "correct_negatives": 37747,
+      "predicted_events": 448,
+      "observed_events": 819,
+      "fss_55km": 0.14,
+      "fss_165km": 0.36,
+      "fss_275km": 0.54,
+      "operational_tradeoff": "Slightly reduces RMSE via blurring, but degrades all spatial skill and heavy detection (POD drops to 0.164)."
+    },
+    {
+      "id": "eqm",
+      "stage": "Step 1A: Climatological Mapping",
       "name": "Global Empirical Quantile Mapping (EQM)",
-      "description": "Single transfer function across all dates and locations without synoptic distinction.",
-      "rmse_mm": 19.54,
-      "ets_heavy": 0.1264,
-      "freq_bias": 0.9984,
-      "pod_percent": 29.8,
-      "far_percent": 70.2,
+      "description": "Single monotonic transfer function fitted across all dates and locations without synoptic conditioning.",
+      "rmse_mm": 18.05,
+      "mae_mm": 8.60,
+      "pod": 0.295,
+      "far": 0.699,
+      "success_ratio": 0.301,
+      "csi": 0.175,
+      "ets": 0.165,
+      "freq_bias": 0.980,
+      "hits": 242,
+      "misses": 577,
+      "false_alarms": 561,
+      "correct_negatives": 37500,
+      "predicted_events": 803,
+      "observed_events": 819,
       "fss_55km": 0.17,
       "fss_165km": 0.42,
-      "fss_275km": 0.6,
-      "operational_flaw": "Overpredicts during Break monsoon; generates spurious coastal rain."
+      "fss_275km": 0.60,
+      "operational_tradeoff": "Corrects frequency bias (0.980 vs 0.586); generates spurious heavy false alarms on Break monsoon days."
     },
     {
-      "stage": "Step 1B: + Synoptic Regime Stratification",
+      "id": "stage1",
+      "stage": "Step 1B: Regime Stratification",
       "name": "Regime-Aware RQDM (Stage 1)",
-      "description": "Conditioned transfer functions per synoptic regime (Active, Break, Normal).",
-      "rmse_mm": 20.37,
-      "ets_heavy": 0.1681,
-      "freq_bias": 1.0,
-      "pod_percent": 30.5,
-      "far_percent": 69.5,
+      "description": "Conditioned quantile transfer functions per synoptic regime (Active, Break, Normal).",
+      "rmse_mm": 18.69,
+      "mae_mm": 8.77,
+      "pod": 0.303,
+      "far": 0.697,
+      "success_ratio": 0.303,
+      "csi": 0.178,
+      "ets": 0.168,
+      "freq_bias": 1.000,
+      "hits": 248,
+      "misses": 571,
+      "false_alarms": 571,
+      "correct_negatives": 37490,
+      "predicted_events": 819,
+      "observed_events": 819,
       "fss_55km": 0.22,
       "fss_165km": 0.49,
       "fss_275km": 0.68,
-      "operational_flaw": "Removes synoptic bias (+0.06 ETS gain); does not adjust sub-grid orography."
+      "operational_tradeoff": "Achieves exact aggregate frequency calibration (bias=1.000) and highest POD (0.303, +66% vs Raw), but high FAR persists (~70%)."
     },
     {
-      "stage": "Step 2: + Orographic & Wind Moisture Flux",
-      "name": "Full 2-Stage Post-Processing (RQDM + LightGBM)",
-      "description": "Gradient boosted residual correction with terrain elevation, distance to coast, and 850 hPa wind flux.",
+      "id": "stage2",
+      "stage": "Step 2: Kinematic Residual Correction",
+      "name": "RQDM + LightGBM Corrector (Stage 2)",
+      "description": "Gradient-boosted decision tree corrector using terrain elevation, Arabian Sea distance, and 850 hPa wind moisture flux.",
       "rmse_mm": 15.22,
-      "ets_heavy": 0.142,
-      "freq_bias": 0.2384,
-      "pod_percent": 24.6,
-      "far_percent": 43.1,
+      "mae_mm": 6.64,
+      "pod": 0.138,
+      "far": 0.429,
+      "success_ratio": 0.571,
+      "csi": 0.125,
+      "ets": 0.121,
+      "freq_bias": 0.242,
+      "hits": 113,
+      "misses": 706,
+      "false_alarms": 85,
+      "correct_negatives": 37976,
+      "predicted_events": 198,
+      "observed_events": 819,
       "fss_55km": 0.25,
       "fss_165km": 0.53,
       "fss_275km": 0.72,
-      "operational_flaw": "Optimal continuous RMSE (15.2 mm vs 18.7 mm) & lowest FAR (43% vs 70%)."
+      "operational_tradeoff": "Substantially cuts continuous RMSE (15.22 mm vs 18.69 mm) and slashes False Alarms (85 vs 571, FAR drops to 0.429); but severely underpredicts frequency (bias=0.242) and increases misses (706 vs 571)."
+    }
+  ],
+  "paired_bootstrap_differences": {
+    "Stage1_minus_GlobalEQM": {
+      "ets_delta": {
+        "mean": 0.003,
+        "ci_95": [-0.005, 0.011]
+      },
+      "pod_delta": {
+        "mean": 0.008,
+        "ci_95": [-0.004, 0.020]
+      },
+      "far_delta": {
+        "mean": -0.002,
+        "ci_95": [-0.012, 0.008]
+      },
+      "rmse_delta_mm": {
+        "mean": 0.64,
+        "ci_95": [0.45, 0.83]
+      },
+      "scientific_finding": "Stage 1 shows small incremental categorical gain over Global EQM (+0.003 ETS, +0.008 POD), with 95% CI spanning zero on single-season sample."
+    },
+    "Stage2_minus_Stage1": {
+      "ets_delta": {
+        "mean": -0.047,
+        "ci_95": [-0.068, -0.026]
+      },
+      "pod_delta": {
+        "mean": -0.165,
+        "ci_95": [-0.201, -0.128]
+      },
+      "far_delta": {
+        "mean": -0.268,
+        "ci_95": [-0.320, -0.215]
+      },
+      "rmse_delta_mm": {
+        "mean": -3.47,
+        "ci_95": [-3.85, -3.10]
+      },
+      "scientific_finding": "Stage 2 yields statistically significant continuous improvement (RMSE -3.47 mm, FAR -0.268), at the explicit cost of lower categorical POD (-0.165) and higher misses (+135 misses)."
+    }
+  },
+  "block_bootstrap_sensitivity": [
+    {
+      "block_length_days": 1,
+      "description": "Single-day cluster resampling (all 324 stations on sampled date kept together)",
+      "usable_replicates": 500,
+      "stage1_minus_eqm_ets_ci": [-0.005, 0.011],
+      "stage2_minus_stage1_far_ci": [-0.320, -0.215]
+    },
+    {
+      "block_length_days": 3,
+      "description": "3-day consecutive blocks without bridging missing-date gaps",
+      "usable_replicates": 500,
+      "stage1_minus_eqm_ets_ci": [-0.008, 0.014],
+      "stage2_minus_stage1_far_ci": [-0.335, -0.201]
+    },
+    {
+      "block_length_days": 7,
+      "description": "7-day synoptic spell blocks without bridging missing-date gaps",
+      "usable_replicates": 498,
+      "stage1_minus_eqm_ets_ci": [-0.012, 0.018],
+      "stage2_minus_stage1_far_ci": [-0.352, -0.184]
+    }
+  ],
+  "intensity_stratification_diagnostics": [
+    {
+      "category": "Light Rain (0.1 - 15.5 mm/day)",
+      "sample_count": 25410,
+      "raw_rmse_mm": 5.4,
+      "stage1_rmse_mm": 5.8,
+      "stage2_rmse_mm": 4.1
+    },
+    {
+      "category": "Moderate Rain (15.6 - 64.4 mm/day)",
+      "sample_count": 12651,
+      "raw_rmse_mm": 16.2,
+      "stage1_rmse_mm": 17.0,
+      "stage2_rmse_mm": 13.8
+    },
+    {
+      "category": "Heavy Rain Deluge (>= 64.5 mm/day)",
+      "sample_count": 819,
+      "raw_rmse_mm": 48.6,
+      "stage1_rmse_mm": 51.2,
+      "stage2_rmse_mm": 42.1
     }
   ]
 }

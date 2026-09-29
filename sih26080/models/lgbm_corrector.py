@@ -19,7 +19,86 @@ Features:
 """
 
 from typing import List, Dict, Any, Tuple, Optional
+import math
+from decimal import Decimal
 import numpy as np
+
+
+def compute_wind_direction_deg(u: float, v: float) -> float:
+    """
+    Converts eastward (u) and northward (v) wind components to meteorological FROM bearing in degrees [0, 360).
+    Formula: mod(270 - atan2(v, u) * 180/pi, 360)
+    Explicitly handles u = v = 0 by returning 0.0 without requiring a meaningful direction.
+    """
+    if u == 0.0 and v == 0.0:
+        return 0.0
+    return float(np.mod(270.0 - np.arctan2(v, u) * (180.0 / np.pi), 360.0))
+
+
+def compute_local_gradient_flow_a(u: float, v: float, dh_dx: float, dh_dy: float) -> float:
+    """
+    Formula A: Local terrain-gradient flow V · grad(h) = u * dh_dx + v * dh_dy.
+    Represents localized mechanical ascent governed by the in-situ slope gradient.
+    Maximizes in the local uphill direction grad(h).
+    """
+    return float(u * dh_dx + v * dh_dy)
+
+
+def compute_fixed_ridge_orographic_proxy_b(
+    u: float,
+    v: float,
+    elevation_m: float,
+    ridge_azimuth_deg: float = 160.0,
+) -> float:
+    """
+    Formula B: Elevation-weighted fixed-ridge directional proxy.
+    B = sqrt(u*u + v*v) * sin((wind_direction_deg - ridge_azimuth_deg) * pi/180) * (elevation_m / 1000)
+    Under ridge_azimuth_deg = 160.0:
+      E = elevation_m / 1000
+      B = E * (-cos(160*pi/180) * u + sin(160*pi/180) * v)
+        = E * (0.9396926207859084 * u + 0.3420201433256687 * v)
+
+    Explicitly handles u = v = 0 by returning 0.0.
+    Maximizes when angle_of_attack = 90 degrees (wind FROM 250 degrees, blowing toward 70 degrees).
+
+    CRITICAL SEMANTIC DISTINCTION:
+    Formulas A and B are NOT generally equivalent.
+    They are identical for every wind vector (u, v) ONLY under the conditional equivalence constraint:
+      dh_dx = E * 0.9396926207859084
+      dh_dy = E * 0.3420201433256687
+    Otherwise, A represents local slope ascent while B represents a bulk ridge-barrier directional proxy.
+    """
+    if u == 0.0 and v == 0.0:
+        return 0.0
+    speed = math.sqrt(u * u + v * v)
+    w_dir = compute_wind_direction_deg(u, v)
+    alpha = (w_dir - ridge_azimuth_deg) * (math.pi / 180.0)
+    elev_scale = elevation_m / 1000.0
+    return float(speed * math.sin(alpha) * elev_scale)
+
+
+def validate_feature_importance_display_sum(
+    percentages: List[float],
+    decimal_places: int = 2,
+    numerical_tolerance: float = 1e-9,
+) -> Tuple[bool, float, float]:
+    """
+    Validates that the sum of independently rounded percentages falls within
+    the theoretical aggregate rounding bound:
+      abs(sum(displayed_percentages) - 100.0) <= N * (0.5 * 10^(-decimal_places)) + numerical_tolerance
+
+    For N=9 features rounded to 2 decimal places:
+      Max allowed discrepancy = 9 * 0.005 = 0.045 percentage points.
+    With percentages summing to 100.01%, the discrepancy is +0.01%, which is strictly <= 0.045%.
+
+    Returns: (is_valid, exact_sum, discrepancy)
+    """
+    dec_sum = sum([Decimal(str(p)) for p in percentages])
+    discrepancy = abs(dec_sum - Decimal("100.0"))
+    max_allowed = Decimal(len(percentages)) * Decimal("0.5") * (Decimal("10") ** (-decimal_places))
+    is_valid = discrepancy <= (max_allowed + Decimal(str(numerical_tolerance)))
+    return bool(is_valid), float(dec_sum), float(discrepancy)
+
 
 class LightGBMSpatialCorrector:
     """LightGBM regressor predicting post-RQDM spatial residuals."""

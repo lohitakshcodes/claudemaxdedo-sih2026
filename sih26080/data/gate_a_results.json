@@ -66,10 +66,12 @@
     },
     "COASTAL_OFFSHORE_TROUGH": {
       "sample_n": 0,
+      "distinct_days": 0,
+      "status": "not evaluated",
       "raw_rmse": null,
       "rqdm_rmse": null,
-      "raw_ets": 0.0,
-      "rqdm_ets": 0.0
+      "raw_ets": null,
+      "rqdm_ets": null
     },
     "NORMAL_TRANSITION": {
       "sample_n": 14904,

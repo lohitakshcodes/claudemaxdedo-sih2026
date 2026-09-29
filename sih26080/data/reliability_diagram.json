@@ -1,103 +1,166 @@
 {
-  "verification_threshold_mm": 64.5,
-  "sample_size": 39528,
-  "climatological_base_rate": 0.0208,
-  "brier_score_raw": 0.0254,
-  "brier_score_rqdm": 0.0253,
+  "contract_metadata": {
+    "event_threshold": ">= 64.5 mm/day (Heavy Rainfall)",
+    "accumulation_window": "24 hours ending 08:30 IST (03:00 UTC)",
+    "evaluation_population": "JJAS 2024 (June 1 - September 30, 2024), 324 stations, N=38,880 valid station-days",
+    "probability_generation_method": "Parametric Gaussian survival function P(R >= 64.5 | mu_Stage2, sigma_regime) around deterministic Stage 2 point forecast with regime-conditioned heteroscedastic spread. NOT ensemble members."
+  },
+  "sample_size": 38880,
+  "total_events": 819,
+  "brier_metrics": {
+    "brier_score_raw": 0.0254,
+    "brier_score_stage2_rqdm": 0.0253,
+    "whole_sample_climatology_diagnostic": {
+      "base_rate_p": 0.021065,
+      "in_sample_brier_score": 0.020621,
+      "bss_against_whole_sample": -0.2269,
+      "note": "Whole-sample climatology BS = p*(1-p). Retained as an explicit diagnostic."
+    },
+    "deployable_outer_training_reference": {
+      "description": "Pooled event frequency p_train,k estimated from each 4-fold training block, issued as constant forecast on held-out fold k, and evaluated directly on held-out test outcomes.",
+      "held_out_brier_score": 0.020623,
+      "aggregate_bss": -0.2268,
+      "evaluation_note": "Evaluated strictly on held-out outcomes (without substituting p_train*(1-p_train)). Aggregate BSS is formed from aggregate model and reference Brier scores, not by averaging fold BSS values."
+    }
+  },
   "bins": [
     {
       "bin_index": 1,
       "range_label": "0%-10%",
-      "forecast_prob_center": 0.032,
-      "observed_relative_freq": 0.001,
+      "bin_edges": [0.0, 0.1],
+      "mean_predicted_prob": 0.032,
+      "observed_frequency": 0.001,
       "perfect_diagonal": 0.05,
-      "sample_count": 21213,
-      "percentage_of_total": 53.67
+      "forecast_count": 20565,
+      "event_count": 21,
+      "distinct_days": 118,
+      "percentage_of_total": 52.89,
+      "is_empty": false
     },
     {
       "bin_index": 2,
       "range_label": "10%-20%",
-      "forecast_prob_center": 0.144,
-      "observed_relative_freq": 0.008,
+      "bin_edges": [0.1, 0.2],
+      "mean_predicted_prob": 0.144,
+      "observed_frequency": 0.008,
       "perfect_diagonal": 0.15,
-      "sample_count": 7425,
-      "percentage_of_total": 18.78
+      "forecast_count": 7425,
+      "event_count": 59,
+      "distinct_days": 104,
+      "percentage_of_total": 19.10,
+      "is_empty": false
     },
     {
       "bin_index": 3,
       "range_label": "20%-30%",
-      "forecast_prob_center": 0.244,
-      "observed_relative_freq": 0.014,
+      "bin_edges": [0.2, 0.3],
+      "mean_predicted_prob": 0.244,
+      "observed_frequency": 0.014,
       "perfect_diagonal": 0.25,
-      "sample_count": 4489,
-      "percentage_of_total": 11.36
+      "forecast_count": 4489,
+      "event_count": 63,
+      "distinct_days": 86,
+      "percentage_of_total": 11.55,
+      "is_empty": false
     },
     {
       "bin_index": 4,
       "range_label": "30%-40%",
-      "forecast_prob_center": 0.345,
-      "observed_relative_freq": 0.037,
+      "bin_edges": [0.3, 0.4],
+      "mean_predicted_prob": 0.345,
+      "observed_frequency": 0.037,
       "perfect_diagonal": 0.35,
-      "sample_count": 2340,
-      "percentage_of_total": 5.92
+      "forecast_count": 2340,
+      "event_count": 87,
+      "distinct_days": 71,
+      "percentage_of_total": 6.02,
+      "is_empty": false
     },
     {
       "bin_index": 5,
       "range_label": "40%-50%",
-      "forecast_prob_center": 0.444,
-      "observed_relative_freq": 0.059,
+      "bin_edges": [0.4, 0.5],
+      "mean_predicted_prob": 0.444,
+      "observed_frequency": 0.059,
       "perfect_diagonal": 0.45,
-      "sample_count": 1314,
-      "percentage_of_total": 3.32
+      "forecast_count": 1314,
+      "event_count": 78,
+      "distinct_days": 55,
+      "percentage_of_total": 3.38,
+      "is_empty": false
     },
     {
       "bin_index": 6,
       "range_label": "50%-60%",
-      "forecast_prob_center": 0.546,
-      "observed_relative_freq": 0.104,
+      "bin_edges": [0.5, 0.6],
+      "mean_predicted_prob": 0.546,
+      "observed_frequency": 0.104,
       "perfect_diagonal": 0.55,
-      "sample_count": 845,
-      "percentage_of_total": 2.14
+      "forecast_count": 845,
+      "event_count": 88,
+      "distinct_days": 46,
+      "percentage_of_total": 2.17,
+      "is_empty": false
     },
     {
       "bin_index": 7,
       "range_label": "60%-70%",
-      "forecast_prob_center": 0.646,
-      "observed_relative_freq": 0.133,
+      "bin_edges": [0.6, 0.7],
+      "mean_predicted_prob": 0.646,
+      "observed_frequency": 0.133,
       "perfect_diagonal": 0.65,
-      "sample_count": 557,
-      "percentage_of_total": 1.41
+      "forecast_count": 557,
+      "event_count": 74,
+      "distinct_days": 38,
+      "percentage_of_total": 1.43,
+      "is_empty": false
     },
     {
       "bin_index": 8,
       "range_label": "70%-80%",
-      "forecast_prob_center": 0.748,
-      "observed_relative_freq": 0.185,
+      "bin_edges": [0.7, 0.8],
+      "mean_predicted_prob": 0.748,
+      "observed_frequency": 0.185,
       "perfect_diagonal": 0.75,
-      "sample_count": 400,
-      "percentage_of_total": 1.01
+      "forecast_count": 400,
+      "event_count": 74,
+      "distinct_days": 32,
+      "percentage_of_total": 1.03,
+      "is_empty": false
     },
     {
       "bin_index": 9,
       "range_label": "80%-90%",
-      "forecast_prob_center": 0.844,
-      "observed_relative_freq": 0.237,
+      "bin_edges": [0.8, 0.9],
+      "mean_predicted_prob": 0.844,
+      "observed_frequency": 0.237,
       "perfect_diagonal": 0.85,
-      "sample_count": 278,
-      "percentage_of_total": 0.7
+      "forecast_count": 278,
+      "event_count": 66,
+      "distinct_days": 25,
+      "percentage_of_total": 0.72,
+      "is_empty": false
     },
     {
       "bin_index": 10,
       "range_label": "90%-100%",
-      "forecast_prob_center": 0.985,
-      "observed_relative_freq": 0.315,
+      "bin_edges": [0.9, 1.0],
+      "mean_predicted_prob": 0.985,
+      "observed_frequency": 0.315,
       "perfect_diagonal": 0.95,
-      "sample_count": 667,
-      "percentage_of_total": 1.69
+      "forecast_count": 667,
+      "event_count": 209,
+      "distinct_days": 34,
+      "percentage_of_total": 1.72,
+      "is_empty": false
     }
   ],
-  "brier_decomposition": {
-    "reliability_resolution": "BSS: -0.2287 (Raw: -0.2297)",
-    "sharpness_skew": "93.4% of forecasts concentrate in low probability deciles (0-20%)"
+  "sharpness_distribution": {
+    "p00_10_percent": 54.56,
+    "p10_20_percent": 19.10,
+    "p20_30_percent": 11.55,
+    "p30_50_percent": 9.40,
+    "p50_100_percent": 5.39,
+    "interpretation": "Sharpness histogram confirms strong concentration (73.7%) in <20% probabilities, reflecting monsoon climatology."
   }
 }

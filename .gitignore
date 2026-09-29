@@ -50,4 +50,7 @@ data/cache/*.png
 *.grd
 *.nc
 *.zarr
-
+# python
+__pycache__/
+*.py[cod]
+*$py.class

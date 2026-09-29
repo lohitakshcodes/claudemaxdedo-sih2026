@@ -1,0 +1,114 @@
+{
+  "report_version": "1.0",
+  "generated_at_utc": "2026-09-29T17:00:00Z",
+  "operational_decision_point": {
+    "issue_time_ist": "05:30 IST",
+    "issue_time_utc": "00:00 UTC",
+    "target_forecast_day": "Day D (08:30 IST accumulation ending Day D, corresponding to 03:00 UTC D-1 to 03:00 UTC D)",
+    "strict_rule": "Verifying observation on Day D does NOT exist at 05:30 IST. Any pipeline using Day D observation as a predictor is classified as an oracle retrospective diagnostic and cannot be claimed as an operational forecast."
+  },
+  "predictors": [
+    {
+      "name": "raw_fcst_mm",
+      "type": "dynamic_nwp",
+      "source": "Open-Meteo ECMWF IFS 0.25° Previous Runs archive",
+      "valid_time": "Day D (24h ending 03:00 UTC Day D)",
+      "availability_at_issue": "Available from D-1 12Z operational run distribution (4-6h latency)",
+      "operational_status": "VALID_OPERATIONAL_PREDICTOR",
+      "is_future_valid_allowed": true
+    },
+    {
+      "name": "rqdm_fcst_mm",
+      "type": "derived_stage1",
+      "source": "Stage 1 Regime-Conditioned Quantile Mapping",
+      "valid_time": "Day D",
+      "availability_at_issue": "Derived strictly from causal Z_effective and training-fold quantile lookup table",
+      "operational_status": "VALID_OPERATIONAL_PREDICTOR",
+      "is_future_valid_allowed": false
+    },
+    {
+      "name": "elevation_m",
+      "type": "static_terrain",
+      "source": "Station altitude above mean sea level (meters)",
+      "valid_time": "Time-invariant",
+      "availability_at_issue": "Static feature",
+      "operational_status": "VALID_OPERATIONAL_PREDICTOR",
+      "is_future_valid_allowed": false
+    },
+    {
+      "name": "dist_coast_km",
+      "type": "static_geographic",
+      "source": "Shortest distance to Arabian Sea coastline (km)",
+      "valid_time": "Time-invariant",
+      "availability_at_issue": "Static feature",
+      "operational_status": "VALID_OPERATIONAL_PREDICTOR",
+      "is_future_valid_allowed": false
+    },
+    {
+      "name": "wind_u_850",
+      "type": "dynamic_nwp",
+      "source": "ECMWF IFS 850 hPa zonal wind forecast",
+      "valid_time": "Day D",
+      "availability_at_issue": "Available from NWP forecast",
+      "operational_status": "VALID_OPERATIONAL_PREDICTOR",
+      "is_future_valid_allowed": true
+    },
+    {
+      "name": "wind_v_850",
+      "type": "dynamic_nwp",
+      "source": "ECMWF IFS 850 hPa meridional wind forecast",
+      "valid_time": "Day D",
+      "availability_at_issue": "Available from NWP forecast",
+      "operational_status": "VALID_OPERATIONAL_PREDICTOR",
+      "is_future_valid_allowed": true
+    },
+    {
+      "name": "orographic_flux",
+      "type": "derived_kinematic",
+      "source": "Ridge-normal orographic proxy w_oro = E * (-cos(160)*u + sin(160)*v)",
+      "valid_time": "Day D",
+      "availability_at_issue": "Computed from NWP wind vector and static elevation",
+      "operational_status": "VALID_OPERATIONAL_PREDICTOR",
+      "is_future_valid_allowed": true
+    },
+    {
+      "name": "regime_code",
+      "type": "derived_synoptic",
+      "source": "Causal composite synoptic regime classifier",
+      "inputs": "Z_effective(D) = 0.35 * Z_obs(D-2) + 0.35 * Z_obs(D-1) + 0.30 * Z_NWP(D)",
+      "valid_time": "Day D",
+      "availability_at_issue": "Computed at 05:30 IST using finalized D-2 and D-1 observations plus Day D NWP forecast",
+      "operational_status": "VALID_OPERATIONAL_PREDICTOR",
+      "is_future_valid_allowed": false,
+      "oracle_exclusion_notice": "Verifying observation on Day D is strictly excluded. Any experiment conditioning on actual Day D IMD rain is classified as 'retrospective observation-conditioned / oracle regime'."
+    },
+    {
+      "name": "mcz_z_score",
+      "type": "derived_synoptic",
+      "source": "Core Monsoon Zone standardized effective anomaly Z_effective",
+      "inputs": "0.35 * Z_obs(D-2) + 0.35 * Z_obs(D-1) + 0.30 * Z_NWP(D)",
+      "valid_time": "Day D",
+      "availability_at_issue": "Causal composite anomaly available at 05:30 IST",
+      "operational_status": "VALID_OPERATIONAL_PREDICTOR",
+      "is_future_valid_allowed": false
+    }
+  ],
+  "validation_protocol": {
+    "cross_validation_type": "Retrospective Blocked Cross-Validation (5 Folds)",
+    "deployment_validation_caveat": "CV trains on both earlier and later seasonal blocks relative to the test fold. It is accurately designated 'retrospective blocked CV' and must NOT be described as rolling-origin deployment validation.",
+    "spatial_grouping": "Date-grouped (all 324 stations for a given date are assigned to the same fold)",
+    "temporal_purge_buffer_days": 5,
+    "purge_rationale": "Prevents synoptic multi-day autocorrelation leakage across fold boundaries",
+    "held_out_exclusion_audit": {
+      "quantile_tables_fitted_on_test": false,
+      "tail_parameters_fitted_on_test": false,
+      "lightgbm_early_stopping_on_test": false,
+      "probability_calibration_on_test": false
+    },
+    "stage_2_training_lineage": {
+      "stage_1_inputs_in_stage_2_train": "In-sample Stage 1 predictions on training fold (standard stacking design)",
+      "outer_test_evaluation": "Strictly out-of-fold (Stage 1 and Stage 2 both evaluate on unseen test blocks)",
+      "contamination_status": "No outer-test outcome leakage; documented training-distribution property of stacked regressors"
+    }
+  }
+}

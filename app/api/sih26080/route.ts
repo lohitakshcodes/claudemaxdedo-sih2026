@@ -96,32 +96,87 @@ export async function GET(req: NextRequest) {
   }
 
   if (action === "cap_alert") {
-    // Generate Sample Common Alerting Protocol (CAP 1.2) structure for SDMA
-    const sampleCapAlert = {
-      identifier: `IN-MH-SDMA-2024-${Date.now().toString(36).toUpperCase()}`,
-      sender: "imd.pune.sdma@gov.in",
-      sent: new Date().toISOString(),
-      status: "Actual",
+    // Generate OASIS Common Alerting Protocol (CAP 1.2) structure for interoperability evaluation ONLY.
+    // Strictly non-official: status is "Test" or "Exercise", never "Actual".
+    const mode = searchParams.get("mode") === "exercise" ? "Exercise" : "Test";
+    const sentTime = new Date().toISOString();
+    const identifier = `URN:SIH26080:DEMO:${mode.toUpperCase()}:${Date.now().toString(36).toUpperCase()}`;
+
+    const capAlert = {
+      identifier: identifier,
+      sender: "research.prototype@sih26080.ncmrwf-postprocess.local",
+      sent: sentTime,
+      status: mode,
       msgType: "Alert",
-      scope: "Public",
+      scope: "Restricted",
+      restriction: "For Technical Interoperability Demonstration Only - Not An Operational Warning",
+      note: "NON-OFFICIAL RESEARCH PROTOTYPE (SIH26080). Technical demonstration of CAP 1.2 interoperability. Not issued by IMD/NDMA/SDMA. No operational NDMA/SACHET integration claimed.",
       info: {
         category: "Met",
-        event: "Heavy to Extremely Heavy Monsoon Downpour",
-        urgency: "Immediate",
+        event: "Heavy Monsoon Rainfall Diagnostic",
+        urgency: "Future",
         severity: "Severe",
-        certainty: "Observed/Likely",
-        headline: "Regime-Conditioned High-Resolution Extreme Rainfall Early Warning",
-        description: "Post-processed ECMWF IFS numerical forecast indicates localized heavy orographic burst exceeding 64.5mm with 89% exceedance probability along Ghat crests.",
+        certainty: "Possible",
+        eventCode: {
+          valueName: "IMD-Rainfall-Category",
+          value: "HEAVY_RAIN_64.5MM"
+        },
+        expires: new Date(Date.now() + 86400000).toISOString(),
+        senderName: "SIH26080 Downstream Post-Processing Research Pipeline",
+        headline: `[${mode.toUpperCase()} DEMO] Regime-Aware Downstream Post-Processing Diagnostic`,
+        description: "Post-processed ECMWF IFS numerical forecast indicates localized heavy orographic rain potential along Western Ghats crests (exceedance probability P(R>=64.5mm)=89%). THIS IS A NON-OFFICIAL TECHNICAL TEST OF CAP 1.2 INTEROPERABILITY.",
+        instruction: "Do NOT broadcast or disseminate to the public. For technical post-processing evaluation and interoperability verification only.",
         area: {
-          areaDesc: "Konkan and Western Ghats (Ratnagiri, Raigad, Pune Ghats, Satara, Kolhapur)",
+          areaDesc: "Western Ghats & Maharashtra Corridor (0.5° evaluation grid)",
           polygon: "18.1,73.1 18.5,73.4 17.8,73.8 17.2,73.5 18.1,73.1",
         },
       },
     };
+
+    const xmlPayload = `<?xml version="1.0" encoding="UTF-8"?>
+<alert xmlns="urn:oasis:names:tc:emergency:cap:1.2">
+  <identifier>${capAlert.identifier}</identifier>
+  <sender>${capAlert.sender}</sender>
+  <sent>${capAlert.sent}</sent>
+  <status>${capAlert.status}</status>
+  <msgType>${capAlert.msgType}</msgType>
+  <scope>${capAlert.scope}</scope>
+  <restriction>${capAlert.restriction}</restriction>
+  <note>${capAlert.note}</note>
+  <info>
+    <category>${capAlert.info.category}</category>
+    <event>${capAlert.info.event}</event>
+    <urgency>${capAlert.info.urgency}</urgency>
+    <severity>${capAlert.info.severity}</severity>
+    <certainty>${capAlert.info.certainty}</certainty>
+    <eventCode>
+      <valueName>${capAlert.info.eventCode.valueName}</valueName>
+      <value>${capAlert.info.eventCode.value}</value>
+    </eventCode>
+    <expires>${capAlert.info.expires}</expires>
+    <senderName>${capAlert.info.senderName}</senderName>
+    <headline>${capAlert.info.headline}</headline>
+    <description>${capAlert.info.description}</description>
+    <instruction>${capAlert.info.instruction}</instruction>
+    <area>
+      <areaDesc>${capAlert.info.area.areaDesc}</areaDesc>
+      <polygon>${capAlert.info.area.polygon}</polygon>
+    </area>
+  </info>
+</alert>`;
+
+    if (searchParams.get("format") === "xml") {
+      return new Response(xmlPayload, {
+        headers: { "Content-Type": "application/xml" },
+      });
+    }
+
     return NextResponse.json({
       status: "SUCCESS",
       format: "CAP-v1.2-JSON",
-      alert: sampleCapAlert,
+      complianceNotice: "OASIS CAP 1.2 Interoperability Only (Status: Test/Exercise, Non-Official Research)",
+      alert: capAlert,
+      xmlPayload: xmlPayload,
     });
   }
 

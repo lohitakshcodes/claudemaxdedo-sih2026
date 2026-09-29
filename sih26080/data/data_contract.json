@@ -1,0 +1,53 @@
+{
+  "contract_version": "1.0",
+  "last_audited_utc": "2026-09-29T17:00:00Z",
+  "evaluation_scope": {
+    "season": "JJAS 2024",
+    "period_start": "2024-06-01",
+    "period_end": "2024-09-30",
+    "calendar_days": 120,
+    "total_evaluation_points": 324,
+    "sample_size_point_days": 38880,
+    "geographic_domain": "Western Ghats & Maharashtra Corridor (240 pts @ 0.5°) + Core Monsoon Zone Sample (84 pts @ 1.0°)"
+  },
+  "observation_contract": {
+    "provider": "India Meteorological Department (IMD), National Climate Centre, Pune",
+    "product_name": "IMD 0.25° x 0.25° High Resolution Daily Gridded Rainfall Analysis",
+    "reference": "Pai et al. (2014), Mausam, 65(1), 1-18",
+    "format": "Binary IEEE 32-bit float grid (135 lons x 129 lats) / NetCDF4 archive (RF25_ind2024_rfp25.nc)",
+    "file_sha256": "1ef02aeba5694dbb57a6cca23a3c2cc11740affb185137c1eacbeab59893228a",
+    "time_standard": "08:30 IST 24-hour accumulation window",
+    "utc_accumulation_window": {
+      "start_utc": "03:00 UTC (Day D-1)",
+      "end_utc": "03:00 UTC (Day D)",
+      "duration_hours": 24
+    },
+    "units": "mm/day",
+    "missing_value_code": -999.0,
+    "land_sea_mask": "IMD operational national land boundary mask"
+  },
+  "forecast_contract": {
+    "provider": "Open-Meteo.com API (under CC BY 4.0 attribution)",
+    "api_endpoint": "https://previous-runs-api.open-meteo.com/v1/forecast & https://historical-forecast-api.open-meteo.com/v1/forecast",
+    "model_identifier": "ecmwf_ifs025 (ECMWF IFS 0.25° HRES)",
+    "archive_product_type": "Fixed-offset Previous Runs rolling archive (precipitation, precipitation_previous_day1..3)",
+    "archive_metadata_notice": "Open-Meteo documentation identifies historical 2024 ECMWF IFS runs as IFS Cycle 49R1 hindcasts/re-forecast archive rather than certified as-issued operational broadcast feeds.",
+    "initialization_time_semantics": "Stitched rolling lead-offset archive. Individual initialization run cycles (00Z vs 12Z) are not uniquely isolated in hourly series.",
+    "availability_assumptions": "Forecast decision time is assumed to be 05:30 IST (00:00 UTC) on Day D. Under operational conditions, ECMWF IFS 00Z runs require 4-6 hours distribution latency, meaning Day D 05:30 IST decisions operationally rely on the D-1 12Z cycle.",
+    "operational_timeline_caveat": "The IMD 24h accumulation interval spans 08:30 IST on Day D-1 to 08:30 IST on Day D. If an operational pipeline executes at 05:30 IST on Day D, 21 hours of that 24h target interval have already elapsed in chronological time. Therefore, this benchmark evaluates post-processing of fixed-offset 24h accumulations (retrieved from the Open-Meteo Previous Runs day-1 archive), and must NOT be described as a prospective day-ahead forecast issued prior to the start of the accumulation interval.",
+    "hourly_timestamp_semantics": "Open-Meteo hourly timestamp T represents the precipitation accumulated over the PRECEDING hour (T-1 to T].",
+    "accumulation_summation_rule": "24 hours ending 03:00 UTC Day D is formed by summing hourly timestamps (D-1)T04:00 through (D)T03:00 (20 hours from D-1 plus 4 hours from D).",
+    "aggregation_classification": "Multi-run stitched lead-offset aggregate; must NOT be presented as a certified single-run isolated forecast cycle.",
+    "lead_claim_status": {
+      "day_1_lead": "Verified Previous Day 1 offset harvest against IMD 08:30 IST window",
+      "day_2_lead": "Provisional Previous Day 2 offset harvest; lead-specific causality gated pending cycle run tracking",
+      "day_3_lead": "Provisional Previous Day 3 offset harvest; lead-specific causality gated pending cycle run tracking"
+    }
+  },
+  "provenance_gating": {
+    "is_operational_as_issued": false,
+    "is_retrospective_benchmark": true,
+    "oracle_features_allowed": false,
+    "held_out_leakage_audit_status": "PASSED (Zero-Leakage Causal Formula strictly verified)"
+  }
+}
