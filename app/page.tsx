@@ -5,7 +5,7 @@ import { ArrowRight, Shield, Award, Terminal, CheckCircle2 } from "lucide-react"
 export const metadata: Metadata = {
   title: "SIH 2026 Portfolio Index — Team ClaudeMaxDedo | Official Evaluator Gateway",
   description:
-    "Official Smart India Hackathon 2026 portfolio gateway for Team ClaudeMaxDedo. Designated portals for MoES / IMD (SIH26068) and Ministry of Agriculture (SIH26193).",
+    "Official Smart India Hackathon 2026 portfolio gateway for Team ClaudeMaxDedo. Designated portal for MoES / NCMRWF & IMD (SIH26080) and Ministry of Agriculture (SIH26193).",
 };
 
 export default function RootIndexPage() {
